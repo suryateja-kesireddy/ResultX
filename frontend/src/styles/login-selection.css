@@ -1,0 +1,249 @@
+/* ==========================================
+   Login Selection
+========================================== */
+
+.login-selection {
+  min-height: calc(100vh - 72px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 80px 20px;
+
+  background: linear-gradient(
+    135deg,
+    #eff6ff,
+    #f8fafc,
+    #eef2ff
+  );
+}
+
+/* ==========================================
+   Container
+========================================== */
+
+.login-selection-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* ==========================================
+   Back Button
+========================================== */
+
+.back-home {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 35px;
+
+  text-decoration: none;
+
+  color: #2563eb;
+
+  font-weight: 600;
+
+  transition: all .25s ease;
+}
+
+.back-home:hover {
+  transform: translateX(-4px);
+}
+
+/* ==========================================
+   Heading
+========================================== */
+
+.login-selection h1 {
+  font-size: 44px;
+  font-weight: 800;
+
+  color: #111827;
+
+  margin-bottom: 14px;
+}
+
+.selection-subtitle {
+  max-width: 650px;
+
+  margin: 0 auto 60px;
+
+  font-size: 18px;
+
+  line-height: 1.7;
+
+  color: #6b7280;
+}
+
+/* ==========================================
+   Portal Grid
+========================================== */
+
+.portal-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 28px;
+}
+
+/* ==========================================
+   Portal Card
+========================================== */
+
+.portal-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 36px 28px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 22px;
+
+  text-decoration: none;
+
+  color: inherit;
+
+  box-shadow:
+      0 10px 25px rgba(15,23,42,.06);
+
+  transition: all .35s ease;
+}
+
+.portal-card:hover {
+
+  transform: translateY(-10px);
+
+  border-color: #2563eb;
+
+  box-shadow:
+      0 22px 45px rgba(37,99,235,.18);
+
+}
+
+/* ==========================================
+   Portal Icon
+========================================== */
+
+.portal-icon {
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 22px;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+  color: white;
+
+  margin-bottom: 24px;
+
+  transition: all .3s ease;
+}
+
+.portal-card:hover .portal-icon {
+  transform: scale(1.08) rotate(-5deg);
+}
+
+/* ==========================================
+   Title
+========================================== */
+
+.portal-card h2 {
+
+  font-size: 24px;
+
+  font-weight: 700;
+
+  color: #111827;
+
+  margin-bottom: 14px;
+}
+
+/* ==========================================
+   Description
+========================================== */
+
+.portal-card p {
+
+  color: #6b7280;
+
+  line-height: 1.7;
+
+  min-height: 78px;
+
+  margin-bottom: 28px;
+}
+
+/* ==========================================
+   Login Link
+========================================== */
+
+.portal-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: auto;
+
+  padding: 12px 24px;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+  color: white;
+
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: all .3s ease;
+}
+
+.portal-link:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width:768px) {
+
+  .login-selection {
+    padding: 60px 20px;
+  }
+
+  .login-selection h1 {
+    font-size: 34px;
+  }
+
+  .selection-subtitle {
+    font-size: 16px;
+  }
+
+}
+
+@media (max-width:480px) {
+
+  .portal-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

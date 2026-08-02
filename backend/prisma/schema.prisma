@@ -1,0 +1,312 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//////////////////////////////////////////////////////
+// ENUMS
+//////////////////////////////////////////////////////
+
+enum Role {
+  STUDENT
+  HOD
+  EXAM_CELL
+  ADMIN
+}
+
+enum ResultStatus {
+  PASS
+  FAIL
+  WITHHELD
+}
+
+enum Grade {
+  O
+  A_PLUS
+  A
+  B_PLUS
+  B
+  C
+  F
+}
+
+enum SemesterType {
+  ODD
+  EVEN
+}
+
+enum NotificationTarget {
+  ALL
+  STUDENT
+  HOD
+  EXAM_CELL
+}
+
+//////////////////////////////////////////////////////
+// USER
+//////////////////////////////////////////////////////
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  role      Role
+  isActive  Boolean   @default(true)
+  lastLogin DateTime?
+
+  student  Student?
+  hod      HOD?
+  examCell ExamCell?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//////////////////////////////////////////////////////
+// COURSE
+//////////////////////////////////////////////////////
+
+model Course {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  code     String @unique
+  duration Int
+
+  departments Department[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//////////////////////////////////////////////////////
+// DEPARTMENT
+//////////////////////////////////////////////////////
+
+model Department {
+  id   Int    @id @default(autoincrement())
+  name String
+  code String @unique
+
+  courseId Int
+  course   Course @relation(fields: [courseId], references: [id])
+
+  students Student[]
+  hods     HOD[]
+  subjects Subject[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseId, name])
+  @@index([courseId])
+}
+
+//////////////////////////////////////////////////////
+// ACADEMIC YEAR
+//////////////////////////////////////////////////////
+
+model AcademicYear {
+  id        Int     @id @default(autoincrement())
+  year      String  @unique
+  isCurrent Boolean @default(false)
+
+  semesters Semester[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//////////////////////////////////////////////////////
+// SEMESTER
+//////////////////////////////////////////////////////
+
+model Semester {
+  id     Int          @id @default(autoincrement())
+  number Int
+  type   SemesterType
+
+  academicYearId Int
+  academicYear   AcademicYear @relation(fields: [academicYearId], references: [id])
+
+  students Student[]
+  subjects Subject[]
+  results  Result[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([number, academicYearId])
+  @@index([academicYearId])
+}
+
+//////////////////////////////////////////////////////
+// STUDENT
+//////////////////////////////////////////////////////
+
+model Student {
+  id Int @id @default(autoincrement())
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+
+  hallTicket String  @unique
+  phone      String? @db.VarChar(15)
+
+  departmentId Int
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  semesterId Int
+  semester   Semester @relation(fields: [semesterId], references: [id])
+
+  section String @default("A")
+
+  results Result[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([departmentId])
+  @@index([semesterId])
+}
+
+//////////////////////////////////////////////////////
+// HOD
+//////////////////////////////////////////////////////
+
+model HOD {
+  id Int @id @default(autoincrement())
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+
+  employeeId String @unique
+  phone      String? @db.VarChar(15)
+
+  departmentId Int
+  department Department @relation(fields: [departmentId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([departmentId])
+}
+
+//////////////////////////////////////////////////////
+// EXAM CELL
+//////////////////////////////////////////////////////
+
+model ExamCell {
+  id Int @id @default(autoincrement())
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id])
+
+  employeeId String  @unique
+  phone      String? @db.VarChar(15)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//////////////////////////////////////////////////////
+// SUBJECT
+//////////////////////////////////////////////////////
+
+model Subject {
+  id Int @id @default(autoincrement())
+
+  code    String
+  name    String
+  credits Int
+
+  departmentId Int
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  semesterId Int
+  semester   Semester @relation(fields: [semesterId], references: [id])
+
+  resultSubjects ResultSubject[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([code, departmentId, semesterId])
+  @@index([departmentId])
+  @@index([semesterId])
+}
+
+//////////////////////////////////////////////////////
+// RESULT
+//////////////////////////////////////////////////////
+
+model Result {
+  id Int @id @default(autoincrement())
+
+  studentId Int
+  student   Student @relation(fields: [studentId], references: [id])
+
+  semesterId Int
+  semester   Semester @relation(fields: [semesterId], references: [id])
+
+  sgpa Float
+  cgpa Float?
+
+  status ResultStatus
+
+  isPublished   Boolean   @default(false)
+  publishedDate DateTime?
+
+  subjects ResultSubject[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([studentId, semesterId])
+  @@index([studentId])
+}
+
+//////////////////////////////////////////////////////
+// RESULT SUBJECT
+//////////////////////////////////////////////////////
+
+model ResultSubject {
+  id Int @id @default(autoincrement())
+
+  resultId Int
+  result   Result @relation(fields: [resultId], references: [id])
+
+  subjectId Int
+  subject   Subject @relation(fields: [subjectId], references: [id])
+
+  internalMarks Int @default(0)
+  externalMarks Int @default(0)
+  totalMarks    Int @default(0)
+
+  grade  Grade
+  status ResultStatus
+
+  @@unique([resultId, subjectId])
+}
+
+//////////////////////////////////////////////////////
+// NOTIFICATION
+//////////////////////////////////////////////////////
+
+model Notification {
+  id Int @id @default(autoincrement())
+
+  title   String
+  message String @db.Text
+
+  target NotificationTarget
+
+  isPublished Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

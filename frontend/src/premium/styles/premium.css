@@ -1,0 +1,783 @@
+/* ==========================================================
+   RESULTX DESIGN SYSTEM (RXDS)
+   Premium Admin Dashboard
+   Version : 1.0
+========================================================== */
+
+/* ==========================================================
+   VARIABLES
+========================================================== */
+
+:root {
+
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+
+  --background: #f5f7fb;
+
+  --sidebar-bg: #0f172a;
+  --sidebar-hover: #1e293b;
+
+  --surface: #ffffff;
+
+  --text: #0f172a;
+  --text-light: #64748b;
+
+  --border: #e2e8f0;
+
+  --radius-lg: 24px;
+  --radius-xl: 28px;
+
+  --shadow-sm: 0 8px 30px rgba(15,23,42,.05);
+  --shadow-lg: 0 20px 45px rgba(15,23,42,.18);
+
+}
+
+/* ==========================================================
+   APP
+========================================================== */
+
+body{
+    margin:0;
+    padding:0;
+    background:var(--background);
+    font-family:"Inter",sans-serif;
+}
+
+/* ==========================================================
+   LAYOUT
+========================================================== */
+
+.premium-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+
+    padding: 0;
+    gap: 0;
+
+    background: var(--background);
+}
+
+/* ==========================================================
+   SIDEBAR
+========================================================== */
+
+.premium-sidebar {
+    width: 300px;
+    min-width: 300px;
+    height: 100vh;
+
+    background: var(--sidebar-bg);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 0;
+
+    box-shadow: 2px 0 12px rgba(15,23,42,.08);
+}
+
+/* Sidebar Content */
+
+.premium-sidebar-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    height:100%;
+
+}
+
+/* Sidebar Scroll Area */
+
+.rx-sidebar-menu {
+
+    flex: 1;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    margin-top: 0;
+
+    padding: 16px;
+
+}
+
+/* Scrollbar */
+
+.rx-sidebar-menu::-webkit-scrollbar{
+
+    width:4px;
+
+}
+
+.rx-sidebar-menu::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+.rx-sidebar-menu::-webkit-scrollbar-thumb{
+
+    background:#334155;
+
+    border-radius:20px;
+
+}
+
+.rx-sidebar-menu::-webkit-scrollbar-thumb:hover{
+
+    background:#475569;
+
+}
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.rx-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:22px 20px;
+
+    background:#111827;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.rx-logo-icon{
+
+    width:72px;
+
+    height:72px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #3B82F6
+    );
+
+    border-radius:8px;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    box-shadow:
+        0 12px 28px rgba(37,99,235,.28);
+
+}
+.rx-logo-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+.rx-logo-content h2{
+
+    margin:0;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#ffffff;
+
+    line-height:1.2;
+
+}
+
+.rx-logo-content p{
+
+    margin-top:6px;
+
+    font-size:13px;
+
+    color:#94A3B8;
+
+
+}
+.rx-logo-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+/* ==========================================================
+   SIDEBAR SECTION
+========================================================== */
+
+.rx-sidebar-section {
+
+    margin-top: 20px;
+
+}
+
+.rx-sidebar-section:first-child {
+
+    margin-top: 0;
+
+}
+
+.rx-sidebar-section-title{
+
+    padding-left:10px;
+
+    margin-bottom:14px;
+
+    color:#64748b;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.6px;
+
+}
+
+.rx-sidebar-section-items{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ==========================================================
+   SIDEBAR ITEM
+========================================================== */
+
+.rx-sidebar-item{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px 18px;
+
+    margin-bottom:6px;
+
+    border-radius:16px;
+
+    text-decoration:none;
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:all .25s ease;
+
+}
+
+.rx-sidebar-item:hover{
+
+    background:var(--sidebar-hover);
+
+    color:white;
+
+    transform:translateX(6px);
+
+}
+
+.rx-sidebar-item.active{
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-light)
+    );
+
+    color:white;
+
+    box-shadow:
+        0 12px 28px rgba(37,99,235,.35);
+
+}
+
+.rx-sidebar-item.active::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-24px;
+
+    width:5px;
+
+    height:32px;
+
+    border-radius:10px;
+
+    background:white;
+
+}
+
+.rx-sidebar-icon{
+
+    flex-shrink:0;
+
+    transition:.25s;
+
+}
+
+.rx-sidebar-item:hover .rx-sidebar-icon{
+
+    transform:scale(1.15);
+
+}
+
+/* ==========================================================
+   MAIN
+========================================================== */
+
+.premium-main {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 100vh;
+
+    padding: 24px;
+
+    overflow: hidden;
+
+    background: var(--background);
+}
+
+/* ==========================================================
+   TOPBAR
+========================================================== */
+
+.premium-topbar{
+
+    height:80px;
+
+    background:white;
+
+    border-radius:var(--radius-lg);
+
+    border:1px solid var(--border);
+
+    padding:0 28px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.premium-content {
+
+    flex:1;
+
+    background:transparent;
+
+    padding:0;
+
+    overflow-y:auto;
+
+}
+/* Content Scrollbar */
+
+.premium-content::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.premium-content::-webkit-scrollbar-thumb{
+
+    background:#d1d5db;
+
+    border-radius:20px;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+    .premium-sidebar{
+
+        width:90px;
+
+        min-width:90px;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .premium-layout{
+
+        padding:12px;
+
+        gap:12px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .premium-sidebar{
+
+        position:fixed;
+
+        left:-300px;
+
+        top:0;
+
+        height:100vh;
+
+        z-index:999;
+
+        border-radius:0;
+
+    }
+
+    .premium-main{
+
+        width:100%;
+
+    }
+
+}
+/* ==========================================================
+   DASHBOARD HEADER
+========================================================== */
+
+.rx-dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:36px;
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.rx-dashboard-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.rx-dashboard-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    width:max-content;
+
+    padding:8px 16px;
+
+    margin-bottom:18px;
+
+    background:#EFF6FF;
+
+    color:#2563EB;
+
+    border-radius:999px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.rx-dashboard-left h1{
+
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.rx-dashboard-left p{
+
+    margin-top:12px;
+
+    max-width:650px;
+
+    color:var(--text-light);
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+.rx-primary-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #3B82F6
+    );
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.rx-primary-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37,99,235,.35);
+
+}
+/* ==========================================================
+   STATS GRID
+========================================================== */
+
+.rx-stats-grid {
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:24px;
+
+    margin-top:24px;
+
+}
+
+/* ==========================================================
+   STAT CARD
+========================================================== */
+
+.rx-stat-card{
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:.25s;
+
+}
+
+.rx-stat-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(15,23,42,.08);
+
+}
+
+.rx-stat-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+.rx-stat-title{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.rx-stat-content h2{
+
+    margin:8px 0;
+
+    font-size:30px;
+
+    color:var(--text);
+
+}
+
+.rx-stat-content p{
+
+    margin:0;
+
+    color:#10B981;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+    .rx-stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .rx-stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/* ==========================================================
+   DASHBOARD BODY
+========================================================== */
+
+.rx-dashboard-body {
+  margin-top: 24px;
+}
+
+.rx-dashboard-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 992px) {
+  .rx-dashboard-row {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==========================================================
+   REUSABLE CARD
+========================================================== */
+
+.rx-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  min-height: 280px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rx-card h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  color: var(--text);
+}
+
+.rx-card p {
+  color: var(--text-light);
+}
