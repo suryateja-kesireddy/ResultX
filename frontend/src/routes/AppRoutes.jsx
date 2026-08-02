@@ -63,30 +63,32 @@ function AppRoutes() {
         <Route path="settings" element={<Settings />} />
       </Route>
       {/* Admin Dashboard */}
-<Route
-  path="/admin"
-  element={
-    <ProtectedRoute>
-      <AdminLayout />
-    </ProtectedRoute>
-  }
->
-  <Route path="dashboard" element={<Dashboard />} />
-  <Route path="accounts/create" element={<CreateAccount />} />
-</Route>
-{/* Premium UI */}
-<Route path="/ui" element={<PremiumAdminLayout />}>
-
-  {/* Dashboard */}
-  <Route path="admin" element={<AdminUIDemo />} />
-
-  {/* Account Management */}
-  <Route
-    path="admin/accounts/create"
-    element={<AccountForm />}
-  />
-
-</Route>
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute role="ADMIN">
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="accounts/create" element={<CreateAccount />} />
+      </Route>
+      {/* Premium UI */}
+      <Route
+        path="/ui"
+        element={
+          <ProtectedRoute role="ADMIN">
+            <PremiumAdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="admin" element={<AdminUIDemo />} />
+        <Route
+          path="admin/accounts/create"
+          element={<AccountForm />}
+        />
+      </Route>
 
       {/* 404 */}
       <Route path="*" element={<NotFound />} />

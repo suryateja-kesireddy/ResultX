@@ -37,16 +37,40 @@ function LoginForm({
     const response = await login(role, data);
 
     auth.login(
-    response.user,
-    response.token,
-    data.remember
-);
+      response.user,
+      response.token,
+      data.remember
+    );
 
     toast.success(`Welcome ${response.user.name}!`);
 
-    navigate("/dashboard");
+    switch (response.user.role) {
+      case "ADMIN":
+        navigate("/ui/admin");
+        break;
+
+      case "STUDENT":
+        navigate("/dashboard");
+        break;
+
+      case "HOD":
+        navigate("/hod/dashboard");
+        break;
+
+      case "EXAM_CELL":
+        navigate("/examcell/dashboard");
+        break;
+
+      default:
+        navigate("/login");
+    }
+
   } catch (error) {
-    toast.error(error.message || "Login Failed");
+    toast.error(
+      error.response?.data?.message ||
+      error.message ||
+      "Login Failed"
+    );
   }
 };
   return (
