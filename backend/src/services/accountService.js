@@ -101,7 +101,8 @@ const createStudentProfile = async (tx, user, data) => {
     section = "A",
   } = data;
 
-  // Validate Student Fields
+  console.log("▶ createStudentProfile started");
+
   if (!hallTicket) {
     throw new Error("Hall Ticket is required");
   }
@@ -114,7 +115,8 @@ const createStudentProfile = async (tx, user, data) => {
     throw new Error("Semester is required");
   }
 
-  // Check Hall Ticket
+  console.log("Checking existing hall ticket...");
+
   const existingStudent = await tx.student.findUnique({
     where: {
       hallTicket,
@@ -125,30 +127,39 @@ const createStudentProfile = async (tx, user, data) => {
     throw new Error("Hall Ticket already exists");
   }
 
-  // Check Department
+  console.log("Hall ticket OK");
+
+  console.log("Checking department...");
+
   const department = await tx.department.findUnique({
     where: {
       id: Number(departmentId),
     },
   });
 
+  console.log("Department:", department);
+
   if (!department) {
     throw new Error("Department not found");
   }
 
-  // Check Semester
+  console.log("Checking semester...");
+
   const semester = await tx.semester.findUnique({
     where: {
       id: Number(semesterId),
     },
   });
 
+  console.log("Semester:", semester);
+
   if (!semester) {
     throw new Error("Semester not found");
   }
 
-  // Create Student
-  return await tx.student.create({
+  console.log("Creating student...");
+
+  const student = await tx.student.create({
     data: {
       userId: user.id,
       hallTicket,
@@ -167,7 +178,12 @@ const createStudentProfile = async (tx, user, data) => {
       },
     },
   });
+
+  console.log("Student created successfully");
+
+  return student;
 };
+
 // ==========================================
 // Create HOD Profile
 // ==========================================
@@ -277,17 +293,15 @@ const createAccount = async (data) => {
   const hashedPassword = await hashPassword(data.password);
 
   // Transaction
-  return await prisma.$transaction(async (tx) => {
+  return await prisma.$transaction(
+  async (tx) => {
 
-    // Create User
     const user = await createUser(tx, {
       ...data,
       password: hashedPassword,
     });
 
-    // Create Profile Based On Role
     switch (data.role) {
-
       case Role.STUDENT:
         return await createStudentProfile(tx, user, data);
 
@@ -300,8 +314,12 @@ const createAccount = async (data) => {
       default:
         throw new Error("Invalid role");
     }
-
-  });
+  },
+  {
+    timeout: 15000,     // 15 seconds
+    maxWait: 10000      // wait up to 10 seconds for a connection
+  }
+);
 
 };
 

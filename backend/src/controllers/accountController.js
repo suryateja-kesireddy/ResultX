@@ -1,7 +1,7 @@
 const accountService = require("../services/accountService");
 
 // ==========================================
-// Create Account
+// Create Account Controller
 // ==========================================
 const createAccount = async (req, res, next) => {
   try {

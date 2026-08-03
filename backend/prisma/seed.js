@@ -77,9 +77,60 @@ async function main() {
   } else {
     console.log("ℹ️ Department already exists");
   }
+// ==========================
+// ACADEMIC YEAR
+// ==========================
+
+let academicYear = await prisma.academicYear.findUnique({
+  where: {
+    year: "2026-2027",
+  },
+});
+
+if (!academicYear) {
+  academicYear = await prisma.academicYear.create({
+    data: {
+      year: "2026-2027",
+      isCurrent: true,
+    },
+  });
+
+  console.log("✅ Academic Year Created");
+} else {
+  console.log("ℹ️ Academic Year already exists");
+}
+
+// ==========================
+// SEMESTERS
+// ==========================
+
+for (let i = 1; i <= 4; i++) {
+  const semester = await prisma.semester.findFirst({
+    where: {
+      number: i,
+      academicYearId: academicYear.id,
+    },
+  });
+
+  if (!semester) {
+    await prisma.semester.create({
+      data: {
+        number: i,
+        type: i % 2 === 0 ? "EVEN" : "ODD",
+        academicYearId: academicYear.id,
+      },
+    });
+
+    console.log(`✅ Semester ${i} Created`);
+  } else {
+    console.log(`ℹ️ Semester ${i} already exists`);
+  }
+}
+  
 
   console.log("\n🎉 ResultX Database Seed Completed Successfully");
 }
+
 
 main()
   .catch((error) => {
