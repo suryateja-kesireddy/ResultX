@@ -25,6 +25,11 @@ router.get(
   roleMiddleware("ADMIN"),
   studentController.getAllStudents
 );
+router.get(
+  "/profile",
+  authMiddleware,
+  studentController.getStudentProfile
+);
 // Get Student By ID
 router.get(
   "/:id",
@@ -32,6 +37,7 @@ router.get(
   roleMiddleware("ADMIN"),
   studentController.getStudentById
 );
+
 // Update Student
 router.put(
   "/:id",

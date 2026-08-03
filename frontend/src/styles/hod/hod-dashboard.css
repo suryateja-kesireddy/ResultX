@@ -1,0 +1,167 @@
+/* ==========================================
+   HOD Layout
+========================================== */
+
+.hod-layout{
+    display:flex;
+    min-height:100vh;
+    background:#f8fafc;
+}
+
+.hod-main{
+    margin-left:270px;
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    min-height:100vh;
+}
+
+.hod-content{
+    flex:1;
+
+    padding:32px;
+
+    background:#f8fafc;
+
+    overflow-y:auto;
+}
+
+
+
+
+/* ==========================================
+   HOD Dashboard
+========================================== */
+
+.hod-dashboard{
+
+    padding:32px;
+
+    background:#f8fafc;
+
+    min-height:100vh;
+
+}
+
+/* ==========================================
+   Header
+========================================== */
+
+.hod-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:32px;
+
+}
+
+.hod-header h1{
+
+    font-size:32px;
+
+    color:#111827;
+
+    margin-bottom:8px;
+
+}
+
+.hod-header p{
+
+    color:#6b7280;
+
+}
+
+.hod-date{
+
+    color:#6b7280;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   Statistics
+========================================== */
+
+.hod-stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+    gap:24px;
+
+}
+
+.hod-stat-card{
+
+    background:#ffffff;
+
+    padding:28px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+
+    transition:.3s;
+
+}
+
+.hod-stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.hod-stat-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:14px;
+
+    margin-bottom:18px;
+
+}
+
+.hod-stat-card h2{
+
+    font-size:34px;
+
+    color:#111827;
+
+    margin-bottom:8px;
+
+}
+
+.hod-stat-card p{
+
+    color:#6b7280;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width:768px){
+
+    .hod-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+}

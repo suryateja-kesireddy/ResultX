@@ -53,6 +53,38 @@ const getHODById = async (req, res, next) => {
   }
 };
 // ==========================================
+// Get HOD Dashboard Statistics
+// ==========================================
+const getDashboardStats = async (req, res, next) => {
+  try {
+    const stats = await hodService.getDashboardStats(req.user.id);
+
+    return res.status(200).json({
+      success: true,
+      message: "Dashboard statistics fetched successfully",
+      data: stats,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+// ==========================================
+// Get Logged In HOD Profile
+// ==========================================
+const getHODProfile = async (req, res, next) => {
+  try {
+    const hod = await hodService.getHODProfile(req.user.id);
+
+    return res.status(200).json({
+      success: true,
+      message: "HOD profile fetched successfully",
+      data: hod,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+// ==========================================
 // Update HOD
 // ==========================================
 const updateHOD = async (req, res, next) => {
@@ -86,11 +118,30 @@ const deleteHOD = async (req, res, next) => {
     next(error);
   }
 };
+// ==========================================
+// Get Recent Results
+// ==========================================
+const getRecentResults = async (req, res, next) => {
+  try {
+    const results = await hodService.getRecentResults(req.user.id);
+
+    return res.status(200).json({
+      success: true,
+      message: "Recent results fetched successfully",
+      data: results,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 module.exports = {
   createHOD,
     getAllHODs,
     getHODById,
+    getHODProfile,
+    getDashboardStats,
     updateHOD,
     deleteHOD,
+    getRecentResults,
 };

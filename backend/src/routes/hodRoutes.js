@@ -24,6 +24,26 @@ router.get(
   roleMiddleware("ADMIN"),
   hodController.getAllHODs
 );
+router.get(
+  "/profile",
+  authMiddleware,
+  roleMiddleware("HOD"),
+  hodController.getHODProfile
+);
+
+router.get(
+  "/dashboard",
+  authMiddleware,
+  roleMiddleware("HOD"),
+  hodController.getDashboardStats
+);
+router.get(
+  "/recent-results",
+  authMiddleware,
+  roleMiddleware("HOD"),
+  hodController.getRecentResults
+);
+
 // Get HOD By ID
 router.get(
   "/:id",

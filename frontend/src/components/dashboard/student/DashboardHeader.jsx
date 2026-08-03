@@ -1,8 +1,9 @@
-import useAuth from "../../../hooks/useAuth";
-
-function DashboardHeader() {
-  const { user } = useAuth();
-
+function DashboardHeader({
+  name,
+  department,
+  semester,
+  section,
+}) {
   const today = new Date();
 
   const formattedDate = today.toLocaleDateString("en-IN", {
@@ -15,10 +16,11 @@ function DashboardHeader() {
   return (
     <div className="dashboard-header">
       <div>
-        <h1>👋 Welcome Back, {user?.name || "Student"}</h1>
+        <h1>👋 Welcome Back, {name || "Student"}</h1>
 
         <p>
-          {user?.department} • Semester {user?.semester} • Section {user?.section}
+          {department || "--"} • Semester {semester || "--"} • Section{" "}
+          {section || "--"}
         </p>
       </div>
 

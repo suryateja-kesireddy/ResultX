@@ -1,0 +1,68 @@
+.hod-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 270px;
+  height: 100vh;
+
+  background: #111827;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px;
+
+  overflow-y: auto;
+}
+
+.hod-sidebar-logo {
+  margin-bottom: 40px;
+}
+
+.hod-sidebar-logo h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.hod-sidebar-logo p {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.hod-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hod-sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 18px;
+
+  border-radius: 14px;
+
+  color: #d1d5db;
+  text-decoration: none;
+
+  transition: .3s;
+}
+
+.hod-sidebar-menu a:hover {
+  background: #1f2937;
+  color: white;
+}
+
+.hod-sidebar-menu a.active {
+  background: #2563eb;
+  color: white;
+}
+
+.hod-sidebar-menu span {
+  font-size: 18px;
+}

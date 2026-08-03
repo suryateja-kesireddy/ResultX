@@ -51,6 +51,22 @@ const getStudentById = async (req, res, next) => {
   }
 };
 // ==========================================
+// Get Logged In Student Profile
+// ==========================================
+const getStudentProfile = async (req, res, next) => {
+  try {
+    const student = await studentService.getStudentProfile(req.user.id);
+
+    return res.status(200).json({
+      success: true,
+      message: "Student profile fetched successfully",
+      data: student,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+// ==========================================
 // Update Student
 // ==========================================
 const updateStudent = async (req, res, next) => {
@@ -88,6 +104,7 @@ module.exports = {
   createStudent,
   getAllStudents,
   getStudentById,
+  getStudentProfile,
   updateStudent,
   deleteStudent,
 };

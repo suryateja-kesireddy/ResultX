@@ -295,11 +295,51 @@ const deleteStudent = async (id) => {
     message: "Student deleted successfully",
   };
 };
+// ==========================================
+// Get Logged In Student Profile
+// ==========================================
+const getStudentProfile = async (userId) => {
+  const student = await prisma.student.findUnique({
+    where: {
+      userId: Number(userId),
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          isActive: true,
+        },
+      },
+      department: {
+        select: {
+          id: true,
+          name: true,
+          code: true,
+        },
+      },
+      semester: {
+        include: {
+          academicYear: true,
+        },
+      },
+    },
+  });
+
+  if (!student) {
+    throw new Error("Student not found");
+  }
+
+  return student;
+};
 
 module.exports = {
   createStudent,
   getAllStudents,
   getStudentById,
+  getStudentProfile,
   updateStudent,
   deleteStudent,
 };

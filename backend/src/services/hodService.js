@@ -261,11 +261,145 @@ const deleteHOD = async (id) => {
     message: "HOD deleted successfully",
   };
 };
+// ==========================================
+// Get Logged In HOD Profile
+// ==========================================
+const getHODProfile = async (userId) => {
+  const hod = await prisma.hOD.findUnique({
+    where: {
+      userId: Number(userId),
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          role: true,
+          isActive: true,
+        },
+      },
+      department: {
+        select: {
+          id: true,
+          name: true,
+          code: true,
+        },
+      },
+    },
+  });
 
+  if (!hod) {
+    throw new Error("HOD not found");
+  }
+
+  return hod;
+};
+// ==========================================
+// Get HOD Dashboard Statistics
+// ==========================================
+// ==========================================
+// Get HOD Dashboard Statistics
+// ==========================================
+const getDashboardStats = async (userId) => {
+
+  // Find Logged-in HOD
+  const hod = await prisma.hOD.findUnique({
+    where: {
+      userId: Number(userId),
+    },
+  });
+
+  if (!hod) {
+    throw new Error("HOD not found");
+  }
+
+  // Total Students
+  const totalStudents = await prisma.student.count({
+    where: {
+      departmentId: hod.departmentId,
+    },
+  });
+
+  // Total Faculty (Currently only HOD)
+  const totalFaculty = await prisma.hOD.count({
+    where: {
+      departmentId: hod.departmentId,
+    },
+  });
+
+  // Total Subjects
+  const totalSubjects = await prisma.subject.count({
+    where: {
+      departmentId: hod.departmentId,
+    },
+  });
+
+  // Temporary Pass Percentage
+  const passPercentage = 0;
+
+  return {
+    totalStudents,
+    totalFaculty,
+    totalSubjects,
+    passPercentage,
+  };
+};
+// ==========================================
+// Get Recent Results
+// ==========================================
+// ==========================================
+// Get Recent Results
+// ==========================================
+const getRecentResults = async (userId) => {
+
+  // Find logged-in HOD
+  const hod = await prisma.hOD.findUnique({
+    where: {
+      userId: Number(userId),
+    },
+  });
+
+  if (!hod) {
+    throw new Error("HOD not found");
+  }
+
+  // Fetch latest department results
+  const results = await prisma.result.findMany({
+    where: {
+      isPublished: true,
+      student: {
+        departmentId: hod.departmentId,
+      },
+    },
+    include: {
+      student: {
+        include: {
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
+      semester: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 10,
+  });
+
+  return results;
+};
 module.exports = {
   createHOD,
     getAllHODs,
     getHODById,
     updateHOD,
     deleteHOD,
+    getHODProfile,
+    getDashboardStats,
+    getRecentResults,
 };
+    

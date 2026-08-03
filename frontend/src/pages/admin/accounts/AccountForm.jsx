@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import Input from "../../../components/ui/Input";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import Button from "../../../components/ui/Button";
@@ -30,15 +31,27 @@ const AccountForm = () => {
       [name]: value,
     }));
   };
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
   e.preventDefault();
 
+  if (loading) return;
+
+  const toastId = toast.loading("Creating account...");
+
   try {
+    setLoading(true);
+
     const response = await createAccount(formData);
 
     console.log(response);
 
-    alert("Account created successfully!");
+    toast.success(
+      "Account created successfully 🎉",
+      {
+        id: toastId,
+      }
+    );
 
     setFormData({
       role: "STUDENT",
@@ -54,12 +67,19 @@ const AccountForm = () => {
     });
 
   } catch (error) {
+
     console.error(error);
 
-    alert(
+    toast.error(
       error.response?.data?.message ||
-      "Failed to create account"
+      "Failed to create account",
+      {
+        id: toastId,
+      }
     );
+
+  } finally {
+    setLoading(false);
   }
 };
 
@@ -217,9 +237,12 @@ const AccountForm = () => {
 
 )}
 <div className="flex justify-end">
-  <Button type="submit">
-    Create Account
-  </Button>
+  <Button
+  type="submit"
+  disabled={loading}
+>
+  {loading ? "Creating Account..." : "Create Account"}
+</Button>
 </div>
 
     </form>
