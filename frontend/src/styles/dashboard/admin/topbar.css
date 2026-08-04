@@ -1,0 +1,401 @@
+/* ==========================================================
+   RESULTX PREMIUM TOPBAR
+========================================================== */
+
+/* ==========================================================
+   TOPBAR
+========================================================== */
+
+.premium-topbar{
+
+    height:84px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:24px;
+
+    padding:0 28px;
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 2px 8px rgba(15,23,42,.04);
+
+    position:relative;
+
+    z-index:10;
+
+    /* ---------- CHANGED ---------- */
+    border-radius:0;      /* Full square shape */
+    margin-bottom:10px;   /* Space between topbar and body */
+}
+
+
+/* ==========================================================
+   LEFT
+========================================================== */
+
+.rx-topbar-left{
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+
+    min-width:270px;
+
+    flex-shrink:0;
+
+}
+
+.rx-page-title{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    line-height:1.15;
+
+    color:#0F172A;
+
+}
+
+.rx-page-subtitle{
+
+    margin-top:4px;
+
+    font-size:14px;
+
+    color:#64748B;
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================================
+   RIGHT
+========================================================== */
+
+.rx-topbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    flex:1;
+
+    gap:14px;
+
+}
+
+
+/* ==========================================================
+   SEARCH BAR
+========================================================== */
+
+.rx-search{
+
+    width:320px;
+
+    height:46px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:0 16px;
+
+    background:#F8FAFC;
+
+    border:1px solid #E2E8F0;
+
+    border-radius:8px;
+
+    transition:all .25s ease;
+
+}
+
+.rx-search:hover{
+
+    border-color:#CBD5E1;
+
+}
+
+.rx-search:focus-within{
+
+    background:#FFFFFF;
+
+    border-color:#2563EB;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+
+}
+
+.rx-search-icon{
+
+    color:#94A3B8;
+
+    flex-shrink:0;
+
+}
+
+.rx-search input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#111827;
+
+    font-size:15px;
+
+}
+
+.rx-search input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.rx-topbar-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding-right:18px;
+
+    border-right:1px solid #E5E7EB;
+
+}
+
+.rx-action-btn{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#FFFFFF;
+
+    border:1px solid #E2E8F0;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.rx-action-btn:hover{
+
+    background:#2563EB;
+
+    color:#FFFFFF;
+
+    border-color:#2563EB;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 22px rgba(37,99,235,.22);
+
+}
+
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.rx-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:6px 10px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.rx-profile:hover{
+
+    background:#F8FAFC;
+
+}
+
+.rx-avatar{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #3B82F6
+    );
+
+    color:#FFFFFF;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.25);
+
+}
+
+.rx-profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-width:120px;
+
+}
+
+.rx-profile-info h4{
+
+    margin:0;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+.rx-profile-info span{
+
+    margin-top:2px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#10B981;
+
+}
+
+.rx-profile svg:last-child{
+
+    color:#64748B;
+
+    transition:transform .25s ease;
+
+}
+
+.rx-profile:hover svg:last-child{
+
+    transform:rotate(180deg);
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width:1200px){
+
+    .rx-search{
+
+        width:260px;
+
+    }
+
+}
+
+@media (max-width:992px){
+
+    .rx-page-subtitle{
+
+        display:none;
+
+    }
+
+    .rx-search{
+
+        width:220px;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .premium-topbar{
+
+        height:auto;
+
+        padding:16px;
+
+        flex-wrap:wrap;
+
+        gap:16px;
+
+    }
+
+    .rx-topbar-left{
+
+        width:100%;
+
+    }
+
+    .rx-topbar-right{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+    .rx-search{
+
+        flex:1;
+
+        width:auto;
+
+    }
+
+}

@@ -20,10 +20,16 @@ import "./styles/dashboard/student/dashboard.css";
 import "./styles/about.css";
 import "./styles/contact.css";
 
-import "./premium/styles/premium.css";
-import "./premium/styles/topbar.css";
-import "./premium/styles/account.css";
+import "./styles/dashboard/admin/premium.css";
+import "./styles/dashboard/admin/topbar.css";
+import "./styles/dashboard/admin/account.css";
 
+import "./styles/dashboard/admin/account-header.css";
+import "./styles/dashboard/admin/account-stats.css";
+import "./styles/dashboard/admin/account-filters.css";
+import "./styles/dashboard/admin/account-table.css";
+import "./styles/dashboard/admin/status-badge.css";
+import "./styles/dashboard/admin/action-buttons.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

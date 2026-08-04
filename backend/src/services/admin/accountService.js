@@ -322,9 +322,118 @@ const createAccount = async (data) => {
 );
 
 };
+// ==========================================
+// Get Account Statistics
+// ==========================================
+const getAccountStats = async () => {
+  const [
+    totalAccounts,
+    students,
+    hods,
+    examCells,
+    admins,
+  ] = await Promise.all([
+    prisma.user.count(),
+
+    prisma.user.count({
+      where: {
+        role: Role.STUDENT,
+      },
+    }),
+
+    prisma.user.count({
+      where: {
+        role: Role.HOD,
+      },
+    }),
+
+    prisma.user.count({
+      where: {
+        role: Role.EXAM_CELL,
+      },
+    }),
+
+    prisma.user.count({
+      where: {
+        role: Role.ADMIN,
+      },
+    }),
+  ]);
+
+  return {
+    totalAccounts,
+    students,
+    hods,
+    examCells,
+    admins,
+  };
+};
+// ==========================================
+// Get All Accounts
+// ==========================================
+const getAccounts = async () => {
+  const users = await prisma.user.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+
+    include: {
+      student: {
+        include: {
+          department: true,
+        },
+      },
+
+      hod: {
+        include: {
+          department: true,
+        },
+      },
+
+      examCell: true,
+    },
+  });
+
+  return users.map((user) => {
+    let phone = "";
+    let department = "-";
+
+    if (user.role === Role.STUDENT && user.student) {
+      phone = user.student.phone;
+      department = user.student.department?.name || "-";
+    }
+
+    if (user.role === Role.HOD && user.hod) {
+      phone = user.hod.phone;
+      department = user.hod.department?.name || "-";
+    }
+
+    if (user.role === Role.EXAM_CELL && user.examCell) {
+      phone = user.examCell.phone;
+      department = "Exam Cell";
+    }
+
+    if (user.role === Role.ADMIN) {
+      department = "Administration";
+    }
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      status: user.isActive ? "Active" : "Inactive",
+      phone,
+      department,
+      createdAt: user.createdAt,
+    };
+  });
+};
 
 module.exports = {
     createAccount,
+    getAccountStats,
+    getAccounts,
     validateCommonFields,
     checkEmailExists,
     hashPassword,

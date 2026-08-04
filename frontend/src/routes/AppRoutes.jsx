@@ -15,7 +15,7 @@ import ExamCellLayout from "../layouts/dashboard/examcell/ExamCellLayout";
 
 import ExamCellProvider from "../context/examcell/ExamCellContext";
 
-import PremiumAdminLayout from "../premium/layouts/PremiumAdminLayout";
+import PremiumAdminLayout from "../layouts/dashboard/admin/PremiumAdminLayout";
 
 // Authentication
 import ProtectedRoute from "../components/auth/ProtectedRoute";
@@ -46,7 +46,7 @@ import Dashboard from "../pages/admin/Dashboard";
 import CreateAccount from "../pages/admin/accounts/CreateAccount";
 
 // Premium Admin UI
-import AdminUIDemo from "../premium/pages/AdminUIDemo";
+import AdminUIDemo from "../pages/admin/AdminUIDemo";
 import AccountForm from "../pages/admin/accounts/AccountForm";
 
 // HOD Pages
@@ -70,6 +70,24 @@ import ExamCellAnalytics from "../pages/examcell/Analytics";
 import ExamCellNotifications from "../pages/examcell/Notifications";
 import ExamCellProfile from "../pages/examcell/Profile";
 import ExamCellSettings from "../pages/examcell/Settings";
+
+//AppRoutes Component
+// Premium Admin Pages
+import AccountList from "../pages/admin/accounts/AccountList";
+
+import Students from "../pages/admin/students/Students";
+import HODs from "../pages/admin/hods/HODs";
+import ExamCell from "../pages/admin/examcell/ExamCell";
+import Courses from "../pages/admin/courses/Courses";
+import Departments from "../pages/admin/departments/Departments";
+import Subjects from "../pages/admin/subjects/Subjects";
+import Semesters from "../pages/admin/semesters/Semesters";
+import AcademicYears from "../pages/admin/academicyears/AcademicYears";
+import AdminResults from "../pages/admin/results/Results";
+import AdminAnalytics from "../pages/admin/analytics/Analytics";
+import AdminSettings from "../pages/admin/settings/Settings";
+
+
 function AppRoutes() {
   return (
     <Routes>
@@ -120,15 +138,15 @@ function AppRoutes() {
 
       {/* ================= HOD ================= */}
       <Route
-  path="/hod"
-  element={
-    <ProtectedRoute role="HOD">
-      <HodProvider>
-        <HodLayout />
-      </HodProvider>
-    </ProtectedRoute>
-  }
->
+        path="/hod"
+        element={
+          <ProtectedRoute role="HOD">
+            <HodProvider>
+              <HodLayout />
+            </HodProvider>
+          </ProtectedRoute>
+        }
+      >
         <Route path="dashboard" element={<HodDashboard />} />
         <Route path="students" element={<HodStudents />} />
         <Route path="faculty" element={<HodFaculty />} />
@@ -141,26 +159,26 @@ function AppRoutes() {
       </Route>
 
       {/* ================= EXAM CELL ================= */}
-<Route
-  path="/examcell"
-  element={
-    <ProtectedRoute role="EXAM_CELL">
-      <ExamCellProvider>
-        <ExamCellLayout />
-      </ExamCellProvider>
-    </ProtectedRoute>
-  }
->
-  <Route path="dashboard" element={<ExamCellDashboard />} />
-  <Route path="exams" element={<ExamCellExams />} />
-  <Route path="results" element={<ExamCellResults />} />
-  <Route path="subjects" element={<ExamCellSubjects />} />
-  <Route path="schedule" element={<ExamCellSchedule />} />
-  <Route path="analytics" element={<ExamCellAnalytics />} />
-  <Route path="notifications" element={<ExamCellNotifications />} />
-  <Route path="profile" element={<ExamCellProfile />} />
-  <Route path="settings" element={<ExamCellSettings />} />
-</Route>
+      <Route
+        path="/examcell"
+        element={
+          <ProtectedRoute role="EXAM_CELL">
+            <ExamCellProvider>
+              <ExamCellLayout />
+            </ExamCellProvider>
+          </ProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<ExamCellDashboard />} />
+        <Route path="exams" element={<ExamCellExams />} />
+        <Route path="results" element={<ExamCellResults />} />
+        <Route path="subjects" element={<ExamCellSubjects />} />
+        <Route path="schedule" element={<ExamCellSchedule />} />
+        <Route path="analytics" element={<ExamCellAnalytics />} />
+        <Route path="notifications" element={<ExamCellNotifications />} />
+        <Route path="profile" element={<ExamCellProfile />} />
+        <Route path="settings" element={<ExamCellSettings />} />
+      </Route>
 
       {/* ================= PREMIUM ADMIN UI ================= */}
       <Route
@@ -171,11 +189,74 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       >
+
+
         <Route path="admin" element={<AdminUIDemo />} />
         <Route
           path="admin/accounts/create"
           element={<AccountForm />}
         />
+      
+
+      <Route
+        path="admin/accounts"
+        element={<AccountList />}
+      />
+
+      <Route
+        path="admin/students"
+        element={<Students />}
+      />
+
+      <Route
+        path="admin/hods"
+        element={<HODs />}
+      />
+
+      <Route
+        path="admin/exam-cell"
+        element={<ExamCell />}
+      />
+
+      <Route
+        path="admin/courses"
+        element={<Courses />}
+      />
+
+      <Route
+        path="admin/departments"
+        element={<Departments />}
+      />
+
+      <Route
+        path="admin/subjects"
+        element={<Subjects />}
+      />
+
+      <Route
+        path="admin/semesters"
+        element={<Semesters />}
+      />
+
+      <Route
+        path="admin/academic-years"
+        element={<AcademicYears />}
+      />
+
+      <Route
+        path="admin/results"
+        element={<AdminResults />}
+      />
+
+      <Route
+        path="admin/analytics"
+        element={<AdminAnalytics />}
+      />
+
+      <Route
+        path="admin/settings"
+        element={<AdminSettings />}
+      />
       </Route>
 
       {/* ================= 404 ================= */}
