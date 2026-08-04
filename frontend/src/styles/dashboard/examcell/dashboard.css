@@ -1,0 +1,508 @@
+/* ==========================================================
+   ResultX - Exam Cell Dashboard
+========================================================== */
+
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #f8fafc;
+  font-family: "Inter", sans-serif;
+}
+
+
+/* ==========================================================
+   LAYOUT
+========================================================== */
+
+.examcell-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.examcell-main {
+  flex: 1;
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.examcell-content {
+  flex: 1;
+  padding: 32px;
+  background: #f8fafc;
+}
+
+
+/* ==========================================================
+   DASHBOARD
+========================================================== */
+
+.examcell-dashboard {
+  width: 100%;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.examcell-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.examcell-header h1 {
+  margin: 0 0 8px;
+  font-size: 46px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.examcell-header p {
+  margin: 0;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.examcell-date {
+  font-size: 18px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+
+/* ==========================================================
+   STATISTICS GRID
+========================================================== */
+
+.examcell-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+
+/* ==========================================================
+   STAT CARD
+========================================================== */
+
+.examcell-stat-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  cursor: pointer;
+
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, .05),
+    0 12px 30px rgba(15, 23, 42, .05);
+
+  transition: all .25s ease;
+}
+
+.examcell-stat-card:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 6px 16px rgba(15, 23, 42, .08),
+    0 18px 40px rgba(15, 23, 42, .08);
+}
+
+.examcell-stat-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  border-radius: 14px;
+
+  background: #ecfdf5;
+
+  font-size: 28px;
+}
+
+.examcell-stat-card h2 {
+  margin: 0 0 8px;
+
+  font-size: 40px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+.examcell-stat-card p {
+  margin: 0;
+
+  font-size: 17px;
+
+  color: #6b7280;
+}
+
+
+/* ==========================================================
+   QUICK ACTIONS
+========================================================== */
+
+/* ==========================================
+   Quick Actions
+========================================== */
+
+.examcell-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.examcell-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #ffffff;
+
+  min-height: 160px;
+
+  padding: 24px 20px;
+
+  border-radius: 18px;
+
+  border: 1px solid #edf2f7;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.05),
+    0 12px 30px rgba(15, 23, 42, 0.05);
+}
+
+.examcell-action:hover {
+  transform: translateY(-6px);
+
+  border-color: #22c55e;
+
+  background: #f8fffb;
+
+  box-shadow:
+    0 12px 28px rgba(34, 197, 94, 0.15);
+}
+
+.examcell-action-icon {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 16px;
+
+  background: #ecfdf5;
+
+  font-size: 30px;
+
+  transition: all 0.3s ease;
+}
+
+.examcell-action:hover .examcell-action-icon {
+  transform: scale(1.08);
+}
+
+.examcell-action h4 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  color: #111827;
+
+  text-align: center;
+
+  line-height: 1.5;
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 1200px) {
+
+  .examcell-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .examcell-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .examcell-action {
+    min-height: 140px;
+  }
+
+}
+
+/* ==========================================================
+   DASHBOARD GRID
+========================================================== */
+
+.examcell-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.examcell-full-width {
+  grid-column: 1 / -1;
+}
+
+
+/* ==========================================================
+   COMMON CARD
+========================================================== */
+
+.examcell-card {
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, .05),
+    0 12px 30px rgba(15, 23, 42, .05);
+}
+
+.examcell-card-title {
+  margin: 0 0 20px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #111827;
+}
+
+
+/* ==========================================================
+   UPCOMING EXAMS
+========================================================== */
+
+.examcell-exam {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.examcell-exam:last-child {
+  border-bottom: none;
+}
+
+.examcell-exam h4 {
+  margin: 0;
+
+  font-size: 18px;
+  color: #111827;
+}
+
+.examcell-exam p {
+  margin-top: 6px;
+
+  color: #6b7280;
+}
+
+.examcell-date-badge {
+  padding: 8px 16px;
+
+  border-radius: 12px;
+
+  background: #dcfce7;
+
+  color: #15803d;
+
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   RECENT RESULTS
+========================================================== */
+
+.examcell-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.examcell-result:last-child {
+  border-bottom: none;
+}
+
+.examcell-result h4 {
+  margin: 0;
+}
+
+.examcell-result p {
+  margin-top: 6px;
+
+  color: #6b7280;
+}
+
+.result-status {
+  padding: 8px 18px;
+
+  border-radius: 50px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.result-status.published {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.result-status.pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+
+/* ==========================================================
+   RECENT ACTIVITY
+========================================================== */
+
+.activity-item {
+  display: flex;
+  gap: 16px;
+
+  align-items: flex-start;
+
+  padding: 16px 0;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+
+  background: #ecfdf5;
+
+  font-size: 20px;
+}
+
+.activity-content h4 {
+  margin: 0;
+
+  font-size: 17px;
+
+  color: #111827;
+}
+
+.activity-content p {
+  margin-top: 6px;
+
+  color: #6b7280;
+
+  font-size: 14px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1200px) {
+
+  .examcell-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .examcell-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .examcell-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .examcell-main {
+    margin-left: 0;
+  }
+
+  .examcell-content {
+    padding: 20px;
+  }
+
+  .examcell-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .examcell-header h1 {
+    font-size: 34px;
+  }
+
+  .examcell-header p {
+    font-size: 16px;
+  }
+
+  .examcell-date {
+    font-size: 15px;
+  }
+
+  .examcell-stats-grid,
+  .examcell-actions {
+    grid-template-columns: 1fr;
+  }
+
+}

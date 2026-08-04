@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { getDashboardStats, getHodProfile } from "../../services/hodService";
 
-import "../../styles/hod/hod-dashboard.css";
+import { getDashboardStats, getHodProfile } from "../../services/hod/hodService";
 
-import DashboardHeader from "../../components/hod/DashboardHeader";
-import StatsGrid from "../../components/hod/StatsGrid";
+import "../../styles/dashboard/hod/dashboard.css";
+
+import DashboardHeader from "../../components/dashboard/hod/DashboardHeader";
+import StatsGrid from "../../components/dashboard/hod/StatsGrid";
 
 
 

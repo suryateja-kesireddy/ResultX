@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import AuthLayout from "../../layouts/AuthLayout";
+import AuthLayout from "../../layouts/auth/AuthLayout";
 import Input from "../ui/Input";
 import PasswordInput from "../ui/PasswordInput";
 import Button from "../ui/Button";
 import toast from "react-hot-toast";
 import Checkbox from "../ui/Checkbox";
-import useAuth from "../../hooks/useAuth";
-import { login } from "../../services/authService";
+import useAuth from "../../hooks/auth/useAuth";
+import { login } from "../../services/auth/authService";
 
 function LoginForm({
   title,

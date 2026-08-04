@@ -16,10 +16,12 @@ function DashboardHeader({
   return (
     <div className="dashboard-header">
       <div>
-        <h1>👋 Welcome Back, {name || "Student"}</h1>
+        <h1>
+   <strong>Welcome Back,{name}</strong>
+</h1>
 
         <p>
-          {department || "--"} • Semester {semester || "--"} • Section{" "}
+           Semester {semester || "--"} • Section{" "}
           {section || "--"}
         </p>
       </div>

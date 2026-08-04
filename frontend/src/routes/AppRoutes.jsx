@@ -3,10 +3,18 @@ import { Routes, Route } from "react-router-dom";
 import { HodProvider } from "../context/hod/HodContext";
 
 // Layouts
-import MainLayout from "../layouts/MainLayout";
-import DashboardLayout from "../layouts/DashboardLayout";
-import AdminLayout from "../layouts/AdminLayout";
-import HodLayout from "../layouts/HodLayout";
+import MainLayout from "../layouts/public/MainLayout";
+
+import DashboardLayout from "../layouts/dashboard/student/DashboardLayout";
+
+import AdminLayout from "../layouts/dashboard/admin/AdminLayout";
+
+import HodLayout from "../layouts/dashboard/hod/HodLayout";
+
+import ExamCellLayout from "../layouts/dashboard/examcell/ExamCellLayout";
+
+import ExamCellProvider from "../context/examcell/ExamCellContext";
+
 import PremiumAdminLayout from "../premium/layouts/PremiumAdminLayout";
 
 // Authentication
@@ -27,11 +35,11 @@ import AdminLogin from "../pages/auth/AdminLogin";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 
 // Student Dashboard
-import StudentDashboard from "../pages/dashboard/StudentDashboard";
-import Results from "../pages/dashboard/Results";
-import Profile from "../pages/dashboard/Profile";
-import Notifications from "../pages/dashboard/Notifications";
-import Settings from "../pages/dashboard/Settings";
+import StudentDashboard from "../pages/student/Dashboard";
+import Results from "../pages/student/Results";
+import Profile from "../pages/student/Profile";
+import Notifications from "../pages/student/Notifications";
+import Settings from "../pages/student/Settings";
 
 // Admin Pages
 import Dashboard from "../pages/admin/Dashboard";
@@ -52,6 +60,16 @@ import HodNotifications from "../pages/hod/Notifications";
 import HodProfile from "../pages/hod/Profile";
 import HodSettings from "../pages/hod/Settings";
 
+// Exam Cell Pages
+import ExamCellDashboard from "../pages/examcell/ExamCellDashboard";
+import ExamCellExams from "../pages/examcell/Exams";
+import ExamCellResults from "../pages/examcell/Results";
+import ExamCellSubjects from "../pages/examcell/Subjects";
+import ExamCellSchedule from "../pages/examcell/Schedule";
+import ExamCellAnalytics from "../pages/examcell/Analytics";
+import ExamCellNotifications from "../pages/examcell/Notifications";
+import ExamCellProfile from "../pages/examcell/Profile";
+import ExamCellSettings from "../pages/examcell/Settings";
 function AppRoutes() {
   return (
     <Routes>
@@ -121,6 +139,28 @@ function AppRoutes() {
         <Route path="profile" element={<HodProfile />} />
         <Route path="settings" element={<HodSettings />} />
       </Route>
+
+      {/* ================= EXAM CELL ================= */}
+<Route
+  path="/examcell"
+  element={
+    <ProtectedRoute role="EXAM_CELL">
+      <ExamCellProvider>
+        <ExamCellLayout />
+      </ExamCellProvider>
+    </ProtectedRoute>
+  }
+>
+  <Route path="dashboard" element={<ExamCellDashboard />} />
+  <Route path="exams" element={<ExamCellExams />} />
+  <Route path="results" element={<ExamCellResults />} />
+  <Route path="subjects" element={<ExamCellSubjects />} />
+  <Route path="schedule" element={<ExamCellSchedule />} />
+  <Route path="analytics" element={<ExamCellAnalytics />} />
+  <Route path="notifications" element={<ExamCellNotifications />} />
+  <Route path="profile" element={<ExamCellProfile />} />
+  <Route path="settings" element={<ExamCellSettings />} />
+</Route>
 
       {/* ================= PREMIUM ADMIN UI ================= */}
       <Route

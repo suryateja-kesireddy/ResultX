@@ -1,5 +1,5 @@
 import StatCard from "./StatCard";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../hooks/auth/useAuth";
 
 function StatsSection() {
   const { user } = useAuth();

@@ -1,14 +1,19 @@
 const express = require("express");
 
-const authRoutes = require("./authRoutes");
-const courseRoutes = require("./courseRoutes");
-const departmentRoutes = require("./departmentRoutes");
-const academicYearRoutes = require("./academicYearRoutes");
-const studentRoutes = require("./studentRoutes");
-const semesterRoutes = require("./semesterRoutes");
-const subjectRoutes = require("./subjectRoutes");
-const hodRoutes = require("./hodRoutes");
-const accountRoutes = require("./accountRoutes");
+const authRoutes = require("./auth/authRoutes");
+
+const accountRoutes = require("./admin/accountRoutes");
+const academicYearRoutes = require("./admin/academicYearRoutes");
+const courseRoutes = require("./admin/courseRoutes");
+const departmentRoutes = require("./admin/departmentRoutes");
+const semesterRoutes = require("./admin/semesterRoutes");
+const subjectRoutes = require("./admin/subjectRoutes");
+
+const studentRoutes = require("./student/studentRoutes");
+
+const hodRoutes = require("./hod/hodRoutes");
+
+const examCellRoutes = require("./examcell/examCellRoutes");
 
 const router = express.Router();
 
@@ -64,6 +69,9 @@ router.use("/api/hods", hodRoutes);
 
 // ==========================================
 router.use("/api/accounts", accountRoutes);
+
+// ==========================================
+router.use("/api/examcell", examCellRoutes);
 
 
 module.exports = router;

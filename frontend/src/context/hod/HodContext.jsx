@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getHodProfile } from "../../services/hodService";
+import { getHodProfile } from "../../services/hod/hodService";
 
 export const HodContext = createContext();
 

@@ -3,8 +3,7 @@ import toast from "react-hot-toast";
 import Input from "../../../components/ui/Input";
 import PasswordInput from "../../../components/ui/PasswordInput";
 import Button from "../../../components/ui/Button";
-import { createAccount } from "../../../services/accountService";
-
+import { createAccount } from "../../../services/admin/accountService";
 const AccountForm = () => {
   const [formData, setFormData] = useState({
     role: "STUDENT",
