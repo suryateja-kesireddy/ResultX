@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TriangleAlert, X } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -8,22 +9,22 @@ export default function DeleteAccountModal({
   onClose,
   onSuccess,
 }) {
+  const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     try {
+      setLoading(true);
 
       await deleteAccount(account.id);
 
       toast.success("Account deactivated successfully");
 
       onSuccess();
-
     } catch (error) {
-
       console.error(error);
-
       toast.error("Failed to deactivate account");
-
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -34,6 +35,7 @@ export default function DeleteAccountModal({
 
       <div className="delete-account-modal">
 
+        {/* Header */}
         <div className="modal-header">
 
           <h2>Deactivate Account</h2>
@@ -44,13 +46,30 @@ export default function DeleteAccountModal({
 
         </div>
 
+        {/* Body */}
         <div className="delete-body">
 
           <div className="delete-icon">
             <TriangleAlert size={42} />
           </div>
 
-          <h3>{account.name}</h3>
+          <div className="delete-profile">
+
+            <div className="delete-avatar">
+              {account.name
+                ?.split(" ")
+                .map((n) => n[0])
+                .join("")
+                .slice(0, 2)}
+            </div>
+
+            <h3>{account.name}</h3>
+
+            <span className="delete-role">
+              {account.role.replace("_", " ")}
+            </span>
+
+          </div>
 
           <p className="delete-description">
             Are you sure you want to deactivate this account?
@@ -61,21 +80,23 @@ export default function DeleteAccountModal({
             <h4>What will happen?</h4>
 
             <ul>
-              <li>User cannot log in.</li>
-              <li>Academic records will remain safe.</li>
-              <li>Results and marks are preserved.</li>
-              <li>You can restore this account later.</li>
+              <li>✓ User will no longer be able to log in.</li>
+              <li>✓ Academic records will be preserved.</li>
+              <li>✓ Results, marks and history remain intact.</li>
+              <li>✓ Account can be restored anytime.</li>
             </ul>
 
           </div>
 
         </div>
 
+        {/* Footer */}
         <div className="modal-actions">
 
           <button
             className="cancel-btn"
             onClick={onClose}
+            disabled={loading}
           >
             Cancel
           </button>
@@ -83,8 +104,11 @@ export default function DeleteAccountModal({
           <button
             className="deactivate-btn"
             onClick={handleDelete}
+            disabled={loading}
           >
-            Deactivate Account
+            {loading
+              ? "Deactivating..."
+              : "Deactivate Account"}
           </button>
 
         </div>

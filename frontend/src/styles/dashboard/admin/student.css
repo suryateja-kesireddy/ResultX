@@ -1,0 +1,412 @@
+/* ==========================================================
+   STUDENT STATISTICS
+========================================================== */
+
+.student-stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:24px;
+
+    margin-bottom:32px;
+
+}
+
+/* ==========================================================
+   STUDENT CARD
+========================================================== */
+
+.student-stat-card{
+
+    position:relative;
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    cursor:pointer;
+
+    transition:all .35s ease;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.06);
+
+}
+
+.student-stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:5px;
+
+    height:100%;
+
+    background:var(--card-color);
+
+    transition:.35s;
+
+}
+
+.student-stat-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--card-color);
+
+    box-shadow:
+        0 20px 40px rgba(15,23,42,.12);
+
+}
+
+.student-stat-card.active{
+
+    border-color:var(--card-color);
+
+    box-shadow:
+        0 20px 40px rgba(37,99,235,.18);
+
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.student-stat-icon{
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:22px;
+
+    transition:.35s;
+
+}
+
+.student-stat-card:hover .student-stat-icon{
+
+    transform:scale(1.08) rotate(-5deg);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.student-stat-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.student-stat-content h4{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#64748b;
+
+    margin-bottom:8px;
+
+}
+
+.student-stat-content h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.student-stat-content span{
+
+    font-size:14px;
+
+    color:#94a3b8;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:992px){
+
+    .student-stats-grid{
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .student-stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+        gap:18px;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .student-stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .student-stat-card{
+
+        padding:20px;
+
+    }
+
+    .student-stat-content h2{
+
+        font-size:28px;
+
+    }
+
+}
+/* ==========================================================
+   STUDENT FILTERS
+========================================================== */
+
+.student-filters{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin:30px 0;
+    flex-wrap:wrap;
+}
+
+.student-search{
+    flex:1;
+}
+
+.student-search input{
+    width:100%;
+    height:52px;
+    padding:0 18px;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    background:#fff;
+    font-size:15px;
+    transition:.3s;
+}
+
+.student-search input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+.student-filters select{
+    height:52px;
+    min-width:180px;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:0 16px;
+    background:#fff;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.student-filters select:focus{
+    outline:none;
+    border-color:#2563eb;
+}
+
+.reset-btn{
+    height:52px;
+    padding:0 22px;
+    border:none;
+    border-radius:14px;
+    background:#2563eb;
+    color:#fff;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.reset-btn:hover{
+    background:#1d4ed8;
+}
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.student-table-wrapper{
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    box-shadow:0 10px 35px rgba(15,23,42,.05);
+}
+
+.student-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.student-table thead{
+    background:#f8fafc;
+}
+
+.student-table th{
+    padding:18px;
+    text-align:left;
+    font-size:14px;
+    font-weight:700;
+    color:#475569;
+    border-bottom:1px solid #e2e8f0;
+}
+
+.student-table td{
+    padding:18px;
+    border-bottom:1px solid #f1f5f9;
+    font-size:15px;
+    color:#334155;
+}
+
+.student-table tbody tr{
+    transition:.25s;
+}
+
+.student-table tbody tr:hover{
+    background:#f8fbff;
+}
+
+/* ==========================================================
+   AVATAR
+========================================================== */
+
+.student-avatar{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.student-avatar-circle{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:16px;
+}
+
+.student-avatar-info h4{
+    margin:0;
+    font-size:15px;
+    font-weight:700;
+    color:#0f172a;
+}
+
+.student-avatar-info p{
+    margin-top:3px;
+    font-size:13px;
+    color:#64748b;
+}
+
+/* ==========================================================
+   EMPTY TABLE
+========================================================== */
+
+.empty-table{
+    padding:80px;
+    text-align:center;
+    background:#fff;
+    border-radius:22px;
+    color:#94a3b8;
+    font-size:16px;
+    border:1px dashed #cbd5e1;
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:992px){
+
+.student-filters{
+    flex-direction:column;
+    align-items:stretch;
+}
+
+.student-filters select,
+.reset-btn{
+    width:100%;
+}
+
+.student-table-wrapper{
+    overflow-x:auto;
+}
+
+.student-table{
+    min-width:900px;
+}
+
+}
+
+@media(max-width:576px){
+
+.student-search input,
+.student-filters select,
+.reset-btn{
+    height:48px;
+}
+
+.student-avatar-circle{
+    width:42px;
+    height:42px;
+}
+
+.student-avatar-info h4{
+    font-size:14px;
+}
+
+.student-avatar-info p{
+    font-size:12px;
+}
+
+}

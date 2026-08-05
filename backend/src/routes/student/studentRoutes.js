@@ -18,6 +18,11 @@ router.post(
   roleMiddleware("ADMIN"),
   studentController.createStudent
 );
+router.get(
+  "/stats",
+  authMiddleware,
+  studentController.getStudentStats
+)
 
 // Get All Students
 router.get(
@@ -26,6 +31,8 @@ router.get(
   roleMiddleware("ADMIN"),
   studentController.getAllStudents
 );
+// Get Student Stat
+
 router.get(
   "/profile",
   authMiddleware,

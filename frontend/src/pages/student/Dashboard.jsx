@@ -8,7 +8,7 @@ import NotificationPanel from "../../components/dashboard/student/NotificationPa
 import PerformanceChart from "../../components/dashboard/student/PerformanceChart";
 import QuickActions from "../../components/dashboard/student/QuickActions";
 
-import { getStudentProfile } from "../../services/student/studentService";
+// import { getStudentProfile } from "../../services/student/studentService";
 
 function StudentDashboard() {
   const [student, setStudent] = useState(null);

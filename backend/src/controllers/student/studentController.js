@@ -22,13 +22,28 @@ const createStudent = async (req, res, next) => {
 // ==========================================
 const getAllStudents = async (req, res, next) => {
   try {
-    const students = await studentService.getAllStudents();
-
+    const students = await studentService.getAllStudents(req.query);
     return res.status(200).json({
       success: true,
       message: "Students fetched successfully",
       count: students.length,
       data: students,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+// ==========================================
+// Get Student Statistics
+// ==========================================
+const getStudentStats = async (req, res, next) => {
+  try {
+    const stats = await studentService.getStudentStats();
+
+    return res.status(200).json({
+      success: true,
+      message: "Student statistics fetched successfully",
+      data: stats,
     });
   } catch (error) {
     next(error);
@@ -103,6 +118,7 @@ const deleteStudent = async (req, res, next) => {
 module.exports = {
   createStudent,
   getAllStudents,
+  getStudentStats,
   getStudentById,
   getStudentProfile,
   updateStudent,

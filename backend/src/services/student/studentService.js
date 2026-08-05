@@ -127,8 +127,92 @@ const createStudent = async (studentData) => {
 // ==========================================
 // Get All Students
 // ==========================================
-const getAllStudents = async () => {
+const getAllStudents = async (filters = {}) => {
+  const {
+    search,
+    department,
+    semester,
+    status,
+  } = filters;
+
+  const where = {
+    AND: [],
+  };
+
+  // ==========================================
+  // Search (Name or Hall Ticket)
+  // ==========================================
+  if (search) {
+    where.AND.push({
+      OR: [
+        {
+          hallTicket: {
+            contains: search,
+          },
+        },
+        {
+          user: {
+            name: {
+              contains: search,
+            },
+          },
+        },
+      ],
+    });
+  }
+
+  // ==========================================
+  // Department
+  // ==========================================
+  if (department) {
+    where.AND.push({
+      department: {
+        code: department,
+      },
+    });
+  }
+
+  // ==========================================
+  // Semester
+  // ==========================================
+  if (semester) {
+    where.AND.push({
+      semester: {
+        number: Number(semester),
+      },
+    });
+  }
+
+  // ==========================================
+  // Status
+  // ==========================================
+  if (status === "ACTIVE") {
+    where.AND.push({
+      user: {
+        isActive: true,
+      },
+    });
+  }
+
+  if (status === "INACTIVE") {
+    where.AND.push({
+      user: {
+        isActive: false,
+      },
+    });
+  }
+
+  // Remove empty AND
+  if (where.AND.length === 0) {
+    delete where.AND;
+  }
+
+  // ==========================================
+  // Fetch Students
+  // ==========================================
   const students = await prisma.student.findMany({
+    where,
+
     include: {
       user: {
         select: {
@@ -140,21 +224,65 @@ const getAllStudents = async () => {
           createdAt: true,
         },
       },
+
       department: true,
+
       semester: {
         include: {
           academicYear: true,
         },
       },
     },
+
     orderBy: {
       id: "desc",
     },
   });
 
-  return students;
+  return students.map((student) => ({
+    id: student.id,
+    name: student.user.name,
+    email: student.user.email,
+    hallTicket: student.hallTicket,
+    phone: student.phone,
+    department: student.department.code,
+    semester: student.semester.number,
+    status: student.user.isActive ? "Active" : "Inactive",
+    createdAt: student.user.createdAt,
+  }));
 };
+// ==========================================
+// Get Student Statistics
+// ==========================================
+const getStudentStats = async () => {
+  const total = await prisma.student.count();
 
+  const departments = await prisma.department.findMany({
+    select: {
+      id: true,
+      name: true,
+      code: true,
+      _count: {
+        select: {
+          students: true,
+        },
+      },
+    },
+    orderBy: {
+      code: "asc",
+    },
+  });
+
+  return {
+    total,
+    departments: departments.map((department) => ({
+      id: department.id,
+      name: department.name,
+      code: department.code,
+      count: department._count.students,
+    })),
+  };
+};
 // ==========================================
 // Get Student By ID
 // ==========================================
@@ -335,9 +463,11 @@ const getStudentProfile = async (userId) => {
   return student;
 };
 
+
 module.exports = {
   createStudent,
   getAllStudents,
+  getStudentStats,
   getStudentById,
   getStudentProfile,
   updateStudent,
