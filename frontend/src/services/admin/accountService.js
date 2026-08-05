@@ -8,11 +8,33 @@ export const getAccountStats = async () => {
   return response.data.data;
 };
 
+
 // ==========================================
-// Get All Accounts
+// Get Accounts
 // ==========================================
-export const getAccounts = async () => {
-  const response = await api.get("/accounts");
+export const getAccounts = async (filters = {}) => {
+  const params = new URLSearchParams();
+
+  if (filters.search) {
+    params.append("search", filters.search);
+  }
+
+  if (filters.role) {
+    params.append("role", filters.role);
+  }
+
+  if (filters.department) {
+    params.append("department", filters.department);
+  }
+
+  if (filters.status) {
+    params.append("status", filters.status);
+  }
+
+  const response = await api.get(
+    `/accounts?${params.toString()}`
+  );
+
   return response.data.data;
 };
 

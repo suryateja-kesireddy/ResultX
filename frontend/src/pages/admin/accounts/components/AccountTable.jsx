@@ -1,18 +1,22 @@
 import AccountRow from "./AccountRow";
 
-export default function AccountTable({ accounts }) {
+export default function AccountTable({ 
+  accounts,
+  onView,
+  onEdit,
+  onDelete
+ }) {
   return (
-    <div className="account-table-container">
+    <div className="account-table-wrapper">
       <table className="account-table">
         <thead>
           <tr>
             <th>Name</th>
-            <th>Email</th>
             <th>Phone</th>
             <th>Department</th>
             <th>Role</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th style={{ textAlign: "center" }}>Actions</th>
           </tr>
         </thead>
 
@@ -21,6 +25,9 @@ export default function AccountTable({ accounts }) {
             <AccountRow
               key={account.id}
               account={account}
+              onView={onView}
+              onEdit={onEdit}
+              onDelete={onDelete}
             />
           ))}
         </tbody>

@@ -10,9 +10,14 @@ const loginUser = async (user, password) => {
     throw new Error("Invalid Credentials");
   }
 
-  if (!user.isActive) {
-    throw new Error("Account Disabled");
-  }
+  // ==============================
+// Check Account Status
+// ==============================
+if (!user.isActive || user.deletedAt) {
+  throw new Error(
+    "Your account has been deactivated. Please contact the administrator."
+  );
+}
 
   const isMatch = await comparePassword(password, user.password);
 

@@ -30,6 +30,7 @@ import "./styles/dashboard/admin/account-filters.css";
 import "./styles/dashboard/admin/account-table.css";
 import "./styles/dashboard/admin/status-badge.css";
 import "./styles/dashboard/admin/action-buttons.css";
+import "./styles/dashboard/admin/view-account-modal.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

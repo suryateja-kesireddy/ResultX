@@ -325,6 +325,9 @@ const createAccount = async (data) => {
 // ==========================================
 // Get Account Statistics
 // ==========================================
+// ==========================================
+// Get Account Statistics
+// ==========================================
 const getAccountStats = async () => {
   const [
     totalAccounts,
@@ -333,31 +336,41 @@ const getAccountStats = async () => {
     examCells,
     admins,
   ] = await Promise.all([
-    prisma.user.count(),
+
+    prisma.user.count({
+      where: {
+        deletedAt: null,
+      },
+    }),
 
     prisma.user.count({
       where: {
         role: Role.STUDENT,
+        deletedAt: null,
       },
     }),
 
     prisma.user.count({
       where: {
         role: Role.HOD,
+        deletedAt: null,
       },
     }),
 
     prisma.user.count({
       where: {
         role: Role.EXAM_CELL,
+        deletedAt: null,
       },
     }),
 
     prisma.user.count({
       where: {
         role: Role.ADMIN,
+        deletedAt: null,
       },
     }),
+
   ]);
 
   return {
@@ -371,8 +384,101 @@ const getAccountStats = async () => {
 // ==========================================
 // Get All Accounts
 // ==========================================
-const getAccounts = async () => {
+const getAccounts = async (filters = {}) => {
+  const {
+    search,
+    role,
+    department,
+    status,
+  } = filters;
+
+  const where = {
+  AND: [
+    {
+      deletedAt: null,
+    },
+  ],
+};
+
+  // ------------------------------------------
+  // Search
+  // ------------------------------------------
+  if (search) {
+    where.AND.push({
+      OR: [
+        {
+          name: {
+            contains: search,
+          },
+        },
+        {
+          email: {
+            contains: search,
+          },
+        },
+      ],
+    });
+  }
+
+  // ------------------------------------------
+  // Role
+  // ------------------------------------------
+  if (role) {
+    where.AND.push({
+      role,
+    });
+  }
+
+  // ------------------------------------------
+  // Status
+  // ------------------------------------------
+  if (status === "ACTIVE") {
+    where.AND.push({
+      isActive: true,
+    });
+  }
+
+  if (status === "INACTIVE") {
+    where.AND.push({
+      isActive: false,
+    });
+  }
+
+  // ------------------------------------------
+  // Department
+  // ------------------------------------------
+  if (department) {
+    where.AND.push({
+      OR: [
+        {
+          student: {
+            department: {
+              name: department,
+            },
+          },
+        },
+        {
+          hod: {
+            department: {
+              name: department,
+            },
+          },
+        },
+      ],
+    });
+  }
+
+  // Remove empty AND
+  if (where.AND.length === 0) {
+    delete where.AND;
+  }
+
+  // ------------------------------------------
+  // Fetch Users
+  // ------------------------------------------
   const users = await prisma.user.findMany({
+    where,
+
     orderBy: {
       createdAt: "desc",
     },
@@ -394,6 +500,9 @@ const getAccounts = async () => {
     },
   });
 
+  // ------------------------------------------
+  // Format Response
+  // ------------------------------------------
   return users.map((user) => {
     let phone = "";
     let department = "-";
@@ -421,19 +530,202 @@ const getAccounts = async () => {
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role,
-      status: user.isActive ? "Active" : "Inactive",
       phone,
       department,
+      role: user.role,
+      status: user.isActive ? "Active" : "Inactive",
       createdAt: user.createdAt,
     };
   });
 };
+// ==========================================
+// Get Account By ID
+// ==========================================
+const getAccountById = async (id) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: Number(id),
+    },
 
+    include: {
+      student: {
+        include: {
+          department: true,
+          semester: true,
+        },
+      },
+
+      hod: {
+        include: {
+          department: true,
+        },
+      },
+
+      examCell: true,
+    },
+  });
+
+  if (!user) {
+    throw new Error("Account not found");
+  }
+
+  let account = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    status: user.isActive,
+  };
+
+  if (user.student) {
+    account = {
+      ...account,
+      phone: user.student.phone,
+      hallTicket: user.student.hallTicket,
+      section: user.student.section,
+      department: user.student.department?.name,
+      semester: user.student.semester?.name,
+    };
+  }
+
+  if (user.hod) {
+    account = {
+      ...account,
+      phone: user.hod.phone,
+      employeeId: user.hod.employeeId,
+      department: user.hod.department?.name,
+    };
+  }
+
+  if (user.examCell) {
+    account = {
+      ...account,
+      phone: user.examCell.phone,
+      employeeId: user.examCell.employeeId,
+      department: "Exam Cell",
+    };
+  }
+
+  return account;
+};
+// ==========================================
+// Update Account
+// ==========================================
+// ==========================================
+// Update Account
+// ==========================================
+const updateAccount = async (id, data) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: Number(id),
+    },
+    include: {
+      student: true,
+      hod: true,
+      examCell: true,
+    },
+  });
+
+  if (!user) {
+    throw new Error("Account not found");
+  }
+
+  // ---------------------------------------
+  // Update User Table
+  // ---------------------------------------
+  await prisma.user.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      name: data.name,
+      email: data.email,
+      isActive: data.status,
+    },
+  });
+
+  // ---------------------------------------
+  // Update Student
+  // ---------------------------------------
+  if (user.student) {
+    await prisma.student.update({
+      where: {
+        userId: Number(id),
+      },
+      data: {
+        phone: data.phone,
+      },
+    });
+  }
+
+  // ---------------------------------------
+  // Update HOD
+  // ---------------------------------------
+  if (user.hod) {
+    await prisma.hOD.update({
+      where: {
+        userId: Number(id),
+      },
+      data: {
+        phone: data.phone,
+      },
+    });
+  }
+
+  // ---------------------------------------
+  // Update Exam Cell
+  // ---------------------------------------
+  if (user.examCell) {
+    await prisma.examCell.update({
+      where: {
+        userId: Number(id),
+      },
+      data: {
+        phone: data.phone,
+      },
+    });
+  }
+
+  // ---------------------------------------
+  // Return Updated Account
+  // ---------------------------------------
+  return await getAccountById(id);
+};
+
+// ==========================================
+// Soft Delete Account
+// ==========================================
+const deleteAccount = async (id) => {
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  if (!user) {
+    throw new Error("Account not found");
+  }
+
+  return await prisma.user.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      isActive: false,
+      deletedAt: new Date(),
+    },
+  });
+
+};
 module.exports = {
     createAccount,
     getAccountStats,
     getAccounts,
+    getAccountById,
+    updateAccount,
+    deleteAccount,
+
     validateCommonFields,
     checkEmailExists,
     hashPassword,

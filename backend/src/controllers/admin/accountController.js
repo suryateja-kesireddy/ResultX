@@ -21,7 +21,7 @@ const getAccountStats = async (req, res, next) => {
 // ==========================================
 const getAccounts = async (req, res, next) => {
   try {
-    const accounts = await accountService.getAccounts();
+    const accounts = await accountService.getAccounts(req.query);
 
     return res.status(200).json({
       success: true,
@@ -42,6 +42,7 @@ const getAccountById = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
+      message: "Account fetched successfully",
       data: account,
     });
   } catch (error) {
