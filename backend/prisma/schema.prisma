@@ -20,6 +20,7 @@ model User {
   updatedAt DateTime  @updatedAt
   examCell  ExamCell?
   hod       HOD?
+  faculty Faculty?
   student   Student?
 }
 
@@ -42,6 +43,7 @@ model Department {
   updatedAt DateTime  @updatedAt
   course    Course    @relation(fields: [courseId], references: [id])
   hods      HOD[]
+  faculties Faculty[]
   students  Student[]
   subjects  Subject[]
 
@@ -129,7 +131,7 @@ model Subject {
   resultSubjects ResultSubject[]
   department     Department      @relation(fields: [departmentId], references: [id])
   semester       Semester        @relation(fields: [semesterId], references: [id])
-
+  faculties Faculty[]
   @@unique([code, departmentId, semesterId])
   @@index([departmentId])
   @@index([semesterId])
@@ -180,10 +182,30 @@ model Notification {
   createdAt   DateTime           @default(now())
   updatedAt   DateTime           @updatedAt
 }
+model Faculty {
+  id           Int        @id @default(autoincrement())
+  userId       Int        @unique
+  employeeId   String     @unique
+  phone        String?    @db.VarChar(15)
+
+  departmentId Int
+  subjectId    Int
+
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  user         User       @relation(fields: [userId], references: [id])
+  department   Department @relation(fields: [departmentId], references: [id])
+  subject      Subject    @relation(fields: [subjectId], references: [id])
+
+  @@index([departmentId])
+  @@index([subjectId])
+}
 
 enum Role {
   STUDENT
   HOD
+  FACULTY
   EXAM_CELL
   ADMIN
 }

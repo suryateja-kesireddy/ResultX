@@ -15,6 +15,10 @@ const hodRoutes = require("./hod/hodRoutes");
 
 const examCellRoutes = require("./examcell/examCellRoutes");
 
+const facultyRoutes = require("./faculty/facultyRoutes");
+
+
+
 const router = express.Router();
 
 // ==========================================
@@ -52,6 +56,15 @@ router.use("/api/academic-years", academicYearRoutes);
 // ==========================================
 router.use("/api/students", studentRoutes);
 
+// ======================================
+//Subject
+//========================================
+router.use("/api/subjects",subjectRoutes);
+
+//=========================================
+//Faculty
+// =======================================
+router.use("/api/faculty", facultyRoutes);
 // ==========================================
 // Semester
 // ==========================================

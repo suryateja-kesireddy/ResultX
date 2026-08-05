@@ -1,2163 +1,1706 @@
+/* ==========================================
+   ResultX Responsive CSS
+   Mobile First Design
+========================================== */
+
+/* 1. Global Responsive Fixes */
 /* ==========================================================
    RESULTX RESPONSIVE CSS
-   Part 1 - Global / Layout / Navbar / Common UI
+   Part 1 - Global Foundation
+   Mobile First
 ========================================================== */
 
+/* ===========================
+   RESET
+=========================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+}
+
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+}
+
+img,
+svg,
+video,
+canvas{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.container,
+.wrapper,
+.main-container,
+.content-container{
+    width:min(100% - 32px,1400px);
+    margin-inline:auto;
+}
+
+/* ===========================
+   FLEX HELPERS
+=========================== */
+
+.d-flex{
+    display:flex;
+}
+
+.flex-center{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.flex-between{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.flex-column{
+    display:flex;
+    flex-direction:column;
+}
+
+.flex-wrap{
+    flex-wrap:wrap;
+}
+
+.align-center{
+    align-items:center;
+}
+
+.justify-center{
+    justify-content:center;
+}
+
+/* ===========================
+   GRID HELPERS
+=========================== */
+
+.grid{
+    display:grid;
+    gap:20px;
+}
+
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+/* ===========================
+   WIDTH
+=========================== */
+
+.w-100{
+    width:100%;
+}
+
+.h-100{
+    height:100%;
+}
+
+/* ===========================
+   SPACING
+=========================== */
+
+.mt-1{margin-top:8px;}
+.mt-2{margin-top:16px;}
+.mt-3{margin-top:24px;}
+.mt-4{margin-top:32px;}
+.mt-5{margin-top:40px;}
+
+.mb-1{margin-bottom:8px;}
+.mb-2{margin-bottom:16px;}
+.mb-3{margin-bottom:24px;}
+.mb-4{margin-bottom:32px;}
+.mb-5{margin-bottom:40px;}
+
+.pt-1{padding-top:8px;}
+.pt-2{padding-top:16px;}
+.pt-3{padding-top:24px;}
+.pt-4{padding-top:32px;}
+
+.pb-1{padding-bottom:8px;}
+.pb-2{padding-bottom:16px;}
+.pb-3{padding-bottom:24px;}
+.pb-4{padding-bottom:32px;}
+
+.p-1{padding:8px;}
+.p-2{padding:16px;}
+.p-3{padding:24px;}
+.p-4{padding:32px;}
+
+/* ===========================
+   TEXT
+=========================== */
+
+.text-center{
+    text-align:center;
+}
+
+.text-left{
+    text-align:left;
+}
+
+.text-right{
+    text-align:right;
+}
+
+/* ===========================
+   TYPOGRAPHY
+=========================== */
+
+h1{
+    font-size:clamp(2rem,5vw,3.5rem);
+    line-height:1.2;
+}
+
+h2{
+    font-size:clamp(1.7rem,4vw,2.8rem);
+    line-height:1.25;
+}
+
+h3{
+    font-size:clamp(1.5rem,3vw,2.2rem);
+}
+
+h4{
+    font-size:clamp(1.2rem,2vw,1.6rem);
+}
+
+h5{
+    font-size:1.1rem;
+}
+
+h6{
+    font-size:1rem;
+}
+
+p{
+    font-size:clamp(.95rem,1vw,1.05rem);
+    line-height:1.7;
+}
+
+/* ===========================
+   UTILITIES
+=========================== */
+
+.rounded{
+    border-radius:12px;
+}
+
+.rounded-lg{
+    border-radius:18px;
+}
+
+.rounded-xl{
+    border-radius:24px;
+}
+
+.shadow-sm{
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.shadow{
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+.shadow-lg{
+    box-shadow:0 20px 40px rgba(0,0,0,.18);
+}
+
+.transition{
+    transition:.3s ease;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.overflow-auto{
+    overflow:auto;
+}
+
+.cursor-pointer{
+    cursor:pointer;
+}
+
+/* =====================================================
+   RESPONSIVE BREAKPOINTS
+===================================================== */
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:767px){
+
+.container,
+.wrapper,
+.main-container,
+.content-container{
+    width:calc(100% - 24px);
+}
+
+.grid-2,
+.grid-3,
+.grid-4{
+    grid-template-columns:1fr;
+}
+
+.d-flex,
+.flex-between{
+    flex-wrap:wrap;
+}
+
+h1{
+    font-size:2rem;
+}
+
+h2{
+    font-size:1.7rem;
+}
+
+h3{
+    font-size:1.4rem;
+}
+
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width:768px) and (max-width:1023px){
+
+.container,
+.wrapper,
+.main-container,
+.content-container{
+    width:calc(100% - 40px);
+}
+
+.grid-3,
+.grid-4{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+/* ---------- Laptop ---------- */
+
+@media (min-width:1024px) and (max-width:1439px){
+
+.container,
+.wrapper,
+.main-container,
+.content-container{
+    width:min(100% - 48px,1200px);
+}
+
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width:1440px){
+
+.container,
+.wrapper,
+.main-container,
+.content-container{
+    width:min(100% - 60px,1400px);
+}
+
+}
 /* ==========================================================
-   Large Laptop (1400px)
+   PART 2
+   NAVBAR | TOPBAR | SIDEBAR | DASHBOARD
 ========================================================== */
 
-@media (max-width:1400px){
 
-    .premium-content{
-        padding:24px;
-    }
+/* ===========================
+   TOPBAR
+=========================== */
 
-    .rx-search{
-        width:280px;
-    }
+.topbar,
+.navbar,
+.header,
+.admin-topbar{
+
+    width:100%;
+    min-height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 24px;
+
+    gap:20px;
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+
+/* ===========================
+   LOGO
+=========================== */
+
+.logo,
+.brand,
+.rx-logo{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+}
+
+.logo img,
+.brand img,
+.rx-logo img{
+
+    width:44px;
+    height:44px;
+    object-fit:contain;
+
+}
+
+.logo h1,
+.brand h1,
+.rx-logo h1{
+
+    font-size:1.35rem;
+    white-space:nowrap;
 
 }
 
 
-/* ==========================================================
-   Laptop
-========================================================== */
+/* ===========================
+   NAVIGATION
+=========================== */
 
-@media (max-width:1200px){
+.nav-links,
+.nav-menu,
+.menu{
 
-    .premium-sidebar{
-        width:250px;
-    }
+    display:flex;
+    align-items:center;
+    gap:20px;
 
-    .premium-main{
-        margin-left:250px;
-    }
+}
 
-    .premium-content{
-        padding:20px;
-    }
+.nav-links a,
+.nav-menu a,
+.menu a{
 
-    .premium-topbar{
-        padding:0 20px;
-    }
+    text-decoration:none;
 
-    .rx-search{
-        width:240px;
-    }
+    transition:.3s;
 
-    .rx-page-title{
-        font-size:24px;
-    }
-
-    .rx-profile-info{
-        display:none;
-    }
-
-    .container{
-        width:95%;
-    }
+    white-space:nowrap;
 
 }
 
 
-/* ==========================================================
-   Tablet
-========================================================== */
+/* ===========================
+   SEARCH BAR
+=========================== */
 
-@media (max-width:992px){
+.search-box,
+.search-container{
 
-    .premium-layout{
-        display:block;
-    }
+    display:flex;
+    align-items:center;
 
-    .premium-sidebar{
+    width:350px;
+    max-width:100%;
 
-        position:fixed;
+}
 
-        top:0;
-        left:-280px;
+.search-box input,
+.search-container input{
 
-        width:280px;
-        height:100vh;
-
-        z-index:9999;
-
-        transition:.35s;
-
-    }
-
-    .premium-sidebar.active{
-
-        left:0;
-
-    }
-
-    .premium-main{
-
-        margin-left:0;
-
-        width:100%;
-
-    }
-
-    .premium-content{
-
-        padding:18px;
-
-    }
-
-    .premium-topbar{
-
-        height:auto;
-
-        padding:16px 20px;
-
-        flex-wrap:wrap;
-
-        gap:18px;
-
-    }
-
-    .rx-topbar-left{
-
-        width:100%;
-
-    }
-
-    .rx-topbar-right{
-
-        width:100%;
-
-        justify-content:space-between;
-
-    }
-
-    .rx-search{
-
-        flex:1;
-
-        width:auto;
-
-    }
-
-    .rx-page-subtitle{
-
-        display:none;
-
-    }
+    width:100%;
 
 }
 
 
-/* ==========================================================
-   Mobile
-========================================================== */
+/* ===========================
+   USER SECTION
+=========================== */
 
-@media (max-width:768px){
+.user-profile,
+.profile-section,
+.profile-box{
 
-    body{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-        overflow-x:hidden;
+}
 
-    }
+.user-profile img,
+.profile-section img{
 
-    .premium-main{
+    width:42px;
+    height:42px;
 
-        width:100%;
-
-    }
-
-    .premium-content{
-
-        padding:15px;
-
-    }
-
-    .premium-topbar{
-
-        padding:14px;
-
-        gap:14px;
-
-    }
-
-    .rx-topbar-left{
-
-        width:100%;
-
-    }
-
-    .rx-topbar-right{
-
-        width:100%;
-
-        flex-wrap:wrap;
-
-        gap:12px;
-
-    }
-
-    .rx-page-title{
-
-        font-size:22px;
-
-    }
-
-    .rx-search{
-
-        width:100%;
-
-        height:46px;
-
-    }
-
-    .rx-search input{
-
-        font-size:14px;
-
-    }
-
-    .rx-topbar-actions{
-
-        border-right:none;
-
-        padding-right:0;
-
-    }
-
-    .rx-action-btn{
-
-        width:42px;
-
-        height:42px;
-
-    }
-
-    .rx-profile{
-
-        padding:6px 10px;
-
-    }
-
-    .rx-avatar{
-
-        width:42px;
-
-        height:42px;
-
-    }
-
-    .container{
-
-        width:92%;
-
-    }
-
-    .grid{
-
-        grid-template-columns:1fr !important;
-
-    }
+    border-radius:50%;
 
 }
 
 
-/* ==========================================================
-   Small Mobile
-========================================================== */
+/* ===========================
+   SIDEBAR
+=========================== */
 
-@media (max-width:576px){
+.sidebar,
+.admin-sidebar{
 
-    .premium-content{
+    width:280px;
+    min-width:280px;
 
-        padding:12px;
+    height:100vh;
 
-    }
+    overflow-y:auto;
 
-    .premium-topbar{
+    position:fixed;
 
-        padding:12px;
+    left:0;
+    top:0;
 
-    }
-
-    .rx-page-title{
-
-        font-size:20px;
-
-    }
-
-    .rx-search{
-
-        height:44px;
-
-    }
-
-    .rx-profile{
-
-        width:100%;
-
-        justify-content:center;
-
-    }
-
-    .rx-profile-info{
-
-        display:flex;
-
-    }
+    transition:.35s;
 
 }
 
 
-/* ==========================================================
-   Extra Small
-========================================================== */
+.sidebar-menu{
 
-@media (max-width:420px){
+    display:flex;
+    flex-direction:column;
 
-    .rx-page-title{
+    gap:8px;
 
-        font-size:18px;
-
-    }
-
-    .rx-search{
-
-        font-size:13px;
-
-    }
-
-    .premium-content{
-
-        padding:10px;
-
-    }
-
-}
-/* ==========================================================
-   RESULTX RESPONSIVE CSS
-   Part 2 - Premium Admin Dashboard
-==========================================================*/
-
-/* ==========================================================
-   Large Laptop
-========================================================== */
-
-@media (max-width:1400px){
-
-    .rx-dashboard-body{
-        gap:20px;
-    }
-
-    .rx-stats-grid{
-        grid-template-columns:repeat(2,1fr);
-        gap:20px;
-    }
+    padding:20px;
 
 }
 
 
-/* ==========================================================
-   Laptop
-========================================================== */
+.sidebar-menu a{
 
-@media (max-width:1200px){
+    display:flex;
+    align-items:center;
 
-    .rx-dashboard-row{
-        flex-direction:column;
-        gap:20px;
-    }
+    gap:14px;
 
-    .rx-card{
-        width:100%;
-    }
+    padding:14px 16px;
 
-    .rx-stat-card{
-        padding:20px;
-    }
+    border-radius:12px;
 
-    .rx-stat-icon{
-        width:60px;
-        height:60px;
-    }
-
-    .account-header{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:18px;
-
-    }
-
-    .account-filters{
-
-        flex-wrap:wrap;
-
-        gap:14px;
-
-    }
-
-    .filter-search{
-
-        width:100%;
-
-    }
-
-    .account-table-wrapper{
-
-        overflow-x:auto;
-
-    }
+    transition:.3s;
 
 }
 
 
-/* ==========================================================
-   Tablet
-========================================================== */
+.sidebar-menu a i,
+.sidebar-menu svg{
 
-@media (max-width:992px){
-
-    .rx-stats-grid{
-
-        grid-template-columns:1fr 1fr;
-
-        gap:18px;
-
-    }
-
-    .rx-stat-card{
-
-        padding:18px;
-
-    }
-
-    .account-header{
-
-        gap:16px;
-
-    }
-
-    .account-create-btn{
-
-        width:100%;
-
-    }
-
-    .account-stats{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-    .account-table{
-
-        min-width:900px;
-
-    }
-
-    .edit-grid{
-
-        grid-template-columns:1fr;
-
-    }
+    min-width:22px;
 
 }
 
 
-/* ==========================================================
-   Mobile
-========================================================== */
+/* ===========================
+   MAIN CONTENT
+=========================== */
 
-@media (max-width:768px){
+.main-content,
+.dashboard-content,
+.page-content{
 
-    .rx-dashboard-header{
+    margin-left:280px;
 
-        flex-direction:column;
+    min-height:100vh;
 
-        align-items:flex-start;
+    padding:25px;
 
-        gap:16px;
-
-    }
-
-    .rx-dashboard-right{
-
-        width:100%;
-
-    }
-
-    .rx-primary-btn{
-
-        width:100%;
-
-    }
-
-    .rx-stats-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .rx-stat-card{
-
-        padding:18px;
-
-    }
-
-    .rx-stat-icon{
-
-        width:56px;
-
-        height:56px;
-
-    }
-
-    .rx-stat-title{
-
-        font-size:14px;
-
-    }
-
-    .rx-card{
-
-        padding:18px;
-
-    }
-
-    .account-header{
-
-        gap:14px;
-
-    }
-
-    .account-header-left{
-
-        width:100%;
-
-    }
-
-    .account-create-btn{
-
-        width:100%;
-
-    }
-
-    .account-filters{
-
-        flex-direction:column;
-
-        width:100%;
-
-    }
-
-    .filter-search{
-
-        width:100%;
-
-    }
-
-    .account-stats{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .account-table{
-
-        min-width:850px;
-
-    }
-
-    .account-actions{
-
-        display:flex;
-
-        gap:10px;
-
-    }
-
-    .account-user{
-
-        gap:10px;
-
-    }
-
-    .account-avatar{
-
-        width:42px;
-
-        height:42px;
-
-    }
-
-    .account-user-info{
-
-        font-size:14px;
-
-    }
+    transition:.35s;
 
 }
 
 
-/* ==========================================================
-   Small Mobile
-========================================================== */
-
-@media (max-width:576px){
-
-    .rx-dashboard-body{
-
-        gap:16px;
-
-    }
-
-    .rx-card{
-
-        padding:16px;
-
-    }
-
-    .rx-stat-card{
-
-        padding:16px;
-
-    }
-
-    .account-stat-card{
-
-        padding:18px;
-
-    }
-
-    .account-table-wrapper{
-
-        border-radius:12px;
-
-    }
-
-    .account-create-btn{
-
-        height:48px;
-
-    }
-
-    .edit-account-modal,
-    .delete-account-modal,
-    .view-account-modal{
-
-        width:95%;
-
-        max-height:90vh;
-
-        overflow:auto;
-
-    }
-
-    .modal-actions{
-
-        flex-direction:column;
-
-    }
-
-    .save-btn,
-    .cancel-btn,
-    .deactivate-btn{
-
-        width:100%;
-
-    }
-
-}
-
-
-/* ==========================================================
-   Extra Small
-========================================================== */
-
-@media (max-width:420px){
-
-    .rx-dashboard-header h1{
-
-        font-size:22px;
-
-    }
-
-    .rx-dashboard-badge{
-
-        font-size:12px;
-
-    }
-
-    .rx-stat-card{
-
-        padding:14px;
-
-    }
-
-    .rx-stat-icon{
-
-        width:50px;
-
-        height:50px;
-
-    }
-
-    .account-avatar{
-
-        width:38px;
-
-        height:38px;
-
-    }
-
-}
-/* ==========================================================
-   RESULTX RESPONSIVE CSS
-   Part 3 - Student Dashboard
-========================================================== */
-
-/* ==========================
-   Laptop
-========================== */
-
-@media (max-width:1200px){
+/* ===========================
+   DASHBOARD GRID
+=========================== */
 
 .dashboard-grid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
 
-gap:20px;
-
-}
-
-.stats-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-.chart-container{
-
-height:320px;
-
-}
-
-.results-table{
-
-min-width:850px;
-
-}
+    gap:22px;
 
 }
 
 
-/* ==========================
-   Tablet
-========================== */
+/* ===========================
+   DASHBOARD CARDS
+=========================== */
 
-@media (max-width:992px){
+.dashboard-card,
+.stat-card,
+.analytics-card{
 
-.dashboard-layout{
+    width:100%;
 
-display:block;
+    min-height:150px;
+
+    padding:22px;
+
+    border-radius:18px;
 
 }
 
-.sidebar{
 
-position:fixed;
+/* ===========================
+   MOBILE
+=========================== */
 
-left:-280px;
+@media(max-width:767px){
 
-top:0;
+.sidebar,
+.admin-sidebar{
 
-width:280px;
+    width:260px;
 
-height:100vh;
+    transform:translateX(-100%);
 
-z-index:999;
-
-transition:.35s;
+    z-index:1500;
 
 }
 
 .sidebar.active{
 
-left:0;
+    transform:translateX(0);
 
 }
 
-.dashboard-main{
+.main-content,
+.dashboard-content,
+.page-content{
 
-margin-left:0;
+    margin-left:0;
 
-width:100%;
+    padding:15px;
 
 }
 
-.topbar{
+.topbar,
+.navbar,
+.admin-topbar{
 
-padding:18px;
-
-flex-wrap:wrap;
-
-gap:18px;
-
-}
-
-.search-box{
-
-width:100%;
-
-}
-
-.dashboard-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.stats-grid{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-.dashboard-card{
-
-padding:22px;
-
-}
-
-}
-
-
-/* ==========================
-   Mobile
-========================== */
-
-@media (max-width:768px){
-
-.dashboard-content{
-
-padding:16px;
-
-}
-
-.topbar{
-
-padding:16px;
-
-}
-
-.search-box{
-
-width:100%;
-
-}
-
-.stats-grid{
-
-grid-template-columns:1fr;
-
-gap:16px;
-
-}
-
-.dashboard-grid{
-
-grid-template-columns:1fr;
-
-gap:18px;
-
-}
-
-.dashboard-card{
-
-padding:18px;
-
-border-radius:16px;
-
-}
-
-.profile-card{
-
-text-align:center;
-
-}
-
-.profile-header{
-
-flex-direction:column;
-
-align-items:center;
-
-}
-
-.profile-avatar{
-
-margin-bottom:14px;
-
-}
-
-.profile-details{
-
-grid-template-columns:1fr;
-
-}
-
-.actions-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.action-btn{
-
-width:100%;
-
-}
-
-.results-table{
-
-min-width:750px;
-
-}
-
-.notification-list{
-
-max-height:320px;
-
-overflow:auto;
-
-}
-
-.chart-container{
-
-height:260px;
-
-}
-
-.stat-card{
-
-padding:18px;
-
-}
-
-.stat-card-header{
-
-margin-bottom:12px;
-
-}
-
-}
-
-
-/* ==========================
-   Small Mobile
-========================== */
-
-@media (max-width:576px){
-
-.dashboard-content{
-
-padding:14px;
-
-}
-
-.dashboard-card{
-
-padding:16px;
-
-}
-
-.card-header{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:12px;
-
-}
-
-.dashboard-btn{
-
-width:100%;
-
-}
-
-.profile-avatar{
-
-width:80px;
-
-height:80px;
-
-}
-
-.profile-info h2{
-
-font-size:20px;
-
-}
-
-.profile-item{
-
-padding:12px;
-
-}
-
-.results-table{
-
-min-width:650px;
-
-}
-
-.empty-state{
-
-padding:24px 12px;
-
-}
-
-.chart-placeholder{
-
-padding:30px;
-
-}
-
-}
-
-
-/* ==========================
-   Extra Small
-========================== */
-
-@media (max-width:420px){
-
-.dashboard-content{
-
-padding:10px;
-
-}
-
-.dashboard-card{
-
-padding:14px;
-
-}
-
-.profile-avatar{
-
-width:70px;
-
-height:70px;
-
-}
-
-.profile-info h2{
-
-font-size:18px;
-
-}
-
-.stat-card{
-
-padding:14px;
-
-}
-
-.stat-icon{
-
-font-size:20px;
-
-}
-
-.dashboard-btn{
-
-font-size:14px;
-
-}
-
-.empty-icon{
-
-font-size:40px;
-
-}
-
-}
-/* ==========================================================
-   RESULTX RESPONSIVE CSS
-   Part 4 - HOD Dashboard
-========================================================== */
-
-/* ==========================
-   Laptop
-========================== */
-
-@media (max-width:1200px){
-
-.hod-dashboard{
-
-padding:24px;
-
-}
-
-.hod-stats-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-gap:20px;
-
-}
-
-.hod-chart{
-
-height:350px;
-
-}
-
-.hod-table{
-
-min-width:850px;
-
-}
-
-}
-
-
-/* ==========================
-   Tablet
-========================== */
-
-@media (max-width:992px){
-
-.hod-layout{
-
-display:block;
-
-}
-
-.hod-sidebar{
-
-position:fixed;
-
-top:0;
-
-left:-280px;
-
-width:280px;
-
-height:100vh;
-
-z-index:999;
-
-transition:.35s;
-
-}
-
-.hod-sidebar.active{
-
-left:0;
-
-}
-
-.hod-main{
-
-margin-left:0;
-
-width:100%;
-
-}
-
-.hod-topbar{
-
-padding:18px;
-
-flex-wrap:wrap;
-
-gap:18px;
-
-}
-
-.hod-search{
-
-width:100%;
-
-}
-
-.hod-stats-grid{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-.hod-dashboard{
-
-padding:20px;
-
-}
-
-}
-
-
-/* ==========================
-   Mobile
-========================== */
-
-@media (max-width:768px){
-
-.hod-dashboard{
-
-padding:16px;
-
-}
-
-.hod-topbar{
-
-padding:16px;
-
-}
-
-.hod-search{
-
-width:100%;
-
-}
-
-.hod-topbar-right{
-
-width:100%;
-
-justify-content:space-between;
-
-}
-
-.hod-user{
-
-width:100%;
-
-justify-content:center;
-
-}
-
-.hod-stats-grid{
-
-grid-template-columns:1fr;
-
-gap:16px;
-
-}
-
-.hod-stat-card{
-
-padding:18px;
-
-}
-
-.hod-stat-icon{
-
-width:56px;
-
-height:56px;
-
-}
-
-.students-table{
-
-overflow-x:auto;
-
-}
-
-.students-table table{
-
-min-width:700px;
-
-}
-
-.department-chart{
-
-overflow-x:auto;
-
-}
-
-.quick-actions{
-
-grid-template-columns:1fr;
-
-}
-
-.quick-action{
-
-width:100%;
-
-}
-
-}
-
-
-/* ==========================
-   Small Mobile
-========================== */
-
-@media (max-width:576px){
-
-.hod-dashboard{
-
-padding:14px;
-
-}
-
-.hod-stat-card{
-
-padding:16px;
-
-}
-
-.hod-header{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:12px;
-
-}
-
-.hod-date{
-
-width:100%;
-
-}
-
-.department-chart{
-
-height:260px;
-
-}
-
-.quick-action{
-
-padding:16px;
-
-}
-
-}
-
-
-/* ==========================
-   Extra Small
-========================== */
-
-@media (max-width:420px){
-
-.hod-dashboard{
-
-padding:10px;
-
-}
-
-.hod-stat-card{
-
-padding:14px;
-
-}
-
-.hod-stat-icon{
-
-width:48px;
-
-height:48px;
-
-}
-
-.hod-user{
-
-flex-direction:column;
-
-text-align:center;
-
-}
-
-}
-/* ==========================================================
-   RESULTX RESPONSIVE CSS
-   Part 5 - Exam Cell Dashboard
-========================================================== */
-
-/* ==========================
-   Laptop
-========================== */
-
-@media (max-width:1200px){
-
-.examcell-dashboard{
-
-padding:24px;
-
-}
-
-.examcell-stats-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-gap:20px;
-
-}
-
-.examcell-card{
-
-padding:22px;
-
-}
-
-.examcell-table{
-
-min-width:850px;
-
-}
-
-.examcell-actions{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-}
-
-
-/* ==========================
-   Tablet
-========================== */
-
-@media (max-width:992px){
-
-.examcell-layout{
-
-display:block;
-
-}
-
-.examcell-sidebar{
-
-position:fixed;
-
-left:-280px;
-
-top:0;
-
-width:280px;
-
-height:100vh;
-
-z-index:999;
-
-transition:.35s;
-
-}
-
-.examcell-sidebar.active{
-
-left:0;
-
-}
-
-.examcell-main{
-
-margin-left:0;
-
-width:100%;
-
-}
-
-.examcell-content{
-
-padding:20px;
-
-}
-
-.examcell-topbar{
-
-padding:18px;
-
-flex-wrap:wrap;
-
-gap:18px;
-
-}
-
-.examcell-search{
-
-width:100%;
-
-}
-
-.examcell-topbar-right{
-
-width:100%;
-
-justify-content:space-between;
-
-}
-
-.examcell-stats-grid{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-.examcell-actions{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-}
-
-
-/* ==========================
-   Mobile
-========================== */
-
-@media (max-width:768px){
-
-.examcell-content{
-
-padding:16px;
-
-}
-
-.examcell-topbar{
-
-padding:16px;
-
-}
-
-.examcell-search{
-
-width:100%;
-
-}
-
-.examcell-user{
-
-width:100%;
-
-justify-content:center;
-
-}
-
-.examcell-stats-grid{
-
-grid-template-columns:1fr;
-
-gap:16px;
-
-}
-
-.examcell-stat-card{
-
-padding:18px;
-
-}
-
-.examcell-card{
-
-padding:18px;
-
-}
-
-.examcell-actions{
-
-grid-template-columns:1fr;
-
-}
-
-.examcell-action{
-
-width:100%;
-
-}
-
-.examcell-table{
-
-min-width:750px;
-
-}
-
-.examcell-result{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:12px;
-
-}
-
-.examcell-exam{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:14px;
-
-}
-
-.examcell-date-badge{
-
-margin-bottom:8px;
-
-}
-
-.activity-item{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:12px;
-
-}
-
-.activity-icon{
-
-margin-bottom:6px;
-
-}
-
-}
-
-
-/* ==========================
-   Small Mobile
-========================== */
-
-@media (max-width:576px){
-
-.examcell-content{
-
-padding:14px;
-
-}
-
-.examcell-card{
-
-padding:16px;
-
-}
-
-.examcell-header{
-
-flex-direction:column;
-
-align-items:flex-start;
-
-gap:12px;
-
-}
-
-.examcell-date{
-
-width:100%;
-
-}
-
-.examcell-action{
-
-padding:16px;
-
-}
-
-.examcell-stat-card{
-
-padding:16px;
-
-}
-
-.examcell-stat-icon{
-
-width:52px;
-
-height:52px;
-
-}
-
-.examcell-table{
-
-min-width:650px;
-
-}
-
-}
-
-
-/* ==========================
-   Extra Small
-========================== */
-
-@media (max-width:420px){
-
-.examcell-content{
-
-padding:10px;
-
-}
-
-.examcell-card{
-
-padding:14px;
-
-}
-
-.examcell-stat-card{
-
-padding:14px;
-
-}
-
-.examcell-stat-icon{
-
-width:46px;
-
-height:46px;
-
-}
-
-.examcell-user{
-
-flex-direction:column;
-
-text-align:center;
-
-}
-
-.examcell-topbar{
-
-padding:12px;
-
-}
-
-.examcell-search{
-
-height:42px;
-
-}
-
-}
-/* ==========================================================
-   RESULTX RESPONSIVE CSS
-   Part 6 - Public Pages, Auth & Common Components
-==========================================================*/
-
-/* ==========================
-   Large Laptop
-========================== */
-
-@media (max-width:1200px){
-
-.container{
-    width:95%;
-}
-
-.hero-content{
-    gap:40px;
-}
-
-.hero h1{
-    font-size:48px;
-}
-
-.about-grid,
-.contact-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-.portal-grid{
-    grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-
-/* ==========================
-   Tablet
-========================== */
-
-@media (max-width:992px){
-
-.navbar-container{
-
-    padding:16px 20px;
+    padding:12px 15px;
 
     flex-wrap:wrap;
 
-    gap:16px;
+    gap:12px;
 
 }
 
-.nav-links{
+.logo h1{
+
+    font-size:1.1rem;
+
+}
+
+.search-box,
+.search-container{
+
+    width:100%;
+    order:3;
+
+}
+
+.nav-links,
+.nav-menu{
 
     display:none;
 
 }
 
-.nav-actions{
+.user-profile span{
 
-    margin-left:auto;
-
-}
-
-.hero{
-
-    padding:70px 0;
+    display:none;
 
 }
 
-.hero-content{
+.dashboard-grid{
 
     grid-template-columns:1fr;
 
-    text-align:center;
-
 }
 
-.hero-buttons{
+.dashboard-card{
 
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-}
-
-.hero h1{
-
-    font-size:42px;
-
-}
-
-.about-grid,
-.contact-grid{
-
-    grid-template-columns:1fr 1fr;
-
-}
-
-.portal-grid{
-
-    grid-template-columns:1fr 1fr;
-
-}
-
-.login-selection-container{
-
-    width:90%;
-
-}
-
-.auth-card{
-
-    width:90%;
+    padding:18px;
 
 }
 
 }
 
 
-/* ==========================
-   Mobile
-========================== */
+/* ===========================
+   TABLET
+=========================== */
 
-@media (max-width:768px){
+@media(min-width:768px) and (max-width:1023px){
 
-.container{
+.sidebar{
 
-    width:92%;
+    width:85px;
 
-}
-
-.navbar{
-
-    padding:12px 0;
+    min-width:85px;
 
 }
 
-.logo{
+.sidebar-menu a span{
 
-    font-size:22px;
+    display:none;
 
 }
 
 .main-content{
 
-    padding-top:70px;
+    margin-left:85px;
 
 }
 
-.hero{
+.search-box{
 
-    padding:60px 0;
-
-}
-
-.hero h1{
-
-    font-size:34px;
-
-    line-height:1.2;
+    width:250px;
 
 }
 
-.hero p{
+.dashboard-grid{
 
-    font-size:16px;
-
-}
-
-.hero-buttons{
-
-    flex-direction:column;
-
-    width:100%;
-
-}
-
-.hero-btn{
-
-    width:100%;
-
-}
-
-.about-grid,
-.contact-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.about-card,
-.contact-card{
-
-    padding:20px;
-
-}
-
-.contact-form-card{
-
-    padding:22px;
-
-}
-
-.portal-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.portal-card{
-
-    padding:24px;
-
-}
-
-.login-selection{
-
-    padding:40px 16px;
-
-}
-
-.auth-page{
-
-    padding:20px;
-
-}
-
-.auth-card{
-
-    width:100%;
-
-    padding:24px;
-
-}
-
-.input-group{
-
-    margin-bottom:18px;
-
-}
-
-.btn{
-
-    width:100%;
-
-}
-
-.card{
-
-    padding:18px;
-
-}
-
-table{
-
-    display:block;
-
-    overflow-x:auto;
+    grid-template-columns:
+    repeat(2,1fr);
 
 }
 
 }
+
+
+/* ===========================
+   LAPTOP
+=========================== */
+
+@media(min-width:1024px) and (max-width:1439px){
+
+.sidebar{
+
+    width:250px;
+
+}
+
+.main-content{
+
+    margin-left:250px;
+
+}
+
+.search-box{
+
+    width:320px;
+
+}
+
+}
+
+
+/* ===========================
+   DESKTOP
+=========================== */
+
+@media(min-width:1440px){
+
+.dashboard-grid{
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+}
+
+.dashboard-card{
+
+    padding:28px;
+
+}
+
+.main-content{
+
+    padding:35px;
+
+}
+
+}
+/* ==========================================================
+   PART 3
+   FORMS | TABLES | BUTTONS | AUTH | MODALS | CARDS
+==========================================================*/
 
 
 /* ==========================
-   Small Mobile
+   FORM LAYOUT
 ========================== */
 
-@media (max-width:576px){
+.form,
+.form-container,
+.form-wrapper{
 
-.hero{
-
-    padding:50px 0;
-
-}
-
-.hero h1{
-
-    font-size:30px;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
 
 }
 
-.hero p{
+.form-row{
 
-    font-size:15px;
-
-}
-
-.hero-badge{
-
-    font-size:13px;
-
-}
-
-.about-card,
-.contact-card{
-
-    padding:18px;
-
-}
-
-.portal-card{
-
-    padding:20px;
-
-}
-
-.contact-form{
-
-    gap:16px;
-
-}
-
-.dashboard-btn{
-
+    display:flex;
+    gap:20px;
     width:100%;
 
 }
 
 .form-group{
 
-    margin-bottom:16px;
-
-}
-
-.modal-header{
-
-    flex-direction:column;
-
-    align-items:flex-start;
-
-}
-
-.modal-actions{
-
-    flex-direction:column;
-
-}
-
-.cancel-btn,
-.save-btn,
-.deactivate-btn{
-
     width:100%;
-
-}
-
-.view-account-modal,
-.edit-account-modal,
-.delete-account-modal{
-
-    width:96%;
-
-    max-height:90vh;
-
-    overflow:auto;
-
-}
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 
 }
 
 
 /* ==========================
-   Extra Small
+   INPUTS
 ========================== */
 
-@media (max-width:420px){
+input,
+select,
+textarea{
 
-.container{
+    width:100%;
+    min-height:48px;
 
-    width:94%;
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.3s;
 
 }
 
+textarea{
+
+    min-height:140px;
+    resize:vertical;
+
+}
+
+
+/* ==========================
+   BUTTONS
+========================== */
+
+button,
+.btn{
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    min-height:48px;
+
+    padding:12px 24px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-sm{
+
+    min-height:40px;
+    padding:8px 18px;
+
+}
+
+.btn-lg{
+
+    min-height:56px;
+    padding:16px 30px;
+
+}
+
+
+/* ==========================
+   TABLE
+========================== */
+
+.table-container{
+
+    width:100%;
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+    min-width:800px;
+
+}
+
+th,
+td{
+
+    padding:16px;
+    text-align:left;
+    white-space:nowrap;
+
+}
+
+
+/* ==========================
+   CARDS
+========================== */
+
+.card,
+.glass-card,
+.info-card{
+
+    width:100%;
+
+    padding:24px;
+
+    border-radius:18px;
+
+    transition:.3s;
+
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.card-body{
+
+    width:100%;
+
+}
+
+.card-footer{
+
+    margin-top:20px;
+
+}
+
+
+/* ==========================
+   AUTH PAGES
+========================== */
+
+.auth-page,
+.login-page,
+.register-page{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:30px;
+
+}
+
+.auth-container,
+.login-container{
+
+    width:100%;
+    max-width:460px;
+
+}
+
+.auth-image{
+
+    width:100%;
+    display:flex;
+    justify-content:center;
+
+}
+
+
+/* ==========================
+   PROFILE
+========================== */
+
+.profile-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:25px;
+
+}
+
+.profile-avatar{
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+}
+
+.profile-avatar img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+
+/* ==========================
+   MODAL
+========================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:3000;
+
+}
+
+.modal-content{
+
+    width:100%;
+    max-width:600px;
+
+    border-radius:20px;
+
+    padding:30px;
+
+}
+
+
+/* ==========================
+   PAGINATION
+========================== */
+
+.pagination{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* ==========================
+   ALERTS
+========================== */
+
+.alert,
+.toast,
+.notification{
+
+    width:100%;
+
+    padding:16px 20px;
+
+    border-radius:12px;
+
+}
+
+
+/* ===================================================
+                MOBILE
+=================================================== */
+
+@media(max-width:767px){
+
+.form-row{
+
+    flex-direction:column;
+
+}
+
+.auth-page{
+
+    padding:18px;
+
+}
+
+.auth-container{
+
+    max-width:100%;
+
+}
+
+.profile-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.profile-avatar{
+
+    width:70px;
+    height:70px;
+
+}
+
+.card,
+.glass-card{
+
+    padding:18px;
+
+}
+
+.card-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+button,
+.btn{
+
+    width:100%;
+
+}
+
+.btn-sm{
+
+    width:100%;
+
+}
+
+.modal-content{
+
+    padding:20px;
+
+}
+
+.table-container{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:650px;
+
+}
+
+th,
+td{
+
+    padding:12px;
+
+}
+
+}
+
+
+/* ===================================================
+                TABLET
+=================================================== */
+
+@media(min-width:768px) and (max-width:1023px){
+
+.form-row{
+
+    flex-wrap:wrap;
+
+}
+
+.form-group{
+
+    min-width:48%;
+
+}
+
+.auth-container{
+
+    max-width:520px;
+
+}
+
+.profile-card{
+
+    align-items:flex-start;
+
+}
+
+}
+
+
+/* ===================================================
+                LAPTOP
+=================================================== */
+
+@media(min-width:1024px) and (max-width:1439px){
+
+.auth-container{
+
+    max-width:460px;
+
+}
+
+.card{
+
+    padding:22px;
+
+}
+
+}
+
+
+/* ===================================================
+                DESKTOP
+=================================================== */
+
+@media(min-width:1440px){
+
+.card{
+
+    padding:30px;
+
+}
+
+.modal-content{
+
+    max-width:700px;
+
+}
+
+.profile-avatar{
+
+    width:110px;
+    height:110px;
+
+}
+
+}
+/* ==========================================================
+   PART 4
+   HERO | FOOTER | CHARTS | UTILITIES | FINAL RESPONSIVE
+==========================================================*/
+
+
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.hero,
+.hero-section{
+
+    width:100%;
+    min-height:calc(100vh - 70px);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:50px;
+
+    padding:60px 0;
+
+}
+
+.hero-content{
+
+    flex:1;
+
+}
+
+.hero-image{
+
+    flex:1;
+
+}
+
+.hero-image img{
+
+    width:100%;
+    max-width:650px;
+    margin:auto;
+
+}
+
+
+/* ===========================
+   STATS
+=========================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.stat-box{
+
+    padding:24px;
+
+    border-radius:18px;
+
+}
+
+
+/* ===========================
+   CHARTS
+=========================== */
+
+.chart-card{
+
+    width:100%;
+
+    min-height:350px;
+
+    padding:24px;
+
+    border-radius:20px;
+
+}
+
+.chart-container{
+
+    width:100%;
+    height:320px;
+
+}
+
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.footer{
+
+    width:100%;
+
+    padding:50px 0 20px;
+
+}
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+
+}
+
+.footer-bottom{
+
+    margin-top:40px;
+
+    text-align:center;
+
+}
+
+
+/* ===========================
+   LOADER
+=========================== */
+
+.loader{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:100%;
+    min-height:200px;
+
+}
+
+
+/* ===========================
+   SKELETON
+=========================== */
+
+.skeleton{
+
+    width:100%;
+
+    border-radius:12px;
+
+    min-height:20px;
+
+}
+
+
+/* ===========================
+   IMAGE HELPERS
+=========================== */
+
+.img-cover{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+}
+
+.img-contain{
+
+    width:100%;
+    height:100%;
+    object-fit:contain;
+
+}
+
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+    height:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    border-radius:10px;
+
+}
+
+
+/* ===========================
+   RESPONSIVE IMAGES
+=========================== */
+
+.responsive-image{
+
+    width:100%;
+    height:auto;
+
+}
+
+
+/* ===========================
+   DISPLAY HELPERS
+=========================== */
+
+.d-none{
+    display:none!important;
+}
+
+.d-block{
+    display:block!important;
+}
+
+.d-inline{
+    display:inline-block!important;
+}
+
+.text-wrap{
+    white-space:normal;
+}
+
+.text-nowrap{
+    white-space:nowrap;
+}
+
+
+/* =======================================================
+                    MOBILE
+======================================================= */
+
+@media(max-width:767px){
+
 .hero{
+
+    flex-direction:column-reverse;
+
+    text-align:center;
+
+    gap:30px;
 
     padding:40px 0;
 
 }
 
-.hero h1{
+.hero-image img{
 
-    font-size:26px;
-
-}
-
-.hero p{
-
-    font-size:14px;
+    max-width:320px;
 
 }
 
-.logo{
+.stats-grid{
 
-    font-size:20px;
+    grid-template-columns:1fr;
 
 }
 
-.auth-card{
+.chart-card{
+
+    min-height:280px;
 
     padding:18px;
 
 }
 
-.portal-card{
+.chart-container{
 
-    padding:18px;
+    height:220px;
+
+}
+
+.footer{
+
+    text-align:center;
+
+}
+
+.footer-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.footer-bottom{
+
+    margin-top:25px;
+
+}
+
+}
+
+
+/* =======================================================
+                    TABLET
+======================================================= */
+
+@media(min-width:768px) and (max-width:1023px){
+
+.hero{
+
+    gap:30px;
+
+}
+
+.hero-image img{
+
+    max-width:420px;
+
+}
+
+.chart-container{
+
+    height:260px;
+
+}
+
+.footer-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+/* =======================================================
+                    LAPTOP
+======================================================= */
+
+@media(min-width:1024px) and (max-width:1439px){
+
+.hero{
+
+    gap:45px;
+
+}
+
+.chart-container{
+
+    height:300px;
+
+}
+
+}
+
+
+/* =======================================================
+                    DESKTOP
+======================================================= */
+
+@media(min-width:1440px){
+
+.hero{
+
+    min-height:85vh;
+
+}
+
+.hero-image img{
+
+    max-width:720px;
+
+}
+
+.chart-container{
+
+    height:380px;
+
+}
+
+}
+
+
+/* =======================================================
+              EXTRA SMALL DEVICES
+======================================================= */
+
+@media(max-width:425px){
+
+h1{
+
+    font-size:1.8rem;
+
+}
+
+h2{
+
+    font-size:1.5rem;
+
+}
+
+.topbar{
+
+    padding:12px;
+
+}
+
+.sidebar{
+
+    width:250px;
 
 }
 
@@ -2167,75 +1710,160 @@ table{
 
 }
 
-.btn{
+button{
 
-    font-size:14px;
+    min-height:46px;
 
 }
 
+}
+
+
+/* =======================================================
+              LARGE DESKTOPS
+======================================================= */
+
+@media(min-width:1600px){
+
+.container,
+.wrapper{
+
+    max-width:1500px;
+
+}
+
+.dashboard-grid{
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(340px,1fr));
+
+}
+
+}
+
+
+/* =======================================================
+              ULTRA WIDE
+======================================================= */
+
+@media(min-width:1920px){
+
+.container,
+.wrapper{
+
+    max-width:1700px;
+
+}
+
+.dashboard-grid{
+
+    gap:30px;
+
+}
+
+}
+
+
+/* =======================================================
+                 PRINT
+======================================================= */
+
+@media print{
+
+.sidebar,
+.topbar,
+.footer,
+button{
+
+    display:none!important;
+
+}
+
+.main-content{
+
+    margin:0!important;
+
+    padding:0!important;
+
+}
+
+body{
+
+    background:#ffffff!important;
+
+}
+
+}
+
+
+/* =======================================================
+                 ACCESSIBILITY
+======================================================= */
+
+:focus-visible{
+
+    outline:2px solid #2563eb;
+
+    outline-offset:3px;
+
+}
+
+button,
+a,
 input,
-select,
-textarea{
+textarea,
+select{
 
-    font-size:14px;
-
-}
+    transition:all .3s ease;
 
 }
 
+button:hover{
 
-/* ==========================================================
-   Utility Responsive Classes
-==========================================================*/
-
-@media (max-width:768px){
-
-.hide-mobile{
-
-    display:none !important;
+    transform:translateY(-2px);
 
 }
 
-.show-mobile{
+img{
 
-    display:block !important;
-
-}
-
-.text-center-mobile{
-
-    text-align:center !important;
+    user-select:none;
 
 }
 
-.w-full-mobile{
+/* 2. Typography */
 
-    width:100% !important;
+/* 3. Containers */
 
-}
+/* 4. Grid System */
 
-.flex-column-mobile{
+/* 5. Navbar */
 
-    display:flex;
+/* 6. Sidebar */
 
-    flex-direction:column;
+/* 7. Dashboard */
 
-}
+/* 8. Cards */
 
-.gap-mobile{
+/* 9. Tables */
 
-    gap:16px;
+/* 10. Forms */
 
-}
+/* 11. Buttons */
 
-}
+/* 12. Login */
 
-@media (min-width:769px){
+/* 13. Profile */
 
-.show-mobile{
+/* 14. Charts */
 
-    display:none !important;
+/* 15. Footer */
 
-}
+/* 16. Utility Classes */
 
-}
+/* 17. Mobile (320px-767px) */
+
+/* 18. Tablet (768px-1023px) */
+
+/* 19. Laptop (1024px-1439px) */
+
+/* 20. Desktop (1440px+) */

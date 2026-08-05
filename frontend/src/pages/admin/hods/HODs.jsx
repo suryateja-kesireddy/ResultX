@@ -1,8 +1,38 @@
+import HODDepartmentCards from "./HODDepartmentCards";
+import HODSearch from "./HODSearch";
+import HODTable from "./HODTable";
+
 const HODs = () => {
   return (
-    <div>
-      <h1>HODs</h1>
-      <p>Head of Departments Management Page</p>
+    <div className="rx-hod-page">
+
+      {/* ==========================================
+          PAGE HEADER
+      ========================================== */}
+
+      <div className="rx-page-header">
+        <h2>HOD Management</h2>
+        <p>Manage Head of Departments</p>
+      </div>
+
+      {/* ==========================================
+          DEPARTMENT CARDS
+      ========================================== */}
+
+      <HODDepartmentCards />
+
+      {/* ==========================================
+          SEARCH
+      ========================================== */}
+
+      <HODSearch />
+
+      {/* ==========================================
+          TABLE
+      ========================================== */}
+
+      <HODTable />
+
     </div>
   );
 };

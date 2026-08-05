@@ -80,6 +80,42 @@ const createSubject = async (subjectData) => {
   return subject;
 };
 // ==========================================
+// Get Subject Statistics
+// ==========================================
+const getSubjectStats = async () => {
+
+  const totalSubjects = await prisma.subject.count();
+
+  const departments = await prisma.department.findMany({
+    select: {
+      id: true,
+      name: true,
+      code: true,
+
+      _count: {
+        select: {
+          subjects: true,
+        },
+      },
+    },
+
+    orderBy: {
+      code: "asc",
+    },
+  });
+
+  return {
+    totalSubjects,
+
+    departments: departments.map((department) => ({
+      id: department.id,
+      name: department.name,
+      code: department.code,
+      count: department._count.subjects,
+    })),
+  };
+};
+// ==========================================
 // Get All Subjects
 // ==========================================
 const getAllSubjects = async () => {
@@ -242,7 +278,8 @@ const deleteSubject = async (id) => {
   };
 };
 module.exports = {
-  createSubject,
+   createSubject,
+   getSubjectStats,
     getAllSubjects,
     getSubjectById,
     updateSubject,

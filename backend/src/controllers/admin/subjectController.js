@@ -17,6 +17,24 @@ const createSubject = async (req, res, next) => {
   }
 };
 // ==========================================
+// Get Subject Statistics
+// ==========================================
+const getSubjectStats = async (req, res, next) => {
+  try {
+
+    const stats = await subjectService.getSubjectStats();
+
+    return res.status(200).json({
+      success: true,
+      message: "Subject statistics fetched successfully",
+      data: stats,
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+// ==========================================
 // Get All Subjects
 // ==========================================
 const getAllSubjects = async (req, res, next) => {
@@ -87,7 +105,8 @@ const deleteSubject = async (req, res, next) => {
 };
 
 module.exports = {
-  createSubject,
+    createSubject,
+    getSubjectStats,
     getAllSubjects,
     getSubjectById,
     updateSubject,

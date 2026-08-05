@@ -1,0 +1,78 @@
+/* ==========================================================
+   SUBJECT PAGE
+========================================================== */
+
+.subject-page {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* ==========================================================
+   SUBJECT TABLE
+========================================================== */
+
+.student-table td:first-child {
+    font-weight: 700;
+    color: #2563eb;
+    letter-spacing: .5px;
+}
+
+.student-table td:nth-child(2) {
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.student-table td:nth-child(3) {
+    font-weight: 600;
+}
+
+.student-table td:nth-child(4) {
+    color: #64748b;
+}
+
+.student-table td:nth-child(5) {
+    text-align: center;
+    font-weight: 700;
+    color: #16a34a;
+}
+
+/* ==========================================================
+   EMPTY TABLE
+========================================================== */
+
+.empty-table {
+    padding: 70px 20px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .student-table {
+        min-width: 850px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .subject-page {
+        gap: 20px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .student-table {
+        min-width: 700px;
+    }
+
+}

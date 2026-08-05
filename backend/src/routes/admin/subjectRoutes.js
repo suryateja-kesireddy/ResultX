@@ -17,13 +17,19 @@ router.post(
   roleMiddleware("ADMIN"),
   subjectController.createSubject
 );
-// Get All Subjects
+router.get(
+  "/stats",
+  authMiddleware,
+  subjectController.getSubjectStats
+);
+// et All Subjects
 router.get(
   "/",
   authMiddleware,
   roleMiddleware("ADMIN"),
   subjectController.getAllSubjects
 );
+
 // Get Subject By ID
 router.get(
   "/:id",
