@@ -17,6 +17,16 @@ router.post(
   roleMiddleware("ADMIN"),
   semesterController.createSemester
 );
+// ==========================================
+// Semester Statistics
+// ==========================================
+
+router.get(
+  "/stats",
+  authMiddleware,
+  roleMiddleware("ADMIN"),
+  semesterController.getSemesterStats
+);
 // Get All Semesters
 router.get(
   "/",

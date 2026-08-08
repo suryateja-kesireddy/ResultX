@@ -17,6 +17,18 @@ router.post(
   roleMiddleware("ADMIN"),
   hodController.createHOD
 );
+router.get(
+  "/stats",
+  authMiddleware,
+  roleMiddleware("ADMIN"),
+  hodController.getHODStats
+);
+router.get(
+  "/dashboard/stats",
+  authMiddleware,
+  roleMiddleware("HOD"),
+  hodController.getDashboardStats
+);
 // Get All HODs
 router.get(
   "/",

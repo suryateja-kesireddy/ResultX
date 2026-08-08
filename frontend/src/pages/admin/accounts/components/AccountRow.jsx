@@ -23,7 +23,20 @@ export default function AccountRow({
         <DepartmentBadge department={account.department} />
       </td>
       <td>
-        <RoleBadge role={account.role} />
+        <span
+          className={`account-role ${account.role === "FACULTY"
+              ? "faculty"
+              : account.role === "STUDENT"
+                ? "student"
+                : account.role === "HOD"
+                  ? "hod"
+                  : account.role === "EXAM_CELL"
+                    ? "exam-cell"
+                    : "admin"
+            }`}
+        >
+          {account.role}
+        </span>
       </td>
 
       <td>

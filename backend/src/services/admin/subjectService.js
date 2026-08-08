@@ -118,30 +118,71 @@ const getSubjectStats = async () => {
 // ==========================================
 // Get All Subjects
 // ==========================================
-const getAllSubjects = async () => {
-  const subjects = await prisma.subject.findMany({
-    include: {
-      department: true,
-      semester: {
-        include: {
-          academicYear: true,
-        },
-      },
-    },
-    orderBy: [
-      {
-        departmentId: "asc",
-      },
-      {
-        semesterId: "asc",
-      },
-      {
-        code: "asc",
-      },
-    ],
-  });
+// ==========================================
+// Get All Subjects
+// Supports Semester / Department Filtering
+// ==========================================
+const getAllSubjects = async (filters = {}) => {
 
-  return subjects;
+    const {
+        semesterId,
+        departmentId,
+    } = filters;
+
+    const where = {};
+
+    // ==========================================
+    // Filter By Semester
+    // ==========================================
+    if (semesterId) {
+        where.semesterId = Number(semesterId);
+    }
+
+    // ==========================================
+    // Filter By Department
+    // ==========================================
+    if (departmentId) {
+        where.departmentId = Number(departmentId);
+    }
+
+    // ==========================================
+    // Fetch Subjects
+    // ==========================================
+    const subjects = await prisma.subject.findMany({
+
+        where,
+
+        include: {
+
+            department: true,
+
+            semester: {
+                include: {
+                    academicYear: true,
+                },
+            },
+
+        },
+
+        orderBy: [
+
+            {
+                departmentId: "asc",
+            },
+
+            {
+                semesterId: "asc",
+            },
+
+            {
+                code: "asc",
+            },
+
+        ],
+
+    });
+
+    return subjects;
 };
 // ==========================================
 // Get Subject By ID

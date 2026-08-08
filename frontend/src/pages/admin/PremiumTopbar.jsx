@@ -6,10 +6,10 @@ const PremiumTopbar = () => {
   return (
     <header className="premium-topbar">
 
+      {/* Left */}
       <div className="rx-topbar-left">
 
         <div>
-
           <h2 className="rx-page-title">
             Dashboard
           </h2>
@@ -17,11 +17,11 @@ const PremiumTopbar = () => {
           <p className="rx-page-subtitle">
             College Result Management System
           </p>
-
         </div>
 
       </div>
 
+      {/* Right */}
       <div className="rx-topbar-right">
 
         <SearchBar />

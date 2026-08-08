@@ -35,6 +35,7 @@ const validateCommonFields = (data) => {
     Role.HOD,
     Role.EXAM_CELL,
     Role.ADMIN,
+    Role.FACULTY,
   ];
 
   if (!validRoles.includes(role)) {
@@ -277,6 +278,70 @@ const createExamCellProfile = async (tx, user, data) => {
     },
   });
 };
+// ==========================================
+// Create Faculty Profile
+// ==========================================
+const createFacultyProfile = async (tx, user, data) => {
+    const {
+        employeeId,
+        phone,
+        qualification,
+        experience,
+        departmentId,
+    } = data;
+
+    // Validate Required Fields
+    if (!employeeId) {
+        throw new Error("Employee ID is required");
+    }
+
+    if (!departmentId) {
+        throw new Error("Department is required");
+    }
+
+    // Check Employee ID
+    const existingFaculty = await tx.faculty.findUnique({
+        where: {
+            employeeId,
+        },
+    });
+
+    if (existingFaculty) {
+        throw new Error("Employee ID already exists");
+    }
+
+    // Check Department
+    const department = await tx.department.findUnique({
+        where: {
+            id: Number(departmentId),
+        },
+    });
+
+    if (!department) {
+        throw new Error("Department not found");
+    }
+
+    // Create Faculty
+    return await tx.faculty.create({
+        data: {
+            userId: user.id,
+            employeeId,
+            phone,
+            qualification,
+            experience:
+                experience !== undefined &&
+                experience !== ""
+                    ? Number(experience)
+                    : null,
+            departmentId: Number(departmentId),
+        },
+
+        include: {
+            user: true,
+            department: true,
+        },
+    });
+};
 
 // ==========================================
 // Create Account
@@ -310,6 +375,9 @@ const createAccount = async (data) => {
 
       case Role.EXAM_CELL:
         return await createExamCellProfile(tx, user, data);
+        
+      case Role.FACULTY:
+        return await createFacultyProfile(tx, user, data);
 
       default:
         throw new Error("Invalid role");
@@ -334,8 +402,9 @@ const getAccountStats = async () => {
     students,
     hods,
     examCells,
+    faculty,
     admins,
-  ] = await Promise.all([
+] = await Promise.all([
 
     prisma.user.count({
       where: {
@@ -363,6 +432,12 @@ const getAccountStats = async () => {
         deletedAt: null,
       },
     }),
+    prisma.user.count({
+    where: {
+        role: Role.FACULTY,
+        deletedAt: null,
+    },
+}),
 
     prisma.user.count({
       where: {
@@ -379,6 +454,7 @@ const getAccountStats = async () => {
     hods,
     examCells,
     admins,
+    faculty,
   };
 };
 // ==========================================
@@ -448,25 +524,32 @@ const getAccounts = async (filters = {}) => {
   // Department
   // ------------------------------------------
   if (department) {
-    where.AND.push({
-      OR: [
-        {
-          student: {
-            department: {
-              name: department,
-            },
+  where.AND.push({
+    OR: [
+      {
+        student: {
+          department: {
+            code: department,
           },
         },
-        {
-          hod: {
-            department: {
-              name: department,
-            },
+      },
+      {
+        hod: {
+          department: {
+            code: department,
           },
         },
-      ],
-    });
-  }
+      },
+      {
+        faculty: {
+          department: {
+            code: department,
+          },
+        },
+      },
+    ],
+  });
+}
 
   // Remove empty AND
   if (where.AND.length === 0) {
@@ -495,6 +578,11 @@ const getAccounts = async (filters = {}) => {
           department: true,
         },
       },
+      faculty: {
+    include: {
+      department: true,
+    },
+  },
 
       examCell: true,
     },
@@ -521,6 +609,10 @@ const getAccounts = async (filters = {}) => {
       phone = user.examCell.phone;
       department = "Exam Cell";
     }
+    if (user.role === Role.FACULTY && user.faculty) {
+  phone = user.faculty.phone || "";
+  department = user.faculty.department?.name || "-";
+}
 
     if (user.role === Role.ADMIN) {
       department = "Administration";
@@ -733,6 +825,7 @@ module.exports = {
     createStudentProfile,
     createHODProfile,
     createExamCellProfile,
+    createFacultyProfile,
     
 
 };

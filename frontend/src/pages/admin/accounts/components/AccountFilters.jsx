@@ -1,107 +1,200 @@
-import { Search, RotateCcw } from "lucide-react";
+import { useEffect, useState } from "react";
+import { RotateCcw, Search } from "lucide-react";
+
+import {
+    getAllDepartments,
+} from "../../../../services/department/departmentService";
 
 export default function AccountFilters({
-  filters,
-  setFilters,
+    filters,
+    setFilters,
 }) {
-  const handleChange = (field, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+    const [departments, setDepartments] = useState([]);
 
-  const handleReset = () => {
-    setFilters({
-      search: "",
-      role: "",
-      department: "",
-      status: "",
-    });
-  };
+    // ==========================================
+    // Load Departments
+    // ==========================================
+    useEffect(() => {
+        loadDepartments();
+    }, []);
 
-  return (
-    <div className="account-filters">
+    const loadDepartments = async () => {
+        try {
+            const data = await getAllDepartments();
 
-      {/* Search */}
-      <div className="filter-search">
-        <Search size={18} />
-
-        <input
-          type="text"
-          placeholder="Search by name, username or email..."
-          value={filters.search}
-          onChange={(e) =>
-            handleChange("search", e.target.value)
-          }
-        />
-      </div>
-
-      {/* Role */}
-      <select
-        value={filters.role}
-        onChange={(e) =>
-          handleChange("role", e.target.value)
+            setDepartments(data || []);
+        } catch (error) {
+            console.error(
+                "Failed to load departments:",
+                error
+            );
         }
-      >
-        <option value="">All Roles</option>
-        <option value="STUDENT">Student</option>
-        <option value="HOD">HOD</option>
-        <option value="EXAM_CELL">Exam Cell</option>
-        <option value="ADMIN">Admin</option>
-      </select>
+    };
 
-      {/* Department */}
-      <select
-        value={filters.department}
-        onChange={(e) =>
-          handleChange("department", e.target.value)
-        }
-      >
-        <option value="">All Departments</option>
+    // ==========================================
+    // Handle Filter Change
+    // ==========================================
+    const handleChange = (name, value) => {
+        setFilters((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
-        <option value="Master of Computer Applications">
-          MCA
-        </option>
+    // ==========================================
+    // Reset Filters
+    // ==========================================
+    const handleReset = () => {
+        setFilters({
+            search: "",
+            role: "",
+            department: "",
+            status: "",
+        });
+    };
 
-        <option value="Computer Science Engineering">
-          CSE
-        </option>
+    return (
+        <div className="account-filters">
 
-        <option value="Electronics and Communication Engineering">
-          ECE
-        </option>
+            {/* ==================================
+                SEARCH
+            ================================== */}
 
-        <option value="Artificial Intelligence and Machine Learning">
-          AIML
-        </option>
+            <div className="account-search">
 
-        <option value="Information Technology">
-          IT
-        </option>
-      </select>
+                <Search size={20} />
 
-      {/* Status */}
-      <select
-        value={filters.status}
-        onChange={(e) =>
-          handleChange("status", e.target.value)
-        }
-      >
-        <option value="">All Status</option>
-        <option value="ACTIVE">Active</option>
-        <option value="INACTIVE">Inactive</option>
-      </select>
+                <input
+                    type="text"
+                    placeholder="Search by name, username or email..."
+                    value={filters.search}
+                    onChange={(e) =>
+                        handleChange(
+                            "search",
+                            e.target.value
+                        )
+                    }
+                />
 
-      {/* Reset */}
-      <button
-        className="reset-btn"
-        onClick={handleReset}
-      >
-        <RotateCcw size={16} />
-        Reset
-      </button>
+            </div>
 
-    </div>
-  );
+
+            {/* ==================================
+                ROLE
+            ================================== */}
+
+            <select
+                value={filters.role}
+                onChange={(e) =>
+                    handleChange(
+                        "role",
+                        e.target.value
+                    )
+                }
+            >
+
+                <option value="">
+                    All Roles
+                </option>
+
+                <option value="STUDENT">
+                    Student
+                </option>
+
+                <option value="HOD">
+                    HOD
+                </option>
+
+                <option value="FACULTY">
+                    Faculty
+                </option>
+
+                <option value="EXAM_CELL">
+                    Exam Cell
+                </option>
+
+                <option value="ADMIN">
+                    Admin
+                </option>
+
+            </select>
+
+
+            {/* ==================================
+                DEPARTMENT
+            ================================== */}
+
+            <select
+                value={filters.department}
+                onChange={(e) =>
+                    handleChange(
+                        "department",
+                        e.target.value
+                    )
+                }
+            >
+
+                <option value="">
+                    All Departments
+                </option>
+
+                {departments.map((department) => (
+                    <option
+                        key={department.id}
+                        value={department.code}
+                    >
+                        {department.name}
+                    </option>
+                ))}
+
+            </select>
+
+
+            {/* ==================================
+                STATUS
+            ================================== */}
+
+            <select
+                value={filters.status}
+                onChange={(e) =>
+                    handleChange(
+                        "status",
+                        e.target.value
+                    )
+                }
+            >
+
+                <option value="">
+                    All Status
+                </option>
+
+                <option value="ACTIVE">
+                    Active
+                </option>
+
+                <option value="INACTIVE">
+                    Inactive
+                </option>
+
+            </select>
+
+
+            {/* ==================================
+                RESET
+            ================================== */}
+
+            <button
+                type="button"
+                className="reset-btn"
+                onClick={handleReset}
+            >
+
+                <RotateCcw size={18} />
+
+                Reset
+
+            </button>
+
+        </div>
+    );
 }

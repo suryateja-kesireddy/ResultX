@@ -16,6 +16,20 @@ const createHOD = async (req, res, next) => {
     next(error);
   }
 };
+
+const getHODStats = async (req, res, next) => {
+  try {
+    const stats = await hodService.getHODStats();
+
+    return res.status(200).json({
+      success: true,
+      message: "HOD statistics fetched successfully",
+      data: stats,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 // ==========================================
 // Get All HODs
 // ==========================================
@@ -137,6 +151,7 @@ const getRecentResults = async (req, res, next) => {
 
 module.exports = {
   createHOD,
+  getHODStats,
     getAllHODs,
     getHODById,
     getHODProfile,

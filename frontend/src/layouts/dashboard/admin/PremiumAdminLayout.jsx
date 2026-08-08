@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import PremiumSidebar from "../../../pages/admin/PremiumSidebar";
-import PremiumTopbar from "../../../pages/admin/PremiumTopbar";
+//import PremiumTopbar from "../../../pages/admin/PremiumTopbar";
 
 const PremiumAdminLayout = () => {
   return (
@@ -11,7 +11,7 @@ const PremiumAdminLayout = () => {
 
       <main className="premium-main">
 
-        <PremiumTopbar />
+        
 
         <div className="premium-content">
           <Outlet />

@@ -1,0 +1,107 @@
+/* ==========================================================
+   RESULTX PREMIUM TRANSPARENT FOOTER
+========================================================== */
+
+.footer{
+
+    position:relative;
+
+    width:100%;
+
+    background:transparent;
+
+    padding:32px 0;
+
+    z-index:5;
+
+}
+
+.footer-container{
+
+    max-width:1400px;
+
+    margin:0 auto;
+
+    padding:0 30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.footer p{
+
+    margin:0;
+
+    color:#FFFFFF;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    letter-spacing:.5px;
+
+    opacity:.9;
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:768px){
+
+    .footer{
+
+        padding:28px 0;
+
+    }
+
+    .footer-container{
+
+        padding:0 20px;
+
+    }
+
+    .footer p{
+
+        font-size:14px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .footer{
+
+        padding:24px 0;
+
+    }
+
+    .footer-container{
+
+        padding:0 16px;
+
+    }
+
+    .footer p{
+
+        font-size:13px;
+
+        line-height:1.6;
+
+    }
+
+}

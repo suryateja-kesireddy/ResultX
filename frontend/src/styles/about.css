@@ -1,103 +1,392 @@
-/* ==========================================
-   About Page
-========================================== */
+/* ==========================================================
+   RESULTX - ABOUT PAGE
+========================================================== */
 
-.about-page {
-  padding: 80px 20px;
-  background: linear-gradient(
-    135deg,
-    #eff6ff,
-    #f8fafc,
-    #eef2ff
-  );
+.about-page{
+    position:relative;
+    overflow:hidden;
+    padding:140px 0 100px;
+    background:linear-gradient(
+        135deg,
+        #eef4ff,
+        #f8fbff,
+        #eef2ff
+    );
 }
 
-.about-hero {
-  max-width: 850px;
-  margin: 0 auto 70px;
-  text-align: center;
+/* ==========================================================
+   BACKGROUND EFFECTS
+========================================================== */
+
+.about-page::before{
+    content:"";
+    position:absolute;
+    top:-180px;
+    right:-180px;
+    width:520px;
+    height:520px;
+    border-radius:50%;
+    background:rgba(37,99,235,.08);
+    filter:blur(120px);
 }
 
-.about-badge {
-  display: inline-block;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: white;
-  color: #2563eb;
-  font-weight: 600;
-  margin-bottom: 24px;
+.about-page::after{
+    content:"";
+    position:absolute;
+    left:-180px;
+    bottom:-180px;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    background:rgba(124,58,237,.08);
+    filter:blur(120px);
 }
 
-.about-hero h1 {
-  font-size: 48px;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 20px;
+/* ==========================================================
+   HERO
+========================================================== */
+
+.about-hero{
+    position:relative;
+    z-index:2;
+    max-width:1400px;
+    margin:0 auto 90px;
+    text-align:center;
 }
 
-.about-hero h1 span {
-  color: #2563eb;
+/* ==========================================================
+   BADGE
+========================================================== */
+
+.about-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:12px 28px;
+    margin-bottom:35px;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.45);
+
+    border-radius:999px;
+
+    color:#2563EB;
+
+    font-size:15px;
+    font-weight:700;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.08);
 }
 
-.about-hero p {
-  color: #6b7280;
-  font-size: 18px;
-  line-height: 1.8;
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.about-title{
+
+    font-size:clamp(3rem,5vw,5rem);
+
+    font-weight:900;
+
+    line-height:1.1;
+
+    letter-spacing:-2px;
+
+    color:#0F172A;
+
+    margin-bottom:32px;
+
+    white-space:nowrap;
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-  gap: 28px;
+.about-title span{
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #60A5FA
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
-.about-card {
-  background: white;
-  padding: 32px;
-  border-radius: 22px;
-  border: 1px solid #e5e7eb;
-  text-align: center;
-  transition: .3s ease;
+/* ==========================================================
+   DESCRIPTION
+========================================================== */
+
+.about-description{
+
+    max-width:760px;
+
+    margin:0 auto;
+
+    color:#475569;
+
+    font-size:1.15rem;
+
+    line-height:1.9;
+
+    font-weight:400;
 }
 
-.about-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(37,99,235,.15);
+/* ==========================================================
+   GRID
+========================================================== */
+
+.about-grid{
+
+    position:relative;
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
 }
 
-.about-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  border-radius: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(
-    135deg,
-    #2563eb,
-    #4f46e5
-  );
-  color: white;
-  font-size: 36px;
+/* ==========================================================
+   CARD
+========================================================== */
+
+.about-card{
+
+    background:rgba(255,255,255,.80);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.60);
+
+    border-radius:28px;
+
+    padding:36px 28px;
+
+    text-align:center;
+
+    transition:.35s ease;
+
+    box-shadow:0 15px 40px rgba(15,23,42,.08);
 }
 
-.about-card h3 {
-  margin-bottom: 16px;
-  color: #111827;
+.about-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 30px 60px rgba(37,99,235,.18);
 }
 
-.about-card p {
-  color: #6b7280;
-  line-height: 1.7;
+/* ==========================================================
+   ICON
+========================================================== */
+
+.about-icon{
+
+    width:90px;
+    height:90px;
+
+    margin:0 auto 26px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #3B82F6
+    );
+
+    color:#fff;
+
+    font-size:40px;
+
+    box-shadow:0 18px 35px rgba(37,99,235,.30);
 }
 
-@media (max-width:768px) {
-  .about-hero h1 {
-    font-size: 36px;
-  }
+/* ==========================================================
+   CARD TITLE
+========================================================== */
 
-  .about-hero p {
-    font-size: 16px;
-  }
+.about-card h3{
+
+    margin-bottom:16px;
+
+    color:#0F172A;
+
+    font-size:1.45rem;
+
+    font-weight:700;
+}
+
+/* ==========================================================
+   CARD DESCRIPTION
+========================================================== */
+
+.about-card p{
+
+    color:#64748B;
+
+    font-size:1rem;
+
+    line-height:1.8;
+}
+
+/* ==========================================================
+   LAPTOP
+========================================================== */
+
+@media (max-width:1200px){
+
+    .about-page{
+        padding:130px 0 90px;
+    }
+
+    .about-title{
+
+        white-space:normal;
+
+        font-size:4rem;
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .about-page{
+        padding:120px 0 80px;
+    }
+
+    .about-hero{
+        margin-bottom:70px;
+    }
+
+    .about-title{
+
+        white-space:normal;
+
+        font-size:3.3rem;
+
+        letter-spacing:-1px;
+    }
+
+    .about-description{
+
+        font-size:1.05rem;
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .about-page{
+        padding:110px 0 70px;
+    }
+
+    .about-badge{
+
+        font-size:14px;
+
+        padding:10px 20px;
+    }
+
+    .about-title{
+
+        white-space:normal;
+
+        font-size:2.5rem;
+
+        line-height:1.2;
+
+        letter-spacing:0;
+    }
+
+    .about-description{
+
+        font-size:1rem;
+
+        line-height:1.8;
+    }
+
+    .about-grid{
+
+        grid-template-columns:1fr;
+
+        gap:24px;
+    }
+
+    .about-card{
+
+        padding:30px 24px;
+    }
+
+    .about-icon{
+
+        width:75px;
+        height:75px;
+
+        font-size:34px;
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .about-page{
+        padding:90px 0 60px;
+    }
+
+    .about-badge{
+
+        font-size:13px;
+
+        padding:8px 18px;
+    }
+
+    .about-title{
+
+        font-size:2rem;
+    }
+
+    .about-description{
+
+        font-size:.95rem;
+    }
+
+    .about-card{
+
+        padding:26px 20px;
+    }
+
+    .about-card h3{
+
+        font-size:1.25rem;
+    }
+
+    .about-card p{
+
+        font-size:.95rem;
+    }
+
 }

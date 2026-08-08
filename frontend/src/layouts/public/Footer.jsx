@@ -1,14 +1,9 @@
 function Footer() {
   return (
-    <footer
-      style={{
-        padding: "20px",
-        textAlign: "center",
-        borderTop: "1px solid #e5e7eb",
-        marginTop: "40px",
-      }}
-    >
-      <p>© 2026 ResultX. All Rights Reserved.</p>
+    <footer className="footer">
+      <div className="footer-container">
+        <p>© 2026 SRK Institute of Technology. All Rights Reserved.</p>
+      </div>
     </footer>
   );
 }

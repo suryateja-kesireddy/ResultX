@@ -393,20 +393,25 @@ body{
    MAIN
 ========================================================== */
 
-.premium-main {
-    flex: 1;
+/* ==========================================================
+   MAIN
+========================================================== */
 
-    display: flex;
-    flex-direction: column;
+.premium-main{
+    flex:1;
 
-    height: 100vh;
+    display:flex;
+    flex-direction:column;
 
-    padding: 24px;
+    height:100vh;
 
-    overflow: hidden;
+    padding:20px 20px 20px 24px;
 
-    background: var(--background);
+    overflow:hidden;
+
+    background:var(--background);
 }
+
 
 /* ==========================================================
    TOPBAR
@@ -414,57 +419,61 @@ body{
 
 .premium-topbar{
 
-    height:80px;
+    height:84px;
 
-    background:white;
+    flex-shrink:0;
 
-    border-radius:var(--radius-lg);
+    background:#fff;
 
     border:1px solid var(--border);
 
-    padding:0 28px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
+    border-radius:22px;
 
     box-shadow:var(--shadow-sm);
 
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 28px;
+
+    margin-bottom:24px;
 }
+
 
 /* ==========================================================
    CONTENT
 ========================================================== */
 
-.premium-content {
+.premium-content{
 
     flex:1;
 
-    background:transparent;
-
-    padding:0;
-
     overflow-y:auto;
+    overflow-x:hidden;
 
+    padding-right:8px;
 }
-/* Content Scrollbar */
+
+
+/* Scrollbar */
 
 .premium-content::-webkit-scrollbar{
-
     width:6px;
+}
 
+.premium-content::-webkit-scrollbar-track{
+    background:transparent;
 }
 
 .premium-content::-webkit-scrollbar-thumb{
-
-    background:#d1d5db;
-
+    background:#cbd5e1;
     border-radius:20px;
-
 }
 
+.premium-content::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
+}
 /* ==========================================================
    RESPONSIVE
 ========================================================== */

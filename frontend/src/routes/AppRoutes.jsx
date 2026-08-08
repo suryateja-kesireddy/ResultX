@@ -60,6 +60,7 @@ import HodNotifications from "../pages/hod/Notifications";
 import HodProfile from "../pages/hod/Profile";
 import HodSettings from "../pages/hod/Settings";
 
+
 // Exam Cell Pages
 import ExamCellDashboard from "../pages/examcell/ExamCellDashboard";
 import ExamCellExams from "../pages/examcell/Exams";
@@ -77,15 +78,17 @@ import AccountList from "../pages/admin/accounts/AccountList";
 
 import Students from "../pages/admin/students/Students";
 import HODs from "../pages/admin/hods/HODs";
+import Faculty from "../pages/admin/faculty/Faculty";
 import ExamCell from "../pages/admin/examcell/ExamCell";
 import Courses from "../pages/admin/courses/Courses";
 import Departments from "../pages/admin/departments/Departments";
 import Subjects from "../pages/admin/subjects/Subjects";
-import Semesters from "../pages/admin/semesters/Semesters";
+import Semesters from "../pages/admin/semester/Semester";
 import AcademicYears from "../pages/admin/academicyears/AcademicYears";
 import AdminResults from "../pages/admin/results/Results";
 import AdminAnalytics from "../pages/admin/analytics/Analytics";
 import AdminSettings from "../pages/admin/settings/Settings";
+
 
 
 function AppRoutes() {
@@ -196,67 +199,70 @@ function AppRoutes() {
           path="admin/accounts/create"
           element={<AccountForm />}
         />
-      
 
-      <Route
-        path="admin/accounts"
-        element={<AccountList />}
-      />
 
-      <Route
-        path="admin/students"
-        element={<Students />}
-      />
+        <Route
+          path="admin/accounts"
+          element={<AccountList />}
+        />
 
-      <Route
-        path="admin/hods"
-        element={<HODs />}
-      />
+        <Route
+          path="admin/students"
+          element={<Students />}
+        />
 
-      <Route
-        path="admin/exam-cell"
-        element={<ExamCell />}
-      />
+        <Route
+          path="admin/hods"
+          element={<HODs />}
+        />
+        <Route
+          path="admin/faculty"
+          element={<Faculty />}
+        />
+        <Route
+          path="admin/exam-cell"
+          element={<ExamCell />}
+        />
 
-      <Route
-        path="admin/courses"
-        element={<Courses />}
-      />
+        <Route
+          path="admin/courses"
+          element={<Courses />}
+        />
 
-      <Route
-        path="admin/departments"
-        element={<Departments />}
-      />
+        <Route
+          path="admin/departments"
+          element={<Departments />}
+        />
 
-      <Route
-        path="admin/subjects"
-        element={<Subjects />}
-      />
+        <Route
+          path="admin/subjects"
+          element={<Subjects />}
+        />
 
-      <Route
-        path="admin/semesters"
-        element={<Semesters />}
-      />
+        <Route
+          path="admin/semesters"
+          element={<Semesters />}
+        />
 
-      <Route
-        path="admin/academic-years"
-        element={<AcademicYears />}
-      />
+        <Route
+          path="admin/academic-years"
+          element={<AcademicYears />}
+        />
 
-      <Route
-        path="admin/results"
-        element={<AdminResults />}
-      />
+        <Route
+          path="admin/results"
+          element={<AdminResults />}
+        />
 
-      <Route
-        path="admin/analytics"
-        element={<AdminAnalytics />}
-      />
+        <Route
+          path="admin/analytics"
+          element={<AdminAnalytics />}
+        />
 
-      <Route
-        path="admin/settings"
-        element={<AdminSettings />}
-      />
+        <Route
+          path="admin/settings"
+          element={<AdminSettings />}
+        />
       </Route>
 
       {/* ================= 404 ================= */}

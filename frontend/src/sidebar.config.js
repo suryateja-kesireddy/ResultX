@@ -44,6 +44,12 @@ const sidebarConfig = [
         path: "/ui/admin/hods",
       },
       {
+        id:"faculty",
+        label:"Faculty",
+        icon:UserCog,
+        path:"admin/faculty"
+      },
+      {
         id: "exam-cell",
         label: "Exam Cell",
         icon: ClipboardCheck,

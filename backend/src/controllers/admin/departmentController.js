@@ -13,6 +13,22 @@ const createDepartment = async (req, res, next) => {
     next(error);
   }
 };
+// ==========================================
+// Get Department Statistics
+// ==========================================
+const getDepartmentStats = async (req, res, next) => {
+  try {
+    const stats = await departmentService.getDepartmentStats();
+
+    return res.status(200).json({
+      success: true,
+      message: "Department statistics fetched successfully",
+      data: stats,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const getAllDepartments = async (req, res, next) => {
   try {
@@ -72,6 +88,7 @@ const deleteDepartment = async (req, res, next) => {
 
 module.exports = {
   createDepartment,
+  getDepartmentStats,
   getAllDepartments,
   getDepartmentById,
   updateDepartment,

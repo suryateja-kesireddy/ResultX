@@ -1,4 +1,6 @@
-/* Buttons */
+/* ==========================================================
+   BUTTONS
+========================================================== */
 
 .btn {
   width: 100%;
@@ -13,14 +15,16 @@
 
 .btn-primary {
   background: var(--primary);
-  color: white;
+  color: #fff;
 }
 
 .btn-primary:hover {
   background: var(--primary-dark);
 }
 
-/* Input */
+/* ==========================================================
+   INPUT
+========================================================== */
 
 .input-group {
   display: flex;
@@ -29,7 +33,7 @@
 }
 
 .input-group label {
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   font-weight: 600;
 }
 
@@ -44,15 +48,20 @@
   border-color: var(--primary);
 }
 
-/* Card */
+/* ==========================================================
+   CARD
+========================================================== */
 
 .card {
-  background: white;
+  background: #fff;
   border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: var(--shadow-lg);
 }
-/* Password Input */
+
+/* ==========================================================
+   PASSWORD INPUT
+========================================================== */
 
 .password-wrapper {
   position: relative;
@@ -68,16 +77,16 @@
   top: 50%;
   right: 12px;
   transform: translateY(-50%);
-
   background: transparent;
   border: none;
-
   color: var(--primary);
   font-weight: 600;
+  cursor: pointer;
 }
-/* ===========================
-   Validation Styles
-=========================== */
+
+/* ==========================================================
+   VALIDATION
+========================================================== */
 
 .input-error {
   border: 1px solid #ef4444 !important;
@@ -89,9 +98,10 @@
   color: #ef4444;
   font-weight: 500;
 }
-/* ===========================
-   Checkbox
-=========================== */
+
+/* ==========================================================
+   CHECKBOX
+========================================================== */
 
 .checkbox-row {
   display: flex;
@@ -117,4 +127,55 @@
 
 .forgot-link:hover {
   text-decoration: underline;
+}
+
+/* ==========================================================
+   AUTH PAGE OVERRIDES
+========================================================== */
+
+.auth-page .card {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.auth-page .input-group input {
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+.auth-page .input-group input::placeholder {
+  color: rgba(255,255,255,.70);
+}
+
+.auth-page .input-group label {
+  color: #fff;
+}
+
+.auth-page .toggle-password {
+  color: #fff;
+}
+
+.auth-page .checkbox-wrapper {
+  color: #fff;
+}
+
+.auth-page .forgot-link {
+  color: #dbeafe;
+}
+
+.auth-page .forgot-link:hover {
+  color: #fff;
+}
+
+.auth-page .btn-primary {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.auth-page .btn-primary:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
 }

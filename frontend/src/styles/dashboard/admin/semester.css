@@ -1,0 +1,1594 @@
+/* ==========================================================
+   RESULTX - SEMESTER MANAGEMENT
+========================================================== */
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+.semester-page{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:32px;
+
+}
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.semester-hero{
+
+    position:relative;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    padding:28px 36px;
+
+    min-height:170px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7C3AED,
+            #6D28D9,
+            #5B21B6
+        );
+
+    box-shadow:
+        0 20px 50px rgba(124,58,237,.20);
+
+}
+
+.semester-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-60px;
+
+    right:-60px;
+
+    width:180px;
+
+    height:180px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.semester-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-40px;
+
+    left:-40px;
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.05);
+
+}
+
+.semester-hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.semester-hero h1{
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#FFFFFF;
+
+    line-height:1.2;
+
+}
+
+.semester-hero p{
+
+    margin-top:10px;
+
+    max-width:720px;
+
+    color:rgba(255,255,255,.92);
+
+    font-size:15px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   ADD BUTTON
+========================================================== */
+
+.semester-add-btn{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    height:50px;
+
+    padding:0 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#FFFFFF;
+
+    color:#6D28D9;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.15);
+
+}
+
+.semester-add-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 18px 35px rgba(0,0,0,.20);
+
+}
+
+/* ==========================================================
+   STATISTICS GRID
+========================================================== */
+
+.semester-stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap:24px;
+
+}
+
+/* ==========================================================
+   STAT CARD
+========================================================== */
+
+.semester-stat-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:28px;
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:22px;
+
+    transition:.30s;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.05);
+
+}
+
+.semester-stat-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(15,23,42,.12);
+
+}
+
+.semester-stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-45px;
+
+    bottom:-45px;
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    background:rgba(124,58,237,.04);
+
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.semester-stat-icon{
+
+    width:72px;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:18px;
+
+    color:#FFFFFF;
+
+    flex-shrink:0;
+
+}
+
+.semester-blue{
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563EB,
+            #3B82F6
+        );
+
+}
+
+.semester-green{
+
+    background:
+        linear-gradient(
+            135deg,
+            #10B981,
+            #34D399
+        );
+
+}
+
+.semester-orange{
+
+    background:
+        linear-gradient(
+            135deg,
+            #F97316,
+            #FB923C
+        );
+
+}
+
+.semester-purple{
+
+    background:
+        linear-gradient(
+            135deg,
+            #7C3AED,
+            #8B5CF6
+        );
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.semester-stat-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.semester-stat-content h2{
+
+    margin:0;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+.semester-stat-content p{
+
+    margin-top:6px;
+
+    color:#64748B;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+/* ==========================================================
+   FILTERS
+========================================================== */
+
+.semester-filters{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.semester-search{
+
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    height:56px;
+
+    padding:0 18px;
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:16px;
+
+    transition:.3s;
+
+    box-shadow:
+        0 8px 20px rgba(15,23,42,.04);
+
+}
+
+.semester-search:hover{
+
+    border-color:#CBD5E1;
+
+}
+
+.semester-search:focus-within{
+
+    border-color:#7C3AED;
+
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.08);
+
+}
+
+.semester-search-icon{
+
+    color:#94A3B8;
+
+    flex-shrink:0;
+
+}
+
+.semester-search input{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    color:#111827;
+
+    font-size:15px;
+
+}
+
+.semester-search input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+/* ==========================================================
+   FILTER SELECT
+========================================================== */
+
+.semester-filters select{
+
+    width:220px;
+
+    height:56px;
+
+    padding:0 16px;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:16px;
+
+    background:#FFFFFF;
+
+    font-size:15px;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+        0 8px 20px rgba(15,23,42,.04);
+
+}
+
+.semester-filters select:hover{
+
+    border-color:#CBD5E1;
+
+}
+
+.semester-filters select:focus{
+
+    border-color:#7C3AED;
+
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.08);
+
+}
+
+/* ==========================================================
+   RESET BUTTON
+========================================================== */
+
+.semester-reset-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    height:56px;
+
+    padding:0 22px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#0F172A;
+
+    color:#FFFFFF;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.semester-reset-btn:hover{
+
+    background:#1E293B;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   TABLE CARD
+========================================================== */
+
+.semester-table-card{
+
+    background:#FFFFFF;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 35px rgba(15,23,42,.05);
+
+}
+
+/* ==========================================================
+   TABLE HEADER
+========================================================== */
+
+.semester-table-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:28px 32px;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.semester-table-header h2{
+
+    margin:0;
+
+    color:#111827;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.semester-table-header p{
+
+    margin-top:6px;
+
+    color:#64748B;
+
+}
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.table-responsive{
+
+    overflow-x:auto;
+
+}
+
+.semester-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.semester-table thead{
+
+    background:#F8FAFC;
+
+}
+
+.semester-table th{
+
+    padding:20px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#475569;
+
+}
+
+.semester-table td{
+
+    padding:20px;
+
+    border-top:1px solid #EEF2F7;
+
+    color:#334155;
+
+}
+
+.semester-table tbody tr{
+
+    transition:.3s;
+
+}
+
+.semester-table tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+/* ==========================================================
+   SEMESTER NAME
+========================================================== */
+
+.semester-name{
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.semester-odd,
+.semester-even{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.semester-odd{
+
+    background:#FEF3C7;
+
+    color:#B45309;
+
+}
+
+.semester-even{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+.semester-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:currentColor;
+
+}
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.action-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.edit-btn,
+.delete-btn{
+
+    width:44px;
+
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.edit-btn{
+
+    background:#DBEAFE;
+
+    color:#2563EB;
+
+}
+
+.edit-btn:hover{
+
+    background:#2563EB;
+
+    color:#FFFFFF;
+
+    transform:translateY(-2px);
+
+}
+
+.delete-btn{
+
+    background:#FEE2E2;
+
+    color:#DC2626;
+
+}
+
+.delete-btn:hover{
+
+    background:#DC2626;
+
+    color:#FFFFFF;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.semester-empty{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:70px 20px;
+
+}
+
+.semester-empty svg{
+
+    color:#94A3B8;
+
+    margin-bottom:18px;
+
+}
+
+.semester-empty h3{
+
+    margin-bottom:8px;
+
+    color:#111827;
+
+}
+
+.semester-empty p{
+
+    color:#64748B;
+
+    max-width:300px;
+
+}
+/* ==========================================================
+   MODAL OVERLAY
+========================================================== */
+
+.semester-modal-overlay,
+.semester-delete-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:rgba(15,23,42,.65);
+
+    backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+    animation:semesterFade .25s ease;
+
+}
+
+/* ==========================================================
+   MODAL
+========================================================== */
+
+.semester-modal,
+.semester-delete-modal{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:#FFFFFF;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 35px 80px rgba(15,23,42,.25);
+
+    animation:semesterPopup .30s ease;
+
+}
+
+/* ==========================================================
+   MODAL HEADER
+========================================================== */
+
+.semester-modal-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:30px;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.semester-modal-icon{
+
+    width:72px;
+
+    height:72px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:18px;
+
+    color:#FFFFFF;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7C3AED,
+            #8B5CF6
+        );
+
+    box-shadow:
+        0 15px 35px rgba(124,58,237,.25);
+
+}
+
+.semester-modal-header h2{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+.semester-modal-header p{
+
+    margin-top:6px;
+
+    color:#64748B;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+.semester-form{
+
+    padding:30px;
+
+}
+
+.semester-form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-bottom:22px;
+
+}
+
+.semester-form-group label{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#334155;
+
+}
+
+.semester-form-group input,
+.semester-form-group select{
+
+    height:56px;
+
+    padding:0 18px;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:16px;
+
+    outline:none;
+
+    font-size:15px;
+
+    background:#FFFFFF;
+
+    transition:.30s;
+
+}
+
+.semester-form-group input:focus,
+.semester-form-group select:focus{
+
+    border-color:#7C3AED;
+
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.08);
+
+}
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.semester-modal-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:14px;
+
+    margin-top:10px;
+
+}
+
+.semester-btn-cancel,
+.semester-btn-save{
+
+    height:52px;
+
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.semester-btn-cancel{
+
+    background:#E2E8F0;
+
+    color:#334155;
+
+}
+
+.semester-btn-cancel:hover{
+
+    background:#CBD5E1;
+
+}
+
+.semester-btn-save{
+
+    background:
+        linear-gradient(
+            135deg,
+            #7C3AED,
+            #8B5CF6
+        );
+
+    color:#FFFFFF;
+
+}
+
+.semester-btn-save:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 15px 35px rgba(124,58,237,.25);
+
+}
+
+/* ==========================================================
+   DELETE MODAL
+========================================================== */
+
+.semester-delete-modal{
+
+    max-width:500px;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+.semester-delete-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 24px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#FEE2E2;
+
+    color:#DC2626;
+
+}
+
+.semester-delete-modal h2{
+
+    margin-bottom:12px;
+
+    font-size:30px;
+
+    color:#111827;
+
+}
+
+.semester-delete-modal p{
+
+    color:#64748B;
+
+    line-height:1.7;
+
+}
+
+.semester-delete-modal h3{
+
+    margin:18px 0;
+
+    font-size:24px;
+
+    color:#DC2626;
+
+}
+
+.semester-delete-modal span{
+
+    color:#94A3B8;
+
+    font-size:14px;
+
+}
+
+.semester-delete-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:16px;
+
+    margin-top:30px;
+
+}
+
+.semester-btn-delete{
+
+    height:52px;
+
+    padding:0 28px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#DC2626;
+
+    color:#FFFFFF;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.semester-btn-delete:hover{
+
+    background:#B91C1C;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes semesterFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes semesterPopup{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px) scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+/* ==========================================================
+   RESPONSIVE - LARGE TABLETS
+========================================================== */
+
+@media (max-width:1200px){
+
+    .semester-hero{
+
+        padding:24px 30px;
+
+    }
+
+    .semester-hero h1{
+
+        font-size:30px;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .semester-page{
+
+        gap:24px;
+
+    }
+
+    .semester-hero{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:24px;
+
+    }
+
+    .semester-add-btn{
+
+        width:100%;
+
+    }
+
+    .semester-filters{
+
+        flex-direction:column;
+
+    }
+
+    .semester-search,
+    .semester-filters select,
+    .semester-reset-btn{
+
+        width:100%;
+
+    }
+
+    .semester-table-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .semester-hero{
+
+        padding:22px;
+
+        border-radius:20px;
+
+    }
+
+    .semester-hero h1{
+
+        font-size:26px;
+
+    }
+
+    .semester-hero p{
+
+        font-size:14px;
+
+    }
+
+    .semester-stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .semester-stat-card{
+
+        padding:22px;
+
+    }
+
+    .semester-stat-icon{
+
+        width:62px;
+
+        height:62px;
+
+    }
+
+    .semester-stat-content h2{
+
+        font-size:28px;
+
+    }
+
+    .semester-table{
+
+        min-width:760px;
+
+    }
+
+    .semester-modal,
+    .semester-delete-modal{
+
+        max-width:100%;
+
+    }
+
+    .semester-modal-header{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+    .semester-form{
+
+        padding:24px;
+
+    }
+
+    .semester-modal-footer,
+    .semester-delete-actions{
+
+        flex-direction:column;
+
+    }
+
+    .semester-btn-save,
+    .semester-btn-cancel,
+    .semester-btn-delete{
+
+        width:100%;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .semester-page{
+
+        gap:18px;
+
+    }
+
+    .semester-hero{
+
+        padding:18px;
+
+    }
+
+    .semester-hero h1{
+
+        font-size:22px;
+
+    }
+
+    .semester-hero p{
+
+        font-size:13px;
+
+    }
+
+    .semester-stat-card{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .semester-stat-icon{
+
+        width:56px;
+
+        height:56px;
+
+    }
+
+    .semester-stat-content h2{
+
+        font-size:26px;
+
+    }
+
+}
+
+/* ==========================================================
+   CUSTOM SCROLLBAR
+========================================================== */
+
+.table-responsive::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.table-responsive::-webkit-scrollbar-track{
+
+    background:#F1F5F9;
+
+    border-radius:999px;
+
+}
+
+.table-responsive::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+    border-radius:999px;
+
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover{
+
+    background:#94A3B8;
+
+}
+
+/* ==========================================================
+   TEXT SELECTION
+========================================================== */
+
+::selection{
+
+    background:#7C3AED;
+
+    color:#FFFFFF;
+
+}
+
+/* ==========================================================
+   PLACEHOLDER
+========================================================== */
+
+input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+/* ==========================================================
+   SELECT
+========================================================== */
+
+select{
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+}
+
+/* ==========================================================
+   GLOBAL TRANSITIONS
+========================================================== */
+
+button,
+input,
+select,
+table,
+tr,
+td,
+th{
+
+    transition:all .30s ease;
+
+}
+
+/* ==========================================================
+   PERFORMANCE
+========================================================== */
+
+.semester-table-card,
+.semester-stat-card,
+.semester-modal,
+.semester-delete-modal{
+
+    will-change:transform;
+
+}
+/* ==========================================
+   READ ONLY SEMESTER FIELD
+========================================== */
+
+.semester-readonly-field {
+    width: 100%;
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: not-allowed;
+}

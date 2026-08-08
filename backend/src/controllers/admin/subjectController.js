@@ -5,24 +5,30 @@ const subjectService = require("../../services/admin/subjectService");
 // ==========================================
 const createSubject = async (req, res, next) => {
   try {
-    const subject = await subjectService.createSubject(req.body);
+    const subject = await subjectService.createSubject(
+      req.body
+    );
 
     return res.status(201).json({
       success: true,
       message: "Subject created successfully",
       data: subject,
     });
+
   } catch (error) {
     next(error);
   }
 };
+
+
 // ==========================================
 // Get Subject Statistics
 // ==========================================
 const getSubjectStats = async (req, res, next) => {
   try {
 
-    const stats = await subjectService.getSubjectStats();
+    const stats =
+      await subjectService.getSubjectStats();
 
     return res.status(200).json({
       success: true,
@@ -34,12 +40,27 @@ const getSubjectStats = async (req, res, next) => {
     next(error);
   }
 };
+
+
 // ==========================================
 // Get All Subjects
+// Supports:
+// ?semesterId=1
+// ?departmentId=2
 // ==========================================
 const getAllSubjects = async (req, res, next) => {
   try {
-    const subjects = await subjectService.getAllSubjects();
+
+    const {
+      semesterId,
+      departmentId,
+    } = req.query;
+
+    const subjects =
+      await subjectService.getAllSubjects({
+        semesterId,
+        departmentId,
+      });
 
     return res.status(200).json({
       success: true,
@@ -47,69 +68,87 @@ const getAllSubjects = async (req, res, next) => {
       count: subjects.length,
       data: subjects,
     });
+
   } catch (error) {
     next(error);
   }
 };
+
+
 // ==========================================
 // Get Subject By ID
 // ==========================================
 const getSubjectById = async (req, res, next) => {
   try {
-    const subject = await subjectService.getSubjectById(
-      req.params.id
-    );
+
+    const subject =
+      await subjectService.getSubjectById(
+        req.params.id
+      );
 
     return res.status(200).json({
       success: true,
       message: "Subject fetched successfully",
       data: subject,
     });
+
   } catch (error) {
     next(error);
   }
 };
+
+
 // ==========================================
 // Update Subject
 // ==========================================
 const updateSubject = async (req, res, next) => {
   try {
-    const subject = await subjectService.updateSubject(
-      req.params.id,
-      req.body
-    );
+
+    const subject =
+      await subjectService.updateSubject(
+        req.params.id,
+        req.body
+      );
 
     return res.status(200).json({
       success: true,
       message: "Subject updated successfully",
       data: subject,
     });
+
   } catch (error) {
     next(error);
   }
 };
+
+
 // ==========================================
 // Delete Subject
 // ==========================================
 const deleteSubject = async (req, res, next) => {
   try {
-    const result = await subjectService.deleteSubject(req.params.id);
+
+    const result =
+      await subjectService.deleteSubject(
+        req.params.id
+      );
 
     return res.status(200).json({
       success: true,
       message: result.message,
     });
+
   } catch (error) {
     next(error);
   }
 };
 
+
 module.exports = {
-    createSubject,
-    getSubjectStats,
-    getAllSubjects,
-    getSubjectById,
-    updateSubject,
-    deleteSubject,
+  createSubject,
+  getSubjectStats,
+  getAllSubjects,
+  getSubjectById,
+  updateSubject,
+  deleteSubject,
 };
-    

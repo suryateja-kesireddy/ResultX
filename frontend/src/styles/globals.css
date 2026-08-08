@@ -1,99 +1,368 @@
 @import "tailwindcss";
 
-/* ===========================
+/* ==========================================================
    CSS RESET
-=========================== */
+========================================================== */
 
 *,
 *::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* ===========================
-   HTML
-=========================== */
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* ===========================
-   BODY
-=========================== */
-
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: var(--background);
-  color: var(--text-primary);
-  line-height: 1.6;
-}
-
-/* ===========================
+/* ==========================================================
    ROOT
-=========================== */
+========================================================== */
 
-#root {
-  min-height: 100vh;
+:root{
+
+    --container-width:1280px;
+
+    --section-padding:80px;
+
+    --border-radius:16px;
+
+    --transition:.3s ease;
+
 }
 
-/* ===========================
+/* ==========================================================
+   HTML
+========================================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+    -webkit-text-size-adjust:100%;
+
+    text-size-adjust:100%;
+
+    font-size:16px;
+
+}
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body{
+
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+
+    background:var(--background);
+
+    color:var(--text-primary);
+
+    line-height:1.6;
+
+    overflow-x:hidden;
+
+    text-rendering:optimizeLegibility;
+
+    -webkit-font-smoothing:antialiased;
+
+    -moz-osx-font-smoothing:grayscale;
+
+}
+
+/* ==========================================================
+   ROOT
+========================================================== */
+
+#root{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ==========================================================
+   MEDIA
+========================================================== */
+
+img,
+picture,
+video,
+canvas,
+svg{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+/* ==========================================================
    LINKS
-=========================== */
+========================================================== */
 
-a {
-  text-decoration: none;
-  color: inherit;
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    transition:color .3s ease;
+
 }
 
-/* ===========================
-   IMAGES
-=========================== */
+/* ==========================================================
+   BUTTONS
+========================================================== */
 
-img {
-  max-width: 100%;
-  display: block;
+button{
+
+    font:inherit;
+
+    cursor:pointer;
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    transition:all .3s ease;
+
 }
 
-/* ===========================
-   BUTTON
-=========================== */
+button:disabled{
 
-button {
-  cursor: pointer;
-  font: inherit;
+    cursor:not-allowed;
+
+    opacity:.6;
+
 }
 
-/* ===========================
-   INPUTS
-=========================== */
+/* ==========================================================
+   FORM ELEMENTS
+========================================================== */
 
 input,
 textarea,
-select {
-  font: inherit;
+select{
+
+    font:inherit;
+
+    outline:none;
+
 }
 
-/* ===========================
+textarea{
+
+    resize:vertical;
+
+}
+
+/* ==========================================================
    LISTS
-=========================== */
+========================================================== */
 
 ul,
-ol {
-  list-style: none;
+ol{
+
+    list-style:none;
+
 }
 
-/* ===========================
+/* ==========================================================
+   TABLES
+========================================================== */
+
+table{
+
+    border-collapse:collapse;
+
+    width:100%;
+
+}
+
+/* ==========================================================
    CONTAINER
-=========================== */
+========================================================== */
 
-.container {
-  width: min(1200px, 92%);
-  margin: auto;
+.container{
+
+    width:min(var(--container-width),92%);
+
+    margin-inline:auto;
+
 }
-section {
 
-  padding: 80px 0;
+/* ==========================================================
+   SECTION
+========================================================== */
+
+section{
+
+    padding:var(--section-padding) 0;
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+    height:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#94a3b8;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#64748b;
+
+}
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+::selection{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+/* Large Desktop */
+
+@media (min-width:1600px){
+
+.container{
+
+    width:min(1400px,90%);
+
+}
+
+}
+
+/* Laptop */
+
+@media (max-width:1200px){
+
+:root{
+
+    --section-padding:72px;
+
+}
+
+.container{
+
+    width:94%;
+
+}
+
+}
+
+/* Tablet */
+
+@media (max-width:992px){
+
+:root{
+
+    --section-padding:64px;
+
+}
+
+html{
+
+    font-size:15px;
+
+}
+
+.container{
+
+    width:95%;
+
+}
+
+}
+
+/* Mobile */
+
+@media (max-width:768px){
+
+:root{
+
+    --section-padding:56px;
+
+}
+
+html{
+
+    font-size:15px;
+
+}
+
+body{
+
+    overflow-x:hidden;
+
+}
+
+.container{
+
+    width:94%;
+
+}
+
+section{
+
+    padding:56px 0;
+
+}
+
+}
+
+/* Small Mobile */
+
+@media (max-width:480px){
+
+:root{
+
+    --section-padding:48px;
+
+}
+
+html{
+
+    font-size:14px;
+
+}
+
+.container{
+
+    width:92%;
+
+}
+
+section{
+
+    padding:48px 0;
+
+}
+
 }

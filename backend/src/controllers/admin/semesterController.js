@@ -87,9 +87,36 @@ const deleteSemester = async (req, res, next) => {
     next(error);
   }
 };
+// ==========================================
+// Semester Statistics
+// ==========================================
+
+const getSemesterStats = async (req, res, next) => {
+
+  try {
+
+    const stats =
+      await semesterService.getSemesterStats();
+
+    return res.status(200).json({
+
+      success: true,
+
+      data: stats,
+
+    });
+
+  } catch (error) {
+
+    next(error);
+
+  }
+
+};
 
 module.exports = {
   createSemester,
+  getSemesterStats,
     getAllSemesters,
     getSemesterById,
     updateSemester,

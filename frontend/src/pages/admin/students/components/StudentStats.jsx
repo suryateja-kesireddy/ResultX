@@ -11,30 +11,45 @@ import {
 
 import StudentStatCard from "./StudentStatCard";
 
-import { getStudentStats } from "../../../../services/student/studentService";
+import {
+  getStudentStats,
+} from "../../../../services/student/studentService";
 
 export default function StudentStats() {
+
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
+
     loadStats();
+
   }, []);
 
   const loadStats = async () => {
+
     try {
+
       const data = await getStudentStats();
+
       setStats(data);
+
     } catch (error) {
-      console.error("Failed to load student statistics:", error);
+
+      console.error(
+        "Failed to load student statistics:",
+        error
+      );
+
     }
+
   };
 
-  if (!stats) {
-    return null;
-  }
+  if (!stats) return null;
 
   const getIcon = (code) => {
+
     switch (code) {
+
       case "MCA":
         return <GraduationCap size={28} />;
 
@@ -52,61 +67,82 @@ export default function StudentStats() {
 
       default:
         return <Users size={28} />;
+
     }
+
   };
 
   const getColor = (code) => {
+
     switch (code) {
+
       case "MCA":
-        return "#7c3aed";
+        return "#7C3AED";
 
       case "CSE":
-        return "#16a34a";
+        return "#16A34A";
 
       case "ECE":
-        return "#ea580c";
+        return "#EA580C";
 
       case "AIML":
-        return "#4f46e5";
+        return "#4F46E5";
 
       case "IT":
-        return "#0891b2";
+        return "#0891B2";
 
       default:
-        return "#2563eb";
+        return "#2563EB";
+
     }
+
   };
 
   const cards = [
+
     {
-      title: "Total",
+      title: "Total Students",
       count: stats.total,
-      subtitle: "Students",
-      color: "#2563eb",
+      subtitle: "Registered Students",
+      color: "#2563EB",
       icon: <Users size={28} />,
     },
 
     ...stats.departments.map((department) => ({
+
       title: department.code,
+
       count: department.count,
+
       subtitle: "Students",
+
       color: getColor(department.code),
+
       icon: getIcon(department.code),
+
     })),
+
   ];
 
   return (
+
     <div className="student-stats-grid">
+
       {cards.map((card) => (
+
         <StudentStatCard
           key={card.title}
           title={card.title}
           count={card.count}
           subtitle={card.subtitle}
-          icon={card.icon}
           color={card.color}
+          icon={card.icon}
         />
+
       ))}
+
     </div>
+
   );
+
 }

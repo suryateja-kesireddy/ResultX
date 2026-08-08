@@ -1,53 +1,708 @@
-.auth-page {
-  min-height: 100vh;
+/* ==========================================================
+   RESULTX AUTH
+========================================================== */
 
-  display: flex;
+.auth-page{
+    position:relative;
 
-  justify-content: center;
+    width:100%;
 
-  align-items: center;
+    height:100vh;
+    min-height:100vh;
 
-  padding: 2rem;
+    overflow:hidden;
 
-  background: linear-gradient(
-    135deg,
-    #eff6ff,
-    #f8fafc,
-    #eef2ff
-  );
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
 }
 
-.auth-card {
-  width: 100%;
-  max-width: 430px;
+/* ==========================================================
+   BACKGROUNDS
+========================================================== */
 
-  background: white;
-
-  border-radius: var(--radius-lg);
-
-  padding: 2.5rem;
-
-  box-shadow: var(--shadow-lg);
-
-  text-align: center;
+.student-bg{
+    background-image:url("../assets/images/student.png");
 }
 
-.auth-logo {
-  color: var(--primary);
-
-  margin-bottom: 1rem;
-
-  font-size: 2rem;
-
-  font-weight: 700;
+.hod-bg{
+    background-image:url("../assets/images/hod.png");
 }
 
-.auth-card h2 {
-  margin-bottom: .5rem;
+.exam-bg{
+    background-image:url("../assets/images/examcell.png");
 }
 
-.auth-card p {
-  color: var(--text-secondary);
+.admin-bg{
+    background-image:url("../assets/images/admin.png");
+}
 
-  margin-bottom: 2rem;
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.auth-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(5,15,35,.72) 0%,
+        rgba(10,30,90,.45) 45%,
+        rgba(10,30,90,.18) 100%
+    );
+
+}
+
+/* ==========================================================
+   MAIN WRAPPER
+========================================================== */
+
+.auth-wrapper{
+
+    position:relative;
+
+    z-index:2;
+
+    height:100vh;
+
+    display:grid;
+
+    grid-template-columns:58% 42%;
+}
+
+/* ==========================================================
+   LEFT
+========================================================== */
+
+.auth-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    padding-top:170px;
+
+    padding-left:70px;
+
+    overflow:hidden;
+}
+
+.portal-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    width:max-content;
+
+    padding:12px 24px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    font-weight:600;
+
+    margin-bottom:35px;
+
+}
+
+.welcome-title{
+
+    font-size:clamp(4rem,6vw,6.3rem);
+
+    font-weight:900;
+
+    line-height:.92;
+
+    letter-spacing:-3px;
+
+    margin-bottom:30px;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 8px 25px rgba(0,0,0,.30);
+
+
+}
+
+.welcome-text{
+
+    max-width:520px;
+
+    font-size:1.18rem;
+
+    line-height:1.9;
+
+    color:white;
+
+}
+/* ==========================================================
+   LOGIN AREA
+========================================================== */
+
+.login-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:start;
+
+    padding: auto;
+
+    
+
+    
+
+}
+
+/* ==========================================================
+   LOGIN CONTENT
+========================================================== */
+
+.login-content{
+
+    width:100%;
+
+    max-width:420px;
+
+}
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.auth-logo{
+
+    text-align:center;
+
+    color:#fff;
+
+    font-size:3rem;
+
+    font-weight:900;
+
+    letter-spacing:-2px;
+
+    margin-bottom:10px;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.auth-title{
+
+    text-align:center;
+
+    color:#fff;
+
+    font-size:2.5rem;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+/* ==========================================================
+   SUBTITLE
+========================================================== */
+
+.auth-subtitle{
+
+    text-align:center;
+
+    color:rgba(255,255,255,.85);
+
+    margin-bottom:28px;
+
+    line-height:1.8;
+
+    font-size: 1rem;
+
+}
+/* ==========================================================
+   LOGIN FORM
+========================================================== */
+
+.auth-form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+/* ==========================================================
+   INPUT GROUP
+========================================================== */
+
+.auth-page .input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.auth-page .input-group label{
+    color:#ffffff;
+    font-size:15px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+.password-wrapper{
+    position:relative;
+    width:100%;
+}
+
+.password-wrapper input{
+    width:100%;
+    padding-left:52px;
+    padding-right:90px;
+}
+
+.password-wrapper .input-icon{
+    position:absolute;
+    left:18px;
+    top:50%;
+    transform:translateY(-50%);
+    color:rgba(255,255,255,.65);
+    pointer-events:none;
+    transition:.3s;
+}
+
+.password-wrapper:focus-within .input-icon{
+    color:#60A5FA;
+}
+.input-wrapper,
+.password-wrapper{
+    position:relative;
+    width:100%;
+}
+
+.input-icon{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+
+    width:20px;
+    height:20px;
+
+    color:rgba(255,255,255,.70);
+
+    pointer-events:none;
+
+    transition:all .3s ease;
+}
+
+.input-wrapper input,
+.password-wrapper input{
+    width:100%;
+    padding-left:58px;
+    padding-right:90px;
+}
+
+.input-wrapper:focus-within .input-icon,
+.password-wrapper:focus-within .input-icon{
+    color:#60A5FA;
+    transform:translateY(-50%) scale(1.05);
+}
+
+/* ==========================================
+   CHECKBOX
+========================================== */
+
+.checkbox-wrapper{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.checkbox-wrapper input{
+    width:18px;
+    height:18px;
+    accent-color:#2563EB;
+    cursor:pointer;
+    flex-shrink:0;
+}
+
+.checkbox-label{
+    color:#ffffff;
+    font-size:15px;
+    font-weight:500;
+}
+/* ==========================================================
+   FORGOT PASSWORD
+========================================================== */
+
+.forgot-password{
+
+    color:#BFDBFE;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.forgot-password:hover{
+    color:#ffffff;
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.auth-btn{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:4px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #3B82F6
+    );
+
+    transition:.35s;
+
+}
+
+.auth-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.35);
+
+}
+
+/* ==========================================================
+   VALIDATION
+========================================================== */
+
+.input-error{
+
+    border-color:#EF4444 !important;
+
+}
+
+.error-text{
+
+    margin-top:6px;
+
+    color:#FCA5A5;
+
+    font-size:13px;
+
+    font-weight:500;
+
+}
+
+/* ==========================================================
+   BACK LINK
+========================================================== */
+
+.back-home{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:16px;
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.back-home:hover{
+
+    color:#BFDBFE;
+
+}
+/* ==========================================================
+   LARGE DESKTOP
+========================================================== */
+
+@media (min-width:1600px){
+
+    .auth-wrapper{
+        grid-template-columns:65% 35%;
+    }
+
+    .auth-left{
+        padding-left:120px;
+    }
+
+    .welcome-title{
+        font-size:6.5rem;
+    }
+
+    .welcome-text{
+        max-width:620px;
+        font-size:1.3rem;
+    }
+
+    .login-area{
+        padding:100px;
+    }
+
+}
+
+/* ==========================================================
+   LAPTOP
+========================================================== */
+
+@media (max-width:1200px){
+
+    .auth-wrapper{
+        grid-template-columns:58% 42%;
+    }
+
+    .auth-left{
+        padding-left:60px;
+        padding-right:40px;
+    }
+
+    .welcome-title{
+        font-size:4.5rem;
+    }
+
+    .welcome-text{
+        font-size:1.05rem;
+    }
+
+    .login-area{
+        padding:50px;
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .auth-wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .auth-left{
+        display:none;
+    }
+
+    .login-area{
+
+        min-height:100vh;
+
+        padding:50px 30px;
+
+        justify-content:center;
+
+        align-items:center;
+
+    }
+
+    .login-content{
+        max-width:480px;
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .login-area{
+        padding:35px 20px;
+    }
+
+    .auth-logo{
+        font-size:2.5rem;
+    }
+
+    .auth-title{
+        font-size:2rem;
+    }
+
+    .auth-subtitle{
+        font-size:.95rem;
+        margin-bottom:35px;
+    }
+
+    .checkbox-row{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .login-area{
+        padding:25px 16px;
+    }
+
+    .auth-logo{
+        font-size:2.2rem;
+    }
+
+    .auth-title{
+        font-size:1.7rem;
+    }
+
+    .auth-subtitle{
+        font-size:.9rem;
+    }
+
+    .auth-page .input-group input{
+        height:52px;
+        font-size:14px;
+    }
+
+    .auth-btn{
+        height:52px;
+        font-size:15px;
+    }
+
+}
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes fadeLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes fadeRight{
+
+    from{
+        opacity:0;
+        transform:translateX(50px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+.auth-left{
+    animation:fadeLeft .8s ease;
+}
+
+.login-content{
+    animation:fadeRight .8s ease;
+}
+
+/* ==========================================================
+   HOVER EFFECTS
+========================================================== */
+
+.portal-badge{
+    transition:.3s;
+}
+
+.portal-badge:hover{
+
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,.18);
+
+}
+
+.auth-page .input-group input:hover{
+
+    border-color:rgba(255,255,255,.35);
+
+}
+
+.auth-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#0F172A;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2563EB;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#3B82F6;
 }

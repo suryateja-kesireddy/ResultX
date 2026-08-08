@@ -37,6 +37,41 @@ const createDepartment = async (data) => {
     },
   });
 };
+const getDepartmentStats = async () => {
+  const totalDepartments = await prisma.department.count();
+
+  const departments = await prisma.department.findMany({
+    include: {
+      course: true,
+      _count: {
+        select: {
+          students: true,
+          faculties: true,
+          hods: true,
+          subjects: true,
+        },
+      },
+    },
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  return {
+    totalDepartments,
+    departments: departments.map((department) => ({
+      id: department.id,
+      name: department.name,
+      code: department.code,
+      course: department.course.name,
+      students: department._count.students,
+      faculties: department._count.faculties,
+      hods: department._count.hods,
+      subjects: department._count.subjects,
+    })),
+  };
+};
+
 
 const getAllDepartments = async () => {
   return await prisma.department.findMany({
@@ -96,6 +131,7 @@ const deleteDepartment = async (id) => {
 
 module.exports = {
   createDepartment,
+  getDepartmentStats,
   getAllDepartments,
   getDepartmentById,
   updateDepartment,

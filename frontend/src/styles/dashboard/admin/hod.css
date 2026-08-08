@@ -1,0 +1,2414 @@
+/* ==========================================================
+   HOD MANAGEMENT PAGE
+========================================================== */
+
+.hod-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+
+/* ==========================================================
+   HERO SECTION
+========================================================== */
+
+.hod-hero {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 28px;
+
+    padding: 30px 34px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb 0%,
+        #1d4ed8 55%,
+        #1e3a8a 100%
+    );
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 16px 35px rgba(37, 99, 235, 0.18);
+}
+
+
+/* Decorative circle */
+
+.hod-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -90px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    pointer-events: none;
+}
+
+
+.hod-hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: 25%;
+    bottom: -130px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================
+   HERO CONTENT
+========================================================== */
+
+.hod-hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 850px;
+}
+
+
+.hod-hero-content h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 32px;
+    font-weight: 800;
+
+    line-height: 1.2;
+}
+
+
+.hod-hero-content p {
+    max-width: 780px;
+
+    margin: 10px 0 0;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   ADD HOD BUTTON
+========================================================== */
+
+.hod-add-btn {
+    position: relative;
+    z-index: 3;
+
+    flex-shrink: 0;
+
+    min-height: 50px;
+
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.hod-add-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.18);
+}
+
+
+.hod-add-btn:active {
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================================
+   HOD STATISTICS
+========================================================== */
+
+.hod-stats-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+/* ==========================================================
+   HOD STAT CARD
+   Uses .student-stat-card from HODStatCard.jsx
+========================================================== */
+
+.hod-stats-grid .student-stat-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+    min-height: 112px;
+
+    padding: 18px 20px;
+
+    gap: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+    border-top-width: 4px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 24px rgba(15, 23, 42, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+.hod-stats-grid .student-stat-card:hover {
+    box-shadow:
+        0 14px 30px rgba(15, 23, 42, 0.09);
+}
+
+
+.hod-stats-grid .student-stat-card.active {
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.12);
+}
+
+
+/* ==========================================================
+   STAT ICON
+========================================================== */
+
+.hod-stats-grid .student-stat-icon {
+    width: 58px;
+    height: 58px;
+
+    flex: 0 0 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: #f1f5f9;
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.hod-stats-grid .student-stat-card:hover
+.student-stat-icon {
+    transform: scale(1.05);
+}
+
+
+/* ==========================================================
+   STAT CONTENT
+========================================================== */
+
+.hod-stats-grid .student-stat-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+
+/* Count */
+
+.hod-stats-grid .student-stat-content h3 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 28px;
+    font-weight: 800;
+
+    line-height: 1.1;
+}
+
+
+/* Department / title */
+
+.hod-stats-grid .student-stat-content h4 {
+    max-width: 100%;
+
+    margin: 5px 0 0;
+
+    color: #334155;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* Subtitle */
+
+.hod-stats-grid .student-stat-content p {
+    margin: 3px 0 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ==========================================================
+   FILTER AREA
+========================================================== */
+
+/*
+   HODFilters.jsx currently reuses:
+   .student-search
+   .reset-btn
+
+   These rules are intentionally scoped around the HOD section.
+*/
+
+
+/* ==========================================================
+   HOD FILTERS
+========================================================== */
+
+.hod-filters {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    margin-top: 4px;
+}
+
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.hod-search {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.hod-search input {
+    width: 100%;
+    height: 54px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dbe3ec;
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.hod-search input::placeholder {
+    color: #94a3b8;
+}
+
+
+.hod-search input:hover {
+    border-color: #cbd5e1;
+}
+
+
+.hod-search input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+
+/* ==========================================================
+   RESET BUTTON
+========================================================== */
+
+.hod-reset-btn {
+    flex: 0 0 auto;
+
+    width: 108px;
+    height: 54px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: #0f172a;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.hod-reset-btn:hover {
+    background: #1e293b;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(15, 23, 42, 0.15);
+}
+
+
+.hod-reset-btn:active {
+    transform: translateY(0);
+}
+/* ==========================================================
+   HOD TABLE
+========================================================== */
+
+.hod-page .student-table {
+    width: 100%;
+
+    min-width: 900px;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+
+/* Table header */
+
+.hod-page .student-table thead {
+    background: #f8fafc;
+}
+
+
+.hod-page .student-table th {
+    padding: 15px 18px;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-align: left;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* Table body */
+
+.hod-page .student-table td {
+    padding: 17px 18px;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+
+.hod-page .student-table tbody tr {
+    transition:
+        background 0.2s ease;
+}
+
+
+.hod-page .student-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+
+.hod-page .student-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Employee ID */
+
+.hod-page .student-table th:first-child,
+.hod-page .student-table td:first-child {
+    min-width: 120px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+
+/* Name */
+
+.hod-page .student-table th:nth-child(2),
+.hod-page .student-table td:nth-child(2) {
+    min-width: 180px;
+}
+
+
+.hod-page .student-table td:nth-child(2) {
+    color: #0f172a;
+
+    font-weight: 600;
+}
+
+
+/* Department */
+
+.hod-page .student-table th:nth-child(3),
+.hod-page .student-table td:nth-child(3) {
+    min-width: 150px;
+}
+
+
+/* Phone */
+
+.hod-page .student-table th:nth-child(4),
+.hod-page .student-table td:nth-child(4) {
+    min-width: 135px;
+
+    white-space: nowrap;
+}
+
+
+/* Email */
+
+.hod-page .student-table th:nth-child(5),
+.hod-page .student-table td:nth-child(5) {
+    min-width: 220px;
+
+    white-space: nowrap;
+}
+
+
+/* Actions */
+
+.hod-page .student-table th:nth-child(6),
+.hod-page .student-table td:nth-child(6) {
+    min-width: 110px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   DEPARTMENT BADGE
+========================================================== */
+
+.hod-department-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 52px;
+
+    padding: 6px 11px;
+
+    border-radius: 9px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* ==========================================================
+   HOD TABLE ACTIONS
+========================================================== */
+
+.hod-action-buttons {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+
+/* Common action button */
+
+.hod-edit-btn,
+.hod-delete-btn {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid transparent;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+/* Edit */
+
+.hod-edit-btn {
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-color: #dbeafe;
+}
+
+
+.hod-edit-btn:hover {
+    background: #dbeafe;
+
+    transform: translateY(-2px);
+}
+
+
+/* Delete */
+
+.hod-delete-btn {
+    background: #fef2f2;
+
+    color: #dc2626;
+
+    border-color: #fee2e2;
+}
+
+
+.hod-delete-btn:hover {
+    background: #fee2e2;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================================
+   EMPTY TABLE
+========================================================== */
+
+.hod-page .empty-table {
+    min-height: 190px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   HOD CREATE MODAL
+   ========================================================= */
+
+.hod-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(15, 23, 42, 0.58);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    animation: hodModalOverlayIn 0.2s ease-out;
+}
+
+
+/* =========================================================
+   MODAL CONTAINER
+   ========================================================= */
+
+.hod-create-modal {
+    width: min(100%, 620px);
+
+    max-height: calc(100vh - 48px);
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.24),
+        0 10px 30px rgba(15, 23, 42, 0.10);
+
+    overflow: hidden;
+
+    animation: hodModalIn 0.25s ease-out;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.hod-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 26px 28px 22px;
+
+    border-bottom: 1px solid #edf1f7;
+
+    flex-shrink: 0;
+}
+
+
+.hod-modal-title-wrapper {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   HEADER ICON
+   ========================================================= */
+
+.hod-modal-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+.hod-modal-title-wrapper h2 {
+    margin: 0;
+
+    font-size: 22px;
+    line-height: 1.2;
+
+    font-weight: 750;
+
+    color: #0f172a;
+}
+
+
+.hod-modal-title-wrapper p {
+    margin: 5px 0 0;
+
+    font-size: 14px;
+
+    color: #64748b;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.hod-modal-close {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.hod-modal-close:hover {
+    background: #f1f5f9;
+
+    color: #0f172a;
+
+    border-color: #cbd5e1;
+
+    transform: rotate(4deg);
+}
+
+
+.hod-modal-close:active {
+    transform: scale(0.94);
+}
+
+
+.hod-modal-close:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.hod-create-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 24px 28px 26px;
+
+    overflow-y: auto;
+
+    min-height: 0;
+}
+
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+   ========================================================= */
+
+.hod-create-form::-webkit-scrollbar {
+    width: 7px;
+}
+
+
+.hod-create-form::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.hod-create-form::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 999px;
+}
+
+
+.hod-create-form::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.hod-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.hod-form-group label {
+    font-size: 14px;
+
+    font-weight: 650;
+
+    color: #1e293b;
+}
+
+
+.hod-form-group label span {
+    margin-left: 3px;
+
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   INPUT + SELECT
+   ========================================================= */
+
+.hod-form-group input,
+.hod-form-group select {
+    width: 100%;
+
+    height: 52px;
+
+    box-sizing: border-box;
+
+    padding: 0 15px;
+
+    border: 1px solid #dbe4ef;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 15px;
+
+    font-family: inherit;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.hod-form-group input::placeholder {
+    color: #94a3b8;
+}
+
+
+.hod-form-group input:focus,
+.hod-form-group select:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.10);
+}
+
+
+.hod-form-group input:disabled,
+.hod-form-group select:disabled {
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+.hod-form-group select {
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+
+.hod-form-group select:disabled {
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.hod-password-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.hod-password-wrapper input {
+    padding-right: 50px;
+}
+
+
+.hod-password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 14px;
+
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.hod-password-toggle:hover {
+    background: #f1f5f9;
+
+    color: #2563eb;
+}
+
+
+.hod-password-toggle:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   BOTTOM ACTION AREA
+   ========================================================= */
+
+.hod-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 4px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf1f7;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+   ========================================================= */
+
+.hod-modal-cancel {
+    height: 48px;
+
+    min-width: 105px;
+
+    padding: 0 20px;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.hod-modal-cancel:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    color: #1e293b;
+}
+
+
+.hod-modal-cancel:active {
+    transform: scale(0.97);
+}
+
+
+.hod-modal-cancel:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   CREATE BUTTON
+   ========================================================= */
+
+.hod-modal-submit {
+    height: 48px;
+
+    min-width: 150px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 0 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.hod-modal-submit:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 26px rgba(37, 99, 235, 0.28);
+}
+
+
+.hod-modal-submit:active {
+    transform: translateY(0) scale(0.98);
+}
+
+
+.hod-modal-submit:disabled {
+    opacity: 0.7;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+   ========================================================= */
+
+.hod-spinner {
+    width: 17px;
+    height: 17px;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation: hodSpinner 0.7s linear infinite;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes hodModalOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes hodModalIn {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes hodSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .hod-modal-overlay {
+        padding: 16px;
+    }
+
+
+    .hod-create-modal {
+        max-height: calc(100vh - 32px);
+
+        border-radius: 20px;
+    }
+
+
+    .hod-modal-header {
+        padding: 22px 22px 18px;
+    }
+
+
+    .hod-create-form {
+        padding: 20px 22px 22px;
+    }
+
+
+    .hod-modal-title-wrapper h2 {
+        font-size: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .hod-modal-overlay {
+        align-items: flex-end;
+
+        padding: 0;
+    }
+
+
+    .hod-create-modal {
+        width: 100%;
+
+        max-height: 94vh;
+
+        border-radius: 22px 22px 0 0;
+    }
+
+
+    .hod-modal-header {
+        padding: 20px;
+    }
+
+
+    .hod-modal-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+
+    .hod-modal-title-wrapper h2 {
+        font-size: 19px;
+    }
+
+
+    .hod-modal-title-wrapper p {
+        font-size: 13px;
+    }
+
+
+    .hod-modal-close {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .hod-create-form {
+        gap: 16px;
+
+        padding: 20px;
+    }
+
+
+    .hod-modal-actions {
+        display: grid;
+
+        grid-template-columns: 1fr 1.4fr;
+
+        gap: 10px;
+    }
+
+
+    .hod-modal-cancel,
+    .hod-modal-submit {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+}
+
+/* ==========================================================
+   CREATE MODAL HEADER
+========================================================== */
+
+.hod-create-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+
+.hod-create-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+
+.hod-create-title h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 21px;
+    font-weight: 750;
+}
+
+
+.hod-create-title p {
+    margin: 4px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* Create icon */
+
+.hod-create-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+/* Close */
+
+.hod-modal-close {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.hod-modal-close:hover {
+    background: #f1f5f9;
+
+    color: #0f172a;
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+.hod-create-form,
+.hod-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+
+    margin-top: 20px;
+}
+
+
+/* Edit form grid */
+
+.hod-form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* ==========================================================
+   FORM GROUP
+========================================================== */
+
+.hod-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    min-width: 0;
+}
+
+
+.hod-form-group label {
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+
+.hod-form-group label span {
+    margin-left: 3px;
+
+    color: #dc2626;
+}
+
+
+/* Inputs */
+
+.hod-form-group input,
+.hod-form-group select {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.hod-form-group input::placeholder {
+    color: #a0aec0;
+}
+
+
+.hod-form-group input:focus,
+.hod-form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* ==========================================================
+   PASSWORD
+========================================================== */
+
+.hod-password-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.hod-password-wrapper input {
+    padding-right: 48px;
+}
+
+
+.hod-password-wrapper button {
+    position: absolute;
+
+    right: 7px;
+    top: 50%;
+
+    width: 34px;
+    height: 34px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+.hod-password-wrapper button:hover {
+    background: #f1f5f9;
+
+    color: #2563eb;
+}
+
+
+/* ==========================================================
+   CREATE FOOTER / MODAL ACTIONS
+========================================================== */
+
+.hod-create-footer,
+.hod-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #edf1f5;
+}
+
+
+/* Common buttons */
+
+.hod-cancel-btn,
+.hod-submit-btn,
+.hod-save-btn {
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Cancel */
+
+.hod-cancel-btn {
+    border: 1px solid #dbe3ec;
+
+    background: #ffffff;
+
+    color: #475569;
+}
+
+
+.hod-cancel-btn:hover {
+    background: #f8fafc;
+}
+
+
+/* Submit / Save */
+
+.hod-submit-btn,
+.hod-save-btn {
+    border: none;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(37, 99, 235, 0.18);
+}
+
+
+.hod-submit-btn:hover,
+.hod-save-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37, 99, 235, 0.24);
+}
+
+
+/* Disabled */
+
+.hod-cancel-btn:disabled,
+.hod-submit-btn:disabled,
+.hod-save-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ==========================================================
+   EDIT MODAL
+========================================================== */
+
+.hod-modal {
+    width: min(100%, 680px);
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.22);
+
+    animation: hodModalIn 0.25s ease;
+}
+
+
+/* Edit header */
+
+.hod-modal-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+
+.hod-modal-header h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 21px;
+    font-weight: 750;
+}
+
+
+.hod-modal-header p {
+    margin: 4px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* Edit icon */
+
+.hod-modal-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+/* ==========================================================
+   DELETE MODAL OVERLAY
+========================================================== */
+
+.hod-delete-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1100;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.58);
+
+    backdrop-filter: blur(5px);
+
+    animation: hodFadeIn 0.2s ease;
+}
+
+
+/* ==========================================================
+   DELETE MODAL
+========================================================== */
+
+.hod-delete-modal {
+    width: min(100%, 450px);
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    border: 1px solid #e5eaf1;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.24);
+
+    animation: hodModalIn 0.25s ease;
+}
+
+
+/* ==========================================================
+   DELETE ICON
+========================================================== */
+
+.hod-delete-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 16px;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* ==========================================================
+   DELETE CONTENT
+========================================================== */
+
+.hod-delete-content h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 22px;
+    font-weight: 750;
+}
+
+
+.hod-delete-content > p {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* HOD information */
+
+.hod-delete-user {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+
+    margin-top: 16px;
+
+    padding: 13px 15px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e8edf3;
+
+    border-radius: 12px;
+}
+
+
+.hod-delete-user strong {
+    color: #0f172a;
+
+    font-size: 15px;
+}
+
+
+.hod-delete-user span {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* Warning */
+
+.hod-delete-content .hod-delete-warning {
+    margin-top: 14px;
+
+    padding: 11px 13px;
+
+    border-radius: 10px;
+
+    background: #fff7ed;
+
+    color: #c2410c;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+/* ==========================================================
+   DELETE ACTIONS
+========================================================== */
+
+.hod-delete-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+    padding-top: 17px;
+
+    border-top: 1px solid #edf1f5;
+}
+
+
+.hod-delete-cancel,
+.hod-delete-confirm {
+    min-height: 44px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 17px;
+
+    border-radius: 11px;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Cancel */
+
+.hod-delete-cancel {
+    border: 1px solid #dbe3ec;
+
+    background: #ffffff;
+
+    color: #475569;
+}
+
+
+.hod-delete-cancel:hover {
+    background: #f8fafc;
+}
+
+
+/* Delete */
+
+.hod-delete-confirm {
+    border: none;
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 7px 18px rgba(220, 38, 38, 0.16);
+}
+
+
+.hod-delete-confirm:hover {
+    background: #b91c1c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(220, 38, 38, 0.22);
+}
+
+
+.hod-delete-cancel:disabled,
+.hod-delete-confirm:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* ==========================================================
+   MODAL SCROLLBAR
+========================================================== */
+
+.hod-modal::-webkit-scrollbar,
+.hod-create-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+.hod-modal::-webkit-scrollbar-thumb,
+.hod-create-modal::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 20px;
+}
+
+
+.hod-modal::-webkit-scrollbar-track,
+.hod-create-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes hodFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes hodModalIn {
+    from {
+        opacity: 0;
+
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ==========================================================
+   LARGE TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+
+    .hod-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+
+    .hod-hero {
+        padding: 26px 28px;
+    }
+
+
+    .hod-hero-content p {
+        max-width: 650px;
+    }
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .hod-page {
+        gap: 22px;
+    }
+
+
+    .hod-hero {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 25px;
+    }
+
+
+    .hod-hero-content {
+        max-width: 100%;
+    }
+
+
+    .hod-hero-content h1 {
+        font-size: 28px;
+    }
+
+
+    .hod-hero-content p {
+        font-size: 14px;
+    }
+
+
+    .hod-add-btn {
+        width: 100%;
+    }
+
+
+    .hod-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .hod-modal {
+        width: 100%;
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 600px) {
+
+    .hod-page {
+        gap: 18px;
+    }
+
+
+    /* Hero */
+
+    .hod-hero {
+        padding: 22px;
+
+        border-radius: 19px;
+    }
+
+
+    .hod-hero-content h1 {
+        font-size: 25px;
+    }
+
+
+    .hod-hero-content p {
+        margin-top: 8px;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    .hod-add-btn {
+        min-height: 47px;
+
+        font-size: 14px;
+    }
+
+
+    /* Statistics */
+
+    .hod-stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+
+    .hod-stats-grid .student-stat-card {
+        min-height: 100px;
+
+        padding: 16px;
+    }
+
+
+    .hod-stats-grid .student-stat-icon {
+        width: 52px;
+        height: 52px;
+
+        flex-basis: 52px;
+
+        border-radius: 14px;
+    }
+
+
+    .hod-stats-grid .student-stat-content h3 {
+        font-size: 25px;
+    }
+
+
+    .hod-stats-grid .student-stat-content h4 {
+        font-size: 14px;
+    }
+
+
+    /* Table */
+
+    .hod-page .student-table {
+        min-width: 850px;
+    }
+
+
+    /* Modal */
+
+    .hod-modal-overlay,
+    .hod-delete-overlay {
+        padding: 12px;
+    }
+
+
+    .hod-modal,
+    .hod-create-modal,
+    .hod-delete-modal {
+        border-radius: 18px;
+
+        padding: 20px;
+    }
+
+
+    .hod-create-title h2,
+    .hod-modal-header h2 {
+        font-size: 19px;
+    }
+
+
+    .hod-form-grid {
+        gap: 14px;
+    }
+
+
+    .hod-create-footer,
+    .hod-modal-actions,
+    .hod-delete-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+
+    .hod-cancel-btn,
+    .hod-submit-btn,
+    .hod-save-btn,
+    .hod-delete-cancel,
+    .hod-delete-confirm {
+        width: 100%;
+    }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL MOBILE
+========================================================== */
+
+@media (max-width: 400px) {
+
+    .hod-hero {
+        padding: 18px;
+    }
+
+
+    .hod-hero-content h1 {
+        font-size: 22px;
+    }
+
+
+    .hod-stats-grid .student-stat-card {
+        padding: 14px;
+    }
+
+
+    .hod-stats-grid .student-stat-icon {
+        width: 48px;
+        height: 48px;
+
+        flex-basis: 48px;
+    }
+
+
+    .hod-stats-grid .student-stat-content h3 {
+        font-size: 23px;
+    }
+
+
+    .hod-modal,
+    .hod-create-modal,
+    .hod-delete-modal {
+        padding: 17px;
+    }
+
+}
+/* ==========================================================
+   FILTER RESPONSIVE
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .hod-filters {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 12px;
+    }
+
+
+    .hod-search {
+        width: 100%;
+    }
+
+
+    .hod-reset-btn {
+        width: 100%;
+    }
+
+}

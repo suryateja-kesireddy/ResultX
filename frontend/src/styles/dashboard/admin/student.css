@@ -1,412 +1,2211 @@
 /* ==========================================================
+   RESULTX — STUDENT MANAGEMENT
+   Single CSS File
+========================================================== */
+
+
+/* ==========================================================
+   01. PAGE
+========================================================== */
+
+.student-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+
+/* ==========================================================
+   02. HERO / HEADER
+========================================================== */
+
+.student-header {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+
+    min-height: 150px;
+
+    padding: 28px 32px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #1d4ed8 55%,
+            #1e3a8a 100%
+        );
+
+    box-shadow:
+        0 16px 35px rgba(37, 99, 235, 0.18);
+}
+
+
+/* Decorative Circle */
+
+.student-header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 210px;
+
+    right: -70px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    pointer-events: none;
+}
+
+.student-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    right: 180px;
+    bottom: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================
+   HEADER CONTENT
+========================================================== */
+
+.student-header-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 680px;
+}
+
+.student-header-content h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 34px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.5px;
+}
+
+.student-header-content p {
+    margin: 8px 0 0;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================================
+   ADD STUDENT BUTTON
+========================================================== */
+
+.student-add-btn {
+    position: relative;
+
+    z-index: 2;
+
+    flex-shrink: 0;
+
+    height: 48px;
+
+    padding: 0 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.14);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.student-add-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 26px rgba(15, 23, 42, 0.18);
+}
+
+.student-add-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================================
    STUDENT STATISTICS
 ========================================================== */
 
-.student-stats-grid{
+.student-stats-grid {
+    width: 100%;
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap:24px;
+    gap: 24px;
 
-    margin-bottom:32px;
-
+    margin-top: 30px;
 }
+
 
 /* ==========================================================
-   STUDENT CARD
+   STUDENT STAT CARD
 ========================================================== */
 
-.student-stat-card{
+.student-stat-card {
+    position: relative;
 
-    position:relative;
+    min-height: 145px;
 
-    background:#ffffff;
+    padding: 24px 2px;
 
-    border:1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
 
-    border-radius:22px;
+    background: #ffffff;
 
-    padding:24px;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid var(--card-color);
 
-    cursor:pointer;
+    border-radius: 22px;
 
-    transition:all .35s ease;
+    overflow: hidden;
 
-    overflow:hidden;
-
-    box-shadow:
-        0 10px 30px rgba(15,23,42,.06);
-
-}
-
-.student-stat-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:5px;
-
-    height:100%;
-
-    background:var(--card-color);
-
-    transition:.35s;
-
-}
-
-.student-stat-card:hover{
-
-    transform:translateY(-8px);
-
-    border-color:var(--card-color);
+    cursor: pointer;
 
     box-shadow:
-        0 20px 40px rgba(15,23,42,.12);
+        0 10px 28px rgba(15, 23, 42, 0.06);
 
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.student-stat-card.active{
 
-    border-color:var(--card-color);
+/* ==========================================================
+   BACKGROUND CIRCLE
+========================================================== */
+
+.student-stat-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 145px;
+    height: 145px;
+
+    right: -45px;
+    bottom: -55px;
+
+    border-radius: 50%;
+
+    background: var(--card-color);
+
+    opacity: 0.06;
+
+    pointer-events: none;
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.student-stat-card:hover {
+    transform: translateY(-5px);
 
     box-shadow:
-        0 20px 40px rgba(37,99,235,.18);
-
+        0 18px 38px rgba(15, 23, 42, 0.10);
 }
+
+
+/* ==========================================================
+   ACTIVE CARD
+========================================================== */
+
+.student-stat-card.active {
+    border-color: var(--card-color);
+}
+
 
 /* ==========================================================
    ICON
 ========================================================== */
 
-.student-stat-icon{
+.student-stat-icon {
+    flex-shrink: 0;
 
-    width:62px;
+    width: 70px;
+    height: 70px;
 
-    height:62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:18px;
+    border-radius: 20px;
 
-    display:flex;
+    margin-right: 22px;
 
-    justify-content:center;
+    position: relative;
 
-    align-items:center;
-
-    margin-bottom:22px;
-
-    transition:.35s;
-
+    z-index: 2;
 }
 
-.student-stat-card:hover .student-stat-icon{
-
-    transform:scale(1.08) rotate(-5deg);
-
-}
 
 /* ==========================================================
    CONTENT
 ========================================================== */
 
-.student-stat-content{
+.student-stat-content {
+    position: relative;
 
-    display:flex;
+    z-index: 2;
 
-    flex-direction:column;
-
+    min-width: 0;
 }
 
-.student-stat-content h4{
 
-    font-size:15px;
+.student-stat-content h4 {
+    margin: 0 0 5px;
 
-    font-weight:600;
+    color: #64748b;
 
-    color:#64748b;
+    font-size: 10px;
+    font-weight: 700;
 
-    margin-bottom:8px;
+    line-height: 1;
 
+    /* Allows long department names */
+    overflow-wrap: anywhere;
 }
 
-.student-stat-content h2{
 
-    font-size:34px;
+.student-stat-content h2 {
+    margin: 0 0 4px;
 
-    font-weight:700;
+    color: #0f172a;
 
-    color:#0f172a;
+    font-size: 36px;
+    font-weight: 800;
 
-    margin-bottom:8px;
-
+    line-height: 1;
 }
 
-.student-stat-content span{
 
-    font-size:14px;
+.student-stat-content span {
+    display: block;
 
-    color:#94a3b8;
+    color: #94a3b8;
 
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1.4;
 }
+
 
 /* ==========================================================
-   RESPONSIVE
+   TABLET
 ========================================================== */
 
-@media(max-width:992px){
+@media (max-width: 1200px) {
 
-    .student-stats-grid{
+    .student-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        grid-template-columns:repeat(3,1fr);
-
+        gap: 20px;
     }
 
 }
 
-@media(max-width:768px){
-
-    .student-stats-grid{
-
-        grid-template-columns:repeat(2,1fr);
-
-        gap:18px;
-
-    }
-
-}
-
-@media(max-width:480px){
-
-    .student-stats-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .student-stat-card{
-
-        padding:20px;
-
-    }
-
-    .student-stat-content h2{
-
-        font-size:28px;
-
-    }
-
-}
-/* ==========================================================
-   STUDENT FILTERS
-========================================================== */
-
-.student-filters{
-    display:flex;
-    align-items:center;
-    gap:18px;
-    margin:30px 0;
-    flex-wrap:wrap;
-}
-
-.student-search{
-    flex:1;
-}
-
-.student-search input{
-    width:100%;
-    height:52px;
-    padding:0 18px;
-    border:1px solid #e2e8f0;
-    border-radius:14px;
-    background:#fff;
-    font-size:15px;
-    transition:.3s;
-}
-
-.student-search input:focus{
-    outline:none;
-    border-color:#2563eb;
-    box-shadow:0 0 0 4px rgba(37,99,235,.12);
-}
-
-.student-filters select{
-    height:52px;
-    min-width:180px;
-    border:1px solid #e2e8f0;
-    border-radius:14px;
-    padding:0 16px;
-    background:#fff;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.student-filters select:focus{
-    outline:none;
-    border-color:#2563eb;
-}
-
-.reset-btn{
-    height:52px;
-    padding:0 22px;
-    border:none;
-    border-radius:14px;
-    background:#2563eb;
-    color:#fff;
-    cursor:pointer;
-    font-weight:600;
-    transition:.3s;
-}
-
-.reset-btn:hover{
-    background:#1d4ed8;
-}
-
-/* ==========================================================
-   TABLE
-========================================================== */
-
-.student-table-wrapper{
-    background:#fff;
-    border-radius:22px;
-    overflow:hidden;
-    border:1px solid #e5e7eb;
-    box-shadow:0 10px 35px rgba(15,23,42,.05);
-}
-
-.student-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.student-table thead{
-    background:#f8fafc;
-}
-
-.student-table th{
-    padding:18px;
-    text-align:left;
-    font-size:14px;
-    font-weight:700;
-    color:#475569;
-    border-bottom:1px solid #e2e8f0;
-}
-
-.student-table td{
-    padding:18px;
-    border-bottom:1px solid #f1f5f9;
-    font-size:15px;
-    color:#334155;
-}
-
-.student-table tbody tr{
-    transition:.25s;
-}
-
-.student-table tbody tr:hover{
-    background:#f8fbff;
-}
-
-/* ==========================================================
-   AVATAR
-========================================================== */
-
-.student-avatar{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.student-avatar-circle{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#2563eb,#4f46e5);
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:700;
-    font-size:16px;
-}
-
-.student-avatar-info h4{
-    margin:0;
-    font-size:15px;
-    font-weight:700;
-    color:#0f172a;
-}
-
-.student-avatar-info p{
-    margin-top:3px;
-    font-size:13px;
-    color:#64748b;
-}
-
-/* ==========================================================
-   EMPTY TABLE
-========================================================== */
-
-.empty-table{
-    padding:80px;
-    text-align:center;
-    background:#fff;
-    border-radius:22px;
-    color:#94a3b8;
-    font-size:16px;
-    border:1px dashed #cbd5e1;
-}
 
 /* ==========================================================
    MOBILE
 ========================================================== */
 
-@media(max-width:992px){
+@media (max-width: 768px) {
 
-.student-filters{
-    flex-direction:column;
-    align-items:stretch;
+    .student-stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        margin-top: 24px;
+    }
+
+
+    .student-stat-card {
+        min-height: 130px;
+
+        padding: 20px;
+    }
+
+
+    .student-stat-icon {
+        width: 62px;
+        height: 62px;
+
+        margin-right: 18px;
+    }
+
+
+    .student-stat-content h4 {
+        font-size: 16px;
+    }
+
+
+    .student-stat-content h2 {
+        font-size: 32px;
+    }
+
 }
 
-.student-filters select,
-.reset-btn{
-    width:100%;
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+
+    .student-stat-card {
+        padding: 18px;
+
+        border-radius: 18px;
+    }
+
+
+    .student-stat-icon {
+        width: 56px;
+        height: 56px;
+
+        margin-right: 15px;
+    }
+
+
+    .student-stat-content h4 {
+        font-size: 15px;
+    }
+
+
+    .student-stat-content h2 {
+        font-size: 28px;
+    }
+
+
+    .student-stat-content span {
+        font-size: 13px;
+    }
+
 }
 
-.student-table-wrapper{
-    overflow-x:auto;
+/* ==========================================================
+   04. FILTERS
+========================================================== */
+
+.student-filters {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(260px, 2fr)
+        repeat(3, minmax(140px, 1fr))
+        auto;
+
+    gap: 12px;
 }
 
-.student-table{
-    min-width:900px;
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.student-search {
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 14px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    color: #94a3b8;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.student-search:focus-within {
+    border-color: #2563eb;
+
+    color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.09);
 }
 
-@media(max-width:576px){
+.student-search input {
+    width: 100%;
+    height: 100%;
 
-.student-search input,
-.student-filters select,
-.reset-btn{
-    height:48px;
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #0f172a;
+
+    font-size: 13px;
 }
 
-.student-avatar-circle{
-    width:42px;
-    height:42px;
+.student-search input::placeholder {
+    color: #94a3b8;
 }
 
-.student-avatar-info h4{
-    font-size:14px;
+
+/* ==========================================================
+   FILTER SELECTS
+========================================================== */
+
+.student-filters select {
+    width: 100%;
+    height: 48px;
+
+    padding: 0 12px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.student-avatar-info p{
-    font-size:12px;
+.student-filters select:hover {
+    border-color: #cbd5e1;
 }
 
+.student-filters select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.09);
+}
+
+
+/* ==========================================================
+   RESET BUTTON
+========================================================== */
+
+.student-filters .reset-btn {
+    height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 0 17px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #111827;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.student-filters .reset-btn:hover {
+    background: #1f2937;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 16px rgba(15, 23, 42, 0.12);
+}
+
+.student-filters .reset-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================================
+   05. TABLE CARD
+========================================================== */
+
+.student-table-card {
+    width: 100%;
+
+    margin-top: 0;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+    border-radius: 20px;
+
+    box-shadow:
+        0 9px 28px rgba(15, 23, 42, 0.05);
+}
+
+
+/* ==========================================================
+   TABLE HEADER
+========================================================== */
+
+.student-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+.student-table-header h2 {
+    margin: 0 0 4px;
+
+    color: #0f172a;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.student-table-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   TABLE RESPONSIVE WRAPPER
+========================================================== */
+
+.table-responsive {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 20px;
+}
+
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.student-table {
+    width: 100%;
+
+    min-width: 1050px;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+
+/* ==========================================================
+   TABLE HEAD
+========================================================== */
+
+.student-table thead {
+    background: #f8fafc;
+}
+
+.student-table th {
+    padding: 13px 17px;
+
+    color: #475569;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: left;
+
+    white-space: nowrap;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* ==========================================================
+   TABLE BODY
+========================================================== */
+
+.student-table td {
+    padding: 13px 17px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+
+    border-bottom: 1px solid #edf1f5;
+}
+
+.student-table tbody tr {
+    transition:
+        background-color 0.2s ease;
+}
+
+.student-table tbody tr:hover {
+    background: #f8fbff;
+}
+
+.student-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==========================================================
+   TABLE COLUMN SIZES
+========================================================== */
+
+.student-table th:first-child,
+.student-table td:first-child {
+    width: 45px;
+
+    text-align: center;
+}
+
+.student-table td:first-child {
+    color: #2563eb;
+
+    font-weight: 700;
+}
+
+.student-table th:nth-child(2),
+.student-table td:nth-child(2) {
+    min-width: 205px;
+}
+
+.student-table th:nth-child(3),
+.student-table td:nth-child(3) {
+    min-width: 135px;
+
+    white-space: nowrap;
+}
+
+.student-table th:nth-child(4),
+.student-table td:nth-child(4) {
+    min-width: 115px;
+
+    white-space: nowrap;
+}
+
+.student-table th:nth-child(5),
+.student-table td:nth-child(5) {
+    min-width: 90px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+.student-table th:nth-child(6),
+.student-table td:nth-child(6) {
+    min-width: 130px;
+
+    white-space: nowrap;
+}
+
+.student-table th:nth-child(7),
+.student-table td:nth-child(7) {
+    min-width: 200px;
+
+    white-space: nowrap;
+}
+
+.student-table th:nth-child(8),
+.student-table td:nth-child(8) {
+    min-width: 105px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   06. STUDENT AVATAR
+========================================================== */
+
+.student-avatar {
+    min-width: 190px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.student-avatar-circle {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.student-avatar:hover .student-avatar-circle {
+    transform: scale(1.05);
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.18);
+}
+
+.student-avatar-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.student-avatar-info h4 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+}
+
+.student-avatar-info p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   07. DEPARTMENT BADGE
+========================================================== */
+
+.student-department-badge {
+    min-width: 46px;
+    height: 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 9px;
+
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   SEMESTER BADGE
+========================================================== */
+
+.student-semester-badge {
+    min-width: 34px;
+    height: 28px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 8px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   08. ACTION BUTTONS
+========================================================== */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+}
+
+.edit-btn,
+.delete-btn {
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Edit */
+
+.edit-btn {
+    background: #eff6ff;
+
+    border-color: #dbeafe;
+
+    color: #2563eb;
+}
+
+.edit-btn:hover {
+    background: #dbeafe;
+
+    border-color: #bfdbfe;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, 0.12);
+}
+
+
+/* Delete */
+
+.delete-btn {
+    background: #fef2f2;
+
+    border-color: #fee2e2;
+
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+    background: #fee2e2;
+
+    border-color: #fecaca;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(220, 38, 38, 0.12);
+}
+
+.edit-btn:active,
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================================
+   09. EMPTY TABLE
+========================================================== */
+
+.student-empty {
+    min-height: 190px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px;
+
+    text-align: center;
+}
+
+.student-empty svg {
+    margin-bottom: 10px;
+
+    color: #2563eb;
+
+    opacity: 0.6;
+}
+
+.student-empty h3 {
+    margin: 0 0 5px;
+
+    color: #334155;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.student-empty p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+.student-empty strong {
+    color: #2563eb;
+}
+
+
+/* ==========================================================
+   10. CREATE / EDIT MODAL
+========================================================== */
+
+.student-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    animation:
+        studentModalFadeIn 0.2s ease;
+}
+
+
+/* ==========================================================
+   MODAL
+========================================================== */
+
+.student-modal {
+    width: 100%;
+    max-width: 720px;
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 26px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 65px rgba(15, 23, 42, 0.22);
+
+    animation:
+        studentModalSlideIn 0.25s ease;
+
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+.student-modal::-webkit-scrollbar {
+    width: 5px;
+}
+
+.student-modal::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 20px;
+}
+
+
+/* ==========================================================
+   MODAL HEADER
+========================================================== */
+
+.student-modal-header {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 22px;
+}
+
+.student-modal-icon {
+    width: 50px;
+    height: 50px;
+
+    flex: 0 0 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+.student-modal-header h2 {
+    margin: 0 0 3px;
+
+    color: #0f172a;
+
+    font-size: 21px;
+    font-weight: 750;
+
+    line-height: 1.3;
+}
+
+.student-modal-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+.student-form {
+    width: 100%;
+}
+
+.student-form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.student-form-group {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.student-form-group label {
+    color: #334155;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+
+/* ==========================================================
+   FORM INPUTS
+========================================================== */
+
+.student-form-group input,
+.student-form-group select {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dbe3ec;
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.student-form-group input::placeholder {
+    color: #94a3b8;
+}
+
+.student-form-group input:hover,
+.student-form-group select:hover {
+    border-color: #cbd5e1;
+}
+
+.student-form-group input:focus,
+.student-form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.09);
+}
+
+
+/* ==========================================================
+   PASSWORD
+========================================================== */
+
+.student-password-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+.student-password-wrapper input {
+    padding-right: 45px;
+}
+
+.student-password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 8px;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateY(-50%);
+
+    padding: 0;
+
+    border: none;
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.student-password-toggle:hover {
+    background: #f1f5f9;
+
+    color: #2563eb;
+}
+
+.student-password-toggle:focus-visible {
+    outline: 2px solid #2563eb;
+
+    outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   MODAL ACTIONS
+========================================================== */
+
+.student-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-top: 22px;
+    padding-top: 18px;
+
+    border-top: 1px solid #edf1f5;
+}
+
+
+/* ==========================================================
+   CANCEL
+========================================================== */
+
+.student-cancel-btn {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dbe3ec;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.student-cancel-btn:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================================
+   SAVE
+========================================================== */
+
+.student-save-btn {
+    height: 42px;
+
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(37, 99, 235, 0.17);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.student-save-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(37, 99, 235, 0.23);
+}
+
+.student-save-btn:active,
+.student-cancel-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================================
+   11. DELETE MODAL
+========================================================== */
+
+.student-delete-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    animation:
+        studentModalFadeIn 0.2s ease;
+}
+
+.student-delete-modal {
+    width: 100%;
+    max-width: 410px;
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #fee2e2;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 65px rgba(15, 23, 42, 0.22);
+
+    animation:
+        studentModalSlideIn 0.25s ease;
+}
+
+
+/* ==========================================================
+   DELETE ICON
+========================================================== */
+
+.student-delete-icon {
+    width: 62px;
+    height: 62px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fef2f2;
+
+    border: 1px solid #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* ==========================================================
+   DELETE CONTENT
+========================================================== */
+
+.student-delete-modal h2 {
+    margin: 0 0 8px;
+
+    color: #0f172a;
+
+    font-size: 21px;
+    font-weight: 750;
+}
+
+.student-delete-modal p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.student-delete-modal h3 {
+    margin: 4px 0;
+
+    color: #0f172a;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.student-delete-modal > span {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #64748b;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   DELETE WARNING
+========================================================== */
+
+.student-delete-warning {
+    margin-top: 16px !important;
+
+    padding: 10px 12px;
+
+    background: #fff7ed;
+
+    border: 1px solid #fed7aa;
+
+    border-radius: 9px;
+
+    color: #c2410c !important;
+
+    font-size: 12px !important;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   DELETE ACTIONS
+========================================================== */
+
+.student-delete-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    margin-top: 20px;
+}
+
+
+/* ==========================================================
+   DELETE BUTTON
+========================================================== */
+
+.student-delete-btn {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.student-delete-btn:hover {
+    background: #b91c1c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(220, 38, 38, 0.18);
+}
+
+.student-delete-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================================
+   12. MODAL ANIMATIONS
+========================================================== */
+
+@keyframes studentModalFadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes studentModalSlideIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ==========================================================
+   13. LARGE TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .student-header {
+        min-height: 140px;
+
+        padding: 26px 28px;
+    }
+
+    .student-header-content h1 {
+        font-size: 30px;
+    }
+
+    .student-filters {
+        grid-template-columns:
+            minmax(220px, 2fr)
+            repeat(2, minmax(140px, 1fr));
+    }
+
+    .student-filters .reset-btn {
+        width: 110px;
+    }
+}
+
+
+/* ==========================================================
+   14. TABLET
+========================================================== */
+
+@media (max-width: 900px) {
+
+    .student-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        min-height: auto;
+
+        padding: 25px;
+    }
+
+    .student-add-btn {
+        width: 100%;
+    }
+
+    .student-filters {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .student-search {
+        grid-column: 1 / -1;
+    }
+
+    .student-filters .reset-btn {
+        width: 100%;
+    }
+
+    .student-stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .student-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ==========================================================
+   15. MOBILE
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .student-page {
+        gap: 16px;
+    }
+
+    .student-header {
+        padding: 22px;
+
+        border-radius: 18px;
+    }
+
+    .student-header-content h1 {
+        font-size: 26px;
+    }
+
+    .student-header-content p {
+        font-size: 13px;
+    }
+
+    .student-add-btn {
+        height: 46px;
+
+        font-size: 13px;
+    }
+
+
+    /* Statistics */
+
+    .student-stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .student-stat-card {
+        min-height: 96px;
+
+        padding: 16px;
+    }
+
+    .student-stat-icon {
+        width: 52px;
+        height: 52px;
+
+        flex-basis: 52px;
+
+        border-radius: 14px;
+    }
+
+    .student-stat-content h2 {
+        font-size: 25px;
+    }
+
+
+    /* Filters */
+
+    .student-filters {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+    }
+
+    .student-search {
+        grid-column: auto;
+    }
+
+    .student-search,
+    .student-filters select,
+    .student-filters .reset-btn {
+        height: 46px;
+    }
+
+
+    /* Table */
+
+    .student-table-card {
+        border-radius: 17px;
+    }
+
+    .student-table-header {
+        padding: 18px;
+    }
+
+    .student-table-header h2 {
+        font-size: 18px;
+    }
+
+    .student-table-header p {
+        font-size: 12px;
+    }
+
+    .student-table {
+        min-width: 1050px;
+    }
+
+
+    /* Modal */
+
+    .student-modal-overlay,
+    .student-delete-overlay {
+        padding: 10px;
+    }
+
+    .student-modal {
+        max-height:
+            calc(100vh - 20px);
+
+        padding: 20px;
+
+        border-radius: 18px;
+    }
+
+    .student-modal-header {
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .student-modal-icon {
+        width: 44px;
+        height: 44px;
+
+        flex-basis: 44px;
+    }
+
+    .student-modal-header h2 {
+        font-size: 19px;
+    }
+
+    .student-modal-header p {
+        font-size: 11px;
+    }
+
+    .student-form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 13px;
+    }
+
+    .student-modal-actions {
+        gap: 8px;
+    }
+
+    .student-cancel-btn,
+    .student-save-btn {
+        flex: 1;
+
+        padding: 0 12px;
+    }
+
+
+    /* Delete */
+
+    .student-delete-modal {
+        padding: 24px 20px;
+
+        border-radius: 18px;
+    }
+
+    .student-delete-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .student-delete-actions {
+        gap: 8px;
+    }
+
+    .student-delete-actions .student-cancel-btn,
+    .student-delete-actions .student-delete-btn {
+        flex: 1;
+
+        padding: 0 10px;
+    }
+}
+/* =========================================================
+   STUDENT MODAL HEADER
+========================================================= */
+
+.student-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px 26px;
+
+    border-bottom: 1px solid #edf1f6;
+}
+
+
+.student-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+
+.student-modal-title h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 22px;
+    font-weight: 750;
+}
+
+
+.student-modal-title p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.student-modal-close {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 11px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.student-modal-close:hover {
+    background: #f1f5f9;
+
+    color: #0f172a;
+
+    border-color: #cbd5e1;
+
+    transform: rotate(4deg);
+}
+
+
+.student-modal-close:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.student-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 24px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf1f6;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.student-cancel-btn {
+    height: 48px;
+
+    min-width: 105px;
+
+    padding: 0 20px;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.student-cancel-btn:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    color: #1e293b;
+}
+
+
+.student-cancel-btn:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   CREATE STUDENT BUTTON
+========================================================= */
+
+.student-save-btn {
+    height: 48px;
+
+    min-width: 175px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.student-save-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.30);
+}
+
+
+.student-save-btn:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+
+.student-save-btn:disabled {
+    opacity: 0.72;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow:
+        0 5px 14px rgba(37, 99, 235, 0.14);
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.student-spinner {
+    width: 17px;
+    height: 17px;
+
+    flex-shrink: 0;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        studentSpinner 0.7s linear infinite;
+}
+
+
+@keyframes studentSpinner {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+.student-password-toggle:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
 }

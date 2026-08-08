@@ -518,6 +518,7 @@ justify-content:center;
 
 .hero {
   min-height: calc(100vh - 72px);
+  
 
   display: flex;
 

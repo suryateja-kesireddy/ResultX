@@ -49,7 +49,7 @@ router.use("/api/departments", departmentRoutes);
 // ==========================================
 // Academic Year
 // ==========================================
-router.use("/api/academic-years", academicYearRoutes);
+router.use("/api/academicyears", academicYearRoutes);
 
 // ==========================================
 // Student
@@ -68,7 +68,7 @@ router.use("/api/faculty", facultyRoutes);
 // ==========================================
 // Semester
 // ==========================================
-router.use("/api/semesters", semesterRoutes);
+router.use("/api/semester", semesterRoutes);
 
 // ==========================================
 // Subject

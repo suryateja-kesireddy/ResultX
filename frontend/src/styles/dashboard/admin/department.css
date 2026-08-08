@@ -1,0 +1,2282 @@
+/* =========================================================
+   DEPARTMENT PAGE
+========================================================= */
+
+.department-page {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 26px;
+}
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.department-header {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    min-height: 150px;
+
+    padding: 30px 34px;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #1d4ed8 55%,
+            #1e3a8a 100%
+        );
+
+    box-shadow:
+        0 18px 40px rgba(37, 99, 235, 0.20);
+}
+
+
+/* Decorative Circle */
+
+.department-header::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    right: -70px;
+    top: -110px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    pointer-events: none;
+}
+
+
+.department-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    right: 24%;
+    bottom: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.department-header > div {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.department-header h1 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 32px;
+    font-weight: 800;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.5px;
+}
+
+
+.department-header p {
+    margin: 9px 0 0;
+
+    max-width: 620px;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ADD DEPARTMENT BUTTON
+========================================================= */
+
+.department-add-btn {
+    position: relative;
+
+    z-index: 3;
+
+    flex-shrink: 0;
+
+    height: 50px;
+
+    padding: 0 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    color: #2563eb;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.department-add-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+.department-add-btn:active {
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DEPARTMENT STATS GRID
+========================================================= */
+
+.department-stats-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+
+/* =========================================================
+   DEPARTMENT CARD
+========================================================= */
+
+.department-card {
+    position: relative;
+
+    min-width: 0;
+
+    min-height: 180px;
+
+    padding: 21px 22px 20px 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.055);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Left Color Line */
+
+.department-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 5px;
+    height: 100%;
+
+    background: var(--card-color);
+
+    border-radius: 20px 0 0 20px;
+}
+
+
+/* Decorative Circle */
+
+.department-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: -50px;
+    bottom: -55px;
+
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    background: var(--card-color);
+
+    opacity: 0.055;
+
+    pointer-events: none;
+}
+
+
+.department-card:hover {
+    transform: translateY(-5px);
+
+    border-color: var(--card-color);
+
+    box-shadow:
+        0 16px 35px rgba(15, 23, 42, 0.10);
+}
+
+
+.department-card.active {
+    border-color: var(--card-color);
+
+    box-shadow:
+        0 12px 30px rgba(15, 23, 42, 0.10);
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.department-card > svg {
+    position: relative;
+
+    z-index: 2;
+
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 15px;
+
+    padding: 13px;
+
+    box-sizing: border-box;
+
+    border-radius: 15px;
+
+    background: color-mix(
+        in srgb,
+        var(--card-color) 10%,
+        #ffffff
+    );
+
+    color: var(--card-color);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+.department-card:hover > svg {
+    transform:
+        translateY(-2px)
+        scale(1.05);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.department-card-content {
+    position: relative;
+
+    z-index: 2;
+
+    min-width: 0;
+}
+
+
+.department-card-content h3 {
+    margin: 0 0 13px;
+
+    color: #0f172a;
+
+    font-size: 19px;
+    font-weight: 750;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   CARD STATISTICS
+========================================================= */
+
+.department-card-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px 15px;
+}
+
+
+.department-card-stats span {
+    min-width: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DEPARTMENT DETAILS
+========================================================= */
+
+.department-details {
+    width: 100%;
+
+    padding: 26px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e5eaf1;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.055);
+}
+
+
+/* =========================================================
+   DETAILS HEADER
+========================================================= */
+
+.department-details-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-bottom: 25px;
+}
+
+
+.department-details-icon {
+    width: 60px;
+    height: 60px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 17px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+.department-details-header h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 24px;
+    font-weight: 750;
+}
+
+
+.department-details-header p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DETAILS GRID
+========================================================= */
+
+.department-details-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   DETAIL CARD
+========================================================= */
+
+.department-detail-card {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 17px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf1f5;
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.department-detail-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(15, 23, 42, 0.06);
+}
+
+
+.department-detail-card > svg {
+    flex-shrink: 0;
+
+    color: #2563eb;
+}
+
+
+.department-detail-card span {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.department-detail-card h4 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DETAILS ACTIONS
+========================================================= */
+
+.department-details-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 11px;
+
+    margin-top: 24px;
+}
+
+
+.department-edit-btn,
+.department-delete-btn {
+    height: 44px;
+
+    padding: 0 19px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.department-edit-btn {
+    background: #2563eb;
+}
+
+
+.department-delete-btn {
+    background: #ef4444;
+}
+
+
+.department-edit-btn:hover,
+.department-delete-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.13);
+}
+
+
+/* =========================================================
+   CREATE / EDIT MODAL OVERLAY
+========================================================= */
+
+.department-modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(15, 23, 42, 0.50);
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   CREATE / EDIT MODAL
+========================================================= */
+
+.department-modal {
+    width: min(470px, 100%);
+
+    max-height: calc(100vh - 40px);
+
+    padding: 26px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.25);
+
+    overflow-y: auto;
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.department-modal-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 24px;
+}
+
+
+.department-modal-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    min-width: 0;
+}
+
+
+.department-modal-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+}
+
+
+.department-modal-title h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 20px;
+    font-weight: 750;
+}
+
+
+.department-modal-title p {
+    margin: 4px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.department-modal-close {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.department-modal-close:hover {
+    background: #e2e8f0;
+
+    color: #0f172a;
+}
+
+
+/* =========================================================
+   MODAL FORM
+========================================================= */
+
+.department-modal-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+
+.department-form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.department-form-group label {
+    color: #334155;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+
+.department-form-group label span {
+    margin-left: 3px;
+
+    color: #ef4444;
+}
+
+
+.department-form-group input,
+.department-form-group select {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.department-form-group input::placeholder {
+    color: #94a3b8;
+}
+
+
+.department-form-group input:focus,
+.department-form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+.department-form-group input:disabled,
+.department-form-group select:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   MODAL ACTIONS
+========================================================= */
+
+.department-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 6px;
+}
+
+
+.department-cancel-btn,
+.department-update-btn {
+    min-height: 46px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.department-cancel-btn {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+
+.department-update-btn {
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #ffffff;
+}
+
+
+.department-cancel-btn:hover,
+.department-update-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+.department-update-btn:hover {
+    box-shadow:
+        0 9px 22px rgba(37, 99, 235, 0.20);
+}
+
+
+/* =========================================================
+   CREATE DEPARTMENT FORM
+   Compatibility with CreateDepartmentModal
+========================================================= */
+
+.department-modal form:not(.department-modal-form) {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
+}
+
+
+.department-modal form:not(.department-modal-form) select,
+.department-modal form:not(.department-modal-form) input {
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-size: 14px;
+}
+
+
+.department-modal form:not(.department-modal-form) select:focus,
+.department-modal form:not(.department-modal-form) input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+.department-modal form:not(.department-modal-form) button {
+    height: 48px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.department-modal form:not(.department-modal-form) button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37, 99, 235, 0.20);
+}
+
+
+/* =========================================================
+   DELETE MODAL OVERLAY
+========================================================= */
+
+.department-delete-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    background:
+        rgba(15, 23, 42, 0.55);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   DELETE MODAL
+========================================================= */
+
+.department-delete-modal {
+    width: min(440px, 100%);
+
+    padding: 26px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.25);
+
+    animation:
+        departmentModalIn
+        0.22s ease;
+}
+
+
+@keyframes departmentModalIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   DELETE HEADER
+========================================================= */
+
+.department-delete-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.department-delete-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+.department-delete-close {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #f1f5f9;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+.department-delete-close:hover {
+    background: #fee2e2;
+
+    color: #dc2626;
+}
+
+
+/* =========================================================
+   DELETE CONTENT
+========================================================= */
+
+.department-delete-content h2 {
+    margin: 0 0 8px;
+
+    color: #0f172a;
+
+    font-size: 22px;
+    font-weight: 750;
+}
+
+
+.department-delete-content > p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.department-delete-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    margin: 18px 0;
+
+    padding: 15px;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 14px;
+
+    background: #f8fafc;
+}
+
+
+.department-delete-info strong {
+    color: #0f172a;
+
+    font-size: 15px;
+}
+
+
+.department-delete-info span {
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.department-delete-warning {
+    padding: 11px 13px;
+
+    border-radius: 11px;
+
+    background: #fff7ed;
+
+    color: #c2410c !important;
+
+    font-size: 13px !important;
+}
+
+
+/* =========================================================
+   DELETE ACTIONS
+========================================================= */
+
+.department-delete-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+.department-delete-cancel,
+.department-delete-confirm {
+    min-height: 46px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.department-delete-cancel {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+
+.department-delete-confirm {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    background: #dc2626;
+
+    color: #ffffff;
+}
+
+
+.department-delete-confirm:hover {
+    background: #b91c1c;
+}
+
+
+.department-delete-cancel:disabled,
+.department-delete-confirm:disabled,
+.department-modal-close:disabled,
+.department-cancel-btn:disabled,
+.department-update-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .department-stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .department-details-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .department-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        padding: 26px;
+    }
+
+
+    .department-add-btn {
+        width: 100%;
+    }
+
+
+    .department-stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .department-page {
+        gap: 20px;
+    }
+
+
+    /* Hero */
+
+    .department-header {
+        min-height: auto;
+
+        padding: 23px;
+
+        border-radius: 20px;
+    }
+
+
+    .department-header h1 {
+        font-size: 27px;
+    }
+
+
+    .department-header p {
+        font-size: 13px;
+
+        line-height: 1.55;
+    }
+
+
+    .department-add-btn {
+        height: 48px;
+
+        font-size: 14px;
+    }
+
+
+    /* Cards */
+
+    .department-stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+
+    .department-card {
+        min-height: 165px;
+
+        padding: 19px 19px 19px 23px;
+
+        border-radius: 18px;
+    }
+
+
+    .department-card > svg {
+        width: 50px;
+        height: 50px;
+
+        margin-bottom: 13px;
+    }
+
+
+    .department-card-content h3 {
+        font-size: 18px;
+    }
+
+
+    .department-card-stats {
+        gap: 7px 12px;
+    }
+
+
+    .department-card-stats span {
+        font-size: 12px;
+    }
+
+
+    /* Details */
+
+    .department-details {
+        padding: 20px;
+
+        border-radius: 19px;
+    }
+
+
+    .department-details-header {
+        align-items: flex-start;
+
+        margin-bottom: 20px;
+    }
+
+
+    .department-details-icon {
+        width: 52px;
+        height: 52px;
+    }
+
+
+    .department-details-header h2 {
+        font-size: 21px;
+    }
+
+
+    .department-details-header p {
+        font-size: 13px;
+    }
+
+
+    .department-details-grid {
+        grid-template-columns: 1fr;
+
+        gap: 11px;
+    }
+
+
+    .department-detail-card {
+        padding: 15px;
+    }
+
+
+    .department-details-actions {
+        flex-direction: column;
+
+        margin-top: 20px;
+    }
+
+
+    .department-edit-btn,
+    .department-delete-btn {
+        width: 100%;
+    }
+
+
+    /* Modal */
+
+    .department-modal-overlay {
+        align-items: flex-start;
+
+        padding: 15px;
+
+        padding-top: 30px;
+    }
+
+
+    .department-modal {
+        max-height: calc(100vh - 45px);
+
+        padding: 21px;
+
+        border-radius: 19px;
+    }
+
+
+    .department-modal-title h2 {
+        font-size: 18px;
+    }
+
+
+    .department-modal-title p {
+        font-size: 12px;
+    }
+
+
+    .department-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .department-cancel-btn,
+    .department-update-btn {
+        width: 100%;
+    }
+
+
+    /* Delete */
+
+    .department-delete-overlay {
+        padding: 15px;
+    }
+
+
+    .department-delete-modal {
+        padding: 21px;
+
+        border-radius: 19px;
+    }
+
+
+    .department-delete-actions {
+        flex-direction: column-reverse;
+    }
+
+
+    .department-delete-cancel,
+    .department-delete-confirm {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .department-header {
+        padding: 20px;
+    }
+
+
+    .department-header h1 {
+        font-size: 24px;
+    }
+
+
+    .department-card {
+        padding: 18px 18px 18px 22px;
+    }
+
+
+    .department-card-stats {
+        grid-template-columns: 1fr;
+    }
+
+
+    .department-details {
+        padding: 17px;
+    }
+
+
+    .department-modal {
+        padding: 18px;
+    }
+
+
+    .department-delete-modal {
+        padding: 18px;
+    }
+
+}
+/* =========================================================
+   CREATE DEPARTMENT MODAL
+========================================================= */
+
+.department-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgba(15, 23, 42, 0.58);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    animation: departmentOverlayIn 0.2s ease;
+}
+
+
+/* =========================================================
+   MODAL CONTAINER
+========================================================= */
+
+.department-create-modal {
+    width: 100%;
+    max-width: 560px;
+
+    max-height: calc(100vh - 48px);
+
+    background: #ffffff;
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius: 22px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-shadow:
+        0 35px 90px rgba(15, 23, 42, 0.25),
+        0 10px 30px rgba(15, 23, 42, 0.12);
+
+    animation: departmentModalIn 0.24s ease-out;
+}
+
+
+/* =========================================================
+   MODAL SCROLLBAR
+========================================================= */
+
+.department-create-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.department-create-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.department-create-modal::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 20px;
+}
+
+.department-create-modal::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.department-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px 26px;
+
+    border-bottom: 1px solid #edf1f6;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.department-modal-title {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+
+.department-modal-icon {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+}
+
+
+.department-modal-title h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 21px;
+    font-weight: 750;
+
+    line-height: 1.25;
+}
+
+
+.department-modal-title p {
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   X CLOSE BUTTON
+========================================================= */
+
+.department-modal-close {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 11px;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.department-modal-close:hover {
+    background: #f1f5f9;
+
+    border-color: #cbd5e1;
+
+    color: #0f172a;
+
+    transform: rotate(5deg);
+}
+
+
+.department-modal-close:active {
+    transform: scale(0.94);
+}
+
+
+.department-modal-close:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.department-create-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    padding: 24px 26px 26px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+.department-form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.department-form-group label {
+    color: #1e293b;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    line-height: 1.4;
+}
+
+
+.department-form-group label span {
+    margin-left: 3px;
+
+    color: #ef4444;
+}
+
+
+/* =========================================================
+   INPUT + SELECT
+========================================================= */
+
+.department-form-group input,
+.department-form-group select {
+    width: 100%;
+    height: 52px;
+
+    box-sizing: border-box;
+
+    padding: 0 15px;
+
+    border: 1px solid #dbe4ef;
+
+    border-radius: 13px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #0f172a;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.department-form-group input::placeholder {
+    color: #94a3b8;
+}
+
+
+.department-form-group select {
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+
+.department-form-group input:hover,
+.department-form-group select:hover {
+    border-color: #cbd5e1;
+}
+
+
+.department-form-group input:focus,
+.department-form-group select:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+
+.department-form-group input:disabled,
+.department-form-group select:disabled {
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    cursor: not-allowed;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================================
+   DEPARTMENT CODE PREVIEW
+========================================================= */
+
+.department-code-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 46px;
+
+    box-sizing: border-box;
+
+    padding: 10px 14px;
+
+    border: 1px solid #dbeafe;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+}
+
+
+.department-code-preview span {
+    color: #64748b;
+
+    font-size: 13px;
+
+    font-weight: 500;
+}
+
+
+.department-code-preview strong {
+    color: #2563eb;
+
+    font-size: 14px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   ACTION AREA
+========================================================= */
+
+.department-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-top: 4px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf1f6;
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+========================================================= */
+
+.department-cancel-btn {
+    height: 48px;
+
+    min-width: 105px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 20px;
+
+    border: 1px solid #dbe3ec;
+
+    border-radius: 12px;
+
+    background: #ffffff;
+
+    color: #475569;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.department-cancel-btn:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    color: #1e293b;
+}
+
+
+.department-cancel-btn:active {
+    transform: scale(0.97);
+}
+
+
+.department-cancel-btn:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   CREATE BUTTON
+========================================================= */
+
+.department-create-btn {
+    height: 48px;
+
+    min-width: 190px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #4f46e5 100%
+        );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.department-create-btn:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.3);
+}
+
+
+.department-create-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+
+.department-create-btn:disabled {
+    opacity: 0.75;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow:
+        0 6px 15px rgba(37, 99, 235, 0.15);
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+========================================================= */
+
+.department-spinner {
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        departmentSpinner 0.7s linear infinite;
+}
+
+
+/* =========================================================
+   MODAL ANIMATIONS
+========================================================= */
+
+@keyframes departmentOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes departmentModalIn {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes departmentSpinner {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .department-modal-overlay {
+        padding: 14px;
+    }
+
+
+    .department-create-modal {
+        max-height: calc(100vh - 28px);
+
+        border-radius: 18px;
+    }
+
+
+    .department-modal-header {
+        padding: 20px;
+    }
+
+
+    .department-modal-title h2 {
+        font-size: 19px;
+    }
+
+
+    .department-modal-title p {
+        font-size: 12px;
+    }
+
+
+    .department-modal-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .department-modal-close {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .department-create-form {
+        padding: 20px;
+    }
+
+
+    .department-form-group input,
+    .department-form-group select {
+        height: 50px;
+    }
+
+
+    .department-modal-actions {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 0.8fr)
+            minmax(0, 1.4fr);
+
+        gap: 10px;
+    }
+
+
+    .department-cancel-btn,
+    .department-create-btn {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .department-create-btn {
+        padding: 0 12px;
+
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .department-modal-header {
+        padding: 18px;
+    }
+
+
+    .department-create-form {
+        padding: 18px;
+    }
+
+
+    .department-modal-title {
+        gap: 10px;
+    }
+
+
+    .department-modal-title h2 {
+        font-size: 18px;
+    }
+
+
+    .department-modal-title p {
+        display: none;
+    }
+
+
+    .department-modal-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .department-modal-actions {
+        grid-template-columns: 1fr;
+    }
+
+
+    .department-cancel-btn,
+    .department-create-btn {
+        height: 46px;
+    }
+}

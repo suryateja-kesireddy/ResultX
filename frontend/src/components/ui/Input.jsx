@@ -1,4 +1,5 @@
 import React from "react";
+import { User } from "lucide-react";
 
 const Input = React.forwardRef(
   ({ label, error, id, ...props }, ref) => {
@@ -6,16 +7,31 @@ const Input = React.forwardRef(
 
     return (
       <div className="input-group">
-        <label htmlFor={inputId}>{label}</label>
+        <label htmlFor={inputId}>
+          {label}
+        </label>
 
-        <input
-          id={inputId}
-          ref={ref}
-          className={error ? "input-error" : ""}
-          aria-invalid={!!error}
-          aria-describedby={error ? `${inputId}-error` : undefined}
-          {...props}
-        />
+        <div className="input-wrapper">
+
+          <User
+            size={20}
+            className="input-icon"
+          />
+
+          <input
+            id={inputId}
+            ref={ref}
+            className={error ? "input-error" : ""}
+            aria-invalid={!!error}
+            aria-describedby={
+              error
+                ? `${inputId}-error`
+                : undefined
+            }
+            {...props}
+          />
+
+        </div>
 
         {error && (
           <p

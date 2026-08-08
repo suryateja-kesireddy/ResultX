@@ -28,6 +28,23 @@ router.get(
   authMiddleware,
   authController.me
 );
+// ==========================================
+// Admin Settings
+// ==========================================
+
+router.put(
+  "/profile",
+  authMiddleware,
+  roleMiddleware("ADMIN"),
+  authController.updateAdminProfile
+);
+
+router.put(
+  "/password",
+  authMiddleware,
+  roleMiddleware("ADMIN"),
+  authController.changeAdminPassword
+);
 
 // ==========================================
 // Test Admin Route

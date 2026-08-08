@@ -13,6 +13,22 @@ const createCourse = async (req, res, next) => {
     next(error);
   }
 };
+// ==========================================
+// Get Course Statistics
+// ==========================================
+const getCourseStats = async (req, res, next) => {
+  try {
+    const stats = await courseService.getCourseStats();
+
+    return res.status(200).json({
+      success: true,
+      message: "Course statistics fetched successfully",
+      data: stats,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const getAllCourses = async (req, res, next) => {
   try {
@@ -72,6 +88,7 @@ const deleteCourse = async (req, res, next) => {
 
 module.exports = {
   createCourse,
+  getCourseStats,
   getAllCourses,
   getCourseById,
   updateCourse,

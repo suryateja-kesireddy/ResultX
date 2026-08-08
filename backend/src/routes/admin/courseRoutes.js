@@ -13,6 +13,12 @@ router.post(
   roleMiddleware("ADMIN"),
   courseController.createCourse
 );
+router.get(
+  "/stats",
+  authMiddleware,
+  roleMiddleware("ADMIN"),
+  courseController.getCourseStats
+);
 
 router.put(
   "/:id",

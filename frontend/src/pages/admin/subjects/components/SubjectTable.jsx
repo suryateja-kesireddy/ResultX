@@ -1,113 +1,172 @@
 import { useEffect, useState } from "react";
 
-import { getAllSubjects } from "../../../../services/subject/subjectService";
+import {
+    getAllSubjects,
+} from "../../../../services/subject/subjectService";
 
 import SubjectRow from "./SubjectRow";
 
 export default function SubjectTable({
-  selectedDepartment,
-  search,
-  semester,
+    selectedDepartment,
+    search,
+    semester,
 }) {
-  const [subjects, setSubjects] = useState([]);
 
-  useEffect(() => {
-    loadSubjects();
-  }, []);
+    const [subjects, setSubjects] = useState([]);
 
-  const loadSubjects = async () => {
-    try {
-      const data = await getAllSubjects();
-      setSubjects(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+    useEffect(() => {
+        loadSubjects();
+    }, []);
 
-  const filteredSubjects = subjects.filter((subject) => {
+    const loadSubjects = async () => {
 
-    const matchDepartment =
-      selectedDepartment === "ALL" ||
-      subject.department.code === selectedDepartment;
+        try {
 
-    const matchSearch =
-      !search ||
-      subject.name
-        .toLowerCase()
-        .includes(search.toLowerCase()) ||
-      subject.code
-        .toLowerCase()
-        .includes(search.toLowerCase());
+            const data = await getAllSubjects();
 
-    const matchSemester =
-      !semester ||
-      subject.semester.number === Number(semester);
+            setSubjects(data);
+
+        } catch (error) {
+
+            console.error(
+                "Failed to load subjects:",
+                error
+            );
+
+        }
+
+    };
+
+    const filteredSubjects = subjects.filter((subject) => {
+
+        const matchDepartment =
+            selectedDepartment === "ALL" ||
+            subject.department?.code === selectedDepartment;
+
+        const matchSearch =
+            !search ||
+            subject.name
+                ?.toLowerCase()
+                .includes(search.toLowerCase()) ||
+            subject.code
+                ?.toLowerCase()
+                .includes(search.toLowerCase());
+
+        const matchSemester =
+            !semester ||
+            subject.semester?.number === Number(semester);
+
+        return (
+            matchDepartment &&
+            matchSearch &&
+            matchSemester
+        );
+
+    });
 
     return (
-      matchDepartment &&
-      matchSearch &&
-      matchSemester
-    );
-  });
 
-  return (
-    <div className="student-table-wrapper">
+        <div className="subject-table-card">
 
-      <table className="student-table">
+            <div className="subject-table-header">
 
-        <thead>
+                <div>
 
-          <tr>
+                    <h2>
+                        Subject List
+                    </h2>
 
-            <th>Code</th>
-
-            <th>Subject Name</th>
-
-            <th>Department</th>
-
-            <th>Semester</th>
-
-            <th>Credits</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {filteredSubjects.length > 0 ? (
-
-            filteredSubjects.map((subject) => (
-
-              <SubjectRow
-                key={subject.id}
-                subject={subject}
-              />
-
-            ))
-
-          ) : (
-
-            <tr>
-
-              <td colSpan="5">
-
-                <div className="empty-table">
-
-                  No Subjects Found
+                    <p>
+                        Manage all subjects of
+                        SRK Institute of Technology.
+                    </p>
 
                 </div>
 
-              </td>
+            </div>
 
-            </tr>
+            <div className="table-responsive">
 
-          )}
+                <table className="student-table">
 
-        </tbody>
+                    <thead>
 
-      </table>
+                        <tr>
 
-    </div>
-  );
+                            <th>
+                                #
+                            </th>
+
+                            <th>
+                                Code
+                            </th>
+
+                            <th>
+                                Subject Name
+                            </th>
+
+                            <th>
+                                Department
+                            </th>
+
+                            <th>
+                                Semester
+                            </th>
+
+                            <th>
+                                Credits
+                            </th>
+
+                            <th>
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {filteredSubjects.length > 0 ? (
+
+                            filteredSubjects.map(
+                                (subject, index) => (
+
+                                    <SubjectRow
+                                        key={subject.id}
+                                        index={index}
+                                        subject={subject}
+                                        onRefresh={loadSubjects}
+                                    />
+
+                                )
+                            )
+
+                        ) : (
+
+                            <tr>
+
+                                <td colSpan="7">
+
+                                    <div className="empty-table">
+
+                                        No Subjects Found
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        )}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    );
 }

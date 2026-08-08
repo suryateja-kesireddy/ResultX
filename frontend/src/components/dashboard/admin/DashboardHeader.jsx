@@ -25,18 +25,7 @@ const DashboardHeader = () => {
 
       </div>
 
-      <div className="rx-dashboard-right">
-
-        <button
-          className="rx-primary-btn"
-          onClick={() => navigate("/ui/admin/accounts/create")}
-        >
-          <Plus size={18} />
-          <span>Create Account</span>
-        </button>
-
-      </div>
-
+      
     </div>
   );
 };

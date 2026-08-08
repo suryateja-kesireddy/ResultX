@@ -5,16 +5,18 @@ function Contact() {
 
         <div className="contact-hero">
           <span className="contact-badge">
-            📞 Contact Us
+            📞 Get in Touch
           </span>
 
           <h1>
-            We'd Love to <span>Hear From You</span>
+            Contact SRK Institute of Technology
           </h1>
 
           <p>
-            Have questions, feedback, or need technical assistance?
-            Reach out to the ResultX team. We're here to help you.
+            For assistance regarding examinations, academic records,
+            ResultX portal access, or other institutional services,
+            please contact the appropriate department. We are committed
+            to providing timely support to students, faculty, and staff.
           </p>
         </div>
 

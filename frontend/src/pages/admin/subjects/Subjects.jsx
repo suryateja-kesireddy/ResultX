@@ -3,39 +3,57 @@ import { useState } from "react";
 import SubjectStats from "./components/SubjectStats";
 import SubjectFilters from "./components/SubjectFilters";
 import SubjectTable from "./components/SubjectTable";
+import CreateSubjectModal from "./components/CreateSubjectModal";
 
 import "../../../styles/dashboard/admin/subject.css";
 
 export default function Subjects() {
+    const [selectedDepartment, setSelectedDepartment] =
+        useState("ALL");
 
-  const [selectedDepartment, setSelectedDepartment] =
-    useState("ALL");
+    const [search, setSearch] = useState("");
+    const [semester, setSemester] = useState("");
 
-  const [search, setSearch] = useState("");
+    return (
+        <div className="subject-page">
 
-  const [semester, setSemester] = useState("");
+            {/* Subject Header */}
+            <div className="subject-page-header">
 
-  return (
-    <div className="admin-page subject-page">
+                <div className="subject-page-header-content">
+                    <h1>Subject Management</h1>
 
-      <SubjectStats
-        selectedDepartment={selectedDepartment}
-        onDepartmentChange={setSelectedDepartment}
-      />
+                    <p>
+                        Manage subjects, credits, departments
+                        and semester-wise academic information
+                        of SRK Institute of Technology.
+                    </p>
+                </div>
 
-      <SubjectFilters
-        search={search}
-        setSearch={setSearch}
-        semester={semester}
-        setSemester={setSemester}
-      />
+                <button className="subject-add-btn">
+                    + Add Subject
+                </button>
 
-      <SubjectTable
-        selectedDepartment={selectedDepartment}
-        search={search}
-        semester={semester}
-      />
+            </div>
 
-    </div>
-  );
+            <SubjectStats
+                selectedDepartment={selectedDepartment}
+                onDepartmentChange={setSelectedDepartment}
+            />
+
+            <SubjectFilters
+                search={search}
+                setSearch={setSearch}
+                semester={semester}
+                setSemester={setSemester}
+            />
+
+            <SubjectTable
+                selectedDepartment={selectedDepartment}
+                search={search}
+                semester={semester}
+            />
+
+        </div>
+    );
 }

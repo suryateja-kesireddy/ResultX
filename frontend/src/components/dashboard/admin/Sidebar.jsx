@@ -35,6 +35,11 @@ const menuItems = [
     path: "/admin/hods",
   },
   {
+  title: "Faculty",
+  icon: Users,
+  path: "/admin/faculty",
+},
+  {
     title: "Subjects",
     icon: BookOpen,
     path: "/admin/subjects",

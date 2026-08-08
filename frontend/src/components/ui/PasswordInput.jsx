@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Lock } from "lucide-react";
 
 const PasswordInput = React.forwardRef(
   ({ label, error, id, ...props }, ref) => {
@@ -8,27 +9,44 @@ const PasswordInput = React.forwardRef(
 
     return (
       <div className="input-group">
-        <label htmlFor={inputId}>{label}</label>
+        <label htmlFor={inputId}>
+          {label}
+        </label>
 
         <div className="password-wrapper">
+
+          <Lock
+            size={20}
+            className="input-icon"
+          />
+
           <input
             id={inputId}
             ref={ref}
             type={showPassword ? "text" : "password"}
             className={error ? "input-error" : ""}
             aria-invalid={!!error}
-            aria-describedby={error ? `${inputId}-error` : undefined}
+            aria-describedby={
+              error ? `${inputId}-error` : undefined
+            }
             {...props}
           />
 
           <button
             type="button"
             className="toggle-password"
-            onClick={() => setShowPassword((prev) => !prev)}
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            onClick={() =>
+              setShowPassword((prev) => !prev)
+            }
+            aria-label={
+              showPassword
+                ? "Hide password"
+                : "Show password"
+            }
           >
             {showPassword ? "Hide" : "Show"}
           </button>
+
         </div>
 
         {error && (

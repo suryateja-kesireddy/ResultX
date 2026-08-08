@@ -1,28 +1,141 @@
+import { useState } from "react";
+import {
+  Pencil,
+  Trash2,
+} from "lucide-react";
+
 import StudentAvatar from "./StudentAvatar";
+import EditStudentModal from "./EditStudentModal";
+import DeleteStudentModal from "./DeleteStudentModal";
 
 export default function StudentRow({
   student,
+  index,
+  onRefresh,
 }) {
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
   return (
-    <tr>
+    <>
+      <tr>
 
-      <td>
-        <StudentAvatar
-          name={student.name}
-          email={student.email}
-        />
-      </td>
+        {/* ==================================
+            #
+        ================================== */}
 
-      <td>{student.hallTicket}</td>
+        <td>
+          {index + 1}
+        </td>
 
-      <td>{student.department}</td>
+        {/* ==================================
+            STUDENT
+        ================================== */}
 
-      <td>Semester {student.semester}</td>
+        <td>
+          <StudentAvatar
+            name={student.name}
+            email={student.email}
+          />
+        </td>
 
-      <td>{student.phone || "-"}</td>
+        {/* ==================================
+            HALL TICKET
+        ================================== */}
 
-      <td>{student.email}</td>
+        <td>
+          {student.hallTicket || "-"}
+        </td>
 
-    </tr>
+        {/* ==================================
+            DEPARTMENT
+        ================================== */}
+
+        <td>
+          <span className="student-department-badge">
+            {
+              student.department?.code ||
+              "-"}
+          </span>
+        </td>
+
+        {/* ==================================
+            SEMESTER
+        ================================== */}
+
+        <td>
+          <span className="student-semester-badge">
+            {student.semester?.number || "-"}
+          </span>
+        </td>
+
+        {/* ==================================
+            PHONE
+        ================================== */}
+
+        <td>
+          {student.phone || "-"}
+        </td>
+
+        {/* ==================================
+            EMAIL
+        ================================== */}
+
+        <td>
+          {student.email || "-"}
+        </td>
+
+        {/* ==================================
+            ACTIONS
+        ================================== */}
+
+        <td>
+          <div className="action-buttons">
+
+            <button
+              type="button"
+              className="edit-btn"
+              onClick={() => setOpenEdit(true)}
+              title="Edit Student"
+            >
+              <Pencil size={18} />
+            </button>
+
+            <button
+              type="button"
+              className="delete-btn"
+              onClick={() => setOpenDelete(true)}
+              title="Delete Student"
+            >
+              <Trash2 size={18} />
+            </button>
+
+          </div>
+        </td>
+
+      </tr>
+
+      {/* ==================================
+          EDIT MODAL
+      ================================== */}
+
+      <EditStudentModal
+        open={openEdit}
+        student={student}
+        onClose={() => setOpenEdit(false)}
+        onSuccess={onRefresh}
+      />
+
+      {/* ==================================
+          DELETE MODAL
+      ================================== */}
+
+      <DeleteStudentModal
+        open={openDelete}
+        student={student}
+        onClose={() => setOpenDelete(false)}
+        onSuccess={onRefresh}
+      />
+    </>
   );
 }

@@ -13,6 +13,11 @@ router.post(
   roleMiddleware("ADMIN"),
   departmentController.createDepartment
 );
+router.get(
+  "/stats",
+  authMiddleware,
+  departmentController.getDepartmentStats
+);
 
 router.put(
   "/:id",

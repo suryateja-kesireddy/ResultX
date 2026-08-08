@@ -2,31 +2,49 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <section className="hero">
-      <div className="container hero-content">
+    <div className="home-page">
 
-        <span className="hero-badge">
-          🚀 College Result Management System
-        </span>
+      <section className="hero">
 
-        <h1>
-          Welcome to <span>ResultX</span>
-        </h1>
+        {/* Transparent Overlay */}
 
-        <p>
-          A secure, modern, and responsive platform for students,
-          HODs, Exam Cell staff, and Administrators to manage
-          academic results with ease.
-        </p>
+        <div className="hero-overlay">
 
-        <div className="hero-buttons">
-          <Link to="/login" className="hero-btn">
-            🔐 Login to ResultX →
-          </Link>
+          <div className="hero-container">
+
+            <span className="hero-badge">
+              SRK Institute of Technology • Official Portal
+            </span>
+
+            <h1>
+              Welcome to <span>ResultX</span>
+            </h1>
+
+            <p>
+              A unified platform for academic excellence. ResultX enables students
+              to access results instantly while providing faculty, Heads of
+              Departments, and the Examination Cell with powerful tools to manage
+              academic records efficiently, securely, and effortlessly.
+            </p>
+
+            <div className="hero-buttons">
+
+              <Link
+                to="/login"
+                className="hero-btn"
+              >
+                🔐 Login to ResultX →
+              </Link>
+
+            </div>
+
+          </div>
+
         </div>
 
-      </div>
-    </section>
+      </section>
+
+    </div>
   );
 }
 

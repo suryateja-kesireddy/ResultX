@@ -399,3 +399,116 @@
     }
 
 }
+/* ==========================================================
+   MOBILE IMPROVEMENTS
+========================================================== */
+
+@media (max-width:768px){
+
+    .premium-topbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        padding:16px;
+
+        gap:18px;
+
+    }
+
+    .rx-topbar-left{
+
+        min-width:100%;
+
+    }
+
+    .rx-page-title{
+
+        font-size:24px;
+
+    }
+
+    .rx-topbar-right{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:14px;
+
+    }
+
+    .rx-search{
+
+        width:100%;
+
+    }
+
+    .rx-topbar-actions{
+
+        width:100%;
+
+        justify-content:center;
+
+        border-right:none;
+
+        padding-right:0;
+
+        border-top:1px solid #E5E7EB;
+
+        padding-top:12px;
+
+    }
+
+    .rx-profile{
+
+        width:100%;
+
+        justify-content:space-between;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .premium-topbar{
+
+        padding:14px;
+
+    }
+
+    .rx-page-title{
+
+        font-size:21px;
+
+    }
+
+    .rx-search{
+
+        height:42px;
+
+    }
+
+    .rx-profile-info{
+
+        display:none;
+
+    }
+
+    .rx-action-btn{
+
+        width:40px;
+
+        height:40px;
+
+    }
+
+}

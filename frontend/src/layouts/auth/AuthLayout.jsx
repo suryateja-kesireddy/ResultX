@@ -1,16 +1,69 @@
-function AuthLayout({ title, subtitle, children }) {
+import { Link } from "react-router-dom";
+
+
+function AuthLayout({
+  title,
+  subtitle,
+  backgroundClass,
+  portalTitle,
+  welcomeText,
+  children,
+}) {
   return (
-    <div className="auth-page">
-      <div className="auth-card">
-        <h1 className="auth-logo">ResultX</h1>
+    <section className={`auth-page ${backgroundClass}`}>
 
-        <h2>{title}</h2>
+      <div className="auth-overlay"></div>
 
-        <p>{subtitle}</p>
+      <div className="auth-wrapper">
 
-        {children}
+        <div className="auth-left">
+
+          <div className="portal-badge">
+            {portalTitle}
+          </div>
+
+          <h1 className="welcome-title">
+            Welcome Back
+          </h1>
+
+          <p className="welcome-text">
+            {welcomeText}
+          </p>
+
+        </div>
+
+        <div className="login-area">
+
+          <div className="login-content">
+
+            <h1 className="auth-logo">
+              ResultX
+            </h1>
+
+            <h2 className="auth-title">
+              {title}
+            </h2>
+
+            <p className="auth-subtitle">
+              {subtitle}
+            </p>
+
+            {children}
+
+            <Link
+              to="/login"
+              className="back-home"
+            >
+              ← Back to Portal
+            </Link>
+
+          </div>
+
+        </div>
+
       </div>
-    </div>
+
+    </section>
   );
 }
 
