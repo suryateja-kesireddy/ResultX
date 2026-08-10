@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { defineConfig } from "prisma/config";
 
 dotenv.config({
-    path: ".env.aiven",
+    path: process.env.DOTENV_FILE || ".env",
 });
 
 export default defineConfig({
@@ -13,6 +13,6 @@ export default defineConfig({
     },
 
     datasource: {
-        url: process.env["DATABASE_URL"]!,
+        url: process.env.DATABASE_URL!,
     },
 });
