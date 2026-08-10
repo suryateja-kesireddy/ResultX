@@ -1,36 +1,57 @@
-function DashboardHeader({
-  name,
-  department,
-  semester,
-  section,
-}) {
-  const today = new Date();
+function DashboardHeader({ name }) {
+    const today = new Date();
 
-  const formattedDate = today.toLocaleDateString("en-IN", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+    const formattedDate = today.toLocaleDateString("en-IN", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
 
-  return (
-    <div className="dashboard-header">
-      <div>
-        <h1>
-   <strong>Welcome Back,{name}</strong>
-</h1>
+    const hour = today.getHours();
 
-        <p>
-           Semester {semester || "--"} • Section{" "}
-          {section || "--"}
-        </p>
-      </div>
+    let greeting = "Good Morning";
 
-      <div className="dashboard-date">
-        {formattedDate}
-      </div>
-    </div>
-  );
+    if (hour >= 12 && hour < 17) {
+        greeting = "Good Afternoon";
+    } else if (hour >= 17) {
+        greeting = "Good Evening";
+    }
+
+    return (
+        <div className="dashboard-header">
+
+            {/* ==========================================
+                LEFT
+            ========================================== */}
+
+            <div className="dashboard-header-content">
+
+                <h1>
+                    {greeting}, {name || "Student"}{" "}
+                    
+                </h1>
+
+                <p className="motivation-quote">
+                    “Believe in yourself, keep learning,
+                    and make today better than yesterday.”
+                </p>
+
+            </div>
+
+
+            {/* ==========================================
+                RIGHT - DATE
+            ========================================== */}
+
+            <div className="dashboard-date">
+
+                {formattedDate}
+
+            </div>
+
+        </div>
+    );
 }
 
 export default DashboardHeader;

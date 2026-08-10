@@ -9,10 +9,6 @@ function ExamCellLogin() {
   fieldName="employeeId"
   fieldPlaceholder="Enter Employee ID"
   role="EXAM_CELL"
-
-  backgroundClass="exam-bg"
-  portalTitle="🏢 Exam Cell"
-  welcomeText="Publish results, manage examinations and maintain academic records efficiently."
 />
   );
 }

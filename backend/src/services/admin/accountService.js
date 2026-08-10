@@ -461,174 +461,330 @@ const getAccountStats = async () => {
 // Get All Accounts
 // ==========================================
 const getAccounts = async (filters = {}) => {
-  const {
-    search,
-    role,
-    department,
-    status,
-  } = filters;
 
-  const where = {
-  AND: [
-    {
-      deletedAt: null,
-    },
-  ],
-};
+    const {
+        search,
+        role,
+        department,
+        status,
+    } = filters;
 
-  // ------------------------------------------
-  // Search
-  // ------------------------------------------
-  if (search) {
-    where.AND.push({
-      OR: [
-        {
-          name: {
-            contains: search,
-          },
-        },
-        {
-          email: {
-            contains: search,
-          },
-        },
-      ],
-    });
-  }
 
-  // ------------------------------------------
-  // Role
-  // ------------------------------------------
-  if (role) {
-    where.AND.push({
-      role,
-    });
-  }
+    // ==========================================================
+    // WHERE
+    // ==========================================================
 
-  // ------------------------------------------
-  // Status
-  // ------------------------------------------
-  if (status === "ACTIVE") {
-    where.AND.push({
-      isActive: true,
-    });
-  }
-
-  if (status === "INACTIVE") {
-    where.AND.push({
-      isActive: false,
-    });
-  }
-
-  // ------------------------------------------
-  // Department
-  // ------------------------------------------
-  if (department) {
-  where.AND.push({
-    OR: [
-      {
-        student: {
-          department: {
-            code: department,
-          },
-        },
-      },
-      {
-        hod: {
-          department: {
-            code: department,
-          },
-        },
-      },
-      {
-        faculty: {
-          department: {
-            code: department,
-          },
-        },
-      },
-    ],
-  });
-}
-
-  // Remove empty AND
-  if (where.AND.length === 0) {
-    delete where.AND;
-  }
-
-  // ------------------------------------------
-  // Fetch Users
-  // ------------------------------------------
-  const users = await prisma.user.findMany({
-    where,
-
-    orderBy: {
-      createdAt: "desc",
-    },
-
-    include: {
-      student: {
-        include: {
-          department: true,
-        },
-      },
-
-      hod: {
-        include: {
-          department: true,
-        },
-      },
-      faculty: {
-    include: {
-      department: true,
-    },
-  },
-
-      examCell: true,
-    },
-  });
-
-  // ------------------------------------------
-  // Format Response
-  // ------------------------------------------
-  return users.map((user) => {
-    let phone = "";
-    let department = "-";
-
-    if (user.role === Role.STUDENT && user.student) {
-      phone = user.student.phone;
-      department = user.student.department?.name || "-";
-    }
-
-    if (user.role === Role.HOD && user.hod) {
-      phone = user.hod.phone;
-      department = user.hod.department?.name || "-";
-    }
-
-    if (user.role === Role.EXAM_CELL && user.examCell) {
-      phone = user.examCell.phone;
-      department = "Exam Cell";
-    }
-    if (user.role === Role.FACULTY && user.faculty) {
-  phone = user.faculty.phone || "";
-  department = user.faculty.department?.name || "-";
-}
-
-    if (user.role === Role.ADMIN) {
-      department = "Administration";
-    }
-
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      phone,
-      department,
-      role: user.role,
-      status: user.isActive ? "Active" : "Inactive",
-      createdAt: user.createdAt,
+    const where = {
+        AND: [
+            {
+                deletedAt: null,
+            },
+        ],
     };
-  });
+
+
+    // ==========================================================
+    // SEARCH
+    // ==========================================================
+
+    if (search) {
+
+        where.AND.push({
+            OR: [
+                {
+                    name: {
+                        contains: search,
+                    },
+                },
+                {
+                    email: {
+                        contains: search,
+                    },
+                },
+            ],
+        });
+
+    }
+
+
+    // ==========================================================
+    // ROLE
+    // ==========================================================
+
+    if (role) {
+
+        where.AND.push({
+            role,
+        });
+
+    }
+
+
+    // ==========================================================
+    // STATUS
+    // ==========================================================
+
+    if (status === "ACTIVE") {
+
+        where.AND.push({
+            isActive: true,
+        });
+
+    }
+
+
+    if (status === "INACTIVE") {
+
+        where.AND.push({
+            isActive: false,
+        });
+
+    }
+
+
+    // ==========================================================
+    // DEPARTMENT FILTER
+    // ==========================================================
+
+    if (department) {
+
+        where.AND.push({
+            OR: [
+
+                {
+                    student: {
+                        department: {
+                            code: department,
+                        },
+                    },
+                },
+
+                {
+                    hod: {
+                        department: {
+                            code: department,
+                        },
+                    },
+                },
+
+                {
+                    faculty: {
+                        department: {
+                            code: department,
+                        },
+                    },
+                },
+
+            ],
+        });
+
+    }
+
+
+    // ==========================================================
+    // FETCH USERS
+    // ==========================================================
+
+    const users = await prisma.user.findMany({
+
+        where,
+
+        orderBy: {
+            createdAt: "desc",
+        },
+
+        include: {
+
+            student: {
+                include: {
+                    department: true,
+                },
+            },
+
+            hod: {
+                include: {
+                    department: true,
+                },
+            },
+
+            faculty: {
+                include: {
+                    department: true,
+                },
+            },
+
+            examCell: true,
+
+        },
+
+    });
+
+
+    // ==========================================================
+    // FORMAT RESPONSE
+    // ==========================================================
+
+    return users.map((user) => {
+
+        let phone = "";
+
+        let department = {
+            name: "-",
+            code: "-",
+        };
+
+
+        // ======================================================
+        // STUDENT
+        // ======================================================
+
+        if (
+            user.role === Role.STUDENT &&
+            user.student
+        ) {
+
+            phone =
+                user.student.phone || "";
+
+            department = {
+
+                name:
+                    user.student.department?.name ||
+                    "-",
+
+                code:
+                    user.student.department?.code ||
+                    "-",
+
+            };
+
+        }
+
+
+        // ======================================================
+        // HOD
+        // ======================================================
+
+        if (
+            user.role === Role.HOD &&
+            user.hod
+        ) {
+
+            phone =
+                user.hod.phone || "";
+
+            department = {
+
+                name:
+                    user.hod.department?.name ||
+                    "-",
+
+                code:
+                    user.hod.department?.code ||
+                    "-",
+
+            };
+
+        }
+
+
+        // ======================================================
+        // FACULTY
+        // ======================================================
+
+        if (
+            user.role === Role.FACULTY &&
+            user.faculty
+        ) {
+
+            phone =
+                user.faculty.phone || "";
+
+            department = {
+
+                name:
+                    user.faculty.department?.name ||
+                    "-",
+
+                code:
+                    user.faculty.department?.code ||
+                    "-",
+
+            };
+
+        }
+
+
+        // ======================================================
+        // EXAM CELL
+        // ======================================================
+
+        if (
+            user.role === Role.EXAM_CELL &&
+            user.examCell
+        ) {
+
+            phone =
+                user.examCell.phone || "";
+
+            department = {
+
+                name: "Exam Cell",
+
+                code: "EXAM",
+
+            };
+
+        }
+
+
+        // ======================================================
+        // ADMIN
+        // ======================================================
+
+        if (user.role === Role.ADMIN) {
+
+            department = {
+
+                name: "Administration",
+
+                code: "ADMIN",
+
+            };
+
+        }
+
+
+        // ======================================================
+        // RETURN
+        // ======================================================
+
+        return {
+
+            id: user.id,
+
+            name: user.name,
+
+            email: user.email,
+
+            phone,
+
+            department,
+
+            role: user.role,
+
+            status:
+                user.isActive
+                    ? "Active"
+                    : "Inactive",
+
+            createdAt:
+                user.createdAt,
+
+        };
+
+    });
+
 };
 // ==========================================
 // Get Account By ID

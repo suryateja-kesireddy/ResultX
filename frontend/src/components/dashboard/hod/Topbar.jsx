@@ -23,13 +23,7 @@ function HodTopbar() {
 
       <div className="hod-topbar-right">
 
-        <div className="hod-user">
-
-          <h4>{user?.name || "HOD"}</h4>
-
-          <p>{user?.role}</p>
-
-        </div>
+        
 
         <button
           className="hod-logout-btn"

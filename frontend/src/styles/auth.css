@@ -1,708 +1,898 @@
 /* ==========================================================
-   RESULTX AUTH
-========================================================== */
+   RESULTX - SIMPLE AUTH PAGE
+   ========================================================== */
 
-.auth-page{
-    position:relative;
+.auth-page {
+    min-height: 100vh;
+    width: 100%;
 
-    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    height:100vh;
-    min-height:100vh;
+    background: wheat;
 
-    overflow:hidden;
-
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
+    padding: 30px 20px;
 }
+
 
 /* ==========================================================
-   BACKGROUNDS
-========================================================== */
+   MAIN CONTENT
+   ========================================================== */
 
-.student-bg{
-    background-image:url("../assets/images/student.png");
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
 }
 
-.hod-bg{
-    background-image:url("../assets/images/hod.png");
-}
-
-.exam-bg{
-    background-image:url("../assets/images/examcell.png");
-}
-
-.admin-bg{
-    background-image:url("../assets/images/admin.png");
-}
 
 /* ==========================================================
-   OVERLAY
-========================================================== */
+   RESULTX LOGO
+   ========================================================== */
 
-.auth-overlay{
+.auth-logo {
+    margin: 0 0 20px;
 
-    position:absolute;
+    color: #7567d9;
 
-    inset:0;
+    font-size: 30px;
+    font-weight: 700;
 
-    background:
-    linear-gradient(
-        90deg,
-        rgba(5,15,35,.72) 0%,
-        rgba(10,30,90,.45) 45%,
-        rgba(10,30,90,.18) 100%
-    );
-
+    line-height: 1;
 }
+
 
 /* ==========================================================
-   MAIN WRAPPER
-========================================================== */
+   LOGIN TITLE
+   ========================================================== */
 
-.auth-wrapper{
+.auth-title {
+    margin: 0 0 10px;
 
-    position:relative;
+    color: #7567d9;
 
-    z-index:2;
+    font-size: 22px;
+    font-weight: 600;
 
-    height:100vh;
-
-    display:grid;
-
-    grid-template-columns:58% 42%;
+    line-height: 1.2;
 }
 
-/* ==========================================================
-   LEFT
-========================================================== */
-
-.auth-left{
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:flex-start;
-
-    padding-top:170px;
-
-    padding-left:70px;
-
-    overflow:hidden;
-}
-
-.portal-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    width:max-content;
-
-    padding:12px 24px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.12);
-
-    backdrop-filter:blur(18px);
-
-    border:1px solid rgba(255,255,255,.18);
-
-    font-weight:600;
-
-    margin-bottom:35px;
-
-}
-
-.welcome-title{
-
-    font-size:clamp(4rem,6vw,6.3rem);
-
-    font-weight:900;
-
-    line-height:.92;
-
-    letter-spacing:-3px;
-
-    margin-bottom:30px;
-
-    color:#ffffff;
-
-    text-shadow:
-        0 8px 25px rgba(0,0,0,.30);
-
-
-}
-
-.welcome-text{
-
-    max-width:520px;
-
-    font-size:1.18rem;
-
-    line-height:1.9;
-
-    color:white;
-
-}
-/* ==========================================================
-   LOGIN AREA
-========================================================== */
-
-.login-area{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:start;
-
-    padding: auto;
-
-    
-
-    
-
-}
-
-/* ==========================================================
-   LOGIN CONTENT
-========================================================== */
-
-.login-content{
-
-    width:100%;
-
-    max-width:420px;
-
-}
-
-/* ==========================================================
-   LOGO
-========================================================== */
-
-.auth-logo{
-
-    text-align:center;
-
-    color:#fff;
-
-    font-size:3rem;
-
-    font-weight:900;
-
-    letter-spacing:-2px;
-
-    margin-bottom:10px;
-
-}
-
-/* ==========================================================
-   TITLE
-========================================================== */
-
-.auth-title{
-
-    text-align:center;
-
-    color:#fff;
-
-    font-size:2.5rem;
-
-    font-weight:800;
-
-    margin-bottom:8px;
-
-}
 
 /* ==========================================================
    SUBTITLE
-========================================================== */
+   ========================================================== */
 
-.auth-subtitle{
+.auth-subtitle {
+    margin: 0 0 32px;
 
-    text-align:center;
+    color: #8f8f9f;
 
-    color:rgba(255,255,255,.85);
+    font-size: 14px;
 
-    margin-bottom:28px;
+    line-height: 1.6;
 
-    line-height:1.8;
-
-    font-size: 1rem;
-
+    max-width: 360px;
 }
+
+
 /* ==========================================================
-   LOGIN FORM
-========================================================== */
+   FORM
+   ========================================================== */
 
-.auth-form{
-    display:flex;
-    flex-direction:column;
-    gap:16px;
+.auth-form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
 }
+
 
 /* ==========================================================
    INPUT GROUP
-========================================================== */
+   ========================================================== */
 
-.auth-page .input-group{
-    display:flex;
-    flex-direction:column;
-}
+.input-group {
+    width: 100%;
 
-.auth-page .input-group label{
-    color:#ffffff;
-    font-size:15px;
-    font-weight:600;
-    margin-bottom:8px;
-}
-.password-wrapper{
-    position:relative;
-    width:100%;
+    text-align: left;
 }
 
-.password-wrapper input{
-    width:100%;
-    padding-left:52px;
-    padding-right:90px;
+
+/* ==========================================================
+   LABEL
+   ========================================================== */
+
+.input-group > label {
+    display: none;
 }
 
-.password-wrapper .input-icon{
-    position:absolute;
-    left:18px;
-    top:50%;
-    transform:translateY(-50%);
-    color:rgba(255,255,255,.65);
-    pointer-events:none;
-    transition:.3s;
-}
 
-.password-wrapper:focus-within .input-icon{
-    color:#60A5FA;
-}
+/* ==========================================================
+   INPUT WRAPPER
+   ========================================================== */
+
 .input-wrapper,
-.password-wrapper{
-    position:relative;
-    width:100%;
+.password-wrapper {
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    background: #eeebff;
+
+    border: 1px solid transparent;
+
+    border-radius: 24px;
+
+    transition: all 0.2s ease;
 }
 
-.input-icon{
-    position:absolute;
-    left:20px;
-    top:50%;
-    transform:translateY(-50%);
 
-    width:20px;
-    height:20px;
+.input-wrapper:focus-within,
+.password-wrapper:focus-within {
+    border-color: #7567d9;
 
-    color:rgba(255,255,255,.70);
-
-    pointer-events:none;
-
-    transition:all .3s ease;
+    box-shadow: 0 0 0 3px rgba(117, 103, 217, 0.08);
 }
+
+
+/* ==========================================================
+   ICON
+   ========================================================== */
+
+.input-icon {
+    flex-shrink: 0;
+
+    margin-left: 18px;
+
+    color: #7567d9;
+}
+
+
+/* ==========================================================
+   INPUT
+   ========================================================== */
 
 .input-wrapper input,
-.password-wrapper input{
-    width:100%;
-    padding-left:58px;
-    padding-right:90px;
+.password-wrapper input {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #333333;
+
+    font-size: 14px;
+
+    padding: 0 16px 0 12px;
 }
 
-.input-wrapper:focus-within .input-icon,
-.password-wrapper:focus-within .input-icon{
-    color:#60A5FA;
-    transform:translateY(-50%) scale(1.05);
+
+.input-wrapper input::placeholder,
+.password-wrapper input::placeholder {
+    color: #aaa8b8;
 }
 
-/* ==========================================
+
+/* ==========================================================
+   PASSWORD SHOW
+   ========================================================== */
+
+.toggle-password {
+    flex-shrink: 0;
+
+    margin-right: 18px;
+
+    color: #7567d9;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   ERROR
+   ========================================================== */
+
+.error-text {
+    margin: 5px 0 0 14px;
+
+    color: #ef4444;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   CHECKBOX + FORGOT PASSWORD
+   ========================================================== */
+
+.checkbox-row {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 2px;
+}
+
+
+/* ==========================================================
    CHECKBOX
-========================================== */
+   ========================================================== */
 
-.checkbox-wrapper{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
-    user-select:none;
+.checkbox-container {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    color: #9999a5;
+
+    font-size: 12px;
 }
 
-.checkbox-wrapper input{
-    width:18px;
-    height:18px;
-    accent-color:#2563EB;
-    cursor:pointer;
-    flex-shrink:0;
+
+.checkbox-container input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 17px;
+    height: 17px;
+
+    margin: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ddd9f7;
+
+    position: relative;
+
+    cursor: pointer;
 }
 
-.checkbox-label{
-    color:#ffffff;
-    font-size:15px;
-    font-weight:500;
+
+.checkbox-container input[type="checkbox"]:checked {
+    background: #7567d9;
 }
+
+
+.checkbox-container input[type="checkbox"]:checked::after {
+    content: "✓";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.checkbox-label {
+    color: #9999a5;
+
+    white-space: nowrap;
+}
+
+
 /* ==========================================================
    FORGOT PASSWORD
-========================================================== */
+   ========================================================== */
 
-.forgot-password{
+.forgot-password {
+    color: #9999a5;
 
-    color:#BFDBFE;
+    font-size: 12px;
 
-    text-decoration:none;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    transition:.3s;
-
+    font-weight: 500;
 }
 
-.forgot-password:hover{
-    color:#ffffff;
+
+.forgot-password:hover {
+    color: #7567d9;
 }
+
 
 /* ==========================================================
-   BUTTON
-========================================================== */
+   LOGIN BUTTON
+   ========================================================== */
 
-.auth-btn{
+.auth-btn {
+    align-self: center;
 
-    width:100%;
+    width: 115px;
+    height: 42px;
 
-    height:58px;
+    margin-top: 10px;
 
-    margin-top:4px;
+    border-radius: 22px;
 
-    border:none;
+    background: #7567d9;
 
-    border-radius:14px;
+    color: #ffffff;
 
-    cursor:pointer;
+    font-size: 13px;
 
-    color:#ffffff;
+    font-weight: 600;
 
-    font-size:16px;
-
-    font-weight:700;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563EB,
-        #3B82F6
-    );
-
-    transition:.35s;
-
+    transition: all 0.2s ease;
 }
 
-.auth-btn:hover{
 
-    transform:translateY(-2px);
+.auth-btn:hover {
+    background: #6658cb;
 
-    box-shadow:
-        0 18px 40px rgba(37,99,235,.35);
-
+    transform: translateY(-1px);
 }
+
+
+.auth-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
 
 /* ==========================================================
-   VALIDATION
-========================================================== */
+   BACK HOME
+   ========================================================== */
 
-.input-error{
+.back-home {
+    margin-top: 28px;
 
-    border-color:#EF4444 !important;
+    color: #9999a5;
 
+    font-size: 13px;
+
+    font-weight: 500;
 }
 
-.error-text{
 
-    margin-top:6px;
-
-    color:#FCA5A5;
-
-    font-size:13px;
-
-    font-weight:500;
-
+.back-home:hover {
+    color: #7567d9;
 }
+
 
 /* ==========================================================
-   BACK LINK
-========================================================== */
+   REMOVE OLD AUTH ELEMENTS
+   ========================================================== */
 
-.back-home{
-
-    display:flex;
-
-    justify-content:center;
-
-    margin-top:16px;
-
-    color:#ffffff;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.3s;
-
+.auth-overlay,
+.auth-left,
+.portal-badge,
+.welcome-title,
+.welcome-text,
+.login-area,
+.login-content {
+    display: none !important;
 }
 
-.back-home:hover{
-
-    color:#BFDBFE;
-
-}
-/* ==========================================================
-   LARGE DESKTOP
-========================================================== */
-
-@media (min-width:1600px){
-
-    .auth-wrapper{
-        grid-template-columns:65% 35%;
-    }
-
-    .auth-left{
-        padding-left:120px;
-    }
-
-    .welcome-title{
-        font-size:6.5rem;
-    }
-
-    .welcome-text{
-        max-width:620px;
-        font-size:1.3rem;
-    }
-
-    .login-area{
-        padding:100px;
-    }
-
-}
-
-/* ==========================================================
-   LAPTOP
-========================================================== */
-
-@media (max-width:1200px){
-
-    .auth-wrapper{
-        grid-template-columns:58% 42%;
-    }
-
-    .auth-left{
-        padding-left:60px;
-        padding-right:40px;
-    }
-
-    .welcome-title{
-        font-size:4.5rem;
-    }
-
-    .welcome-text{
-        font-size:1.05rem;
-    }
-
-    .login-area{
-        padding:50px;
-    }
-
-}
-
-/* ==========================================================
-   TABLET
-========================================================== */
-
-@media (max-width:992px){
-
-    .auth-wrapper{
-        grid-template-columns:1fr;
-    }
-
-    .auth-left{
-        display:none;
-    }
-
-    .login-area{
-
-        min-height:100vh;
-
-        padding:50px 30px;
-
-        justify-content:center;
-
-        align-items:center;
-
-    }
-
-    .login-content{
-        max-width:480px;
-    }
-
-}
 
 /* ==========================================================
    MOBILE
-========================================================== */
+   ========================================================== */
 
-@media (max-width:768px){
+@media (max-width: 480px) {
 
-    .login-area{
-        padding:35px 20px;
+    .auth-page {
+        padding: 25px 20px;
     }
 
-    .auth-logo{
-        font-size:2.5rem;
+    .auth-container {
+        max-width: 360px;
     }
 
-    .auth-title{
-        font-size:2rem;
+    .auth-logo {
+        font-size: 28px;
     }
 
-    .auth-subtitle{
-        font-size:.95rem;
-        margin-bottom:35px;
+    .auth-title {
+        font-size: 21px;
     }
 
-    .checkbox-row{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:15px;
-
+    .auth-subtitle {
+        font-size: 13px;
+        margin-bottom: 28px;
     }
 
+    .auth-form {
+        gap: 16px;
+    }
+
+    .checkbox-row {
+        gap: 10px;
+    }
 }
+/* ==========================================================
+   RESULTX SIMPLE LOGIN - FINAL OVERRIDES
+   ========================================================== */
+
+.auth-page {
+    min-height: 100vh !important;
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background: wheat;
+
+    padding: 30px 20px !important;
+}
+
+
+/* Main centered area */
+
+.auth-container {
+    width: 100% !important;
+    max-width: 430px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    text-align: center !important;
+}
+
+
+/* ResultX */
+
+.auth-logo {
+    margin: 0 0 16px !important;
+
+    color: #2563eb !important;
+
+    font-size: 36px !important;
+    font-weight: 800 !important;
+
+    line-height: 1 !important;
+}
+
+
+/* Student Login / HOD Login / etc. */
+
+.auth-title {
+    margin: 0 0 8px !important;
+
+    color: #111827 !important;
+
+    font-size: 27px !important;
+    font-weight: 700 !important;
+
+    line-height: 1.25 !important;
+}
+
+
+/* Subtitle */
+
+.auth-subtitle {
+    margin: 0 0 32px !important;
+
+    color: #64748b !important;
+
+    font-size: 15px !important;
+
+    line-height: 1.5 !important;
+}
+
 
 /* ==========================================================
-   SMALL MOBILE
-========================================================== */
+   FORM
+   ========================================================== */
 
-@media (max-width:480px){
+.auth-form {
+    width: 100% !important;
 
-    .login-area{
-        padding:25px 16px;
-    }
+    display: flex !important;
+    flex-direction: column !important;
 
-    .auth-logo{
-        font-size:2.2rem;
-    }
-
-    .auth-title{
-        font-size:1.7rem;
-    }
-
-    .auth-subtitle{
-        font-size:.9rem;
-    }
-
-    .auth-page .input-group input{
-        height:52px;
-        font-size:14px;
-    }
-
-    .auth-btn{
-        height:52px;
-        font-size:15px;
-    }
-
+    gap: 18px !important;
 }
+
 
 /* ==========================================================
-   ANIMATIONS
-========================================================== */
+   INPUT GROUP
+   ========================================================== */
 
-@keyframes fadeLeft{
+.auth-form .input-group {
+    width: 100% !important;
 
-    from{
-        opacity:0;
-        transform:translateX(-50px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-
+    text-align: left !important;
 }
 
-@keyframes fadeRight{
 
-    from{
-        opacity:0;
-        transform:translateX(50px);
-    }
+/* Hide labels */
 
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-
+.auth-form .input-group > label {
+    display: none !important;
 }
 
-.auth-left{
-    animation:fadeLeft .8s ease;
-}
-
-.login-content{
-    animation:fadeRight .8s ease;
-}
 
 /* ==========================================================
-   HOVER EFFECTS
-========================================================== */
+   INPUT WRAPPERS
+   ========================================================== */
 
-.portal-badge{
-    transition:.3s;
+.auth-form .input-wrapper,
+.auth-form .password-wrapper {
+    width: 100% !important;
+
+    height: 50px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    position: relative !important;
+
+    background: #eeebff !important;
+
+    border: 1px solid transparent !important;
+
+    border-radius: 25px !important;
+
+    box-shadow: none !important;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease !important;
 }
 
-.portal-badge:hover{
 
-    transform:translateY(-2px);
+.auth-form .input-wrapper:focus-within,
+.auth-form .password-wrapper:focus-within {
+    background: #f0edff !important;
 
-    background:rgba(255,255,255,.18);
+    border-color: #8b7de8 !important;
 
+    box-shadow: 0 0 0 3px rgba(117, 103, 217, 0.10) !important;
 }
 
-.auth-page .input-group input:hover{
-
-    border-color:rgba(255,255,255,.35);
-
-}
-
-.auth-btn:hover{
-
-    transform:translateY(-2px);
-
-}
 
 /* ==========================================================
-   SCROLLBAR
-========================================================== */
+   ICON
+   ========================================================== */
 
-::-webkit-scrollbar{
-    width:8px;
+.auth-form .input-icon {
+    flex-shrink: 0 !important;
+
+    margin-left: 18px !important;
+
+    color: #7c6ee6 !important;
 }
 
-::-webkit-scrollbar-track{
-    background:#0F172A;
+
+/* ==========================================================
+   INPUT TEXT
+   ========================================================== */
+
+.auth-form .input-wrapper input,
+.auth-form .password-wrapper input {
+    width: 100% !important;
+    height: 100% !important;
+
+    border: none !important;
+    outline: none !important;
+
+    background: transparent !important;
+
+    padding: 0 16px 0 12px !important;
+
+    color: #1f2937 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 500 !important;
+
+    opacity: 1 !important;
 }
 
-::-webkit-scrollbar-thumb{
-    background:#2563EB;
-    border-radius:20px;
+
+/* Placeholder */
+
+.auth-form .input-wrapper input::placeholder,
+.auth-form .password-wrapper input::placeholder {
+    color: #8b8aa0 !important;
+
+    opacity: 1 !important;
 }
 
-::-webkit-scrollbar-thumb:hover{
-    background:#3B82F6;
+
+/* ==========================================================
+   PASSWORD SHOW BUTTON
+   ========================================================== */
+
+.auth-form .toggle-password {
+    flex-shrink: 0 !important;
+
+    margin-right: 18px !important;
+
+    padding: 0 !important;
+
+    background: transparent !important;
+
+    color: #2563eb !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+    opacity: 1 !important;
+}
+
+
+.auth-form .toggle-password:hover {
+    color: #1d4ed8 !important;
+}
+
+
+/* ==========================================================
+   CHECKBOX ROW
+   ========================================================== */
+
+.auth-form .checkbox-row {
+    width: 100% !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    margin-top: 2px !important;
+}
+
+
+/* ==========================================================
+   CHECKBOX
+   ========================================================== */
+
+.auth-form .checkbox-container {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    gap: 8px !important;
+
+    width: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #64748b !important;
+
+    font-size: 13px !important;
+
+    cursor: pointer !important;
+}
+
+
+.auth-form .checkbox-container input[type="checkbox"] {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    width: 17px !important;
+    height: 17px !important;
+
+    flex-shrink: 0 !important;
+
+    margin: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1.5px solid #cbd5e1 !important;
+
+    border-radius: 50% !important;
+
+    cursor: pointer !important;
+}
+
+
+.auth-form
+.checkbox-container
+input[type="checkbox"]:checked {
+    background: #7567d9 !important;
+
+    border-color: #7567d9 !important;
+}
+
+
+.auth-form
+.checkbox-container
+input[type="checkbox"]:checked::after {
+    content: "✓" !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    color: #ffffff !important;
+
+    font-size: 10px !important;
+    font-weight: 700 !important;
+}
+
+
+.auth-form .checkbox-label {
+    color: #64748b !important;
+
+    font-size: 13px !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* ==========================================================
+   FORGOT PASSWORD
+   ========================================================== */
+
+.auth-form .forgot-password {
+    color: #2563eb !important;
+
+    font-size: 13px !important;
+
+    font-weight: 600 !important;
+}
+
+
+.auth-form .forgot-password:hover {
+    color: #1d4ed8 !important;
+}
+
+
+/* ==========================================================
+   LOGIN BUTTON
+   ========================================================== */
+
+.auth-form .auth-btn {
+    align-self: center !important;
+
+    width: 115px !important;
+    height: 42px !important;
+
+    margin-top: 10px !important;
+
+    border: none !important;
+
+    border-radius: 22px !important;
+
+    background: #2563eb !important;
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    transition: all 0.2s ease !important;
+}
+
+
+.auth-form .auth-btn:hover {
+    background: #1d4ed8 !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+.auth-form .auth-btn:disabled {
+    opacity: 0.65 !important;
+
+    cursor: not-allowed !important;
+
+    transform: none !important;
+}
+
+
+/* ==========================================================
+   ERRORS
+   ========================================================== */
+
+.auth-form .error-text {
+    margin: 5px 0 0 12px !important;
+
+    color: #ef4444 !important;
+
+    font-size: 12px !important;
+
+    text-align: left !important;
+}
+
+
+/* ==========================================================
+   BACK HOME
+   ========================================================== */
+
+.auth-container .back-home {
+    margin-top: 24px !important;
+
+    color: #64748b !important;
+
+    font-size: 13px !important;
+
+    font-weight: 500 !important;
+}
+
+
+.auth-container .back-home:hover {
+    color: #2563eb !important;
+}
+
+
+/* ==========================================================
+   REMOVE OLD LAYOUT
+   ========================================================== */
+
+.auth-overlay,
+.auth-left,
+.portal-badge,
+.welcome-title,
+.welcome-text,
+.login-area,
+.login-content {
+    display: none !important;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .auth-page {
+        padding: 24px 18px !important;
+    }
+
+    .auth-container {
+        max-width: 360px !important;
+    }
+
+    .auth-logo {
+        font-size: 32px !important;
+    }
+
+    .auth-title {
+        font-size: 24px !important;
+    }
+
+    .auth-subtitle {
+        font-size: 14px !important;
+        margin-bottom: 28px !important;
+    }
+
+    .auth-form {
+        gap: 16px !important;
+    }
+
+    .checkbox-row {
+        gap: 10px !important;
+    }
 }

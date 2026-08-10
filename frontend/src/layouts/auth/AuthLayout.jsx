@@ -1,70 +1,43 @@
 import { Link } from "react-router-dom";
 
-
 function AuthLayout({
-  title,
-  subtitle,
-  backgroundClass,
-  portalTitle,
-  welcomeText,
-  children,
+    title,
+    subtitle,
+    children,
 }) {
-  return (
-    <section className={`auth-page ${backgroundClass}`}>
+    return (
+        <section className="auth-page">
 
-      <div className="auth-overlay"></div>
+            <div className="auth-container">
 
-      <div className="auth-wrapper">
+                {/* Logo */}
+                
 
-        <div className="auth-left">
+                {/* Dynamic Login Title */}
+                <h2 className="auth-title">
+                    {title}
+                </h2>
 
-          <div className="portal-badge">
-            {portalTitle}
-          </div>
+                {/* Subtitle */}
+                <p className="auth-subtitle">
+                    {subtitle}
+                </p>
 
-          <h1 className="welcome-title">
-            Welcome Back
-          </h1>
+                {/* Existing Login Form */}
+                {children}
 
-          <p className="welcome-text">
-            {welcomeText}
-          </p>
+                {/* Back */}
+                <Link
+                    to="/login"
+                    className="back-home"
+                >
+                    ← Back to Home
+                </Link>
 
-        </div>
+            </div>
 
-        <div className="login-area">
-
-          <div className="login-content">
-
-            <h1 className="auth-logo">
-              ResultX
-            </h1>
-
-            <h2 className="auth-title">
-              {title}
-            </h2>
-
-            <p className="auth-subtitle">
-              {subtitle}
-            </p>
-
-            {children}
-
-            <Link
-              to="/login"
-              className="back-home"
-            >
-              ← Back to Portal
-            </Link>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-  );
+        </section>
+    );
 }
 
 export default AuthLayout;

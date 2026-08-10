@@ -25,14 +25,14 @@ export default function AccountRow({
       <td>
         <span
           className={`account-role ${account.role === "FACULTY"
-              ? "faculty"
-              : account.role === "STUDENT"
-                ? "student"
-                : account.role === "HOD"
-                  ? "hod"
-                  : account.role === "EXAM_CELL"
-                    ? "exam-cell"
-                    : "admin"
+            ? "faculty"
+            : account.role === "STUDENT"
+              ? "student"
+              : account.role === "HOD"
+                ? "hod"
+                : account.role === "EXAM_CELL"
+                  ? "exam-cell"
+                  : "admin"
             }`}
         >
           {account.role}

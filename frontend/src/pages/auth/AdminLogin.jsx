@@ -9,10 +9,6 @@ function AdminLogin() {
   fieldName="email"
   fieldPlaceholder="Enter Admin Email"
   role="ADMIN"
-
-  backgroundClass="admin-bg"
-  portalTitle="⚙ Administration"
-  welcomeText="Manage users, departments, security settings and the complete ResultX platform."
 />
   );
 }

@@ -9,10 +9,6 @@ function HodLogin() {
   fieldName="employeeId"
   fieldPlaceholder="Enter Employee ID"
   role="HOD"
-
-  backgroundClass="hod-bg"
-  portalTitle="👨‍🏫 HOD Portal"
-  welcomeText="Manage department performance, approve results and monitor students through the ResultX dashboard."
 />
   );
 }

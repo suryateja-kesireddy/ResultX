@@ -21,7 +21,7 @@ function DashboardHeader() {
 
       <div>
         <h1>
-          👋 Welcome Back, {hod?.user?.name || "HOD"}
+           Welcome Back, {hod?.user?.name || "HOD"}
         </h1>
 
         <p>

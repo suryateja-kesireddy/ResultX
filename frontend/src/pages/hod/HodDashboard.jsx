@@ -1,56 +1,85 @@
 import { useEffect, useState } from "react";
 
-import { getDashboardStats, getHodProfile } from "../../services/hod/hodService";
+import {
+    getDashboardStats,
+    getHodProfile,
+} from "../../services/hod/hodService";
 
 import "../../styles/dashboard/hod/dashboard.css";
 
 import DashboardHeader from "../../components/dashboard/hod/DashboardHeader";
 import StatsGrid from "../../components/dashboard/hod/StatsGrid";
 
-
-
 function HodDashboard() {
-  const [hod, setHod] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState(null);
 
-  useEffect(() => {
-    loadProfile();
-  }, []);
+    const [hod, setHod] = useState(null);
+    const [stats, setStats] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  const loadProfile = async () => {
-  try {
-    const [profileData, statsData] = await Promise.all([
-      getHodProfile(),
-      getDashboardStats(),
-    ]);
+    useEffect(() => {
+        loadDashboard();
+    }, []);
 
-    setHod(profileData);
-    setStats(statsData);
+    const loadDashboard = async () => {
 
-  } catch (error) {
-    console.error("Failed to load dashboard", error);
-  } finally {
-    setLoading(false);
-  }
-};
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+        try {
 
-  return (
-    <div className="hod-dashboard">
-      
+            setLoading(true);
 
-      <DashboardHeader
-        name={hod?.user?.name}
-        department={hod?.department?.name}
-      />
+            const [
+                profileData,
+                statsData,
+            ] = await Promise.all([
+                getHodProfile(),
+                getDashboardStats(),
+            ]);
 
-      <StatsGrid />
+            console.log("HOD Profile:", profileData);
+            console.log("HOD Dashboard Stats:", statsData);
 
-    </div>
-  );
+            setHod(profileData);
+            setStats(statsData);
+
+        } catch (error) {
+
+            console.error(
+                "Failed to load HOD dashboard:",
+                error
+            );
+
+        } finally {
+
+            setLoading(false);
+
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="dashboard-loading">
+                Loading...
+            </div>
+        );
+    }
+
+    return (
+        <div className="hod-dashboard">
+
+            {/* ================= HEADER ================= */}
+
+            <DashboardHeader
+                name={hod?.user?.name}
+                department={hod?.department?.code}
+            />
+
+            {/* ================= STATISTICS ================= */}
+
+            <StatsGrid
+                stats={stats}
+            />
+
+        </div>
+    );
 }
 
 export default HodDashboard;

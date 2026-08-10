@@ -26,6 +26,9 @@
 
     --transition:.3s ease;
 
+    background: var(--background);
+color: var(--text-primary);
+
 }
 
 /* ==========================================================
@@ -198,11 +201,8 @@ table{
 /* ==========================================================
    SECTION
 ========================================================== */
-
-section{
-
-    padding:var(--section-padding) 0;
-
+section:not(.auth-page) {
+    padding: var(--section-padding) 0;
 }
 
 /* ==========================================================
