@@ -45,66 +45,95 @@ const createCourse = async (courseData) => {
 // ==========================================
 // Get Course Statistics
 // ==========================================
+// ==========================================
+// Get Course Statistics
+// ==========================================
 const getCourseStats = async () => {
 
-  const totalCourses = await prisma.course.count();
+    const totalCourses = await prisma.course.count();
 
-  const courses = await prisma.course.findMany({
-    include: {
-      _count: {
-        select: {
-          departments: true,
-        },
-      },
-      departments: {
+    const courses = await prisma.course.findMany({
         include: {
-          _count: {
-            select: {
-              students: true,
-              faculties: true,
-              hods: true,
-              subjects: true,
+            _count: {
+                select: {
+                    departments: true,
+                },
             },
-          },
+
+            departments: {
+                include: {
+                    _count: {
+                        select: {
+                            students: true,
+                            faculties: true,
+                            hods: true,
+                            subjects: true,
+                        },
+                    },
+                },
+            },
         },
-      },
-    },
-    orderBy: {
-      name: "asc",
-    },
-  });
 
-  const formattedCourses = courses.map((course) => {
+        orderBy: {
+            name: "asc",
+        },
+    });
 
-    let totalStudents = 0;
-    let totalFaculty = 0;
-    let totalHODs = 0;
-    let totalSubjects = 0;
+    const formattedCourses = courses.map((course) => {
 
-    course.departments.forEach((department) => {
-      totalStudents += department._count.students;
-      totalFaculty += department._count.faculties;
-      totalHODs += department._count.hods;
-      totalSubjects += department._count.subjects;
+        let totalStudents = 0;
+        let totalFaculty = 0;
+        let totalHODs = 0;
+        let totalSubjects = 0;
+
+        course.departments.forEach((department) => {
+
+            totalStudents +=
+                department._count.students;
+
+            totalFaculty +=
+                department._count.faculties;
+
+            totalHODs +=
+                department._count.hods;
+
+            totalSubjects +=
+                department._count.subjects;
+        });
+
+        return {
+            id: course.id,
+
+            name: course.name,
+
+            code: course.code,
+
+            // ✅ ADD THIS
+            duration: course.duration,
+
+            departments:
+                course._count.departments,
+
+            students:
+                totalStudents,
+
+            faculties:
+                totalFaculty,
+
+            hods:
+                totalHODs,
+
+            subjects:
+                totalSubjects,
+        };
     });
 
     return {
-      id: course.id,
-      name: course.name,
-      code: course.code,
-      departments: course._count.departments,
-      students: totalStudents,
-      faculties: totalFaculty,
-      hods: totalHODs,
-      subjects: totalSubjects,
+        totalCourses,
+        courses: formattedCourses,
     };
-  });
-
-  return {
-    totalCourses,
-    courses: formattedCourses,
-  };
 };
+// get All Course
 
 const getAllCourses = async () => {
   return await prisma.course.findMany({

@@ -2183,3 +2183,121 @@
     }
 
 }
+/* ==========================================================
+   DELETE MODAL ACTIONS
+========================================================== */
+
+.subject-delete-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+/* ==========================================================
+   CANCEL BUTTON
+========================================================== */
+
+.subject-delete-actions .subject-cancel-btn {
+    min-width: 180px;
+    height: 70px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #e7edf5;
+    color: #334155;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.subject-delete-actions .subject-cancel-btn:hover:not(:disabled) {
+    background: #dbe3ee;
+    transform: translateY(-1px);
+}
+
+/* ==========================================================
+   DELETE CONFIRM BUTTON
+========================================================== */
+
+.subject-delete-confirm-btn {
+    min-width: 210px;
+    height: 70px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 0 24px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: #ef4444;
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.22);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.subject-delete-confirm-btn:hover:not(:disabled) {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(239, 68, 68, 0.30);
+}
+
+.subject-delete-confirm-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.subject-delete-confirm-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ==========================================================
+   DELETE BUTTON ICON
+========================================================== */
+
+.subject-delete-confirm-btn svg {
+    flex-shrink: 0;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 600px) {
+
+    .subject-delete-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .subject-delete-actions
+    .subject-cancel-btn,
+    .subject-delete-confirm-btn {
+        width: 100%;
+        min-width: 0;
+    }
+}

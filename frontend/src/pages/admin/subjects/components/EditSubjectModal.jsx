@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { BookOpen } from "lucide-react";
+import toast from "react-hot-toast";
 
 import {
     updateSubject,
@@ -20,9 +21,11 @@ export default function EditSubjectModal({
     onSuccess,
     subject,
 }) {
+    // ==========================================================
+    // STATE
+    // ==========================================================
 
     const [departments, setDepartments] = useState([]);
-
     const [semesters, setSemesters] = useState([]);
 
     const [loading, setLoading] = useState(false);
@@ -35,178 +38,371 @@ export default function EditSubjectModal({
         semesterId: "",
     });
 
-    // ==========================================
-    // Load Departments & Semesters
-    // ==========================================
+    // ==========================================================
+    // LOAD DEPARTMENTS + SEMESTERS
+    // ==========================================================
 
     useEffect(() => {
-
-        if (open) {
-            loadData();
+        if (!open) {
+            return;
         }
 
+        loadData();
     }, [open]);
 
-    // ==========================================
-    // Load Existing Subject
-    // ==========================================
-
-    useEffect(() => {
-
-        if (subject) {
-
-            setFormData({
-                code: subject.code || "",
-                name: subject.name || "",
-                credits: subject.credits || "",
-                departmentId:
-                    subject.departmentId ??
-                    subject.department?.id ??
-                    "",
-                semesterId:
-                    subject.semesterId ??
-                    subject.semester?.id ??
-                    "",
-            });
-
-        }
-
-    }, [subject]);
-
-    // ==========================================
-    // Load Data
-    // ==========================================
-
     const loadData = async () => {
-
         try {
-
             const [
                 departmentData,
                 semesterData,
             ] = await Promise.all([
-
                 getAllDepartments(),
-
                 getSemesters(),
-
             ]);
 
-            setDepartments(departmentData);
+            setDepartments(
+                Array.isArray(departmentData)
+                    ? departmentData
+                    : []
+            );
 
-            setSemesters(semesterData);
-
+            setSemesters(
+                Array.isArray(semesterData)
+                    ? semesterData
+                    : []
+            );
         } catch (error) {
-
             console.error(
                 "Failed to load subject data:",
                 error
             );
 
-        }
+            const message =
+                error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.message ||
+                "Failed to load departments and semesters.";
 
+            toast.error(String(message));
+        }
     };
 
-    // ==========================================
-    // Handle Input
-    // ==========================================
+    // ==========================================================
+    // LOAD EXISTING SUBJECT DATA
+    // ==========================================================
+
+    useEffect(() => {
+        if (!subject) {
+            return;
+        }
+
+        setFormData({
+            code: subject.code || "",
+
+            name: subject.name || "",
+
+            credits:
+                subject.credits ?? "",
+
+            departmentId:
+                subject.departmentId ??
+                subject.department?.id ??
+                "",
+
+            semesterId:
+                subject.semesterId ??
+                subject.semester?.id ??
+                "",
+        });
+    }, [subject]);
+
+    // ==========================================================
+    // HANDLE INPUT CHANGE
+    // ==========================================================
 
     const handleChange = (e) => {
-
         const {
             name,
             value,
         } = e.target;
 
-        setFormData((prev) => ({
-            ...prev,
+        setFormData((previous) => ({
+            ...previous,
             [name]: value,
         }));
-
     };
 
-    // ==========================================
-    // Submit
-    // ==========================================
+    // ==========================================================
+    // HANDLE UPDATE
+    // ==========================================================
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
 
-        if (!subject) {
+        // ------------------------------------------------------
+        // NO SUBJECT
+        // ------------------------------------------------------
+
+        if (!subject?.id) {
+            toast.error(
+                "No subject selected for update."
+            );
             return;
         }
 
-        try {
+        // ------------------------------------------------------
+        // PREVENT MULTIPLE REQUESTS
+        // ------------------------------------------------------
 
+        if (loading) {
+            return;
+        }
+
+        // ------------------------------------------------------
+        // CLEAN FORM DATA
+        // ------------------------------------------------------
+
+        const code = formData.code
+            .trim()
+            .toUpperCase();
+
+        const name = formData.name.trim();
+
+        const credits = Number(
+            formData.credits
+        );
+
+        const departmentId = Number(
+            formData.departmentId
+        );
+
+        const semesterId = Number(
+            formData.semesterId
+        );
+
+        // ------------------------------------------------------
+        // VALIDATION
+        // ------------------------------------------------------
+
+        if (!code) {
+            toast.error(
+                "Please enter the subject code."
+            );
+            return;
+        }
+
+        if (!name) {
+            toast.error(
+                "Please enter the subject name."
+            );
+            return;
+        }
+
+        if (
+            !credits ||
+            credits < 1 ||
+            credits > 10
+        ) {
+            toast.error(
+                "Credits must be between 1 and 10."
+            );
+            return;
+        }
+
+        if (!departmentId) {
+            toast.error(
+                "Please select a department."
+            );
+            return;
+        }
+
+        if (!semesterId) {
+            toast.error(
+                "Please select a semester."
+            );
+            return;
+        }
+
+        // ------------------------------------------------------
+        // START UPDATE
+        // ------------------------------------------------------
+
+        try {
             setLoading(true);
 
             await updateSubject(
-
                 subject.id,
-
                 {
-                    code:
-                        formData.code
-                            .trim()
-                            .toUpperCase(),
-
-                    name:
-                        formData.name.trim(),
-
-                    credits:
-                        Number(formData.credits),
-
-                    departmentId:
-                        Number(formData.departmentId),
-
-                    semesterId:
-                        Number(formData.semesterId),
+                    code,
+                    name,
+                    credits,
+                    departmentId,
+                    semesterId,
                 }
-
             );
 
-            onSuccess();
+            // --------------------------------------------------
+            // SUCCESS TOAST
+            // --------------------------------------------------
 
-            onClose();
+            toast.success(
+                "Subject updated successfully!",
+                {
+                    duration: 3000,
+                }
+            );
+
+            // --------------------------------------------------
+            // NOTIFY PARENT
+            // --------------------------------------------------
+
+            if (
+                typeof onSuccess === "function"
+            ) {
+                onSuccess();
+            }
+
+            // --------------------------------------------------
+            // CLOSE MODAL
+            // --------------------------------------------------
+
+            if (
+                typeof onClose === "function"
+            ) {
+                onClose();
+            }
 
         } catch (error) {
-
             console.error(
                 "Failed to update subject:",
                 error
             );
 
+            // --------------------------------------------------
+            // GET BACKEND ERROR MESSAGE
+            // --------------------------------------------------
+
+            const backendMessage =
+                error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.message ||
+                "";
+
+            const message =
+                String(backendMessage).trim();
+
+            const lowerMessage =
+                message.toLowerCase();
+
+            // --------------------------------------------------
+            // DUPLICATE / UNIQUE ERROR
+            // --------------------------------------------------
+
+            const isDuplicate =
+                lowerMessage.includes(
+                    "already exists"
+                ) ||
+                lowerMessage.includes(
+                    "already exist"
+                ) ||
+                lowerMessage.includes(
+                    "duplicate"
+                ) ||
+                lowerMessage.includes(
+                    "unique constraint"
+                ) ||
+                lowerMessage.includes(
+                    "unique constraint failed"
+                ) ||
+                lowerMessage.includes(
+                    "p2002"
+                );
+
+            if (isDuplicate) {
+                toast.error(
+                    "Subject already exists.",
+                    {
+                        duration: 3500,
+                    }
+                );
+
+                return;
+            }
+
+            // --------------------------------------------------
+            // BACKEND ERROR MESSAGE
+            // --------------------------------------------------
+
+            toast.error(
+                message ||
+                    "Failed to update subject. Please try again.",
+                {
+                    duration: 4000,
+                }
+            );
+
         } finally {
-
             setLoading(false);
-
         }
-
     };
 
-    // ==========================================
-    // Close
-    // ==========================================
+    // ==========================================================
+    // CLOSE MODAL
+    // ==========================================================
+
+    const handleClose = () => {
+        // Don't close while update is running
+        if (loading) {
+            return;
+        }
+
+        if (
+            typeof onClose === "function"
+        ) {
+            onClose();
+        }
+    };
+
+    // ==========================================================
+    // HIDE MODAL
+    // ==========================================================
 
     if (!open || !subject) {
         return null;
     }
 
+    // ==========================================================
+    // RENDER
+    // ==========================================================
+
     return createPortal(
+        <div
+            className="subject-modal-overlay"
+            onMouseDown={(e) => {
+                if (
+                    e.target === e.currentTarget &&
+                    !loading
+                ) {
+                    handleClose();
+                }
+            }}
+        >
 
-        <div className="subject-modal-overlay">
+            <div
+                className="subject-modal"
+                onMouseDown={(e) => {
+                    e.stopPropagation();
+                }}
+            >
 
-            <div className="subject-modal">
-
-                {/* ================= HEADER ================= */}
+                {/* ==================================================
+                    HEADER
+                ================================================== */}
 
                 <div className="subject-modal-header">
 
                     <div className="subject-modal-icon">
-
                         <BookOpen size={28} />
-
                     </div>
 
                     <div>
@@ -224,7 +420,9 @@ export default function EditSubjectModal({
 
                 </div>
 
-                {/* ================= FORM ================= */}
+                {/* ==================================================
+                    FORM
+                ================================================== */}
 
                 <form
                     className="subject-form"
@@ -233,51 +431,64 @@ export default function EditSubjectModal({
 
                     <div className="subject-form-grid">
 
-                        {/* CODE */}
+                        {/* ==================================================
+                            SUBJECT CODE
+                        ================================================== */}
 
                         <div className="subject-form-group">
 
-                            <label>
+                            <label htmlFor="edit-subject-code">
                                 Subject Code
                             </label>
 
                             <input
+                                id="edit-subject-code"
                                 type="text"
                                 name="code"
                                 value={formData.code}
                                 onChange={handleChange}
                                 required
+                                disabled={loading}
+                                autoComplete="off"
                             />
 
                         </div>
 
-                        {/* NAME */}
+                        {/* ==================================================
+                            SUBJECT NAME
+                        ================================================== */}
 
                         <div className="subject-form-group">
 
-                            <label>
+                            <label htmlFor="edit-subject-name">
                                 Subject Name
                             </label>
 
                             <input
+                                id="edit-subject-name"
                                 type="text"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
+                                disabled={loading}
+                                autoComplete="off"
                             />
 
                         </div>
 
-                        {/* CREDITS */}
+                        {/* ==================================================
+                            CREDITS
+                        ================================================== */}
 
                         <div className="subject-form-group">
 
-                            <label>
+                            <label htmlFor="edit-subject-credits">
                                 Credits
                             </label>
 
                             <input
+                                id="edit-subject-credits"
                                 type="number"
                                 name="credits"
                                 value={formData.credits}
@@ -285,23 +496,30 @@ export default function EditSubjectModal({
                                 min="1"
                                 max="10"
                                 required
+                                disabled={loading}
                             />
 
                         </div>
 
-                        {/* DEPARTMENT */}
+                        {/* ==================================================
+                            DEPARTMENT
+                        ================================================== */}
 
                         <div className="subject-form-group">
 
-                            <label>
+                            <label htmlFor="edit-subject-department">
                                 Department
                             </label>
 
                             <select
+                                id="edit-subject-department"
                                 name="departmentId"
-                                value={formData.departmentId}
+                                value={
+                                    formData.departmentId
+                                }
                                 onChange={handleChange}
                                 required
+                                disabled={loading}
                             >
 
                                 <option value="">
@@ -310,14 +528,18 @@ export default function EditSubjectModal({
 
                                 {departments.map(
                                     (department) => (
-
                                         <option
-                                            key={department.id}
-                                            value={department.id}
+                                            key={
+                                                department.id
+                                            }
+                                            value={
+                                                department.id
+                                            }
                                         >
-                                            {department.name}
+                                            {
+                                                department.name
+                                            }
                                         </option>
-
                                     )
                                 )}
 
@@ -325,19 +547,25 @@ export default function EditSubjectModal({
 
                         </div>
 
-                        {/* SEMESTER */}
+                        {/* ==================================================
+                            SEMESTER
+                        ================================================== */}
 
                         <div className="subject-form-group">
 
-                            <label>
+                            <label htmlFor="edit-subject-semester">
                                 Semester
                             </label>
 
                             <select
+                                id="edit-subject-semester"
                                 name="semesterId"
-                                value={formData.semesterId}
+                                value={
+                                    formData.semesterId
+                                }
                                 onChange={handleChange}
                                 required
+                                disabled={loading}
                             >
 
                                 <option value="">
@@ -346,19 +574,26 @@ export default function EditSubjectModal({
 
                                 {semesters.map(
                                     (semester) => (
-
                                         <option
-                                            key={semester.id}
-                                            value={semester.id}
+                                            key={
+                                                semester.id
+                                            }
+                                            value={
+                                                semester.id
+                                            }
                                         >
                                             Semester{" "}
-                                            {semester.number}
-                                            {" "}
+                                            {
+                                                semester.number
+                                            }{" "}
                                             (
-                                            {semester.academicYear?.year}
+                                            {
+                                                semester
+                                                    .academicYear
+                                                    ?.year
+                                            }
                                             )
                                         </option>
-
                                     )
                                 )}
 
@@ -368,14 +603,16 @@ export default function EditSubjectModal({
 
                     </div>
 
-                    {/* ================= FOOTER ================= */}
+                    {/* ==================================================
+                        ACTIONS
+                    ================================================== */}
 
                     <div className="subject-modal-actions">
 
                         <button
                             type="button"
                             className="subject-cancel-btn"
-                            onClick={onClose}
+                            onClick={handleClose}
                             disabled={loading}
                         >
                             Cancel
@@ -400,6 +637,5 @@ export default function EditSubjectModal({
         </div>,
 
         document.body
-
     );
 }

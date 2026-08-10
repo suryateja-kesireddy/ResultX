@@ -15,6 +15,7 @@ export default function CourseDetails({
     if (!course) {
         return null;
     }
+    console.log("COURSE DETAILS:", course);
 
     return (
         <div className="course-details">

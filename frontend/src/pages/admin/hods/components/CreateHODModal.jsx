@@ -1,15 +1,32 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { X, UserPlus, Eye, EyeOff } from "lucide-react";
+import {
+    X,
+    UserPlus,
+    Eye,
+    EyeOff,
+} from "lucide-react";
+import toast from "react-hot-toast";
 
-import { createHOD } from "../../../../services/hod/hodService";
-import { getAllDepartments } from "../../../../services/department/departmentService";
+import {
+    createHOD,
+} from "../../../../services/hod/hodService";
+
+import {
+    getAllDepartments,
+} from "../../../../services/department/departmentService";
+
 
 export default function CreateHODModal({
     open,
     onClose,
     onSuccess,
 }) {
+
+    /* ==================================================
+       STATE
+    ================================================== */
+
     const [departments, setDepartments] = useState([]);
 
     const [loadingDepartments, setLoadingDepartments] =
@@ -30,51 +47,87 @@ export default function CreateHODModal({
         departmentId: "",
     });
 
-    // ==========================================
-    // Load Departments
-    // ==========================================
+
+    /* ==================================================
+       LOAD DEPARTMENTS
+    ================================================== */
 
     useEffect(() => {
-        if (!open) return;
+
+        if (!open) {
+            return;
+        }
 
         loadDepartments();
+
     }, [open]);
 
+
     const loadDepartments = async () => {
+
+        /* Prevent duplicate department requests */
+
+        if (loadingDepartments) {
+            return;
+        }
+
         try {
+
             setLoadingDepartments(true);
 
-            const data = await getAllDepartments();
+            const data =
+                await getAllDepartments();
 
             setDepartments(data || []);
+
         } catch (error) {
+
             console.error(
                 "Failed to load departments:",
                 error
             );
+
+            const message =
+                error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.message ||
+                "Failed to load departments.";
+
+            toast.error(message);
+
         } finally {
+
             setLoadingDepartments(false);
+
         }
     };
 
-    // ==========================================
-    // Handle Input
-    // ==========================================
+
+    /* ==================================================
+       HANDLE INPUT
+    ================================================== */
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+
+        const {
+            name,
+            value,
+        } = e.target;
 
         setFormData((prev) => ({
             ...prev,
             [name]: value,
         }));
+
     };
 
-    // ==========================================
-    // Reset Form
-    // ==========================================
+
+    /* ==================================================
+       RESET FORM
+    ================================================== */
 
     const resetForm = () => {
+
         setFormData({
             name: "",
             email: "",
@@ -85,109 +138,318 @@ export default function CreateHODModal({
         });
 
         setShowPassword(false);
+
     };
 
-    // ==========================================
-    // Close Modal
-    // ==========================================
+
+    /* ==================================================
+       CLOSE MODAL
+    ================================================== */
 
     const handleClose = () => {
-        if (loading) return;
+
+        /*
+         * Don't allow closing while request
+         * is being processed.
+         */
+
+        if (loading) {
+            return;
+        }
 
         resetForm();
 
         onClose();
+
     };
 
-    // ==========================================
-    // Submit
-    // ==========================================
+
+    /* ==================================================
+       SUBMIT
+    ================================================== */
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
 
-        if (loading) return;
+
+        /* ==================================================
+           PREVENT MULTIPLE ATTEMPTS
+        ================================================== */
+
+        if (loading) {
+            return;
+        }
+
+
+        /* ==================================================
+           BASIC VALIDATION
+        ================================================== */
+
+        const name =
+            formData.name.trim();
+
+        const email =
+            formData.email.trim();
+
+        const password =
+            formData.password;
+
+        const employeeId =
+            formData.employeeId.trim();
+
+        const phone =
+            formData.phone.trim();
+
+        const departmentId =
+            formData.departmentId;
+
+
+        if (!name) {
+
+            toast.error(
+                "HOD name is required."
+            );
+
+            return;
+        }
+
+
+        if (!email) {
+
+            toast.error(
+                "Email address is required."
+            );
+
+            return;
+        }
+
+
+        if (!password) {
+
+            toast.error(
+                "Password is required."
+            );
+
+            return;
+        }
+
+
+        if (password.length < 6) {
+
+            toast.error(
+                "Password must be at least 6 characters."
+            );
+
+            return;
+        }
+
+
+        if (!employeeId) {
+
+            toast.error(
+                "Employee ID is required."
+            );
+
+            return;
+        }
+
+
+        if (!departmentId) {
+
+            toast.error(
+                "Please select a department."
+            );
+
+            return;
+        }
+
+
+        /* ==================================================
+           CREATE HOD
+        ================================================== */
 
         try {
+
+            /*
+             * Immediately lock the form.
+             * This prevents double-click / multiple
+             * API requests.
+             */
+
             setLoading(true);
 
-            await createHOD(formData);
 
-            // Tell parent that creation succeeded
-            onSuccess();
+            await createHOD({
+                name,
+                email,
+                password,
+                employeeId,
+                phone,
+                departmentId,
+            });
 
-            // Reset form
+
+            /* ==================================================
+               SUCCESS
+            ================================================== */
+
+            toast.success(
+                "HOD account created successfully!"
+            );
+
+
+            /*
+             * Tell parent to refresh HOD list.
+             */
+
+            if (onSuccess) {
+                await onSuccess();
+            }
+
+
+            /*
+             * Reset form.
+             */
+
             resetForm();
 
-            // Close modal
+
+            /*
+             * Close modal.
+             */
+
             onClose();
 
         } catch (error) {
+
             console.error(
                 "Failed to create HOD:",
                 error
             );
 
-            /*
-             * IMPORTANT:
-             * Do not use alert().
-             *
-             * Your parent/toast system can handle
-             * the error if you add it there.
-             *
-             * For now we rethrow the error so the
-             * original backend message is preserved.
-             */
-            throw error;
+
+            /* ==================================================
+               BACKEND ERROR MESSAGE
+            ================================================== */
+
+            const backendMessage =
+                error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.response?.data?.details?.message ||
+                error?.message;
+
+
+            const message =
+                backendMessage ||
+                "Failed to create HOD account.";
+
+
+            toast.error(message);
 
         } finally {
+
             setLoading(false);
+
         }
+
     };
 
-    // ==========================================
-    // Don't Render When Closed
-    // ==========================================
+
+    /* ==================================================
+       ESC KEY
+    ================================================== */
+
+    useEffect(() => {
+
+        const handleEscape = (e) => {
+
+            if (
+                e.key === "Escape" &&
+                open &&
+                !loading
+            ) {
+
+                handleClose();
+
+            }
+
+        };
+
+
+        document.addEventListener(
+            "keydown",
+            handleEscape
+        );
+
+
+        return () => {
+
+            document.removeEventListener(
+                "keydown",
+                handleEscape
+            );
+
+        };
+
+    }, [open, loading]);
+
+
+    /* ==================================================
+       DON'T RENDER
+    ================================================== */
 
     if (!open) {
         return null;
     }
 
-    // ==========================================
-    // Modal
-    // ==========================================
+
+    /* ==================================================
+       MODAL
+    ================================================== */
 
     return createPortal(
+
         <div
             className="hod-modal-overlay"
+
             onMouseDown={(e) => {
+
                 if (
                     e.target === e.currentTarget &&
                     !loading
                 ) {
+
                     handleClose();
+
                 }
+
             }}
         >
 
             <div
                 className="hod-create-modal"
+
                 onMouseDown={(e) => {
                     e.stopPropagation();
                 }}
             >
 
-                {/* ==================================
+
+                {/* ==================================================
                     HEADER
-                ================================== */}
+                ================================================== */}
 
                 <div className="hod-modal-header">
 
                     <div className="hod-modal-title-wrapper">
 
                         <div className="hod-modal-icon">
+
                             <UserPlus size={24} />
+
                         </div>
+
 
                         <div>
 
@@ -211,15 +473,17 @@ export default function CreateHODModal({
                         disabled={loading}
                         aria-label="Close"
                     >
+
                         <X size={21} />
+
                     </button>
 
                 </div>
 
 
-                {/* ==================================
+                {/* ==================================================
                     FORM
-                ================================== */}
+                ================================================== */}
 
                 <form
                     className="hod-create-form"
@@ -227,7 +491,10 @@ export default function CreateHODModal({
                     autoComplete="off"
                 >
 
-                    {/* Name */}
+
+                    {/* ==================================================
+                        NAME
+                    ================================================== */}
 
                     <div className="hod-form-group">
 
@@ -249,7 +516,9 @@ export default function CreateHODModal({
                     </div>
 
 
-                    {/* Email */}
+                    {/* ==================================================
+                        EMAIL
+                    ================================================== */}
 
                     <div className="hod-form-group">
 
@@ -272,7 +541,9 @@ export default function CreateHODModal({
                     </div>
 
 
-                    {/* Password */}
+                    {/* ==================================================
+                        PASSWORD
+                    ================================================== */}
 
                     <div className="hod-form-group">
 
@@ -280,6 +551,7 @@ export default function CreateHODModal({
                             Password
                             <span>*</span>
                         </label>
+
 
                         <div className="hod-password-wrapper">
 
@@ -299,6 +571,7 @@ export default function CreateHODModal({
                                 minLength={6}
                             />
 
+
                             <button
                                 type="button"
                                 className="hod-password-toggle"
@@ -308,12 +581,23 @@ export default function CreateHODModal({
                                     )
                                 }
                                 disabled={loading}
+                                aria-label={
+                                    showPassword
+                                        ? "Hide password"
+                                        : "Show password"
+                                }
                             >
+
                                 {showPassword ? (
+
                                     <EyeOff size={19} />
+
                                 ) : (
+
                                     <Eye size={19} />
+
                                 )}
+
                             </button>
 
                         </div>
@@ -321,7 +605,9 @@ export default function CreateHODModal({
                     </div>
 
 
-                    {/* Employee ID */}
+                    {/* ==================================================
+                        EMPLOYEE ID
+                    ================================================== */}
 
                     <div className="hod-form-group">
 
@@ -343,7 +629,9 @@ export default function CreateHODModal({
                     </div>
 
 
-                    {/* Phone */}
+                    {/* ==================================================
+                        PHONE
+                    ================================================== */}
 
                     <div className="hod-form-group">
 
@@ -363,7 +651,9 @@ export default function CreateHODModal({
                     </div>
 
 
-                    {/* Department */}
+                    {/* ==================================================
+                        DEPARTMENT
+                    ================================================== */}
 
                     <div className="hod-form-group">
 
@@ -371,6 +661,7 @@ export default function CreateHODModal({
                             Department
                             <span>*</span>
                         </label>
+
 
                         <select
                             name="departmentId"
@@ -384,22 +675,30 @@ export default function CreateHODModal({
                         >
 
                             <option value="">
+
                                 {loadingDepartments
                                     ? "Loading departments..."
                                     : "Select Department"}
+
                             </option>
+
 
                             {departments.map(
                                 (department) => (
+
                                     <option
                                         key={department.id}
                                         value={department.id}
                                     >
+
                                         {department.name}
+
                                         {department.code
                                             ? ` (${department.code})`
                                             : ""}
+
                                     </option>
+
                                 )
                             )}
 
@@ -408,11 +707,14 @@ export default function CreateHODModal({
                     </div>
 
 
-                    {/* ==================================
+                    {/* ==================================================
                         ACTIONS
-                    ================================== */}
+                    ================================================== */}
 
                     <div className="hod-modal-actions">
+
+
+                        {/* CANCEL */}
 
                         <button
                             type="button"
@@ -420,9 +722,13 @@ export default function CreateHODModal({
                             onClick={handleClose}
                             disabled={loading}
                         >
+
                             Cancel
+
                         </button>
 
+
+                        {/* CREATE */}
 
                         <button
                             type="submit"
@@ -431,15 +737,25 @@ export default function CreateHODModal({
                         >
 
                             {loading ? (
+
                                 <>
+
                                     <span className="hod-spinner" />
-                                    Creating...
+
+                                    Creating HOD...
+
                                 </>
+
                             ) : (
+
                                 <>
+
                                     <UserPlus size={18} />
+
                                     Create HOD
+
                                 </>
+
                             )}
 
                         </button>
@@ -453,5 +769,7 @@ export default function CreateHODModal({
         </div>,
 
         document.body
+
     );
+
 }

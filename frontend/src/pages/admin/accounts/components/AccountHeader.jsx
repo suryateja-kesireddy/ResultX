@@ -13,13 +13,7 @@ export default function AccountHeader() {
         </p>
       </div>
 
-      <button
-        className="account-create-btn"
-        onClick={() => navigate("/ui/admin/accounts/create")}
-      >
-        <Plus size={18} />
-        <span>Create Account</span>
-      </button>
+      
     </div>
   );
 }

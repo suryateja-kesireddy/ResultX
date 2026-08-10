@@ -980,3 +980,47 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+.hod-password-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.hod-password-wrapper input {
+    padding-right: 48px;
+}
+
+
+.hod-password-wrapper button {
+    position: absolute;
+
+    right: 7px;
+    top: 50%;
+
+    width: 34px;
+    height: 34px;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+.hod-password-wrapper button:hover {
+    background: #f1f5f9;
+
+    color: #2563eb;
+}

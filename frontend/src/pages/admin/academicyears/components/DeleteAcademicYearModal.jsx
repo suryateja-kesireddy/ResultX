@@ -1,96 +1,259 @@
-import { TriangleAlert } from "lucide-react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import {
+    TriangleAlert,
+    Trash2,
+} from "lucide-react";
+import toast from "react-hot-toast";
 
 import {
-  deleteAcademicYear,
+    deleteAcademicYear,
 } from "../../../../services/academicYear/academicYearService";
 
 export default function DeleteAcademicYearModal({
-  open,
-  onClose,
-  onSuccess,
-  academicYear,
+    open,
+    onClose,
+    onSuccess,
+    academicYear,
 }) {
 
-  const handleDelete = async () => {
+    const [loading, setLoading] = useState(false);
 
-    try {
 
-      await deleteAcademicYear(
-        academicYear.id
-      );
+    /* ==================================================
+       DELETE
+    ================================================== */
 
-      onSuccess();
+    const handleDelete = async () => {
 
-      onClose();
+        if (loading) {
+            return;
+        }
 
-    } catch (error) {
+        if (!academicYear) {
 
-      console.error(error);
+            toast.error(
+                "Academic year not found."
+            );
 
+            return;
+        }
+
+
+        try {
+
+            setLoading(true);
+
+
+            /* ------------------------------------------
+               DELETE
+            ------------------------------------------ */
+
+            await deleteAcademicYear(
+                academicYear.id
+            );
+
+
+            /* ------------------------------------------
+               SUCCESS TOAST
+            ------------------------------------------ */
+
+            toast.success(
+                "Academic year deleted successfully!"
+            );
+
+
+            /* ------------------------------------------
+               REFRESH DATA
+            ------------------------------------------ */
+
+            if (onSuccess) {
+                await onSuccess();
+            }
+
+
+            /* ------------------------------------------
+               CLOSE MODAL
+            ------------------------------------------ */
+
+            onClose();
+
+        } catch (error) {
+
+            console.error(
+                "Failed to delete academic year:",
+                error
+            );
+
+
+            /* ------------------------------------------
+               BACKEND ERROR
+            ------------------------------------------ */
+
+            const message =
+                error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.message ||
+                "Failed to delete academic year.";
+
+            toast.error(message);
+
+        } finally {
+
+            setLoading(false);
+
+        }
+
+    };
+
+
+    /* ==================================================
+       ESC KEY
+    ================================================== */
+
+    useEffect(() => {
+
+        const handleEscape = (e) => {
+
+            if (
+                e.key === "Escape" &&
+                open &&
+                !loading
+            ) {
+                onClose();
+            }
+
+        };
+
+        document.addEventListener(
+            "keydown",
+            handleEscape
+        );
+
+        return () => {
+
+            document.removeEventListener(
+                "keydown",
+                handleEscape
+            );
+
+        };
+
+    }, [open, loading, onClose]);
+
+
+    /* ==================================================
+       DON'T RENDER
+    ================================================== */
+
+    if (!open || !academicYear) {
+        return null;
     }
 
-  };
 
-  if (!open || !academicYear) return null;
+    /* ==================================================
+       MODAL
+    ================================================== */
 
-  return (
+    return createPortal(
 
-    <div className="academic-delete-overlay">
+        <div
+            className="academic-delete-overlay"
+            onMouseDown={(e) => {
 
-      <div className="academic-delete-modal">
+                if (
+                    e.target === e.currentTarget &&
+                    !loading
+                ) {
+                    onClose();
+                }
 
-        {/* Header */}
+            }}
+        >
 
-        <div className="academic-delete-icon">
+            <div
+                className="academic-delete-modal"
+                onMouseDown={(e) =>
+                    e.stopPropagation()
+                }
+            >
 
-          <TriangleAlert size={34} />
 
-        </div>
+                {/* ==================================================
+                    WARNING ICON
+                ================================================== */}
 
-        <h2>Delete Academic Year</h2>
+                <div className="academic-delete-icon">
 
-        <p>
+                    <TriangleAlert size={34} />
 
-          You are about to permanently delete
+                </div>
 
-        </p>
 
-        <h3>
+                {/* ==================================================
+                    CONTENT
+                ================================================== */}
 
-          {academicYear.year}
+                <h2>
+                    Delete Academic Year?
+                </h2>
 
-        </h3>
 
-        <span>
+                <p>
+                    You are about to permanently
+                    delete this academic year.
+                </p>
 
-          This action cannot be undone.
 
-        </span>
+                <h3>
+                    {academicYear.year}
+                </h3>
 
-        {/* Footer */}
 
-        <div className="academic-delete-actions">
+                <span>
+                    This action cannot be undone.
+                </span>
 
-          <button
-            className="academic-btn-cancel"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
 
-          <button
-            className="academic-btn-delete"
-            onClick={handleDelete}
-          >
-            Delete Academic Year
-          </button>
+                {/* ==================================================
+                    ACTIONS
+                ================================================== */}
 
-        </div>
+                <div className="academic-delete-actions">
 
-      </div>
+                    <button
+                        type="button"
+                        className="academic-btn-cancel"
+                        onClick={onClose}
+                        disabled={loading}
+                    >
+                        Cancel
+                    </button>
 
-    </div>
 
-  );
+                    <button
+                        type="button"
+                        className="academic-btn-delete"
+                        onClick={handleDelete}
+                        disabled={loading}
+                    >
+
+                        <Trash2 size={17} />
+
+                        {loading
+                            ? "Deleting..."
+                            : "Delete Academic Year"}
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>,
+
+        document.body
+
+    );
 
 }

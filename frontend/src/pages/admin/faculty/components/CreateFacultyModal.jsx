@@ -1,18 +1,42 @@
 import { useEffect, useState } from "react";
-import { Plus, Loader2 } from "lucide-react";
+import { createPortal } from "react-dom";
+import {
+    Plus,
+    Loader2,
+    X,
+    Eye,
+    EyeOff,
+} from "lucide-react";
 import toast from "react-hot-toast";
 
-import { createFaculty } from "../../../../services/faculty/facultyService";
-import { getAllDepartments } from "../../../../services/department/departmentService";
+import {
+    createFaculty,
+} from "../../../../services/faculty/facultyService";
+
+import {
+    getAllDepartments,
+} from "../../../../services/department/departmentService";
+
 
 export default function CreateFacultyModal({
     open,
     onClose,
     onSuccess,
 }) {
+
+    /* ==========================================================
+       STATE
+    ========================================================== */
+
     const [departments, setDepartments] = useState([]);
 
     const [loading, setLoading] = useState(false);
+
+    const [loadingDepartments, setLoadingDepartments] =
+        useState(false);
+
+    const [showPassword, setShowPassword] =
+        useState(false);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -26,24 +50,33 @@ export default function CreateFacultyModal({
     });
 
 
-    // ==========================================================
-    // LOAD DEPARTMENTS
-    // ==========================================================
+    /* ==========================================================
+       LOAD DEPARTMENTS
+    ========================================================== */
 
     useEffect(() => {
 
-        if (open) {
-            loadDepartments();
+        if (!open) {
+            return;
         }
+
+        loadDepartments();
 
     }, [open]);
 
 
     const loadDepartments = async () => {
 
+        if (loadingDepartments) {
+            return;
+        }
+
         try {
 
-            const data = await getAllDepartments();
+            setLoadingDepartments(true);
+
+            const data =
+                await getAllDepartments();
 
             setDepartments(data || []);
 
@@ -54,18 +87,28 @@ export default function CreateFacultyModal({
                 error
             );
 
-            toast.error(
-                "Failed to load departments"
-            );
+            const message =
+                error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.message ||
+                "Failed to load departments.";
+
+            toast.error(message, {
+                duration: 4000,
+            });
+
+        } finally {
+
+            setLoadingDepartments(false);
 
         }
 
     };
 
 
-    // ==========================================================
-    // HANDLE INPUT
-    // ==========================================================
+    /* ==========================================================
+       HANDLE INPUT
+    ========================================================== */
 
     const handleChange = (e) => {
 
@@ -73,6 +116,42 @@ export default function CreateFacultyModal({
             name,
             value,
         } = e.target;
+
+
+        /* ======================================================
+           PHONE NUMBER
+        ====================================================== */
+
+        if (name === "phone") {
+
+            /*
+             * Remove everything except numbers.
+             */
+
+            const digitsOnly =
+                value.replace(/\D/g, "");
+
+
+            /*
+             * Maximum 10 digits.
+             */
+
+            const limitedPhone =
+                digitsOnly.slice(0, 10);
+
+
+            setFormData((prev) => ({
+                ...prev,
+                phone: limitedPhone,
+            }));
+
+            return;
+        }
+
+
+        /* ======================================================
+           OTHER INPUTS
+        ====================================================== */
 
         setFormData((prev) => ({
             ...prev,
@@ -82,14 +161,13 @@ export default function CreateFacultyModal({
     };
 
 
-    // ==========================================================
-    // RESET FORM
-    // ==========================================================
+    /* ==========================================================
+       RESET FORM
+    ========================================================== */
 
     const resetForm = () => {
 
         setFormData({
-
             name: "",
             email: "",
             password: "",
@@ -98,45 +176,235 @@ export default function CreateFacultyModal({
             qualification: "",
             experience: "",
             departmentId: "",
-
         });
+
+        setShowPassword(false);
 
     };
 
 
-    // ==========================================================
-    // HANDLE SUBMIT
-    // ==========================================================
+    /* ==========================================================
+       CLOSE MODAL
+    ========================================================== */
+
+    const handleClose = () => {
+
+        /*
+         * Don't close while API request is running.
+         */
+
+        if (loading) {
+            return;
+        }
+
+        resetForm();
+
+        onClose();
+
+    };
+
+
+    /* ==========================================================
+       SUBMIT
+    ========================================================== */
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
 
 
-        // Prevent double submission
+        /* ======================================================
+           PREVENT MULTIPLE ATTEMPTS
+        ====================================================== */
 
         if (loading) {
             return;
         }
 
 
+        /* ======================================================
+           BASIC VALIDATION
+        ====================================================== */
+
+        const name =
+            formData.name.trim();
+
+        const email =
+            formData.email.trim();
+
+        const password =
+            formData.password;
+
+        const employeeId =
+            formData.employeeId.trim();
+
+        const phone =
+            formData.phone.trim();
+
+        const qualification =
+            formData.qualification.trim();
+
+        const departmentId =
+            formData.departmentId;
+
+
+        /* ======================================================
+           NAME
+        ====================================================== */
+
+        if (!name) {
+
+            toast.error(
+                "Faculty name is required.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        /* ======================================================
+           EMAIL
+        ====================================================== */
+
+        if (!email) {
+
+            toast.error(
+                "Email address is required.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        /* ======================================================
+           PASSWORD
+        ====================================================== */
+
+        if (!password) {
+
+            toast.error(
+                "Password is required.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        if (password.length < 6) {
+
+            toast.error(
+                "Password must be at least 6 characters.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        /* ======================================================
+           EMPLOYEE ID
+        ====================================================== */
+
+        if (!employeeId) {
+
+            toast.error(
+                "Employee ID is required.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        /* ======================================================
+           PHONE NUMBER
+        ====================================================== */
+
+        if (!phone) {
+
+            toast.error(
+                "Phone number is required.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        if (!/^\d{10}$/.test(phone)) {
+
+            toast.error(
+                "Phone number must be exactly 10 digits.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        /* ======================================================
+           DEPARTMENT
+        ====================================================== */
+
+        if (!departmentId) {
+
+            toast.error(
+                "Please select a department.",
+                {
+                    duration: 4000,
+                }
+            );
+
+            return;
+        }
+
+
+        /* ======================================================
+           CREATE FACULTY
+        ====================================================== */
+
         try {
+
+            /*
+             * Lock the form immediately.
+             */
 
             setLoading(true);
 
 
-            // ==================================================
-            // CREATE FACULTY
-            // ==================================================
-
             await createFaculty({
 
-                ...formData,
+                name,
+
+                email,
+
+                password,
+
+                employeeId,
+
+                phone,
+
+                qualification,
 
                 departmentId:
-                    Number(
-                        formData.departmentId
-                    ),
+                    Number(departmentId),
 
                 experience:
                     formData.experience
@@ -148,9 +416,9 @@ export default function CreateFacultyModal({
             });
 
 
-            // ==================================================
-            // SUCCESS TOAST
-            // ==================================================
+            /* ==================================================
+               SUCCESS
+            ================================================== */
 
             toast.success(
                 "Faculty created successfully!",
@@ -160,25 +428,25 @@ export default function CreateFacultyModal({
             );
 
 
-            // ==================================================
-            // RESET
-            // ==================================================
+            /* ==================================================
+               RESET
+            ================================================== */
 
             resetForm();
 
 
-            // ==================================================
-            // REFRESH FACULTY LIST
-            // ==================================================
+            /* ==================================================
+               REFRESH FACULTY LIST
+            ================================================== */
 
             if (onSuccess) {
-                onSuccess();
+                await onSuccess();
             }
 
 
-            // ==================================================
-            // CLOSE MODAL
-            // ==================================================
+            /* ==================================================
+               CLOSE
+            ================================================== */
 
             onClose();
 
@@ -191,30 +459,34 @@ export default function CreateFacultyModal({
             );
 
 
-            // ==================================================
-            // GET BACKEND ERROR MESSAGE
-            // ==================================================
+            /* ==================================================
+               BACKEND ERROR MESSAGE
+            ================================================== */
 
             const message =
                 error?.response?.data?.message ||
+                error?.response?.data?.error ||
+                error?.response?.data?.details?.message ||
                 error?.message ||
-                "Failed to create Faculty";
+                "Failed to create Faculty.";
 
 
-            // ==================================================
-            // EMPLOYEE ID ALREADY EXISTS
-            // ==================================================
+            const lowerMessage =
+                message.toLowerCase();
+
+
+            /* ==================================================
+               EMPLOYEE ID EXISTS
+            ================================================== */
 
             if (
-                message
-                    .toLowerCase()
-                    .includes(
-                        "employee id already exists"
-                    )
+                lowerMessage.includes(
+                    "employee id already exists"
+                )
             ) {
 
                 toast.error(
-                    "Employee ID already exists",
+                    "Employee ID already exists.",
                     {
                         duration: 4000,
                     }
@@ -224,20 +496,18 @@ export default function CreateFacultyModal({
             }
 
 
-            // ==================================================
-            // EMAIL ALREADY EXISTS
-            // ==================================================
+            /* ==================================================
+               EMAIL EXISTS
+            ================================================== */
 
             if (
-                message
-                    .toLowerCase()
-                    .includes(
-                        "email already exists"
-                    )
+                lowerMessage.includes(
+                    "email already exists"
+                )
             ) {
 
                 toast.error(
-                    "Email already exists",
+                    "Email already exists.",
                     {
                         duration: 4000,
                     }
@@ -247,20 +517,18 @@ export default function CreateFacultyModal({
             }
 
 
-            // ==================================================
-            // DEPARTMENT NOT FOUND
-            // ==================================================
+            /* ==================================================
+               DEPARTMENT NOT FOUND
+            ================================================== */
 
             if (
-                message
-                    .toLowerCase()
-                    .includes(
-                        "department not found"
-                    )
+                lowerMessage.includes(
+                    "department not found"
+                )
             ) {
 
                 toast.error(
-                    "Selected department was not found",
+                    "Selected department was not found.",
                     {
                         duration: 4000,
                     }
@@ -270,20 +538,18 @@ export default function CreateFacultyModal({
             }
 
 
-            // ==================================================
-            // REQUIRED FIELDS
-            // ==================================================
+            /* ==================================================
+               PHONE ERROR
+            ================================================== */
 
             if (
-                message
-                    .toLowerCase()
-                    .includes(
-                        "required fields"
-                    )
+                lowerMessage.includes(
+                    "phone"
+                )
             ) {
 
                 toast.error(
-                    "Please fill all required fields",
+                    message,
                     {
                         duration: 4000,
                     }
@@ -293,9 +559,9 @@ export default function CreateFacultyModal({
             }
 
 
-            // ==================================================
-            // GENERIC ERROR
-            // ==================================================
+            /* ==================================================
+               GENERIC BACKEND ERROR
+            ================================================== */
 
             toast.error(
                 message,
@@ -304,7 +570,12 @@ export default function CreateFacultyModal({
                 }
             );
 
+
         } finally {
+
+            /*
+             * Re-enable form after request finishes.
+             */
 
             setLoading(false);
 
@@ -313,24 +584,85 @@ export default function CreateFacultyModal({
     };
 
 
-    // ==========================================================
-    // CLOSED
-    // ==========================================================
+    /* ==========================================================
+       ESC KEY
+    ========================================================== */
+
+    useEffect(() => {
+
+        const handleEscape = (e) => {
+
+            if (
+                e.key === "Escape" &&
+                open &&
+                !loading
+            ) {
+
+                handleClose();
+
+            }
+
+        };
+
+
+        document.addEventListener(
+            "keydown",
+            handleEscape
+        );
+
+
+        return () => {
+
+            document.removeEventListener(
+                "keydown",
+                handleEscape
+            );
+
+        };
+
+    }, [open, loading]);
+
+
+    /* ==========================================================
+       DON'T RENDER
+    ========================================================== */
 
     if (!open) {
         return null;
     }
 
 
-    // ==========================================================
-    // MODAL
-    // ==========================================================
+    /* ==========================================================
+       MODAL
+    ========================================================== */
 
-    return (
+    return createPortal(
 
-        <div className="faculty-modal-overlay">
+        <div
+            className="faculty-modal-overlay"
 
-            <div className="faculty-modal">
+            onMouseDown={(e) => {
+
+                if (
+                    e.target === e.currentTarget &&
+                    !loading
+                ) {
+
+                    handleClose();
+
+                }
+
+            }}
+        >
+
+            <div
+                className="faculty-modal"
+
+                onMouseDown={(e) => {
+                    e.stopPropagation();
+                }}
+            >
+
 
                 {/* ==================================================
                     HEADER
@@ -354,10 +686,13 @@ export default function CreateFacultyModal({
                     <button
                         type="button"
                         className="faculty-modal-close"
-                        onClick={onClose}
+                        onClick={handleClose}
                         disabled={loading}
+                        aria-label="Close"
                     >
-                        ×
+
+                        <X size={20} />
+
                     </button>
 
                 </div>
@@ -373,9 +708,17 @@ export default function CreateFacultyModal({
                     autoComplete="off"
                 >
 
-                    {/* Faculty Name */}
+
+                    {/* ==================================================
+                        FACULTY NAME
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Faculty Name
+                            <span>*</span>
+                        </label>
 
                         <input
                             type="text"
@@ -390,9 +733,16 @@ export default function CreateFacultyModal({
                     </div>
 
 
-                    {/* Email */}
+                    {/* ==================================================
+                        EMAIL
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Email
+                            <span>*</span>
+                        </label>
 
                         <input
                             type="email"
@@ -408,27 +758,81 @@ export default function CreateFacultyModal({
                     </div>
 
 
-                    {/* Password */}
+                    {/* ==================================================
+                        PASSWORD
+                    ================================================== */}
 
-                    <div className="faculty-form-group">
+                    <div className="hod-form-group">
 
-                        <input
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            autoComplete="new-password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                            disabled={loading}
-                        />
+                        <label>
+                            Password
+                            <span>*</span>
+                        </label>
+
+
+                        <div className="hod-password-wrapper">
+
+                            <input
+                                type={
+                                    showPassword
+                                        ? "text"
+                                        : "password"
+                                }
+                                name="password"
+                                placeholder="Enter password"
+                                autoComplete="new-password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                required
+                                disabled={loading}
+                                minLength={6}
+                            />
+
+
+                            <button
+                                type="button"
+                                className="hod-password-toggle"
+                                onClick={() =>
+                                    setShowPassword(
+                                        (prev) => !prev
+                                    )
+                                }
+                                disabled={loading}
+                                aria-label={
+                                    showPassword
+                                        ? "Hide password"
+                                        : "Show password"
+                                }
+                            >
+
+                                {showPassword ? (
+
+                                    <EyeOff size={19} />
+
+                                ) : (
+
+                                    <Eye size={19} />
+
+                                )}
+
+                            </button>
+
+                        </div>
 
                     </div>
 
 
-                    {/* Employee ID */}
+
+                    {/* ==================================================
+                        EMPLOYEE ID
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Employee ID
+                            <span>*</span>
+                        </label>
 
                         <input
                             type="text"
@@ -443,26 +847,42 @@ export default function CreateFacultyModal({
                     </div>
 
 
-                    {/* Phone */}
+                    {/* ==================================================
+                        PHONE
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Phone Number
+                            <span>*</span>
+                        </label>
 
                         <input
                             type="tel"
                             name="phone"
-                            placeholder="Phone Number"
+                            placeholder="10 digit phone number"
                             value={formData.phone}
                             onChange={handleChange}
-                            maxLength="10"
+                            maxLength={10}
+                            inputMode="numeric"
+                            pattern="[0-9]{10}"
+                            required
                             disabled={loading}
                         />
 
                     </div>
 
 
-                    {/* Qualification */}
+                    {/* ==================================================
+                        QUALIFICATION
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Qualification
+                        </label>
 
                         <input
                             type="text"
@@ -476,9 +896,15 @@ export default function CreateFacultyModal({
                     </div>
 
 
-                    {/* Experience */}
+                    {/* ==================================================
+                        EXPERIENCE
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Experience
+                        </label>
 
                         <input
                             type="number"
@@ -493,34 +919,51 @@ export default function CreateFacultyModal({
                     </div>
 
 
-                    {/* Department */}
+                    {/* ==================================================
+                        DEPARTMENT
+                    ================================================== */}
 
                     <div className="faculty-form-group">
+
+                        <label>
+                            Department
+                            <span>*</span>
+                        </label>
 
                         <select
                             name="departmentId"
                             value={formData.departmentId}
                             onChange={handleChange}
                             required
-                            disabled={loading}
+                            disabled={
+                                loading ||
+                                loadingDepartments
+                            }
                         >
 
                             <option value="">
-                                Select Department
+
+                                {loadingDepartments
+                                    ? "Loading departments..."
+                                    : "Select Department"}
+
                             </option>
+
 
                             {departments.map(
                                 (department) => (
 
                                     <option
-                                        key={
-                                            department.id
-                                        }
-                                        value={
-                                            department.id
-                                        }
+                                        key={department.id}
+                                        value={department.id}
                                     >
+
                                         {department.name}
+
+                                        {department.code
+                                            ? ` (${department.code})`
+                                            : ""}
+
                                     </option>
 
                                 )
@@ -538,26 +981,33 @@ export default function CreateFacultyModal({
                     <button
                         type="submit"
                         className="faculty-submit-btn"
-                        disabled={loading}
+                        disabled={
+                            loading ||
+                            loadingDepartments
+                        }
                     >
 
                         {loading ? (
 
                             <>
+
                                 <Loader2
                                     size={21}
                                     className="faculty-loading-icon"
                                 />
 
                                 Adding Faculty...
+
                             </>
 
                         ) : (
 
                             <>
+
                                 <Plus size={21} />
 
                                 Add Faculty
+
                             </>
 
                         )}
@@ -568,7 +1018,10 @@ export default function CreateFacultyModal({
 
             </div>
 
-        </div>
+        </div>,
+
+        document.body
 
     );
+
 }

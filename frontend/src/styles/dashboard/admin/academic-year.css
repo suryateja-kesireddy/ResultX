@@ -2,35 +2,36 @@
    RESULTX - ACADEMIC YEAR MANAGEMENT
 ========================================================== */
 
+
 /* ==========================================================
    PAGE
 ========================================================== */
 
-.academic-year-page{
-
-    display:flex;
-    flex-direction:column;
-    gap:32px;
-
+.academic-year-page {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
+
 
 /* ==========================================================
    HERO SECTION
 ========================================================== */
 
-.academic-year-hero{
+.academic-year-hero {
+    position: relative;
 
-    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    min-height: 170px;
 
-    overflow:hidden;
+    padding: 28px 36px;
 
-    padding:28px 36px;
+    overflow: hidden;
 
-    border-radius:22px;
+    border-radius: 22px;
 
     background:
         linear-gradient(
@@ -41,871 +42,931 @@
         );
 
     box-shadow:
-        0 25px 60px rgba(37,99,235,.20);
-        min-height:170px;
-
+        0 25px 60px rgba(37, 99, 235, 0.20);
 }
 
-.academic-year-hero::before{
 
-    content:"";
+/* Decorative circle */
 
-    position:absolute;
+.academic-year-hero::before {
+    content: "";
 
-    top:-90px;
-    right:-90px;
+    position: absolute;
 
-    width:240px;
-    height:240px;
+    top: -90px;
+    right: -90px;
 
-    border-radius:50%;
+    width: 240px;
+    height: 240px;
 
-    background:rgba(255,255,255,.08);
+    border-radius: 50%;
 
+    background: rgba(255, 255, 255, 0.08);
 }
 
-.academic-year-hero::after{
 
-    content:"";
+/* Decorative circle */
 
-    position:absolute;
+.academic-year-hero::after {
+    content: "";
 
-    left:-70px;
-    bottom:-70px;
+    position: absolute;
 
-    width:180px;
-    height:180px;
+    left: -70px;
+    bottom: -70px;
 
-    border-radius:50%;
+    width: 180px;
+    height: 180px;
 
-    background:rgba(255,255,255,.05);
+    border-radius: 50%;
 
+    background: rgba(255, 255, 255, 0.05);
 }
 
-.academic-year-hero-content{
 
-    position:relative;
+/* Hero content */
 
-    z-index:2;
-
+.academic-year-hero-content {
+    position: relative;
+    z-index: 2;
 }
 
-.academic-year-hero h1{
 
-    margin:0;
+/* Hero title */
 
-    color:#FFFFFF;
+.academic-year-hero h1 {
+    margin: 0;
 
-    font-size:32px;
+    color: #FFFFFF;
 
-    font-weight:800;
+    font-size: 32px;
+    font-weight: 800;
 
-    line-height:1.2;
-
+    line-height: 1.2;
 }
 
-.academic-year-hero p{
 
-    margin-top:10px;
+/* Hero description */
 
-    max-width:720px;
+.academic-year-hero p {
+    max-width: 720px;
 
-    color:rgba(255,255,255,.92);
+    margin: 10px 0 0;
 
-    line-height:1.7;
+    color: rgba(255, 255, 255, 0.92);
 
-    font-size:16px;
+    font-size: 16px;
 
+    line-height: 1.7;
 }
+
 
 /* ==========================================================
-   ADD BUTTON
+   ADD ACADEMIC YEAR BUTTON
 ========================================================== */
 
-.academic-year-add-btn{
+.academic-year-add-btn {
+    position: relative;
 
-    position:relative;
+    z-index: 2;
 
-    z-index:2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
+    gap: 10px;
 
-    height:54px;
+    height: 54px;
 
-    padding:0 28px;
+    padding: 0 28px;
 
-    border:none;
+    border: none;
+    border-radius: 14px;
 
-    border-radius:14px;
+    background: #FFFFFF;
 
-    background:#FFFFFF;
+    color: #2563EB;
 
-    color:#2563EB;
+    font-size: 15px;
+    font-weight: 700;
 
-    font-size:15px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.30s;
+    cursor: pointer;
 
     box-shadow:
-        0 15px 30px rgba(0,0,0,.15);
+        0 15px 30px rgba(0, 0, 0, 0.15);
 
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.academic-year-add-btn:hover{
 
-    transform:translateY(-4px);
+.academic-year-add-btn:hover {
+    transform: translateY(-3px);
 
     box-shadow:
-        0 25px 40px rgba(0,0,0,.20);
-
+        0 22px 40px rgba(0, 0, 0, 0.20);
 }
+
+
+.academic-year-add-btn:active {
+    transform: translateY(0);
+}
+
+
+.academic-year-add-btn:disabled {
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
 
 /* ==========================================================
    STATISTICS GRID
 ========================================================== */
 
-.academic-stats-grid{
-
-    display:grid;
+.academic-stats-grid {
+    display: grid;
 
     grid-template-columns:
-        repeat(auto-fit,minmax(260px,1fr));
+        repeat(
+            auto-fit,
+            minmax(260px, 1fr)
+        );
 
-    gap:24px;
-
+    gap: 24px;
 }
+
 
 /* ==========================================================
-   CARD
+   STATISTICS CARD
 ========================================================== */
 
-.academic-stat-card{
+.academic-stat-card {
+    position: relative;
 
-    display:flex;
+    display: flex;
+    align-items: center;
 
-    align-items:center;
+    gap: 22px;
 
-    gap:22px;
+    overflow: hidden;
 
-    position:relative;
+    padding: 28px;
 
-    overflow:hidden;
+    background: #FFFFFF;
 
-    padding:28px;
+    border: 1px solid #E5E7EB;
 
-    background:#FFFFFF;
-
-    border-radius:22px;
-
-    border:1px solid #E5E7EB;
-
-    transition:.30s;
+    border-radius: 22px;
 
     box-shadow:
-        0 12px 35px rgba(15,23,42,.05);
+        0 12px 35px rgba(15, 23, 42, 0.05);
 
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.academic-stat-card:hover{
 
-    transform:translateY(-6px);
+.academic-stat-card:hover {
+    transform: translateY(-5px);
 
     box-shadow:
-        0 20px 45px rgba(15,23,42,.12);
-
+        0 20px 45px rgba(15, 23, 42, 0.12);
 }
 
-.academic-stat-card::after{
 
-    content:"";
+.academic-stat-card::after {
+    content: "";
 
-    position:absolute;
+    position: absolute;
 
-    right:-45px;
-    bottom:-45px;
+    right: -45px;
+    bottom: -45px;
 
-    width:130px;
-    height:130px;
+    width: 130px;
+    height: 130px;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:rgba(37,99,235,.04);
-
+    background: rgba(37, 99, 235, 0.04);
 }
+
 
 /* ==========================================================
-   ICON
+   STATISTIC ICON
 ========================================================== */
 
-.academic-stat-icon{
+.academic-stat-icon {
+    width: 74px;
+    height: 74px;
 
-    width:74px;
+    flex-shrink: 0;
 
-    height:74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    color:#FFFFFF;
-
-    flex-shrink:0;
-
+    color: #FFFFFF;
 }
 
-.academic-blue{
 
+.academic-blue {
     background:
         linear-gradient(
             135deg,
             #2563EB,
             #3B82F6
         );
-
 }
 
-.academic-green{
 
+.academic-green {
     background:
         linear-gradient(
             135deg,
             #10B981,
             #34D399
         );
-
 }
 
-.academic-red{
 
+.academic-red {
     background:
         linear-gradient(
             135deg,
             #EF4444,
             #F87171
         );
-
 }
+
 
 /* ==========================================================
-   CONTENT
+   STATISTIC CONTENT
 ========================================================== */
 
-.academic-stat-content{
-
-    display:flex;
-
-    flex-direction:column;
-
+.academic-stat-content {
+    display: flex;
+    flex-direction: column;
 }
 
-.academic-stat-content h2{
 
-    margin:0;
+.academic-stat-content h2 {
+    margin: 0;
 
-    font-size:34px;
+    color: #111827;
 
-    font-weight:800;
-
-    color:#111827;
-
+    font-size: 34px;
+    font-weight: 800;
 }
 
-.academic-stat-content p{
 
-    margin-top:6px;
+.academic-stat-content p {
+    margin: 6px 0 0;
 
-    color:#64748B;
+    color: #64748B;
 
-    font-size:15px;
-
-    font-weight:600;
-
+    font-size: 15px;
+    font-weight: 600;
 }
+
+
 /* ==========================================================
    FILTERS
 ========================================================== */
 
-.academic-year-filters{
+.academic-year-filters {
+    display: flex;
+    align-items: center;
 
-    display:flex;
+    gap: 18px;
 
-    align-items:center;
+    margin-bottom: 30px;
 
-    gap:18px;
-
-    margin-bottom:30px;
-
-    flex-wrap:wrap;
-
+    flex-wrap: wrap;
 }
+
 
 /* ==========================================================
    SEARCH
 ========================================================== */
 
-.academic-search{
+.academic-search {
+    flex: 1;
 
-    flex:1;
+    height: 56px;
 
-    height:56px;
+    display: flex;
+    align-items: center;
 
-    display:flex;
+    gap: 12px;
 
-    align-items:center;
+    padding: 0 20px;
 
-    gap:12px;
+    background: #FFFFFF;
 
-    padding:0 20px;
+    border: 1px solid #E5E7EB;
 
-    background:#FFFFFF;
-
-    border:1px solid #E5E7EB;
-
-    border-radius:16px;
-
-    transition:.30s;
+    border-radius: 16px;
 
     box-shadow:
-        0 8px 20px rgba(15,23,42,.04);
+        0 8px 20px rgba(15, 23, 42, 0.04);
 
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.academic-search:hover{
 
-    border-color:#CBD5E1;
-
+.academic-search:hover {
+    border-color: #CBD5E1;
 }
 
-.academic-search:focus-within{
 
-    border-color:#2563EB;
+.academic-search:focus-within {
+    border-color: #2563EB;
 
     box-shadow:
-        0 0 0 4px rgba(37,99,235,.08);
-
+        0 0 0 4px rgba(37, 99, 235, 0.08);
 }
 
-.academic-search-icon{
 
-    color:#94A3B8;
+.academic-search-icon {
+    flex-shrink: 0;
 
-    flex-shrink:0;
-
+    color: #94A3B8;
 }
 
-.academic-search input{
 
-    flex:1;
+.academic-search input {
+    flex: 1;
 
-    border:none;
+    min-width: 0;
 
-    outline:none;
+    border: none;
 
-    background:transparent;
+    outline: none;
 
-    font-size:15px;
+    background: transparent;
 
-    color:#111827;
+    color: #111827;
 
+    font-size: 15px;
 }
 
-.academic-search input::placeholder{
 
-    color:#94A3B8;
-
+.academic-search input::placeholder {
+    color: #94A3B8;
 }
+
 
 /* ==========================================================
-   SELECT
+   STATUS SELECT
 ========================================================== */
 
-.academic-year-filters select{
+.academic-year-filters select {
+    width: 220px;
 
-    width:220px;
+    height: 56px;
 
-    height:56px;
+    padding: 0 18px;
 
-    padding:0 18px;
+    border: 1px solid #E5E7EB;
 
-    border:1px solid #E5E7EB;
+    border-radius: 16px;
 
-    border-radius:16px;
+    outline: none;
 
-    background:#FFFFFF;
+    background: #FFFFFF;
 
-    font-size:15px;
+    color: #111827;
 
-    outline:none;
+    font-size: 15px;
 
-    cursor:pointer;
-
-    transition:.30s;
-
-    box-shadow:
-        0 8px 20px rgba(15,23,42,.04);
-
-}
-
-.academic-year-filters select:hover{
-
-    border-color:#CBD5E1;
-
-}
-
-.academic-year-filters select:focus{
-
-    border-color:#2563EB;
+    cursor: pointer;
 
     box-shadow:
-        0 0 0 4px rgba(37,99,235,.08);
+        0 8px 20px rgba(15, 23, 42, 0.04);
 
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
+
+
+.academic-year-filters select:hover {
+    border-color: #CBD5E1;
+}
+
+
+.academic-year-filters select:focus {
+    border-color: #2563EB;
+
+    box-shadow:
+        0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+
 
 /* ==========================================================
    RESET BUTTON
 ========================================================== */
 
-.academic-reset-btn{
+.academic-reset-btn {
+    height: 56px;
 
-    height:56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    padding:0 24px;
+    gap: 10px;
 
-    display:flex;
+    padding: 0 24px;
 
-    align-items:center;
+    border: none;
 
-    justify-content:center;
+    border-radius: 16px;
 
-    gap:10px;
+    background: #0F172A;
 
-    border:none;
+    color: #FFFFFF;
 
-    border-radius:16px;
+    font-size: 15px;
+    font-weight: 600;
 
-    background:#0F172A;
+    cursor: pointer;
 
-    color:#FFFFFF;
-
-    font-weight:600;
-
-    cursor:pointer;
-
-    transition:.30s;
-
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
 }
 
-.academic-reset-btn:hover{
 
-    background:#1E293B;
+.academic-reset-btn:hover {
+    background: #1E293B;
 
-    transform:translateY(-2px);
-
+    transform: translateY(-2px);
 }
+
 
 /* ==========================================================
    TABLE CARD
 ========================================================== */
 
-.academic-table-card{
+.academic-table-card {
+    background: #FFFFFF;
 
-    background:#FFFFFF;
+    border: 1px solid #E5E7EB;
 
-    border-radius:22px;
+    border-radius: 22px;
 
-    border:1px solid #E5E7EB;
-
-    overflow:hidden;
+    overflow: hidden;
 
     box-shadow:
-        0 15px 40px rgba(15,23,42,.05);
-
+        0 15px 40px rgba(15, 23, 42, 0.05);
 }
+
 
 /* ==========================================================
    TABLE HEADER
 ========================================================== */
 
-.academic-table-header{
+.academic-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    display:flex;
+    gap: 20px;
 
-    justify-content:space-between;
+    padding: 28px 32px;
 
-    align-items:center;
-
-    padding:28px 32px;
-
-    border-bottom:1px solid #EEF2F7;
-
+    border-bottom: 1px solid #EEF2F7;
 }
 
-.academic-table-header h2{
 
-    margin:0;
+.academic-table-header h2 {
+    margin: 0;
 
-    font-size:24px;
+    color: #0F172A;
 
-    font-weight:700;
-
-    color:#0F172A;
-
+    font-size: 24px;
+    font-weight: 700;
 }
 
-.academic-table-header p{
 
-    margin-top:6px;
+.academic-table-header p {
+    margin: 6px 0 0;
 
-    color:#64748B;
+    color: #64748B;
 
-    font-size:15px;
-
+    font-size: 15px;
 }
+
 
 /* ==========================================================
-   RESPONSIVE TABLE
+   TABLE RESPONSIVE
 ========================================================== */
 
-.table-responsive{
+.table-responsive {
+    width: 100%;
 
-    overflow-x:auto;
-
+    overflow-x: auto;
 }
 
-.academic-table{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-}
 
 /* ==========================================================
-   TABLE HEAD
+   TABLE
 ========================================================== */
 
-.academic-table thead{
+.academic-table {
+    width: 100%;
 
-    background:#F8FAFC;
-
+    border-collapse: collapse;
 }
 
-.academic-table th{
 
-    padding:22px;
-
-    text-align:left;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    color:#475569;
-
+.academic-table thead {
+    background: #F8FAFC;
 }
+
+
+.academic-table th {
+    padding: 22px;
+
+    text-align: left;
+
+    color: #475569;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.academic-table td {
+    padding: 22px;
+
+    border-top: 1px solid #EEF2F7;
+
+    color: #334155;
+
+    font-size: 14px;
+}
+
+
+.academic-table tbody tr {
+    transition:
+        background 0.25s ease;
+}
+
+
+.academic-table tbody tr:hover {
+    background: #F8FAFC;
+}
+
 
 /* ==========================================================
-   TABLE BODY
+   ACADEMIC YEAR NAME
 ========================================================== */
 
-.academic-table td{
+.academic-year-name {
+    color: #111827;
 
-    padding:22px;
-
-    border-top:1px solid #EEF2F7;
-
-    color:#334155;
-
+    font-size: 15px;
+    font-weight: 700;
 }
 
-.academic-table tbody tr{
-
-    transition:.30s;
-
-}
-
-.academic-table tbody tr:hover{
-
-    background:#F8FAFC;
-
-}
-
-/* ==========================================================
-   YEAR TEXT
-========================================================== */
-
-.academic-year-name{
-
-    font-size:15px;
-
-    font-weight:700;
-
-    color:#111827;
-
-}
 
 /* ==========================================================
    STATUS
 ========================================================== */
 
 .status-active,
-.status-inactive{
+.status-inactive {
+    display: inline-flex;
+    align-items: center;
 
-    display:inline-flex;
+    gap: 8px;
 
-    align-items:center;
+    padding: 8px 16px;
 
-    gap:8px;
+    border-radius: 999px;
 
-    padding:8px 16px;
-
-    border-radius:999px;
-
-    font-size:13px;
-
-    font-weight:700;
-
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.status-active{
 
-    background:#DCFCE7;
+.status-active {
+    background: #DCFCE7;
 
-    color:#15803D;
-
+    color: #15803D;
 }
 
-.status-inactive{
 
-    background:#FEE2E2;
+.status-inactive {
+    background: #FEE2E2;
 
-    color:#DC2626;
-
+    color: #DC2626;
 }
 
-.status-dot{
 
-    width:8px;
+.status-dot {
+    width: 8px;
+    height: 8px;
 
-    height:8px;
+    flex-shrink: 0;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:currentColor;
-
+    background: currentColor;
 }
+
 
 /* ==========================================================
-   ACTION BUTTONS
+   TABLE ACTION BUTTONS
 ========================================================== */
 
-.action-buttons{
+.action-buttons {
+    display: flex;
+    align-items: center;
 
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
+    gap: 10px;
 }
+
 
 .edit-btn,
-.delete-btn{
+.delete-btn {
+    width: 44px;
+    height: 44px;
 
-    width:44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    height:44px;
+    border: none;
 
-    border:none;
+    border-radius: 12px;
 
-    border-radius:12px;
+    cursor: pointer;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:.30s;
-
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
-.edit-btn{
 
-    background:#DBEAFE;
+.edit-btn {
+    background: #DBEAFE;
 
-    color:#2563EB;
-
+    color: #2563EB;
 }
 
-.edit-btn:hover{
 
-    background:#2563EB;
+.edit-btn:hover {
+    background: #2563EB;
 
-    color:#FFFFFF;
+    color: #FFFFFF;
 
-    transform:translateY(-2px);
-
+    transform: translateY(-2px);
 }
 
-.delete-btn{
 
-    background:#FEE2E2;
+.delete-btn {
+    background: #FEE2E2;
 
-    color:#DC2626;
-
+    color: #DC2626;
 }
 
-.delete-btn:hover{
 
-    background:#DC2626;
+.delete-btn:hover {
+    background: #DC2626;
 
-    color:#FFFFFF;
+    color: #FFFFFF;
 
-    transform:translateY(-2px);
-
+    transform: translateY(-2px);
 }
+
 
 /* ==========================================================
    EMPTY STATE
 ========================================================== */
 
-.academic-empty{
+.academic-empty {
+    min-height: 260px;
 
-    display:flex;
+    display: flex;
+    flex-direction: column;
 
-    flex-direction:column;
+    align-items: center;
+    justify-content: center;
 
-    align-items:center;
+    padding: 60px 20px;
 
-    justify-content:center;
-
-    text-align:center;
-
-    padding:80px 20px;
-
+    text-align: center;
 }
 
-.academic-empty svg{
 
-    color:#94A3B8;
+.academic-empty svg {
+    margin-bottom: 20px;
 
-    margin-bottom:20px;
-
+    color: #94A3B8;
 }
 
-.academic-empty h3{
 
-    margin-bottom:10px;
+.academic-empty h3 {
+    margin: 0 0 10px;
 
-    color:#111827;
-
+    color: #111827;
 }
 
-.academic-empty p{
 
-    color:#64748B;
+.academic-empty p {
+    max-width: 320px;
 
-    max-width:320px;
+    margin: 0;
 
+    color: #64748B;
 }
+
+
 /* ==========================================================
-   PREMIUM MODAL OVERLAY
+   ==========================================================
+   PREMIUM POPUP OVERLAY
+   ==========================================================
 ========================================================== */
 
 .academic-modal-overlay,
-.academic-delete-overlay{
+.academic-delete-overlay {
+    position: fixed;
 
-    position:fixed;
+    inset: 0;
 
-    inset:0;
+    z-index: 9999;
 
-    background:rgba(15,23,42,.65);
+    display: flex;
 
-    backdrop-filter:blur(8px);
+    align-items: center;
+    justify-content: center;
 
-    display:flex;
+    padding: 20px;
 
-    justify-content:center;
+    background:
+        rgba(15, 23, 42, 0.62);
 
-    align-items:center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
-    padding:20px;
+    overflow-y: auto;
 
-    z-index:9999;
-
-    animation:fadeIn .25s ease;
-
+    animation:
+        academicFadeIn 0.20s ease-out;
 }
 
+
 /* ==========================================================
-   MODAL
+   CREATE / EDIT POPUP
 ========================================================== */
 
-.academic-modal,
-.academic-delete-modal{
+.academic-modal {
+    position: relative;
 
-    width:100%;
+    width: 100%;
 
-    max-width:650px;
+    max-width: 600px;
 
-    background:#FFFFFF;
+    max-height: calc(100vh - 40px);
 
-    border-radius:24px;
+    margin: auto;
 
-    overflow:hidden;
+    background: #FFFFFF;
 
-    animation:popup .30s ease;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius: 24px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 
     box-shadow:
-        0 35px 80px rgba(15,23,42,.25);
+        0 30px 80px rgba(15, 23, 42, 0.30);
 
+    animation:
+        academicPopup 0.25s ease-out;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #CBD5E1
+        transparent;
 }
+
 
 /* ==========================================================
-   HEADER
+   DELETE POPUP
 ========================================================== */
 
-.academic-modal-header{
+.academic-delete-modal {
+    position: relative;
 
-    display:flex;
+    width: 100%;
 
-    align-items:center;
+    max-width: 520px;
 
-    gap:20px;
+    max-height: calc(100vh - 40px);
 
-    padding:32px;
+    margin: auto;
 
-    border-bottom:1px solid #EEF2F7;
+    padding: 40px;
 
+    background: #FFFFFF;
+
+    border: 1px solid rgba(226, 232, 240, 0.9);
+
+    border-radius: 24px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.30);
+
+    animation:
+        academicPopup 0.25s ease-out;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #CBD5E1
+        transparent;
 }
 
-.academic-modal-icon{
 
-    width:72px;
+/* ==========================================================
+   POPUP SCROLLBAR
+========================================================== */
 
-    height:72px;
+.academic-modal::-webkit-scrollbar,
+.academic-delete-modal::-webkit-scrollbar {
+    width: 6px;
+}
 
-    display:flex;
 
-    align-items:center;
+.academic-modal::-webkit-scrollbar-track,
+.academic-delete-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
 
-    justify-content:center;
 
-    border-radius:20px;
+.academic-modal::-webkit-scrollbar-thumb,
+.academic-delete-modal::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+
+    border-radius: 999px;
+}
+
+
+.academic-modal::-webkit-scrollbar-thumb:hover,
+.academic-delete-modal::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+}
+
+
+/* ==========================================================
+   POPUP HEADER
+========================================================== */
+
+.academic-modal-header {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 28px 30px;
+
+    border-bottom: 1px solid #EEF2F7;
+}
+
+
+.academic-modal-icon {
+    width: 64px;
+    height: 64px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
 
     background:
         linear-gradient(
@@ -914,211 +975,237 @@
             #3B82F6
         );
 
-    color:#FFFFFF;
+    color: #FFFFFF;
 
     box-shadow:
-        0 15px 35px rgba(37,99,235,.25);
-
+        0 12px 28px rgba(37, 99, 235, 0.22);
 }
 
-.academic-modal-header h2{
 
-    margin:0;
+.academic-modal-header h2 {
+    margin: 0;
 
-    color:#111827;
+    color: #111827;
 
-    font-size:28px;
-
-    font-weight:800;
-
+    font-size: 25px;
+    font-weight: 800;
 }
 
-.academic-modal-header p{
 
-    margin-top:6px;
+.academic-modal-header p {
+    margin: 6px 0 0;
 
-    color:#64748B;
+    color: #64748B;
 
-    line-height:1.7;
+    font-size: 14px;
 
+    line-height: 1.6;
 }
+
 
 /* ==========================================================
    FORM
 ========================================================== */
 
-.academic-form{
-
-    padding:32px;
-
+.academic-form {
+    padding: 28px 30px;
 }
 
-.academic-form-group{
 
-    display:flex;
+.academic-form-group {
+    display: flex;
 
-    flex-direction:column;
+    flex-direction: column;
 
-    gap:10px;
+    gap: 9px;
 
+    margin-bottom: 20px;
 }
 
-.academic-form-group label{
 
-    font-size:15px;
+.academic-form-group label {
+    color: #334155;
 
-    font-weight:600;
-
-    color:#334155;
-
+    font-size: 14px;
+    font-weight: 700;
 }
 
-.academic-form-group input{
 
-    height:56px;
+.academic-form-group input {
+    width: 100%;
 
-    border:1px solid #E5E7EB;
+    height: 52px;
 
-    border-radius:16px;
+    box-sizing: border-box;
 
-    padding:0 18px;
+    padding: 0 16px;
 
-    outline:none;
+    border: 1px solid #E2E8F0;
 
-    transition:.30s;
+    border-radius: 14px;
 
-    font-size:15px;
+    outline: none;
 
+    background: #FFFFFF;
+
+    color: #111827;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.academic-form-group input:focus{
 
-    border-color:#2563EB;
+.academic-form-group input:hover {
+    border-color: #CBD5E1;
+}
+
+
+.academic-form-group input:focus {
+    border-color: #2563EB;
 
     box-shadow:
-        0 0 0 4px rgba(37,99,235,.08);
-
+        0 0 0 4px
+        rgba(37, 99, 235, 0.08);
 }
+
 
 /* ==========================================================
    CHECKBOX CARD
 ========================================================== */
 
-.academic-checkbox-card{
+.academic-checkbox-card {
+    margin-top: 8px;
 
-    margin-top:24px;
+    padding: 18px;
 
-    border:1px solid #E5E7EB;
+    border: 1px solid #E2E8F0;
 
-    border-radius:18px;
+    border-radius: 16px;
 
-    background:#F8FAFC;
-
-    padding:22px;
-
+    background: #F8FAFC;
 }
 
-.academic-checkbox{
 
-    display:flex;
+.academic-checkbox {
+    display: flex;
 
-    gap:18px;
+    gap: 14px;
 
-    cursor:pointer;
-
+    cursor: pointer;
 }
 
-.academic-checkbox input{
 
-    width:18px;
+.academic-checkbox input {
+    width: 18px;
+    height: 18px;
 
-    height:18px;
+    flex-shrink: 0;
 
-    margin-top:4px;
+    margin-top: 3px;
 
-    accent-color:#2563EB;
+    accent-color: #2563EB;
 
+    cursor: pointer;
 }
 
-.academic-checkbox h4{
 
-    display:flex;
+.academic-checkbox h4 {
+    display: flex;
+    align-items: center;
 
-    align-items:center;
+    gap: 8px;
 
-    gap:10px;
+    margin: 0;
 
-    margin:0;
+    color: #111827;
 
-    color:#111827;
-
+    font-size: 15px;
 }
 
-.academic-checkbox p{
 
-    margin-top:8px;
+.academic-checkbox p {
+    margin: 6px 0 0;
 
-    color:#64748B;
+    color: #64748B;
 
-    line-height:1.7;
+    font-size: 13px;
 
-    font-size:14px;
-
+    line-height: 1.6;
 }
+
 
 /* ==========================================================
-   FOOTER
+   POPUP FOOTER
 ========================================================== */
 
-.academic-modal-footer{
+.academic-modal-footer {
+    display: flex;
 
-    display:flex;
+    align-items: center;
+    justify-content: flex-end;
 
-    justify-content:flex-end;
+    gap: 12px;
 
-    gap:14px;
-
-    margin-top:30px;
-
+    margin-top: 26px;
 }
+
+
+/* ==========================================================
+   POPUP BUTTONS
+========================================================== */
 
 .academic-btn-cancel,
-.academic-btn-save{
+.academic-btn-save,
+.academic-btn-delete {
+    min-height: 50px;
 
-    height:52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-    padding:0 28px;
+    gap: 8px;
 
-    border:none;
+    padding: 0 24px;
 
-    border-radius:14px;
+    border: none;
 
-    font-size:15px;
+    border-radius: 13px;
 
-    font-weight:700;
+    font-size: 14px;
+    font-weight: 700;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    transition:.30s;
-
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
-.academic-btn-cancel{
 
-    background:#E2E8F0;
+/* Cancel */
 
-    color:#334155;
+.academic-btn-cancel {
+    background: #E2E8F0;
 
+    color: #334155;
 }
 
-.academic-btn-cancel:hover{
 
-    background:#CBD5E1;
+.academic-btn-cancel:hover:not(:disabled) {
+    background: #CBD5E1;
 
+    transform: translateY(-1px);
 }
 
-.academic-btn-save{
 
+/* Save */
+
+.academic-btn-save {
     background:
         linear-gradient(
             135deg,
@@ -1126,461 +1213,564 @@
             #3B82F6
         );
 
-    color:#FFFFFF;
-
-}
-
-.academic-btn-save:hover{
-
-    transform:translateY(-2px);
+    color: #FFFFFF;
 
     box-shadow:
-        0 15px 35px rgba(37,99,235,.25);
-
+        0 8px 20px
+        rgba(37, 99, 235, 0.18);
 }
+
+
+.academic-btn-save:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(37, 99, 235, 0.25);
+}
+
+
+/* Delete */
+
+.academic-btn-delete {
+    background: #DC2626;
+
+    color: #FFFFFF;
+
+    box-shadow:
+        0 8px 20px
+        rgba(220, 38, 38, 0.18);
+}
+
+
+.academic-btn-delete:hover:not(:disabled) {
+    background: #B91C1C;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px
+        rgba(220, 38, 38, 0.25);
+}
+
+
+/* Disabled */
+
+.academic-btn-cancel:disabled,
+.academic-btn-save:disabled,
+.academic-btn-delete:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
 
 /* ==========================================================
-   DELETE MODAL
+   DELETE POPUP
 ========================================================== */
 
-.academic-delete-modal{
+.academic-delete-icon {
+    width: 82px;
+    height: 82px;
 
-    max-width:520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    text-align:center;
+    margin: 0 auto 22px;
 
-    padding:40px;
+    border-radius: 22px;
 
+    background: #FEE2E2;
+
+    color: #DC2626;
 }
 
-.academic-delete-icon{
 
-    width:90px;
+.academic-delete-modal h2 {
+    margin: 0 0 10px;
 
-    height:90px;
+    color: #111827;
 
-    margin:0 auto 24px;
-
-    border-radius:50%;
-
-    background:#FEE2E2;
-
-    color:#DC2626;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
+    font-size: 28px;
+    font-weight: 800;
 }
 
-.academic-delete-modal h2{
 
-    margin-bottom:12px;
+.academic-delete-modal p {
+    margin: 0;
 
-    font-size:30px;
+    color: #64748B;
 
-    color:#111827;
+    font-size: 15px;
 
+    line-height: 1.7;
 }
 
-.academic-delete-modal p{
 
-    color:#64748B;
+.academic-delete-modal h3 {
+    margin: 18px 0 10px;
 
-    line-height:1.8;
+    color: #DC2626;
 
+    font-size: 23px;
+    font-weight: 700;
 }
 
-.academic-delete-modal h3{
 
-    margin:18px 0;
+.academic-delete-modal span {
+    display: block;
 
-    color:#DC2626;
+    color: #94A3B8;
 
-    font-size:24px;
-
+    font-size: 14px;
 }
 
-.academic-delete-modal span{
-
-    color:#94A3B8;
-
-    font-size:14px;
-
-}
-
-.academic-delete-actions{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:16px;
-
-    margin-top:34px;
-
-}
-
-.academic-btn-delete{
-
-    height:52px;
-
-    padding:0 28px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:#DC2626;
-
-    color:#FFFFFF;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.academic-btn-delete:hover{
-
-    background:#B91C1C;
-
-    transform:translateY(-2px);
-
-}
 
 /* ==========================================================
-   ANIMATIONS
+   DELETE ACTIONS
 ========================================================== */
 
-@keyframes fadeIn{
+.academic-delete-actions {
+    display: flex;
 
-    from{
+    align-items: center;
+    justify-content: center;
 
-        opacity:0;
+    gap: 12px;
 
-    }
+    margin-top: 28px;
 
-    to{
+    padding-top: 22px;
 
-        opacity:1;
-
-    }
-
+    border-top: 1px solid #EEF2F7;
 }
 
-@keyframes popup{
 
-    from{
+/* ==========================================================
+   POPUP ANIMATIONS
+========================================================== */
 
-        opacity:0;
+@keyframes academicFadeIn {
 
-        transform:translateY(25px) scale(.95);
-
+    from {
+        opacity: 0;
     }
 
-    to{
-
-        opacity:1;
-
-        transform:translateY(0) scale(1);
-
+    to {
+        opacity: 1;
     }
-
 }
+
+
+@keyframes academicPopup {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
 /* ==========================================================
    RESPONSIVE - LARGE TABLETS
 ========================================================== */
 
-@media (max-width:1200px){
+@media (max-width: 1200px) {
 
-    .academic-year-hero{
-
-        padding:32px;
-
+    .academic-year-hero {
+        padding: 32px;
     }
 
-    .academic-year-hero h1{
-
-        font-size:34px;
-
+    .academic-year-hero h1 {
+        font-size: 34px;
     }
-
 }
+
 
 /* ==========================================================
    RESPONSIVE - TABLETS
 ========================================================== */
 
-@media (max-width:992px){
+@media (max-width: 992px) {
 
-    .academic-year-page{
-
-        gap:24px;
-
+    .academic-year-page {
+        gap: 24px;
     }
 
-    .academic-year-hero{
+    .academic-year-hero {
+        flex-direction: column;
 
-        flex-direction:column;
+        align-items: flex-start;
 
-        align-items:flex-start;
-
-        gap:24px;
-
+        gap: 24px;
     }
 
-    .academic-year-add-btn{
-
-        width:100%;
-
+    .academic-year-add-btn {
+        width: 100%;
     }
 
-    .academic-year-filters{
+    .academic-year-filters {
+        flex-direction: column;
 
-        flex-direction:column;
-
+        align-items: stretch;
     }
 
     .academic-search,
     .academic-year-filters select,
-    .academic-reset-btn{
-
-        width:100%;
-
+    .academic-reset-btn {
+        width: 100%;
     }
 
-    .academic-table-header{
+    .academic-table-header {
+        flex-direction: column;
 
-        flex-direction:column;
+        align-items: flex-start;
 
-        align-items:flex-start;
-
-        gap:12px;
-
+        gap: 12px;
     }
-
 }
+
 
 /* ==========================================================
    RESPONSIVE - MOBILE
 ========================================================== */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-    .academic-year-hero{
-
-        padding:24px;
-
-        border-radius:20px;
-
+    .academic-year-page {
+        gap: 22px;
     }
 
-    .academic-year-hero h1{
 
-        font-size:28px;
+    /* Hero */
 
-        line-height:1.3;
+    .academic-year-hero {
+        padding: 24px;
 
+        border-radius: 20px;
     }
 
-    .academic-year-hero p{
+    .academic-year-hero h1 {
+        font-size: 28px;
 
-        font-size:14px;
-
+        line-height: 1.3;
     }
 
-    .academic-stats-grid{
-
-        grid-template-columns:1fr;
-
+    .academic-year-hero p {
+        font-size: 14px;
     }
 
-    .academic-stat-card{
 
-        padding:22px;
+    /* Statistics */
 
+    .academic-stats-grid {
+        grid-template-columns: 1fr;
     }
 
-    .academic-stat-icon{
-
-        width:62px;
-
-        height:62px;
-
+    .academic-stat-card {
+        padding: 22px;
     }
 
-    .academic-stat-content h2{
-
-        font-size:28px;
-
+    .academic-stat-icon {
+        width: 62px;
+        height: 62px;
     }
 
-    .academic-table{
-
-        min-width:700px;
-
+    .academic-stat-content h2 {
+        font-size: 28px;
     }
 
-    .academic-modal,
-    .academic-delete-modal{
 
-        max-width:100%;
+    /* Table */
 
+    .academic-table {
+        min-width: 700px;
     }
 
-    .academic-modal-header{
 
-        flex-direction:column;
+    /* Popup */
 
-        text-align:center;
+    .academic-modal-overlay,
+    .academic-delete-overlay {
+        align-items: center;
 
+        padding: 16px;
     }
 
-    .academic-form{
 
-        padding:24px;
+    .academic-modal {
+        width: 100%;
 
+        max-width: 100%;
+
+        max-height: calc(100vh - 32px);
+
+        border-radius: 20px;
     }
+
+
+    .academic-delete-modal {
+        width: 100%;
+
+        max-width: 100%;
+
+        max-height: calc(100vh - 32px);
+
+        padding: 30px 22px;
+
+        border-radius: 20px;
+    }
+
+
+    .academic-modal-header {
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        padding: 24px 22px;
+    }
+
+
+    .academic-modal-icon {
+        width: 58px;
+        height: 58px;
+
+        border-radius: 16px;
+    }
+
+
+    .academic-modal-header h2 {
+        font-size: 22px;
+    }
+
+
+    .academic-form {
+        padding: 24px 22px;
+    }
+
 
     .academic-modal-footer,
-    .academic-delete-actions{
+    .academic-delete-actions {
+        flex-direction: column;
 
-        flex-direction:column;
-
+        width: 100%;
     }
+
 
     .academic-btn-save,
     .academic-btn-cancel,
-    .academic-btn-delete{
-
-        width:100%;
-
+    .academic-btn-delete {
+        width: 100%;
     }
 
+
+    .academic-delete-modal h2 {
+        font-size: 25px;
+    }
 }
+
 
 /* ==========================================================
-   SMALL MOBILE
+   RESPONSIVE - SMALL MOBILE
 ========================================================== */
 
-@media (max-width:480px){
+@media (max-width: 480px) {
 
-    .academic-year-page{
-
-        gap:18px;
-
+    .academic-year-page {
+        gap: 18px;
     }
 
-    .academic-year-hero{
 
-        padding:20px;
+    /* Hero */
 
+    .academic-year-hero {
+        padding: 20px;
     }
 
-    .academic-year-hero h1{
-
-        font-size:24px;
-
+    .academic-year-hero h1 {
+        font-size: 24px;
     }
 
-    .academic-year-hero p{
-
-        font-size:13px;
-
+    .academic-year-hero p {
+        font-size: 13px;
     }
 
-    .academic-stat-card{
 
-        flex-direction:column;
+    /* Statistics */
 
-        align-items:flex-start;
+    .academic-stat-card {
+        flex-direction: column;
 
+        align-items: flex-start;
+
+        padding: 20px;
     }
 
-    .academic-stat-icon{
-
-        width:56px;
-
-        height:56px;
-
+    .academic-stat-icon {
+        width: 56px;
+        height: 56px;
     }
 
-    .academic-stat-content h2{
-
-        font-size:26px;
-
+    .academic-stat-content h2 {
+        font-size: 26px;
     }
 
+
+    /* Popup */
+
+    .academic-modal-overlay,
+    .academic-delete-overlay {
+        padding: 10px;
+    }
+
+
+    .academic-modal {
+        max-height: calc(100vh - 20px);
+
+        border-radius: 18px;
+    }
+
+
+    .academic-delete-modal {
+        max-height: calc(100vh - 20px);
+
+        padding: 26px 18px;
+
+        border-radius: 18px;
+    }
+
+
+    .academic-modal-header {
+        padding: 20px 18px;
+    }
+
+
+    .academic-form {
+        padding: 20px 18px;
+    }
+
+
+    .academic-delete-icon {
+        width: 70px;
+        height: 70px;
+
+        border-radius: 18px;
+    }
+
+
+    .academic-delete-modal h2 {
+        font-size: 23px;
+    }
+
+
+    .academic-delete-modal h3 {
+        font-size: 21px;
+    }
 }
+
 
 /* ==========================================================
-   SCROLLBAR
+   TABLE SCROLLBAR
 ========================================================== */
 
-.table-responsive::-webkit-scrollbar{
-
-    height:8px;
-
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
 }
 
-.table-responsive::-webkit-scrollbar-track{
 
-    background:#F1F5F9;
+.table-responsive::-webkit-scrollbar-track {
+    background: #F1F5F9;
 
-    border-radius:999px;
-
+    border-radius: 999px;
 }
 
-.table-responsive::-webkit-scrollbar-thumb{
 
-    background:#CBD5E1;
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
 
-    border-radius:999px;
-
+    border-radius: 999px;
 }
 
-.table-responsive::-webkit-scrollbar-thumb:hover{
 
-    background:#94A3B8;
-
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
 }
+
 
 /* ==========================================================
-   SELECTION
+   POPUP SCROLLBAR
 ========================================================== */
 
-::selection{
-
-    background:#2563EB;
-
-    color:#FFFFFF;
-
+.academic-modal::-webkit-scrollbar,
+.academic-delete-modal::-webkit-scrollbar {
+    width: 6px;
 }
+
+
+.academic-modal::-webkit-scrollbar-track,
+.academic-delete-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.academic-modal::-webkit-scrollbar-thumb,
+.academic-delete-modal::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+
+    border-radius: 999px;
+}
+
 
 /* ==========================================================
-   INPUT PLACEHOLDER
+   TEXT SELECTION
 ========================================================== */
 
-input::placeholder{
+::selection {
+    background: #2563EB;
 
-    color:#94A3B8;
-
+    color: #FFFFFF;
 }
 
-select{
 
-    appearance:none;
+/* ==========================================================
+   GLOBAL PLACEHOLDER
+========================================================== */
 
-    -webkit-appearance:none;
-
-    -moz-appearance:none;
-
+input::placeholder {
+    color: #94A3B8;
 }
+
+
+/* ==========================================================
+   SELECT RESET
+========================================================== */
+
+select {
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    -moz-appearance: none;
+}
+
 
 /* ==========================================================
    SMOOTH TRANSITIONS
@@ -1592,24 +1782,23 @@ select,
 table,
 tr,
 td,
-th{
-
-    transition:all .30s ease;
-
+th {
+    transition:
+        all 0.30s ease;
 }
 
+
 /* ==========================================================
-   PREMIUM SHADOW
+   PREMIUM PERFORMANCE
 ========================================================== */
 
 .academic-table-card,
 .academic-stat-card,
 .academic-modal,
-.academic-delete-modal{
-
-    will-change:transform;
-
+.academic-delete-modal {
+    will-change: transform;
 }
+
 
 /* ==========================================================
    END
