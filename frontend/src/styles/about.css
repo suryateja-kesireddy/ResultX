@@ -65,7 +65,8 @@
     gap:10px;
 
     padding:12px 28px;
-    margin-bottom:35px;
+    margin-bottom:18px;
+    margin-top: 12px;
 
     background:rgba(255,255,255,.75);
 
@@ -292,101 +293,107 @@
 
 /* ==========================================================
    MOBILE
-========================================================== */
+   ========================================================== */
 
-@media (max-width:768px){
+@media (max-width: 768px) {
 
-    .about-page{
-        padding:110px 0 70px;
+    .about-page {
+        padding: 125px 20px 70px;
     }
 
-    .about-badge{
-
-        font-size:14px;
-
-        padding:10px 20px;
+    .about-hero {
+        margin-bottom: 65px;
     }
 
-    .about-title{
-
-        white-space:normal;
-
-        font-size:2.5rem;
-
-        line-height:1.2;
-
-        letter-spacing:0;
+    .about-badge {
+        font-size: 14px;
+        padding: 10px 20px;
+        margin-bottom: 28px;
     }
 
-    .about-description{
-
-        font-size:1rem;
-
-        line-height:1.8;
+    .about-title {
+        white-space: normal;
+        font-size: 2.5rem;
+        line-height: 1.2;
+        letter-spacing: 0;
+        margin-top: 0;
+        margin-bottom: 28px;
     }
 
-    .about-grid{
-
-        grid-template-columns:1fr;
-
-        gap:24px;
+    .about-description {
+        font-size: 1rem;
+        line-height: 1.8;
     }
 
-    .about-card{
-
-        padding:30px 24px;
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
-    .about-icon{
-
-        width:75px;
-        height:75px;
-
-        font-size:34px;
+    .about-card {
+        padding: 30px 24px;
     }
 
+    .about-icon {
+        width: 75px;
+        height: 75px;
+        font-size: 34px;
+    }
 }
+
 
 /* ==========================================================
    SMALL MOBILE
-========================================================== */
+   ========================================================== */
 
-@media (max-width:480px){
+@media (max-width: 480px) {
 
-    .about-page{
-        padding:90px 0 60px;
+    .about-page {
+        padding: 110px 16px 60px;
     }
 
-    .about-badge{
-
-        font-size:13px;
-
-        padding:8px 18px;
+    .about-badge {
+        font-size: 13px;
+        padding: 8px 18px;
+        margin-bottom: 24px;
     }
 
-    .about-title{
-
-        font-size:2rem;
+    .about-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-top: 0;
+        margin-bottom: 24px;
     }
 
-    .about-description{
-
-        font-size:.95rem;
+    .about-description {
+        font-size: 0.95rem;
+        line-height: 1.8;
     }
 
-    .about-card{
-
-        padding:26px 20px;
+    .about-card {
+        padding: 26px 20px;
     }
 
-    .about-card h3{
-
-        font-size:1.25rem;
+    .about-card h3 {
+        font-size: 1.25rem;
     }
 
-    .about-card p{
-
-        font-size:.95rem;
+    .about-card p {
+        font-size: 0.95rem;
     }
+}
+/* ==========================================================
+   MOBILE ABOUT POSITION
+   ========================================================== */
 
+@media (max-width: 768px) {
+    .about-page {
+        padding-top: 100px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-page {
+        padding-top: 60px !important;
+    }
 }

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function AuthLayout({
     title,
     subtitle,
@@ -9,9 +7,6 @@ function AuthLayout({
         <section className="auth-page">
 
             <div className="auth-container">
-
-                {/* Logo */}
-                
 
                 {/* Dynamic Login Title */}
                 <h2 className="auth-title">
@@ -23,16 +18,8 @@ function AuthLayout({
                     {subtitle}
                 </p>
 
-                {/* Existing Login Form */}
+                {/* Login Form */}
                 {children}
-
-                {/* Back */}
-                <Link
-                    to="/login"
-                    className="back-home"
-                >
-                    ← Back to Home
-                </Link>
 
             </div>
 

@@ -32,11 +32,7 @@ function DashboardHeader({ name }) {
                     
                 </h1>
 
-                <p className="motivation-quote">
-                    “Believe in yourself, keep learning,
-                    and make today better than yesterday.”
-                </p>
-
+               
             </div>
 
 

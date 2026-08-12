@@ -19,8 +19,7 @@ function PerformanceChart({ performanceData = [] }) {
           <h3>No Performance Data</h3>
 
           <p>
-            Your semester performance graph will appear here once official
-            results are published.
+            Your semester performance graph will appear here.
           </p>
         </div>
       ) : (

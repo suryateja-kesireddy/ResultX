@@ -37,12 +37,7 @@ function LoginSelection() {
   return (
     <section className="login-selection">
       <div className="login-selection-container">
-        <Link to="/" className="back-home">
-          ← Back to Home
-        </Link>
-
-
-        <h1>Choose Your Login Portal</h1>
+       <h1>Choose Your Login Portal</h1>
 
         <p className="selection-subtitle">
           Select your role to securely access the ResultX dashboard.

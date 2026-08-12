@@ -1,816 +1,4944 @@
 /* ==========================================================
-   RESULTX DESIGN SYSTEM (RXDS)
-   Premium Admin Dashboard
-   Version : 1.0
-========================================================== */
+   RESULTX
+   PREMIUM ADMIN DASHBOARD
+   RESPONSIVE CSS
+   Desktop • Laptop • Tablet • Mobile
+   ========================================================== */
+
 
 /* ==========================================================
-   VARIABLES
-========================================================== */
+   ROOT VARIABLES
+   ========================================================== */
 
 :root {
+    --primary: #2563eb;
+    --primary-light: #3b82f6;
 
-  --primary: #2563eb;
-  --primary-light: #3b82f6;
+    --background: #f1f5f9;
+    --surface: #ffffff;
 
-  --background: #f5f7fb;
+    --sidebar-bg: #f8fafc;
+    --sidebar-border: #e2e8f0;
 
-  --sidebar-bg: #0f172a;
-  --sidebar-hover: #1e293b;
+    --text: #0f172a;
+    --text-light: #64748b;
+    --muted: #94a3b8;
 
-  --surface: #ffffff;
+    --border: #e2e8f0;
 
-  --text: #0f172a;
-  --text-light: #64748b;
+    --success: #10b981;
 
-  --border: #e2e8f0;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 22px;
 
-  --radius-lg: 24px;
-  --radius-xl: 28px;
+    /* IMPORTANT */
+    --topbar-height: 68px;
+    --sidebar-width: 280px;
 
-  --shadow-sm: 0 8px 30px rgba(15,23,42,.05);
-  --shadow-lg: 0 20px 45px rgba(15,23,42,.18);
+    --shadow-sm:
+        0 8px 30px rgba(15, 23, 42, 0.05);
 
+    --shadow-md:
+        0 15px 35px rgba(15, 23, 42, 0.08);
+
+    --shadow-lg:
+        0 20px 45px rgba(15, 23, 42, 0.12);
 }
 
-/* ==========================================================
-   APP
-========================================================== */
 
-body{
-    margin:0;
-    padding:0;
-    background:var(--background);
-    font-family:"Inter",sans-serif;
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
 }
 
-/* ==========================================================
-   LAYOUT
-========================================================== */
-
-.premium-layout {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
     padding: 0;
-    gap: 0;
+}
 
+html {
+    overflow-x: hidden;
+}
+
+body {
     background: var(--background);
-}
+    color: var(--text);
 
-/* ==========================================================
-   SIDEBAR
-========================================================== */
-
-.premium-sidebar {
-    width: 300px;
-    min-width: 300px;
-    height: 100vh;
-
-    background: var(--sidebar-bg);
-
-    display: flex;
-    flex-direction: column;
-
-    overflow: hidden;
-
-    border-radius: 0;
-
-    box-shadow: 2px 0 12px rgba(15,23,42,.08);
-}
-
-/* Sidebar Content */
-
-.premium-sidebar-content{
-
-    display:flex;
-
-    flex-direction:column;
-
-    height:100%;
-
-}
-
-/* Sidebar Scroll Area */
-
-.rx-sidebar-menu {
-
-    flex: 1;
-
-    overflow-y: auto;
+    font-family:
+        "Inter",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
     overflow-x: hidden;
-
-    margin-top: 0;
-
-    padding: 16px;
-
 }
 
-/* Scrollbar */
-
-.rx-sidebar-menu::-webkit-scrollbar{
-
-    width:4px;
-
+button,
+input,
+textarea,
+select {
+    font: inherit;
 }
 
-.rx-sidebar-menu::-webkit-scrollbar-track{
-
-    background:transparent;
-
-}
-
-.rx-sidebar-menu::-webkit-scrollbar-thumb{
-
-    background:#334155;
-
-    border-radius:20px;
-
-}
-
-.rx-sidebar-menu::-webkit-scrollbar-thumb:hover{
-
-    background:#475569;
-
-}
 
 /* ==========================================================
-   LOGO
-========================================================== */
+   MAIN ADMIN LAYOUT
+   ========================================================== */
 
-.rx-logo{
+.premium-layout {
+    width: 100%;
+    min-height: 100vh;
 
-    display:flex;
+    background: var(--background);
 
-    align-items:center;
-
-    gap:18px;
-
-    padding:5px 5px;
-
-    background:white;
-
-    min-height: auto;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
-}
-
-.rx-logo-icon{
-
-    width:58px;
-    height:58px;
-
-    flex-shrink:0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:11px;
-
-    background:linear-gradient(
-        145deg,
-        #1E40AF,
-        #2563EB
-    );
-
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#FFFFFF;
-
-    font-size:24px;
-    font-weight:800;
-
-    letter-spacing:1px;
-
-    box-shadow:
-        0 12px 28px rgba(37,99,235,.25),
-        inset 0 1px 1px rgba(255,255,255,.15);
-
-    transition:.35s;
-}
-
-.rx-logo-icon:hover{
-
-    transform:translateY(-3px) scale(1.03);
-
-    box-shadow:
-        0 18px 36px rgba(37,99,235,.35);
-
-}
-.rx-logo-content{
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    margin-left:16px;
-
-}
-
-.rx-logo-content h2{
-
-    margin:0;
-
-    font-size:28px;
-
-    font-weight:800;
-
-    letter-spacing:-0.6px;
-
-    color:#4211d7;
-
-}
-
-.rx-logo-content p{
-
-    margin-top:6px;
-
-    font-size:14px;
-
-    font-weight:500;
-
-    color:#690ff1;
-
-    letter-spacing:.3px;
-
-}
-.rx-sidebar-logo{
-
-    display:flex;
-
-    align-items:center;
-
-    padding:24px;
-
-    border-bottom:1px solid rgba(255,255,255,.06);
-
-    background:linear-gradient(
-        180deg,
-        rgba(255,255,255,.03),
-        transparent
-    );
-
-}
-
-/* ==========================================================
-   SIDEBAR SECTION
-========================================================== */
-
-.rx-sidebar-section {
-
-    margin-top: 20px;
-
-}
-
-.rx-sidebar-section:first-child {
-
-    margin-top: 0;
-
-}
-
-.rx-sidebar-section-title{
-
-    padding-left:10px;
-
-    margin-bottom:14px;
-
-    color:#64748b;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    text-transform:uppercase;
-
-    letter-spacing:1.6px;
-
-}
-
-.rx-sidebar-section-items{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-/* ==========================================================
-   SIDEBAR ITEM
-========================================================== */
-
-.rx-sidebar-item{
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    padding:14px 18px;
-
-    margin-bottom:6px;
-
-    border-radius:16px;
-
-    text-decoration:none;
-
-    color:#94a3b8;
-
-    font-size:15px;
-
-    font-weight:500;
-
-    transition:all .25s ease;
-
-}
-
-.rx-sidebar-item:hover{
-
-    background:var(--sidebar-hover);
-
-    color:white;
-
-    transform:translateX(6px);
-
-}
-
-.rx-sidebar-item.active{
-
-    background:linear-gradient(
-        135deg,
-        var(--primary),
-        var(--primary-light)
-    );
-
-    color:white;
-
-    box-shadow:
-        0 12px 28px rgba(37,99,235,.35);
-
-}
-
-.rx-sidebar-item.active::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:-24px;
-
-    width:5px;
-
-    height:32px;
-
-    border-radius:10px;
-
-    background:white;
-
-}
-
-.rx-sidebar-icon{
-
-    flex-shrink:0;
-
-    transition:.25s;
-
-}
-
-.rx-sidebar-item:hover .rx-sidebar-icon{
-
-    transform:scale(1.15);
-
-}
-
-/* ==========================================================
-   MAIN
-========================================================== */
-
-/* ==========================================================
-   MAIN
-========================================================== */
-
-.premium-main{
-    flex:1;
-
-    display:flex;
-    flex-direction:column;
-
-    height:100vh;
-
-    padding:20px 20px 20px 24px;
-
-    overflow:hidden;
-
-    background:var(--background);
+    overflow: hidden;
 }
 
 
 /* ==========================================================
    TOPBAR
-========================================================== */
+   ========================================================== */
 
-.premium-topbar{
+.premium-topbar {
+    position: fixed;
 
-    height:84px;
+    top: 0;
+    left: 0;
+    right: 0;
 
-    flex-shrink:0;
+    width: 100%;
+    height: var(--topbar-height);
 
-    background:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    border:1px solid var(--border);
+    padding: 0 22px;
 
-    border-radius:22px;
+    background: #ffffff;
 
-    box-shadow:var(--shadow-sm);
+    border-bottom: 1px solid #e2e8f0;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    box-shadow:
+        0 3px 14px rgba(15, 23, 42, 0.05);
 
-    padding:0 28px;
+    z-index: 2000;
+}
 
-    margin-bottom:24px;
+
+/* ==========================================================
+   TOPBAR BRAND
+   ========================================================== */
+
+.rx-topbar-brand {
+    display: flex;
+    align-items: center;
+
+    min-width: 0;
+}
+
+.rx-topbar-brand-text {
+    display: flex;
+    align-items: center;
+}
+
+.rx-topbar-brand-text h2 {
+    margin: 0;
+
+    color: #4f00d9;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -0.7px;
+}
+
+
+/* ==========================================================
+   TOPBAR HAMBURGER
+   ========================================================== */
+
+.mobile-menu-btn {
+    width: 44px;
+    height: 44px;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 0;
+
+    flex-shrink: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.07);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.mobile-menu-btn span {
+    width: 23px;
+    height: 3px;
+
+    display: block;
+
+    background: #0f172a;
+
+    border-radius: 999px;
+}
+
+.mobile-menu-btn:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+}
+
+.mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================================
+   MAIN AREA
+   ========================================================== */
+
+.premium-main {
+    width: calc(100% - var(--sidebar-width));
+
+    min-height: 100vh;
+
+    margin-left: var(--sidebar-width);
+
+    padding-top: var(--topbar-height);
+
+    background: var(--background);
+
+    overflow: hidden;
 }
 
 
 /* ==========================================================
    CONTENT
-========================================================== */
+   IMPORTANT:
+   Small top padding removes the large gap below topbar.
+   ========================================================== */
 
-.premium-content{
+.premium-content {
+    width: 100%;
 
-    flex:1;
+    height: calc(100vh - var(--topbar-height));
 
-    overflow-y:auto;
-    overflow-x:hidden;
+    padding: 10px 20px 20px;
 
-    padding-right:8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
 }
 
 
-/* Scrollbar */
-
-.premium-content::-webkit-scrollbar{
-    width:6px;
-}
-
-.premium-content::-webkit-scrollbar-track{
-    background:transparent;
-}
-
-.premium-content::-webkit-scrollbar-thumb{
-    background:#cbd5e1;
-    border-radius:20px;
-}
-
-.premium-content::-webkit-scrollbar-thumb:hover{
-    background:#94a3b8;
-}
 /* ==========================================================
-   RESPONSIVE
-========================================================== */
+   SIDEBAR
+   ========================================================== */
 
-@media(max-width:1200px){
+.premium-sidebar {
+    position: fixed;
 
-    .premium-sidebar{
+    top: var(--topbar-height);
+    left: 0;
 
-        width:90px;
+    width: var(--sidebar-width);
 
-        min-width:90px;
+    height: calc(100vh - var(--topbar-height));
 
-    }
+    display: flex;
+    flex-direction: column;
 
-}
+    background: var(--sidebar-bg);
 
-@media(max-width:992px){
-
-    .premium-layout{
-
-        padding:12px;
-
-        gap:12px;
-
-    }
-
-}
-
-@media(max-width:768px){
-
-    .premium-sidebar{
-
-        position:fixed;
-
-        left:-300px;
-
-        top:0;
-
-        height:100vh;
-
-        z-index:999;
-
-        border-radius:0;
-
-    }
-
-    .premium-main{
-
-        width:100%;
-
-    }
-
-}
-/* ==========================================================
-   DASHBOARD HEADER
-========================================================== */
-
-.rx-dashboard-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:36px;
-
-    background:white;
-
-    border-radius:20px;
-
-    border:1px solid var(--border);
-
-    box-shadow:var(--shadow-sm);
-
-}
-
-.rx-dashboard-left{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-.rx-dashboard-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    width:max-content;
-
-    padding:8px 16px;
-
-    margin-bottom:18px;
-
-    background:#EFF6FF;
-
-    color:#2563EB;
-
-    border-radius:999px;
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.rx-dashboard-left h1{
-
-    margin:0;
-
-    font-size:34px;
-
-    font-weight:700;
-
-    color:var(--text);
-
-}
-
-.rx-dashboard-left p{
-
-    margin-top:12px;
-
-    max-width:650px;
-
-    color:var(--text-light);
-
-    font-size:16px;
-
-    line-height:1.7;
-
-}
-
-.rx-primary-btn{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:14px 24px;
-
-    border:none;
-
-    border-radius:14px;
-
-    cursor:pointer;
-
-    background:linear-gradient(
-        135deg,
-        #2563EB,
-        #3B82F6
-    );
-
-    color:white;
-
-    font-size:15px;
-
-    font-weight:600;
-
-    transition:.25s;
-
-}
-
-.rx-primary-btn:hover{
-
-    transform:translateY(-2px);
+    border-right: 1px solid var(--sidebar-border);
 
     box-shadow:
-        0 12px 25px rgba(37,99,235,.35);
+        4px 0 18px rgba(15, 23, 42, 0.04);
 
+    overflow: hidden;
+
+    z-index: 1500;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
+
+
+/* ==========================================================
+   SIDEBAR CONTENT
+   ========================================================== */
+
+.premium-sidebar-content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 0;
+}
+
+
+/* ==========================================================
+   SIDEBAR LOGO
+   ========================================================== */
+
+.rx-logo {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 16px 18px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid var(--border);
+
+    flex-shrink: 0;
+}
+
+.rx-logo-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1e40af,
+            #2563eb
+        );
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 10px 24px rgba(37, 99, 235, 0.20);
+}
+
+.rx-logo-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.rx-logo-content h2 {
+    margin: 0;
+
+    color: #4211d7;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -0.7px;
+}
+
+.rx-logo-content p {
+    margin: 5px 0 0;
+
+    color: #690ff1;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+
+/* ==========================================================
+   SIDEBAR MENU
+   ========================================================== */
+
+.rx-sidebar-menu {
+    flex: 1;
+
+    width: 100%;
+
+    min-height: 0;
+
+    padding: 18px 14px 24px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/* ==========================================================
+   SIDEBAR SCROLLBAR
+   ========================================================== */
+
+.rx-sidebar-menu::-webkit-scrollbar {
+    width: 5px;
+}
+
+.rx-sidebar-menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rx-sidebar-menu::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 999px;
+}
+
+.rx-sidebar-menu::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* ==========================================================
+   SIDEBAR NAVIGATION
+   ALWAYS VERTICAL
+   ========================================================== */
+
+.rx-sidebar-navigation {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0;
+}
+
+
+/* ==========================================================
+   SIDEBAR SECTION
+   ========================================================== */
+
+.rx-sidebar-section {
+    width: 100%;
+
+    margin: 0 0 18px;
+}
+
+.rx-sidebar-section:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+   ========================================================== */
+
+.rx-sidebar-section-title {
+    margin: 0 0 8px;
+
+    padding: 0 12px;
+
+    color: #64748b;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* ==========================================================
+   SECTION ITEMS
+   ALWAYS COLUMN
+   ========================================================== */
+
+.rx-sidebar-section-items {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 4px;
+}
+
+
+/* ==========================================================
+   SIDEBAR ITEM
+   ========================================================== */
+
+.rx-sidebar-item {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 0 15px;
+
+    margin: 0;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* ==========================================================
+   SIDEBAR ITEM HOVER
+   ========================================================== */
+
+.rx-sidebar-item:hover {
+    background: #eef4ff;
+
+    color: var(--primary);
+}
+
+.rx-sidebar-item:hover .rx-sidebar-icon {
+    color: var(--primary);
+
+    transform: translateX(2px);
+}
+
+
+/* ==========================================================
+   ACTIVE SIDEBAR ITEM
+   FULL WIDTH
+   ========================================================== */
+
+.rx-sidebar-item.active {
+    width: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #3b82f6
+        );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.24);
+}
+
+.rx-sidebar-item.active .rx-sidebar-icon {
+    color: #ffffff;
+}
+
+
+/* ==========================================================
+   SIDEBAR ICON
+   ========================================================== */
+
+.rx-sidebar-icon {
+    width: 21px;
+    min-width: 21px;
+
+    color: #94a3b8;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* ==========================================================
+   SIDEBAR LABEL
+   ========================================================== */
+
+.rx-sidebar-label {
+    min-width: 0;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
+   SIDEBAR CLOSE BUTTON
+   ========================================================== */
+
+.premium-sidebar-close {
+    width: 42px;
+    height: 42px;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    margin: 10px 12px 4px;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 12px;
+
+    color: #0f172a;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(15, 23, 42, 0.06);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.premium-sidebar-close:hover {
+    background: #f8fafc;
+
+    border-color: #cbd5e1;
+
+    transform: scale(1.03);
+}
+
+.premium-sidebar-close:active {
+    transform: scale(0.95);
+}
+
+
+/* ==========================================================
+   SIDEBAR OVERLAY
+   ========================================================== */
+
+.premium-sidebar-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(15, 23, 42, 0.48);
+
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+
+    z-index: 1400;
+}
+
+
+/* ==========================================================
+   DASHBOARD HEADER
+   ========================================================== */
+
+.rx-dashboard-header {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 28px 32px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-sm);
+
+    box-sizing: border-box;
+}
+
+.rx-dashboard-left {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.rx-dashboard-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    width: max-content;
+
+    max-width: 100%;
+
+    padding: 8px 15px;
+
+    margin-bottom: 13px;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.rx-dashboard-left h1 {
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.rx-dashboard-left p {
+    margin: 8px 0 0;
+
+    max-width: 700px;
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+    line-height: 1.65;
+}
+
+
+/* ==========================================================
+   PRIMARY BUTTON
+   ========================================================== */
+
+.rx-primary-btn {
+    min-height: 46px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #3b82f6
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.rx-primary-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.28);
+}
+
+
 /* ==========================================================
    STATS GRID
-========================================================== */
+   ========================================================== */
 
 .rx-stats-grid {
+    width: 100%;
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
 
-    gap:24px;
+    gap: 18px;
 
-    margin-top:24px;
-
+    margin-top: 16px;
 }
+
 
 /* ==========================================================
    STAT CARD
-========================================================== */
+   ========================================================== */
 
-.rx-stat-card{
+.rx-stat-card {
+    min-width: 0;
 
-    background:white;
+    display: flex;
 
-    border:1px solid var(--border);
+    align-items: center;
 
-    border-radius:20px;
+    gap: 15px;
 
-    padding:24px;
+    padding: 21px;
 
-    display:flex;
+    background: #ffffff;
 
-    align-items:center;
+    border: 1px solid var(--border);
 
-    gap:18px;
+    border-radius: 20px;
 
-    box-shadow:var(--shadow-sm);
+    box-shadow: var(--shadow-sm);
 
-    transition:.25s;
-
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-.rx-stat-card:hover{
+.rx-stat-card:hover {
+    transform: translateY(-3px);
 
-    transform:translateY(-4px);
-
-    box-shadow:0 15px 35px rgba(15,23,42,.08);
-
+    box-shadow: var(--shadow-md);
 }
 
-.rx-stat-icon{
-
-    width:58px;
-
-    height:58px;
-
-    border-radius:18px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-}
-
-.rx-stat-title{
-
-    color:var(--text-light);
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.rx-stat-content h2{
-
-    margin:8px 0;
-
-    font-size:30px;
-
-    color:var(--text);
-
-}
-
-.rx-stat-content p{
-
-    margin:0;
-
-    color:#10B981;
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
 
 /* ==========================================================
-   RESPONSIVE
-========================================================== */
+   STAT ICON
+   ========================================================== */
 
-@media(max-width:1200px){
+.rx-stat-icon {
+    width: 56px;
+    height: 56px;
 
-    .rx-stats-grid{
+    flex-shrink: 0;
 
-        grid-template-columns:repeat(2,1fr);
+    display: flex;
 
-    }
+    align-items: center;
+    justify-content: center;
 
+    border-radius: 16px;
 }
 
-@media(max-width:768px){
 
-    .rx-stats-grid{
+/* ==========================================================
+   STAT CONTENT
+   ========================================================== */
 
-        grid-template-columns:1fr;
+.rx-stat-content {
+    min-width: 0;
 
-    }
-
+    flex: 1;
 }
+
+.rx-stat-title {
+    color: var(--text-light);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.rx-stat-content h2 {
+    margin: 5px 0;
+
+    color: var(--text);
+
+    font-size: 28px;
+    font-weight: 500;
+
+    line-height: 1.2;
+}
+
+.rx-stat-content p {
+    margin: 0;
+
+    color: var(--success);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
 /* ==========================================================
    DASHBOARD BODY
-========================================================== */
+   ========================================================== */
 
 .rx-dashboard-body {
-  margin-top: 24px;
+    width: 100%;
+
+    margin-top: 16px;
 }
 
 .rx-dashboard-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 2fr)
+        minmax(280px, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 18px;
 }
 
-@media (max-width: 992px) {
-  .rx-dashboard-row {
-    grid-template-columns: 1fr;
-  }
-}
+
 /* ==========================================================
    REUSABLE CARD
-========================================================== */
+   ========================================================== */
 
 .rx-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 24px;
-  min-height: 280px;
-  box-shadow: var(--shadow-sm);
+    min-width: 0;
+
+    min-height: 260px;
+
+    padding: 22px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-sm);
+
+    box-sizing: border-box;
 }
 
 .rx-card h2 {
-  margin-bottom: 16px;
-  font-size: 20px;
-  color: var(--text);
+    margin: 0 0 14px;
+
+    color: var(--text);
+
+    font-size: 19px;
+    font-weight: 500;
+
+    line-height: 1.3;
 }
 
 .rx-card p {
-  color: var(--text-light);
+    margin: 0;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================================
+   LAPTOP
+   ========================================================== */
+
+@media (max-width: 1439px) {
+
+    :root {
+        --sidebar-width: 260px;
+    }
+
+    .premium-content {
+        padding: 8px 18px 18px;
+    }
+
+    .rx-dashboard-header {
+        padding: 26px 28px;
+    }
+
+    .rx-dashboard-left h1 {
+        font-size: 30px;
+    }
+
+    .rx-stats-grid {
+        gap: 15px;
+    }
+
+    .rx-stat-card {
+        padding: 18px;
+    }
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 1199px) {
+
+    :root {
+        --sidebar-width: 235px;
+    }
+
+    .rx-logo {
+        padding: 14px;
+    }
+
+    .rx-logo-icon {
+        width: 45px;
+        height: 45px;
+
+        font-size: 19px;
+    }
+
+    .rx-logo-content h2 {
+        font-size: 22px;
+    }
+
+    .rx-sidebar-menu {
+        padding: 16px 11px 22px;
+    }
+
+    .rx-sidebar-item {
+        min-height: 46px;
+
+        padding: 0 12px;
+
+        gap: 10px;
+
+        font-size: 13px;
+    }
+
+    .rx-sidebar-icon {
+        width: 19px;
+        min-width: 19px;
+    }
+
+    .rx-dashboard-header {
+        padding: 23px;
+    }
+
+    .rx-dashboard-left h1 {
+        font-size: 27px;
+    }
+
+    .rx-stats-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+
+    .rx-dashboard-row {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+}
+
+
+/* ==========================================================
+   SMALL TABLET
+   ========================================================== */
+
+@media (max-width: 992px) {
+
+    :root {
+        --topbar-height: 66px;
+    }
+
+    .premium-topbar {
+        height: var(--topbar-height);
+
+        padding: 0 16px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .premium-sidebar {
+        top: var(--topbar-height);
+
+        width: 285px;
+        min-width: 285px;
+
+        height: calc(100vh - var(--topbar-height));
+
+        transform: translateX(-105%);
+
+        box-shadow: none;
+    }
+
+    .premium-sidebar.premium-sidebar-open {
+        transform: translateX(0);
+
+        box-shadow:
+            20px 0 50px rgba(15, 23, 42, 0.18);
+    }
+
+    .premium-sidebar-close {
+        display: flex;
+    }
+
+    .premium-sidebar-overlay {
+        display: block;
+    }
+
+    .premium-main {
+        width: 100%;
+
+        margin-left: 0;
+
+        padding-top: var(--topbar-height);
+    }
+
+    .premium-content {
+        width: 100%;
+
+        height: calc(100vh - var(--topbar-height));
+
+        padding: 8px 16px 18px;
+    }
+
+    .rx-dashboard-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .rx-dashboard-left {
+        width: 100%;
+    }
+
+    .rx-primary-btn {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    :root {
+        --topbar-height: 64px;
+    }
+
+    /* TOPBAR */
+
+    .premium-topbar {
+        height: var(--topbar-height);
+
+        padding: 0 14px;
+    }
+
+    .rx-topbar-brand-text h2 {
+        font-size: 22px;
+    }
+
+    .mobile-menu-btn {
+        width: 43px;
+        height: 43px;
+
+        display: flex;
+
+        border-radius: 11px;
+    }
+
+    .mobile-menu-btn span {
+        width: 22px;
+        height: 3px;
+    }
+
+
+    /* SIDEBAR */
+
+    .premium-sidebar {
+        top: var(--topbar-height);
+
+        width: 285px;
+        min-width: 285px;
+
+        height: calc(100vh - var(--topbar-height));
+
+        transform: translateX(-105%);
+    }
+
+    .premium-sidebar.premium-sidebar-open {
+        transform: translateX(0);
+    }
+
+    .rx-logo {
+        padding: 14px 15px;
+
+        gap: 10px;
+    }
+
+    .rx-logo-icon {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 10px;
+
+        font-size: 18px;
+    }
+
+    .rx-logo-content h2 {
+        font-size: 21px;
+    }
+
+    .rx-logo-content p {
+        font-size: 9px;
+    }
+
+
+    /* CLOSE BUTTON */
+
+    .premium-sidebar-close {
+        width: 44px;
+        height: 44px;
+
+        margin: 10px 12px 2px;
+
+        border-radius: 11px;
+
+        box-shadow:
+            0 5px 16px rgba(15, 23, 42, 0.08);
+    }
+
+
+    /* MENU */
+
+    .rx-sidebar-menu {
+        padding: 14px 12px 24px;
+    }
+
+    .rx-sidebar-section {
+        margin-bottom: 16px;
+    }
+
+    .rx-sidebar-section-items {
+        gap: 3px;
+    }
+
+    .rx-sidebar-item {
+        width: 100%;
+
+        min-height: 48px;
+
+        padding: 0 14px;
+
+        gap: 12px;
+
+        font-size: 14px;
+
+        border-radius: 12px;
+    }
+
+    .rx-sidebar-item.active {
+        width: 100%;
+    }
+
+
+    /* MAIN */
+
+    .premium-main {
+        width: 100%;
+
+        height: 100vh;
+
+        margin-left: 0;
+
+        padding-top: var(--topbar-height);
+    }
+
+
+    /* CONTENT */
+
+    .premium-content {
+        width: 100%;
+
+        height: calc(100vh - var(--topbar-height));
+
+        padding: 6px 12px 18px;
+    }
+
+
+    /* DASHBOARD HEADER */
+
+    .rx-dashboard-header {
+        padding: 19px;
+
+        gap: 13px;
+
+        border-radius: 17px;
+    }
+
+    .rx-dashboard-badge {
+        padding: 7px 12px;
+
+        margin-bottom: 10px;
+
+        font-size: 11px;
+    }
+
+    .rx-dashboard-left h1 {
+        font-size: 23px;
+
+        line-height: 1.25;
+    }
+
+    .rx-dashboard-left p {
+        margin-top: 7px;
+
+        font-size: 13px;
+
+        line-height: 1.6;
+    }
+
+
+    /* STATS */
+
+    .rx-stats-grid {
+        grid-template-columns: 1fr;
+
+        gap: 11px;
+
+        margin-top: 12px;
+    }
+
+    .rx-stat-card {
+        width: 100%;
+
+        min-height: 120px;
+
+        padding: 15px;
+
+        gap: 13px;
+
+        border-radius: 16px;
+    }
+
+    .rx-stat-icon {
+        width: 47px;
+        height: 47px;
+
+        border-radius: 13px;
+    }
+
+    .rx-stat-title {
+        font-size: 12px;
+    }
+
+    .rx-stat-content h2 {
+        margin: 4px 0;
+
+        font-size: 23px;
+    }
+
+    .rx-stat-content p {
+        font-size: 12px;
+    }
+
+
+    /* BODY */
+
+    .rx-dashboard-body {
+        margin-top: 12px;
+    }
+
+    .rx-dashboard-row {
+        grid-template-columns: 1fr;
+
+        gap: 11px;
+
+        margin-bottom: 11px;
+    }
+
+    .rx-card {
+        min-height: 190px;
+
+        padding: 17px;
+
+        border-radius: 16px;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    :root {
+        --topbar-height: 62px;
+    }
+
+    .premium-topbar {
+        height: var(--topbar-height);
+
+        padding: 0 11px;
+    }
+
+    .rx-topbar-brand-text h2 {
+        font-size: 20px;
+    }
+
+    .mobile-menu-btn {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 11px;
+    }
+
+    .mobile-menu-btn span {
+        width: 21px;
+        height: 3px;
+    }
+
+
+    .premium-sidebar {
+        width: 275px;
+        min-width: 275px;
+
+        top: var(--topbar-height);
+
+        height: calc(100vh - var(--topbar-height));
+    }
+
+    .rx-logo {
+        padding: 13px;
+    }
+
+    .rx-logo-icon {
+        width: 41px;
+        height: 41px;
+
+        font-size: 17px;
+    }
+
+    .rx-logo-content h2 {
+        font-size: 20px;
+    }
+
+    .rx-logo-content p {
+        font-size: 8px;
+    }
+
+    .premium-sidebar-close {
+        width: 42px;
+        height: 42px;
+
+        margin: 9px 11px 2px;
+    }
+
+    .rx-sidebar-menu {
+        padding: 13px 11px 22px;
+    }
+
+    .rx-sidebar-item {
+        min-height: 46px;
+
+        padding: 0 12px;
+
+        gap: 10px;
+
+        font-size: 13px;
+    }
+
+    .rx-sidebar-icon {
+        width: 19px;
+        min-width: 19px;
+    }
+
+
+    .premium-content {
+        padding: 5px 9px 18px;
+    }
+
+    .rx-dashboard-header {
+        padding: 17px;
+
+        border-radius: 15px;
+    }
+
+    .rx-dashboard-left h1 {
+        font-size: 21px;
+    }
+
+    .rx-dashboard-left p {
+        font-size: 12.5px;
+    }
+
+    .rx-dashboard-badge {
+        font-size: 10px;
+
+        padding: 6px 10px;
+    }
+
+    .rx-stat-card {
+        min-height: 112px;
+
+        padding: 13px;
+
+        border-radius: 14px;
+    }
+
+    .rx-stat-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 11px;
+    }
+
+    .rx-stat-content h2 {
+        font-size: 21px;
+    }
+
+    .rx-stat-title {
+        font-size: 11px;
+    }
+
+    .rx-stat-content p {
+        font-size: 11px;
+    }
+
+    .rx-card {
+        min-height: 175px;
+
+        padding: 15px;
+
+        border-radius: 14px;
+    }
+
+    .rx-card h2 {
+        font-size: 16px;
+    }
+
+    .rx-card p {
+        font-size: 12px;
+    }
+}
+
+
+/* ==========================================================
+   VERY SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 360px) {
+
+    .premium-topbar {
+        padding: 0 9px;
+    }
+
+    .rx-topbar-brand-text h2 {
+        font-size: 19px;
+    }
+
+    .mobile-menu-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .premium-sidebar {
+        width: 270px;
+        min-width: 270px;
+    }
+
+    .rx-sidebar-item {
+        min-height: 44px;
+
+        padding: 0 11px;
+
+        gap: 9px;
+
+        font-size: 12px;
+    }
+
+    .rx-sidebar-icon {
+        width: 18px;
+        min-width: 18px;
+    }
+
+    .premium-content {
+        padding: 4px 8px 18px;
+    }
+
+    .rx-dashboard-header {
+        padding: 14px;
+    }
+
+    .rx-dashboard-left h1 {
+        font-size: 19px;
+    }
+
+    .rx-stat-card {
+        padding: 12px;
+    }
+
+    .rx-stat-icon {
+        width: 39px;
+        height: 39px;
+    }
+
+    .rx-stat-content h2 {
+        font-size: 20px;
+    }
+
+    .rx-card {
+        padding: 13px;
+    }
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .premium-topbar,
+    .premium-sidebar,
+    .rx-sidebar-item,
+    .rx-sidebar-icon,
+    .mobile-menu-btn,
+    .rx-stat-card,
+    .rx-primary-btn {
+        transition: none;
+    }
+}
+
+/* ==========================================================
+   FINAL TOPBAR FIX
+   ========================================================== */
+
+.premium-topbar {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    width: 100% !important;
+    height: 64px !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    padding: 0 18px !important;
+
+    background: #ffffff !important;
+
+    border-bottom: 1px solid #e2e8f0 !important;
+
+    box-shadow:
+        0 3px 14px rgba(15, 23, 42, 0.05) !important;
+
+    z-index: 2000 !important;
+}
+
+
+/* LEFT - RESULTX */
+
+.rx-topbar-brand {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    width: auto !important;
+
+    margin: 0 !important;
+}
+
+.rx-topbar-brand-text {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    margin: 0 !important;
+}
+
+.rx-topbar-brand-text h2 {
+    margin: 0 !important;
+
+    font-size: 22px !important;
+
+    line-height: 1 !important;
+
+    color: #4f00d9 !important;
+}
+
+
+/* RIGHT - HAMBURGER */
+
+.premium-topbar .mobile-menu-btn {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    width: 44px !important;
+    height: 44px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    flex-shrink: 0 !important;
+
+    gap: 5px !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dbe3ef !important;
+
+    border-radius: 12px !important;
+}
+
+
+/* HAMBURGER LINES */
+
+.premium-topbar .mobile-menu-btn span {
+    display: block !important;
+
+    width: 22px !important;
+    height: 3px !important;
+
+    margin: 0 !important;
+
+    background: #0f172a !important;
+
+    border-radius: 999px !important;
+}
+
+
+/* ==========================================================
+   MAIN - EXACTLY BELOW TOPBAR
+   ========================================================== */
+
+.premium-main {
+    padding-top: 64px !important;
+}
+
+
+/* CONTENT - NO BIG GAP */
+
+.premium-content {
+    height: calc(100vh - 64px) !important;
+
+    padding-top: 6px !important;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .premium-topbar {
+        height: 64px !important;
+
+        padding: 0 14px !important;
+
+        flex-direction: row !important;
+    }
+
+    .rx-topbar-brand {
+        width: auto !important;
+
+        flex: 0 0 auto !important;
+    }
+
+    .rx-topbar-brand-text h2 {
+        font-size: 22px !important;
+    }
+
+    .premium-topbar .mobile-menu-btn {
+        display: flex !important;
+
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .premium-main {
+        padding-top: 64px !important;
+    }
+
+    .premium-content {
+        height: calc(100vh - 64px) !important;
+
+        padding: 6px 12px 18px !important;
+    }
+
+    /* Sidebar starts exactly below topbar */
+
+    .premium-sidebar {
+        top: 64px !important;
+
+        height: calc(100vh - 64px) !important;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-topbar {
+        height: 62px !important;
+
+        padding: 0 11px !important;
+    }
+
+    .rx-topbar-brand-text h2 {
+        font-size: 20px !important;
+    }
+
+    .premium-topbar .mobile-menu-btn {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .premium-main {
+        padding-top: 62px !important;
+    }
+
+    .premium-content {
+        height: calc(100vh - 62px) !important;
+
+        padding: 5px 9px 18px !important;
+    }
+
+    .premium-sidebar {
+        top: 62px !important;
+
+        height: calc(100vh - 62px) !important;
+    }
+}
+/* ==========================================================
+   FINAL SIDEBAR OVERRIDE
+   Works with the existing PremiumSidebar JSX
+   ========================================================== */
+
+
+/* ==========================================================
+   SIDEBAR BASE
+   ========================================================== */
+
+.premium-sidebar-content {
+    position: fixed !important;
+
+    top: 64px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: 300px !important;
+    height: calc(100vh - 64px) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    background: #f8fafc !important;
+
+    border-right: 1px solid #dbe3ef !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    z-index: 1900 !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR LOGO AREA
+   ========================================================== */
+
+.premium-sidebar-content .rx-logo,
+.premium-sidebar-content .sidebar-logo {
+    flex-shrink: 0 !important;
+}
+
+
+/* Keep logo section at the top */
+
+.premium-sidebar-content > *:first-child {
+    flex-shrink: 0 !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR MENU WRAPPER
+   ========================================================== */
+
+.rx-sidebar-menu {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    flex: 1 !important;
+
+    padding: 28px 20px 40px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR SECTION
+   ========================================================== */
+
+.rx-sidebar-section {
+    width: 100% !important;
+
+    display: block !important;
+
+    margin: 0 0 28px !important;
+
+    padding: 0 !important;
+}
+
+
+/* ==========================================================
+   SECTION TITLE
+   ========================================================== */
+
+.rx-sidebar-section-title {
+    display: block !important;
+
+    margin: 0 0 12px 16px !important;
+
+    padding: 0 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 2px !important;
+
+    color: #64748b !important;
+
+    text-transform: uppercase !important;
+}
+
+
+/* ==========================================================
+   SECTION ITEMS
+   IMPORTANT:
+   Prevent horizontal menu problem
+   ========================================================== */
+
+.rx-sidebar-section-items {
+    width: 100% !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    justify-content: flex-start !important;
+
+    gap: 6px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR ITEM
+   ========================================================== */
+
+.rx-sidebar-item {
+    width: 100% !important;
+
+    min-height: 54px !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    gap: 16px !important;
+
+    margin: 0 !important;
+
+    padding: 0 18px !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 14px !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap !important;
+
+    color: #94a8c2 !important;
+
+    font-size: 16px !important;
+
+    font-weight: 500 !important;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR ICON
+   ========================================================== */
+
+.rx-sidebar-icon {
+    width: 22px !important;
+    height: 22px !important;
+
+    flex-shrink: 0 !important;
+
+    color: currentColor !important;
+}
+
+
+/* ==========================================================
+   HOVER
+   ========================================================== */
+
+.rx-sidebar-item:hover {
+    background: #eef4ff !important;
+
+    color: #2563eb !important;
+
+    transform: translateX(2px) !important;
+}
+
+
+/* ==========================================================
+   ACTIVE ITEM
+   ========================================================== */
+
+.rx-sidebar-item.active {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.24) !important;
+
+    transform: none !important;
+}
+
+
+/* Active icon */
+
+.rx-sidebar-item.active .rx-sidebar-icon {
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR SCROLLBAR
+   ========================================================== */
+
+.premium-sidebar-content::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+
+    border-radius: 999px !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8 !important;
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+   Keep content beside sidebar
+   ========================================================== */
+
+.premium-main {
+    margin-left: 300px !important;
+
+    min-height: 100vh !important;
+
+    padding-top: 64px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   CONTENT
+   ========================================================== */
+
+.premium-content {
+    min-height: calc(100vh - 64px) !important;
+
+    padding: 6px 24px 30px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ==========================================================
+   MOBILE SIDEBAR
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .premium-sidebar-content {
+        top: 64px !important;
+        left: 0 !important;
+        bottom: 0 !important;
+
+        width: min(380px, 82vw) !important;
+
+        height: calc(100vh - 64px) !important;
+
+        transform: translateX(-105%) !important;
+
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease !important;
+
+        box-shadow: none !important;
+
+        z-index: 3000 !important;
+    }
+
+
+    /* Your existing open class */
+
+    .premium-sidebar-content.open,
+    .premium-sidebar-content.is-open,
+    .premium-sidebar-content.active {
+        transform: translateX(0) !important;
+
+        box-shadow:
+            18px 0 45px rgba(15, 23, 42, 0.18) !important;
+    }
+
+
+    .premium-main {
+        margin-left: 0 !important;
+
+        padding-top: 64px !important;
+
+        width: 100% !important;
+    }
+
+
+    .premium-content {
+        width: 100% !important;
+
+        min-height: calc(100vh - 64px) !important;
+
+        padding:
+            6px
+            12px
+            24px !important;
+    }
+
+
+    .rx-sidebar-menu {
+        padding:
+            24px
+            18px
+            40px !important;
+    }
+
+
+    .rx-sidebar-section {
+        margin-bottom: 26px !important;
+    }
+
+
+    .rx-sidebar-section-title {
+        margin-left: 14px !important;
+
+        margin-bottom: 10px !important;
+    }
+
+
+    .rx-sidebar-item {
+        min-height: 54px !important;
+
+        padding: 0 16px !important;
+
+        gap: 15px !important;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-sidebar-content {
+        width: min(360px, 86vw) !important;
+
+        top: 62px !important;
+
+        height: calc(100vh - 62px) !important;
+    }
+
+
+    .premium-main {
+        padding-top: 62px !important;
+    }
+
+
+    .premium-content {
+        min-height: calc(100vh - 62px) !important;
+
+        padding:
+            5px
+            10px
+            20px !important;
+    }
+
+
+    .rx-sidebar-menu {
+        padding:
+            22px
+            14px
+            32px !important;
+    }
+
+
+    .rx-sidebar-section-title {
+        margin-left: 12px !important;
+
+        font-size: 12px !important;
+    }
+
+
+    .rx-sidebar-item {
+        min-height: 52px !important;
+
+        padding: 0 14px !important;
+
+        gap: 14px !important;
+
+        font-size: 15px !important;
+    }
+
+
+    .rx-sidebar-icon {
+        width: 21px !important;
+        height: 21px !important;
+    }
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .premium-sidebar-content {
+        width: 270px !important;
+
+        top: 64px !important;
+
+        height: calc(100vh - 64px) !important;
+    }
+
+
+    .premium-main {
+        margin-left: 270px !important;
+    }
+
+
+    .rx-sidebar-menu {
+        padding:
+            26px
+            16px
+            36px !important;
+    }
+
+
+    .rx-sidebar-item {
+        min-height: 52px !important;
+
+        padding: 0 15px !important;
+
+        gap: 13px !important;
+
+        font-size: 15px !important;
+    }
+}
+/* ==========================================================
+   FINAL ADMIN SIDEBAR - MOBILE FIX
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   SIDEBAR
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content {
+    position: fixed !important;
+
+    top: 64px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: 380px !important;
+    max-width: 82vw !important;
+
+    height: calc(100vh - 64px) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    background: #f8fafc !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    z-index: 3000 !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* ----------------------------------------------------------
+   LOGO AREA
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content > .rx-logo-container,
+.premium-sidebar-content > .logo-container,
+.premium-sidebar-content > div:first-child {
+    flex-shrink: 0 !important;
+}
+
+
+/* ----------------------------------------------------------
+   SIDEBAR MENU
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-menu {
+    display: block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 100% !important;
+
+    flex: 1 1 auto !important;
+
+    margin: 0 !important;
+
+    padding: 145px 20px 40px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* ----------------------------------------------------------
+   SECTION
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-section {
+    display: block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 100% !important;
+
+    margin: 0 0 30px !important;
+
+    padding: 0 !important;
+}
+
+
+/* ----------------------------------------------------------
+   SECTION TITLE
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-section-title {
+    display: block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    margin: 0 0 12px 16px !important;
+
+    padding: 0 !important;
+
+    color: #64748b !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: 2px !important;
+
+    line-height: 1.2 !important;
+
+    text-transform: uppercase !important;
+}
+
+
+/* ----------------------------------------------------------
+   MENU ITEMS CONTAINER
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-section-items {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    justify-content: flex-start !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 100% !important;
+
+    gap: 5px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+/* ----------------------------------------------------------
+   MENU ITEM
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 100% !important;
+
+    min-height: 54px !important;
+
+    box-sizing: border-box !important;
+
+    padding: 0 18px !important;
+
+    margin: 0 !important;
+
+    gap: 16px !important;
+
+    border-radius: 14px !important;
+
+    color: #94a8c2 !important;
+
+    background: transparent !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* ----------------------------------------------------------
+   ICON
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item .rx-sidebar-icon {
+    display: block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    flex-shrink: 0 !important;
+
+    width: 22px !important;
+    height: 22px !important;
+
+    color: #94a8c2 !important;
+}
+
+
+/* ----------------------------------------------------------
+   ITEM TEXT
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item span {
+    display: inline-block !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    color: inherit !important;
+
+    font-size: 16px !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* ----------------------------------------------------------
+   HOVER
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item:hover {
+    background: #eef4ff !important;
+
+    color: #2563eb !important;
+}
+
+
+/* ----------------------------------------------------------
+   ACTIVE
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item.active {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.22) !important;
+}
+
+
+.premium-sidebar-content .rx-sidebar-item.active .rx-sidebar-icon {
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   MOBILE SIDEBAR
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .premium-sidebar-content {
+        top: 64px !important;
+
+        width: 380px !important;
+
+        max-width: 82vw !important;
+
+        height: calc(100vh - 64px) !important;
+
+        padding: 0 !important;
+
+        transform: translateX(0) !important;
+
+        visibility: visible !important;
+
+        opacity: 1 !important;
+
+        box-shadow:
+            12px 0 35px rgba(15, 23, 42, 0.16) !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        display: block !important;
+
+        padding:
+            145px
+            20px
+            40px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-section-items {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 5px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item {
+        display: flex !important;
+
+        min-height: 54px !important;
+
+        padding: 0 18px !important;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-sidebar-content {
+        top: 62px !important;
+
+        width: 380px !important;
+
+        max-width: 82vw !important;
+
+        height: calc(100vh - 62px) !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        padding:
+            145px
+            14px
+            35px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-section-title {
+        margin-left: 14px !important;
+
+        margin-bottom: 10px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item {
+        min-height: 52px !important;
+
+        padding: 0 14px !important;
+
+        gap: 14px !important;
+
+        font-size: 15px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item span {
+        font-size: 15px !important;
+    }
+}
+
+
+/* ==========================================================
+   SIDEBAR SCROLLBAR
+   ========================================================== */
+
+.premium-sidebar-content::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+
+    border-radius: 999px !important;
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+   ========================================================== */
+
+.premium-main {
+    margin-left: 0 !important;
+
+    padding-top: 64px !important;
+
+    min-height: 100vh !important;
+}
+
+
+.premium-content {
+    padding-top: 0 !important;
+}
+
+
+/* ==========================================================
+   MOBILE MAIN
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .premium-main {
+        margin-left: 0 !important;
+
+        padding-top: 64px !important;
+
+        width: 100% !important;
+    }
+
+    .premium-content {
+        padding-top: 0 !important;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .premium-main {
+        padding-top: 62px !important;
+    }
+}
+/* ==========================================================
+   FINAL MOBILE SIDEBAR OVERRIDE
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   MOBILE OVERLAY
+   Remove blur completely
+   ---------------------------------------------------------- */
+
+.premium-sidebar-overlay {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    background: rgba(15, 23, 42, 0.42) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    z-index: 2990 !important;
+
+    animation: none !important;
+}
+
+
+/* ----------------------------------------------------------
+   MOBILE SIDEBAR
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content {
+    position: fixed !important;
+
+    top: 64px !important;
+    left: 0 !important;
+    bottom: 0 !important;
+
+    width: 380px !important;
+    max-width: 82vw !important;
+
+    height: calc(100vh - 64px) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    background: #f8fafc !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    box-shadow:
+        12px 0 30px rgba(15, 23, 42, 0.12) !important;
+
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    z-index: 3000 !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* ----------------------------------------------------------
+   SIDEBAR MENU
+   Reduce huge top gap
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-menu {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    padding:
+        55px
+        20px
+        40px !important;
+
+    box-sizing: border-box !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* ----------------------------------------------------------
+   SECTION
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-section {
+    display: block !important;
+
+    width: 100% !important;
+
+    margin: 0 0 28px !important;
+
+    padding: 0 !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* ----------------------------------------------------------
+   SECTION TITLE
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-section-title {
+    display: block !important;
+
+    margin:
+        0
+        0
+        12px
+        16px !important;
+
+    padding: 0 !important;
+
+    color: #64748b !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.2 !important;
+
+    letter-spacing: 2px !important;
+
+    text-transform: uppercase !important;
+}
+
+
+/* ----------------------------------------------------------
+   MENU ITEMS
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-section-items {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    width: 100% !important;
+
+    gap: 4px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+/* ----------------------------------------------------------
+   INDIVIDUAL MENU ITEM
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item {
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    justify-content: flex-start !important;
+
+    width: 100% !important;
+
+    min-height: 54px !important;
+
+    margin: 0 !important;
+
+    padding:
+        0
+        18px !important;
+
+    gap: 16px !important;
+
+    box-sizing: border-box !important;
+
+    border-radius: 14px !important;
+
+    background: transparent !important;
+
+    color: #94a8c2 !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+
+/* ----------------------------------------------------------
+   MENU ICON
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item .rx-sidebar-icon {
+    display: block !important;
+
+    flex-shrink: 0 !important;
+
+    width: 22px !important;
+    height: 22px !important;
+
+    color: #94a8c2 !important;
+}
+
+
+/* ----------------------------------------------------------
+   MENU TEXT
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item span {
+    display: inline-block !important;
+
+    color: inherit !important;
+
+    font-size: 16px !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* ----------------------------------------------------------
+   ACTIVE ITEM
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item.active {
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #3b82f6
+        ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 12px 28px
+        rgba(37, 99, 235, 0.22) !important;
+}
+
+
+.premium-sidebar-content .rx-sidebar-item.active
+.rx-sidebar-icon {
+    color: #ffffff !important;
+}
+
+
+/* ----------------------------------------------------------
+   HOVER
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content .rx-sidebar-item:hover {
+    background: #eef4ff !important;
+
+    color: #2563eb !important;
+}
+
+
+/* ==========================================================
+   CLOSE BUTTON
+   ========================================================== */
+
+.premium-sidebar-content .sidebar-close-btn,
+.premium-sidebar-content .mobile-close-btn,
+.premium-sidebar-content .close-sidebar-btn {
+    position: absolute !important;
+
+    top: 14px !important;
+    right: 16px !important;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dbe3ef !important;
+
+    border-radius: 12px !important;
+
+    color: #0f172a !important;
+
+    box-shadow:
+        0 6px 18px
+        rgba(15, 23, 42, 0.08) !important;
+
+    cursor: pointer !important;
+
+    z-index: 3010 !important;
+}
+
+
+/* ----------------------------------------------------------
+   If your close button uses a generic button
+   ---------------------------------------------------------- */
+
+.premium-sidebar-content > button {
+    position: absolute !important;
+
+    top: 14px !important;
+    right: 16px !important;
+
+    width: 48px !important;
+    height: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #dbe3ef !important;
+
+    border-radius: 12px !important;
+
+    color: #0f172a !important;
+
+    box-shadow:
+        0 6px 18px
+        rgba(15, 23, 42, 0.08) !important;
+
+    z-index: 3010 !important;
+}
+
+
+/* ==========================================================
+   CLOSE ICON
+   ========================================================== */
+
+.premium-sidebar-content > button svg,
+.premium-sidebar-content .sidebar-close-btn svg,
+.premium-sidebar-content .mobile-close-btn svg,
+.premium-sidebar-content .close-sidebar-btn svg {
+    width: 25px !important;
+    height: 25px !important;
+
+    stroke-width: 2 !important;
+}
+
+
+/* ==========================================================
+   SIDEBAR SCROLLBAR
+   ========================================================== */
+
+.premium-sidebar-content::-webkit-scrollbar {
+    width: 5px !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.premium-sidebar-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1 !important;
+
+    border-radius: 999px !important;
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+   ========================================================== */
+
+.premium-main {
+    margin-left: 0 !important;
+
+    padding-top: 64px !important;
+
+    min-height: 100vh !important;
+
+    width: 100% !important;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .premium-sidebar-content {
+        top: 64px !important;
+
+        width: 380px !important;
+
+        max-width: 82vw !important;
+
+        height: calc(100vh - 64px) !important;
+    }
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        padding:
+            55px
+            20px
+            35px !important;
+    }
+
+    .premium-sidebar-content .rx-sidebar-item {
+        min-height: 54px !important;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-sidebar-content {
+        top: 62px !important;
+
+        width: 360px !important;
+
+        max-width: 84vw !important;
+
+        height: calc(100vh - 62px) !important;
+    }
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        padding:
+            45px
+            14px
+            30px !important;
+    }
+
+    .premium-sidebar-content .rx-sidebar-section-title {
+        margin-left: 14px !important;
+    }
+
+    .premium-sidebar-content .rx-sidebar-item {
+        min-height: 52px !important;
+
+        padding:
+            0
+            14px !important;
+
+        gap: 14px !important;
+    }
+
+    .premium-sidebar-content .rx-sidebar-item span {
+        font-size: 15px !important;
+    }
+
+    .premium-sidebar-content > button {
+        top: 12px !important;
+        right: 12px !important;
+
+        width: 46px !important;
+        height: 46px !important;
+
+        border-radius: 12px !important;
+    }
+
+}
+
+
+/* ==========================================================
+   REMOVE ANY BLUR FROM SIDEBAR / OVERLAY
+   ========================================================== */
+
+.premium-sidebar-overlay,
+.premium-sidebar-content,
+.premium-sidebar-content * {
+    -webkit-backdrop-filter: none !important;
+}
+
+
+/* IMPORTANT:
+   Only the overlay should be translucent.
+   Sidebar itself stays completely clear.
+*/
+
+.premium-sidebar-content {
+    backdrop-filter: none !important;
+
+    -webkit-backdrop-filter: none !important;
+}
+/* ==========================================================
+   RESULTX ADMIN
+   DESKTOP / LAPTOP SIDEBAR FIX
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   LAPTOP + DESKTOP
+   769px and above
+   ---------------------------------------------------------- */
+
+@media (min-width: 769px) {
+
+    /* ==============================
+       MAIN LAYOUT
+       ============================== */
+
+    .premium-layout {
+        position: relative;
+
+        display: flex;
+
+        width: 100%;
+        min-height: 100vh;
+
+        background: #f1f5f9;
+
+        overflow: hidden;
+    }
+
+
+    /* ==============================
+       SIDEBAR
+       ============================== */
+
+    .premium-sidebar-content {
+        position: fixed !important;
+
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+
+        width: 300px !important;
+        max-width: none !important;
+
+        height: 100vh !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        background: #f8fafc !important;
+
+        border: none !important;
+        border-radius: 0 !important;
+
+        box-shadow:
+            4px 0 18px rgba(15, 23, 42, 0.05) !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        transform: none !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        z-index: 1000 !important;
+    }
+
+
+    /* ==============================
+       SIDEBAR LOGO AREA
+       ============================== */
+
+    .premium-sidebar-content .rx-logo,
+    .premium-sidebar-content .sidebar-logo,
+    .premium-sidebar-content .premium-logo {
+        flex-shrink: 0;
+    }
+
+
+    /* ==============================
+       SIDEBAR MENU
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        width: 100% !important;
+
+        margin: 0 !important;
+
+        padding:
+            35px
+            16px
+            40px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* ==============================
+       SIDEBAR SECTIONS
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-section {
+        width: 100% !important;
+
+        margin: 0 0 28px !important;
+
+        padding: 0 !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-section-title {
+        margin:
+            0
+            0
+            12px
+            12px !important;
+
+        padding: 0 !important;
+
+        color: #64748b !important;
+
+        font-size: 12px !important;
+
+        font-weight: 700 !important;
+
+        letter-spacing: 2px !important;
+
+        text-transform: uppercase !important;
+    }
+
+
+    /* ==============================
+       MENU ITEMS
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-section-items {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 4px !important;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item {
+        position: relative !important;
+
+        display: flex !important;
+
+        flex-direction: row !important;
+
+        align-items: center !important;
+
+        justify-content: flex-start !important;
+
+        width: 100% !important;
+
+        min-height: 54px !important;
+
+        padding:
+            0
+            16px !important;
+
+        margin: 0 !important;
+
+        gap: 16px !important;
+
+        box-sizing: border-box !important;
+
+        border-radius: 14px !important;
+
+        background: transparent !important;
+
+        color: #94a8c2 !important;
+
+        text-decoration: none !important;
+
+        white-space: nowrap !important;
+    }
+
+
+    /* ==============================
+       ICON
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-item
+    .rx-sidebar-icon {
+        flex-shrink: 0 !important;
+
+        width: 22px !important;
+        height: 22px !important;
+
+        color: #94a8c2 !important;
+    }
+
+
+    /* ==============================
+       TEXT
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-item span {
+        display: inline-block !important;
+
+        font-size: 15px !important;
+
+        font-weight: 500 !important;
+
+        color: inherit !important;
+    }
+
+
+    /* ==============================
+       ACTIVE ITEM
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-item.active {
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            ) !important;
+
+        color: #ffffff !important;
+
+        box-shadow:
+            0 12px 28px
+            rgba(37, 99, 235, 0.20) !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item.active
+    .rx-sidebar-icon {
+        color: #ffffff !important;
+    }
+
+
+    /* ==============================
+       HOVER
+       ============================== */
+
+    .premium-sidebar-content .rx-sidebar-item:hover {
+        background: #eef4ff !important;
+
+        color: #2563eb !important;
+    }
+
+
+    /* ==============================
+       MAIN CONTENT
+       ============================== */
+
+    .premium-main {
+        position: relative !important;
+
+        width: calc(100% - 300px) !important;
+
+        min-height: 100vh !important;
+
+        margin-left: 300px !important;
+
+        padding-top: 0 !important;
+
+        box-sizing: border-box !important;
+
+        overflow-x: hidden !important;
+
+        overflow-y: auto !important;
+    }
+
+
+    /* ==============================
+       CONTENT
+       ============================== */
+
+    .premium-content {
+        width: 100% !important;
+
+        min-height: 100vh !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* ==============================
+       MOBILE MENU BUTTON
+       HIDE ON DESKTOP
+       ============================== */
+
+    .mobile-menu-btn {
+        display: none !important;
+    }
+
+
+    /* ==============================
+       MOBILE OVERLAY
+       HIDE ON DESKTOP
+       ============================== */
+
+    .premium-sidebar-overlay {
+        display: none !important;
+    }
+
+
+    /* ==============================
+       SIDEBAR SCROLLBAR
+       ============================== */
+
+    .premium-sidebar-content::-webkit-scrollbar {
+        width: 5px !important;
+    }
+
+    .premium-sidebar-content::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+
+    .premium-sidebar-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1 !important;
+
+        border-radius: 999px !important;
+    }
+}
+
+
+/* ==========================================================
+   LAPTOP
+   769px - 1200px
+   ========================================================== */
+
+@media (min-width: 769px) and (max-width: 1200px) {
+
+    .premium-sidebar-content {
+        width: 270px !important;
+    }
+
+
+    .premium-main {
+        width: calc(100% - 270px) !important;
+
+        margin-left: 270px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item {
+        min-height: 52px !important;
+
+        padding-left: 14px !important;
+
+        padding-right: 14px !important;
+
+        gap: 14px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-item span {
+        font-size: 14px !important;
+    }
+}
+
+
+/* ==========================================================
+   LARGE DESKTOP
+   ========================================================== */
+
+@media (min-width: 1400px) {
+
+    .premium-sidebar-content {
+        width: 300px !important;
+    }
+
+
+    .premium-main {
+        width: calc(100% - 300px) !important;
+
+        margin-left: 300px !important;
+    }
+}
+/* ==========================================================
+   RESULTX - TOPBAR ONLY ON MOBILE
+   ========================================================== */
+
+/* ----------------------------------------------------------
+   DESKTOP / LAPTOP
+   ---------------------------------------------------------- */
+
+@media (min-width: 769px) {
+
+    /* Hide mobile topbar */
+    .premium-topbar {
+        display: none !important;
+    }
+
+    /* Hide hamburger */
+    .premium-topbar .mobile-menu-btn,
+    .premium-topbar .mobile-menu-button,
+    .premium-topbar button {
+        display: none !important;
+    }
+
+    /* Desktop main area */
+    .premium-main {
+        padding-top: 0 !important;
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE / TABLET TOPBAR
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .premium-topbar {
+        position: fixed !important;
+
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+        height: 64px !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        padding: 0 16px !important;
+
+        margin: 0 !important;
+
+        background: #ffffff !important;
+
+        border: none !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+
+        box-shadow:
+            0 4px 14px rgba(15, 23, 42, 0.05) !important;
+
+        box-sizing: border-box !important;
+
+        z-index: 4000 !important;
+    }
+
+
+    /* ResultX */
+    .rx-topbar-brand {
+        display: flex !important;
+
+        align-items: center !important;
+
+        margin: 0 !important;
+    }
+
+
+    .rx-topbar-brand-text {
+        margin: 0 !important;
+    }
+
+
+    .rx-topbar-brand-text h2 {
+        margin: 0 !important;
+
+        color: #4f00d9 !important;
+
+        font-size: 26px !important;
+
+        font-weight: 800 !important;
+
+        line-height: 1 !important;
+    }
+
+
+    /* Hamburger */
+    .premium-topbar .mobile-menu-btn {
+        width: 48px !important;
+        height: 48px !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: 5px !important;
+
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: #ffffff !important;
+
+        border: 1px solid #dbe3ef !important;
+
+        border-radius: 14px !important;
+
+        box-shadow:
+            0 6px 18px rgba(15, 23, 42, 0.07) !important;
+
+        cursor: pointer !important;
+    }
+
+
+    .premium-topbar .mobile-menu-btn span {
+        display: block !important;
+
+        width: 27px !important;
+        height: 3px !important;
+
+        background: #0f172a !important;
+
+        border-radius: 999px !important;
+    }
+
+
+    /* Main content must start below topbar */
+    .premium-main {
+        padding-top: 64px !important;
+
+        margin-left: 0 !important;
+
+        width: 100% !important;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-topbar {
+        height: 62px !important;
+
+        padding: 0 14px !important;
+    }
+
+
+    .rx-topbar-brand-text h2 {
+        font-size: 24px !important;
+    }
+
+
+    .premium-topbar .mobile-menu-btn {
+        width: 46px !important;
+
+        height: 46px !important;
+
+        border-radius: 13px !important;
+    }
+
+
+    .premium-topbar .mobile-menu-btn span {
+        width: 25px !important;
+
+        height: 3px !important;
+    }
+
+
+    .premium-main {
+        padding-top: 62px !important;
+    }
+
+}
+
+/* ==========================================================
+   RESULTX - FINAL MOBILE SIDEBAR ONLY
+
+   IMPORTANT:
+   - Desktop / laptop CSS above is preserved.
+   - Only mobile sidebar behavior is changed here.
+   - The OUTER .premium-sidebar controls the drawer.
+   - .premium-sidebar-content stays normal inside the drawer.
+   - No blur is applied to the sidebar.
+   - The menu itself is the scroll area.
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    /* ======================================================
+       MOBILE TOPBAR
+       ====================================================== */
+
+    .premium-topbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+        height: 64px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        padding: 0 14px !important;
+        margin: 0 !important;
+
+        background: #ffffff !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+
+        z-index: 5000 !important;
+    }
+
+    .rx-topbar-brand {
+        display: flex !important;
+        align-items: center !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    .rx-topbar-brand-text {
+        display: flex !important;
+        align-items: center !important;
+        margin: 0 !important;
+    }
+
+    .rx-topbar-brand-text h2 {
+        margin: 0 !important;
+        color: #4f00d9 !important;
+        font-size: 22px !important;
+        font-weight: 800 !important;
+        line-height: 1 !important;
+    }
+
+    .premium-topbar .mobile-menu-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 5px !important;
+
+        background: #ffffff !important;
+        border: 1px solid #dbe3ef !important;
+        border-radius: 12px !important;
+
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07) !important;
+    }
+
+    .premium-topbar .mobile-menu-btn span {
+        display: block !important;
+        width: 22px !important;
+        height: 3px !important;
+        margin: 0 !important;
+        background: #0f172a !important;
+        border-radius: 999px !important;
+    }
+
+
+    /* ======================================================
+       MOBILE MAIN CONTENT
+       ====================================================== */
+
+    .premium-main {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-top: 64px !important;
+    }
+
+    .premium-content {
+        width: 100% !important;
+        height: calc(100vh - 64px) !important;
+        min-height: calc(100vh - 64px) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding-top: 6px !important;
+    }
+
+
+    /* ======================================================
+       MOBILE OVERLAY
+       Dark layer only - NO BLUR
+       ====================================================== */
+
+    .premium-sidebar-overlay {
+        position: fixed !important;
+
+        top: 64px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+
+        width: auto !important;
+        height: auto !important;
+
+        background: rgba(15, 23, 42, 0.48) !important;
+
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        filter: none !important;
+
+        z-index: 4500 !important;
+
+        animation: none !important;
+    }
+
+
+    /* ======================================================
+       MOBILE DRAWER
+
+       IMPORTANT:
+       Use .premium-sidebar, not .premium-sidebar-content,
+       for the open / close animation.
+       ====================================================== */
+
+    .premium-sidebar {
+        position: fixed !important;
+
+        top: 64px !important;
+        left: 0 !important;
+        bottom: 0 !important;
+
+        width: min(320px, 82vw) !important;
+        min-width: 0 !important;
+        max-width: 82vw !important;
+
+        height: calc(100vh - 64px) !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: #f8fafc !important;
+
+        border: none !important;
+        border-right: 1px solid #dbe3ef !important;
+        border-radius: 0 !important;
+
+        box-shadow: none !important;
+
+        overflow: hidden !important;
+
+        transform: translateX(-105%) !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        z-index: 4900 !important;
+
+        transition:
+            transform 0.28s ease,
+            box-shadow 0.28s ease !important;
+    }
+
+
+    /* OPEN STATE - this matches the existing JSX class */
+
+    .premium-sidebar.premium-sidebar-open {
+        transform: translateX(0) !important;
+
+        box-shadow:
+            14px 0 35px rgba(15, 23, 42, 0.16) !important;
+    }
+
+
+    /* ======================================================
+       SIDEBAR CONTENT
+
+       Do NOT make this another fixed drawer.
+       It is the inner content of the drawer.
+       ====================================================== */
+
+    .premium-sidebar .premium-sidebar-content {
+        position: static !important;
+
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+
+        width: 100% !important;
+        height: 100% !important;
+        min-height: 0 !important;
+        max-width: none !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        flex: 1 1 auto !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: #f8fafc !important;
+
+        border: none !important;
+        border-radius: 0 !important;
+
+        box-shadow: none !important;
+
+        overflow: hidden !important;
+
+        transform: none !important;
+
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        filter: none !important;
+    }
+
+
+    /* ======================================================
+       CLOSE BUTTON
+       Keep it at the TOP-LEFT.
+       ====================================================== */
+
+    .premium-sidebar .premium-sidebar-close,
+    .premium-sidebar .sidebar-close-btn,
+    .premium-sidebar .mobile-close-btn,
+    .premium-sidebar .close-sidebar-btn,
+    .premium-sidebar .premium-sidebar-content > button {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+
+        width: 46px !important;
+        min-width: 46px !important;
+        height: 46px !important;
+        min-height: 46px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex-shrink: 0 !important;
+
+        margin: 14px 0 8px 14px !important;
+        padding: 0 !important;
+
+        background: #ffffff !important;
+
+        border: 1px solid #dbe3ef !important;
+        border-radius: 13px !important;
+
+        color: #0f172a !important;
+
+        box-shadow:
+            0 5px 16px rgba(15, 23, 42, 0.08) !important;
+
+        z-index: 20 !important;
+    }
+
+    .premium-sidebar .premium-sidebar-close svg,
+    .premium-sidebar .sidebar-close-btn svg,
+    .premium-sidebar .mobile-close-btn svg,
+    .premium-sidebar .close-sidebar-btn svg,
+    .premium-sidebar .premium-sidebar-content > button svg {
+        width: 25px !important;
+        height: 25px !important;
+        stroke-width: 2 !important;
+    }
+
+
+    /* ======================================================
+       MOBILE MENU - THIS IS THE ONLY SCROLL AREA
+       ====================================================== */
+
+    .premium-sidebar .rx-sidebar-menu {
+        width: 100% !important;
+
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+
+        display: block !important;
+
+        margin: 0 !important;
+        padding: 8px 14px 30px !important;
+
+        box-sizing: border-box !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior: contain !important;
+
+        scrollbar-width: thin !important;
+        scrollbar-color: #94a3b8 transparent !important;
+    }
+
+
+    /* Chrome / Edge / Android scrollbar */
+
+    .premium-sidebar .rx-sidebar-menu::-webkit-scrollbar {
+        width: 5px !important;
+    }
+
+    .premium-sidebar .rx-sidebar-menu::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+
+    .premium-sidebar .rx-sidebar-menu::-webkit-scrollbar-thumb {
+        background: #94a3b8 !important;
+        border-radius: 999px !important;
+    }
+
+
+    /* ======================================================
+       MENU SECTIONS
+       ====================================================== */
+
+    .premium-sidebar .rx-sidebar-section {
+        display: block !important;
+        width: 100% !important;
+
+        margin: 0 0 22px !important;
+        padding: 0 !important;
+    }
+
+    .premium-sidebar .rx-sidebar-section-title {
+        display: block !important;
+
+        margin: 0 0 8px 14px !important;
+        padding: 0 !important;
+
+        color: #64748b !important;
+
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+
+        letter-spacing: 1.8px !important;
+        text-transform: uppercase !important;
+    }
+
+    .premium-sidebar .rx-sidebar-section-items {
+        width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+
+        gap: 3px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+
+    /* ======================================================
+       MENU ITEM
+       ====================================================== */
+
+    .premium-sidebar .rx-sidebar-item {
+        width: 100% !important;
+
+        min-height: 50px !important;
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        gap: 14px !important;
+
+        margin: 0 !important;
+        padding: 0 14px !important;
+
+        box-sizing: border-box !important;
+
+        border-radius: 12px !important;
+
+        background: transparent !important;
+
+        color: #8fa4bf !important;
+
+        font-size: 15px !important;
+        font-weight: 500 !important;
+
+        text-decoration: none !important;
+        white-space: nowrap !important;
+
+        transform: none !important;
+    }
+
+    .premium-sidebar .rx-sidebar-item .rx-sidebar-icon {
+        width: 21px !important;
+        height: 21px !important;
+        min-width: 21px !important;
+
+        flex-shrink: 0 !important;
+
+        color: currentColor !important;
+    }
+
+    .premium-sidebar .rx-sidebar-item span {
+        display: inline-block !important;
+        color: inherit !important;
+        font-size: 15px !important;
+        font-weight: 500 !important;
+    }
+
+
+    /* ======================================================
+       ACTIVE ITEM
+       ====================================================== */
+
+    .premium-sidebar .rx-sidebar-item.active {
+        width: 100% !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            ) !important;
+
+        color: #ffffff !important;
+
+        box-shadow:
+            0 10px 24px rgba(37, 99, 235, 0.22) !important;
+
+        transform: none !important;
+    }
+
+    .premium-sidebar .rx-sidebar-item.active .rx-sidebar-icon {
+        color: #ffffff !important;
+    }
+
+
+    /* ======================================================
+       HOVER
+       ====================================================== */
+
+    .premium-sidebar .rx-sidebar-item:hover {
+        background: #eef4ff !important;
+        color: #2563eb !important;
+        transform: none !important;
+    }
+
+    .premium-sidebar .rx-sidebar-item.active:hover {
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            ) !important;
+
+        color: #ffffff !important;
+    }
+
+
+    /* ======================================================
+       ABSOLUTELY NO BLUR
+       ====================================================== */
+
+    .premium-sidebar,
+    .premium-sidebar-content,
+    .premium-sidebar-content * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        filter: none !important;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-topbar {
+        height: 62px !important;
+        padding: 0 11px !important;
+    }
+
+    .rx-topbar-brand-text h2 {
+        font-size: 20px !important;
+    }
+
+    .premium-topbar .mobile-menu-btn {
+        width: 42px !important;
+        height: 42px !important;
+    }
+
+    .premium-main {
+        padding-top: 62px !important;
+    }
+
+    .premium-content {
+        height: calc(100vh - 62px) !important;
+        min-height: calc(100vh - 62px) !important;
+    }
+
+    .premium-sidebar-overlay {
+        top: 62px !important;
+    }
+
+    .premium-sidebar {
+        top: 62px !important;
+        width: min(320px, 86vw) !important;
+        max-width: 86vw !important;
+        height: calc(100vh - 62px) !important;
+    }
+
+    .premium-sidebar .premium-sidebar-close,
+    .premium-sidebar .sidebar-close-btn,
+    .premium-sidebar .mobile-close-btn,
+    .premium-sidebar .close-sidebar-btn,
+    .premium-sidebar .premium-sidebar-content > button {
+        width: 44px !important;
+        min-width: 44px !important;
+        height: 44px !important;
+        min-height: 44px !important;
+
+        margin: 12px 0 8px 12px !important;
+    }
+
+    .premium-sidebar .rx-sidebar-menu {
+        padding: 8px 12px 25px !important;
+    }
+
+    .premium-sidebar .rx-sidebar-section-title {
+        margin-left: 12px !important;
+        font-size: 12px !important;
+    }
+
+    .premium-sidebar .rx-sidebar-item {
+        min-height: 48px !important;
+        padding: 0 12px !important;
+        gap: 12px !important;
+        font-size: 14px !important;
+    }
+
+    .premium-sidebar .rx-sidebar-item span {
+        font-size: 14px !important;
+    }
+}
+/* ==========================================================
+   RESULTX - FINAL MOBILE SIDEBAR
+   ONE SCROLL CONTAINER
+   NO EXTRA BOTTOM SPACE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    /* ------------------------------------------------------
+       SIDEBAR
+       ------------------------------------------------------ */
+
+    .premium-sidebar,
+    .premium-sidebar-content {
+        position: fixed !important;
+
+        top: 64px !important;
+        left: 0 !important;
+        bottom: 0 !important;
+
+        width: 285px !important;
+        max-width: 85vw !important;
+
+        height: calc(100dvh - 64px) !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        background: #f8fafc !important;
+
+        border: none !important;
+        border-right: 1px solid #dbe3ef !important;
+
+        box-shadow: none !important;
+
+        box-sizing: border-box !important;
+
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+
+        -webkit-overflow-scrolling: touch !important;
+
+        scrollbar-width: thin !important;
+        scrollbar-color: #cbd5e1 transparent !important;
+    }
+
+
+    /* ------------------------------------------------------
+       SIDEBAR OPEN
+       ------------------------------------------------------ */
+
+    .premium-sidebar.premium-sidebar-open,
+    .premium-sidebar-content.open,
+    .premium-sidebar-content.is-open,
+    .premium-sidebar-content.active {
+        transform: translateX(0) !important;
+
+        box-shadow:
+            14px 0 35px rgba(15, 23, 42, 0.16) !important;
+    }
+
+
+    /* ------------------------------------------------------
+       SIDEBAR CONTENT
+       ------------------------------------------------------ */
+
+    .premium-sidebar .premium-sidebar-content,
+    .premium-sidebar-content {
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        width: 100% !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        flex: none !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        overflow: visible !important;
+
+        transform: none !important;
+
+        background: #f8fafc !important;
+    }
+
+
+    /* ------------------------------------------------------
+       LOGO
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content > .rx-logo,
+    .premium-sidebar-content > .sidebar-logo,
+    .premium-sidebar-content > div:first-child {
+        flex-shrink: 0 !important;
+
+        margin: 0 !important;
+    }
+
+
+    /* ------------------------------------------------------
+       CLOSE BUTTON
+       ------------------------------------------------------ */
+
+    .premium-sidebar .premium-sidebar-close,
+    .premium-sidebar-content .premium-sidebar-close,
+    .premium-sidebar .sidebar-close-btn,
+    .premium-sidebar-content .sidebar-close-btn,
+    .premium-sidebar-content > button {
+        width: 42px !important;
+        height: 42px !important;
+
+        min-width: 42px !important;
+        min-height: 42px !important;
+
+        margin: 10px 12px 8px !important;
+
+        padding: 0 !important;
+
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex-shrink: 0 !important;
+
+        background: #ffffff !important;
+
+        border: 1px solid #dbe3ef !important;
+
+        border-radius: 10px !important;
+
+        color: #0f172a !important;
+
+        box-shadow:
+            0 4px 12px rgba(15, 23, 42, 0.06) !important;
+    }
+
+
+    .premium-sidebar .premium-sidebar-close svg,
+    .premium-sidebar-content .premium-sidebar-close svg,
+    .premium-sidebar-content > button svg {
+        width: 22px !important;
+        height: 22px !important;
+    }
+
+
+    /* ------------------------------------------------------
+       MENU
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        width: 100% !important;
+
+        height: auto !important;
+
+        min-height: 0 !important;
+
+        flex: none !important;
+
+        display: block !important;
+
+        margin: 0 !important;
+
+        padding:
+            6px
+            12px
+            8px !important;
+
+        overflow: visible !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* ------------------------------------------------------
+       SECTION
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-section {
+        width: 100% !important;
+
+        display: block !important;
+
+        margin: 0 0 16px !important;
+
+        padding: 0 !important;
+    }
+
+
+    .premium-sidebar-content
+    .rx-sidebar-section:last-child {
+        margin-bottom: 0 !important;
+    }
+
+
+    /* ------------------------------------------------------
+       SECTION TITLE
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-section-title {
+        display: block !important;
+
+        margin:
+            0
+            0
+            7px
+            12px !important;
+
+        padding: 0 !important;
+
+        font-size: 11px !important;
+
+        line-height: 1.2 !important;
+
+        font-weight: 700 !important;
+
+        letter-spacing: 1.5px !important;
+
+        color: #64748b !important;
+
+        text-transform: uppercase !important;
+    }
+
+
+    /* ------------------------------------------------------
+       SECTION ITEMS
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-section-items {
+        width: 100% !important;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 3px !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+    }
+
+
+    /* ------------------------------------------------------
+       MENU ITEM
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-item {
+        width: 100% !important;
+
+        min-height: 48px !important;
+
+        height: 48px !important;
+
+        display: flex !important;
+
+        flex-direction: row !important;
+
+        align-items: center !important;
+
+        justify-content: flex-start !important;
+
+        gap: 12px !important;
+
+        margin: 0 !important;
+
+        padding: 0 13px !important;
+
+        box-sizing: border-box !important;
+
+        flex-shrink: 0 !important;
+
+        border-radius: 11px !important;
+
+        background: transparent !important;
+
+        color: #94a8c2 !important;
+
+        font-size: 14px !important;
+
+        font-weight: 500 !important;
+
+        white-space: nowrap !important;
+
+        transform: none !important;
+    }
+
+
+    /* ------------------------------------------------------
+       ICON
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-item .rx-sidebar-icon {
+        width: 20px !important;
+        height: 20px !important;
+
+        min-width: 20px !important;
+
+        flex-shrink: 0 !important;
+
+        color: currentColor !important;
+    }
+
+
+    /* ------------------------------------------------------
+       TEXT
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-item span {
+        display: inline-block !important;
+
+        color: inherit !important;
+
+        font-size: 14px !important;
+
+        font-weight: 500 !important;
+    }
+
+
+    /* ------------------------------------------------------
+       ACTIVE
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-item.active {
+        width: 100% !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            ) !important;
+
+        color: #ffffff !important;
+
+        box-shadow:
+            0 8px 20px rgba(37, 99, 235, 0.20) !important;
+
+        transform: none !important;
+    }
+
+
+    .premium-sidebar-content
+    .rx-sidebar-item.active
+    .rx-sidebar-icon {
+        color: #ffffff !important;
+    }
+
+
+    /* ------------------------------------------------------
+       HOVER
+       ------------------------------------------------------ */
+
+    .premium-sidebar-content .rx-sidebar-item:hover {
+        background: #eef4ff !important;
+
+        color: #2563eb !important;
+
+        transform: none !important;
+    }
+
+
+    .premium-sidebar-content
+    .rx-sidebar-item.active:hover {
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #3b82f6
+            ) !important;
+
+        color: #ffffff !important;
+    }
+
+
+    /* ------------------------------------------------------
+       SCROLLBAR
+       ------------------------------------------------------ */
+
+    .premium-sidebar::-webkit-scrollbar,
+    .premium-sidebar-content::-webkit-scrollbar {
+        width: 5px !important;
+    }
+
+    .premium-sidebar::-webkit-scrollbar-track,
+    .premium-sidebar-content::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+
+    .premium-sidebar::-webkit-scrollbar-thumb,
+    .premium-sidebar-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1 !important;
+
+        border-radius: 999px !important;
+    }
+
+
+    /* ------------------------------------------------------
+       NO BLUR
+       ------------------------------------------------------ */
+
+    .premium-sidebar,
+    .premium-sidebar-content,
+    .premium-sidebar-content * {
+        backdrop-filter: none !important;
+
+        -webkit-backdrop-filter: none !important;
+
+        filter: none !important;
+    }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 480px) {
+
+    .premium-sidebar,
+    .premium-sidebar-content {
+        top: 62px !important;
+
+        width: 280px !important;
+
+        max-width: 86vw !important;
+
+        height: calc(100dvh - 62px) !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-menu {
+        padding:
+            6px
+            10px
+            6px !important;
+    }
+
+
+    .premium-sidebar-content .rx-sidebar-section {
+        margin-bottom: 14px !important;
+    }
+
+
+    .premium-sidebar-content
+    .rx-sidebar-item {
+        height: 46px !important;
+
+        min-height: 46px !important;
+
+        padding: 0 11px !important;
+
+        gap: 11px !important;
+
+        border-radius: 10px !important;
+
+        font-size: 13px !important;
+    }
+
+
+    .premium-sidebar-content
+    .rx-sidebar-item
+    .rx-sidebar-icon {
+        width: 19px !important;
+
+        height: 19px !important;
+
+        min-width: 19px !important;
+    }
+
+
+    .premium-sidebar-content
+    .rx-sidebar-item
+    span {
+        font-size: 13px !important;
+    }
 }

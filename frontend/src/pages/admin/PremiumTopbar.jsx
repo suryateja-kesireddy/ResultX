@@ -1,36 +1,31 @@
-import SearchBar from "./SearchBar";
-import TopbarActions from "./TopbarActions";
-import ProfileMenu from "./ProfileMenu";
-
-const PremiumTopbar = () => {
+const PremiumTopbar = ({ onMenuClick }) => {
   return (
     <header className="premium-topbar">
 
-      {/* Left */}
-      <div className="rx-topbar-left">
+      {/* ================= LEFT ================= */}
+      <div className="rx-topbar-brand">
 
-        <div>
-          <h2 className="rx-page-title">
-            Dashboard
-          </h2>
+        
 
-          <p className="rx-page-subtitle">
-            College Result Management System
-          </p>
+        <div className="rx-topbar-brand-text">
+          <h2>ResultX</h2>
+          
         </div>
 
       </div>
 
-      {/* Right */}
-      <div className="rx-topbar-right">
 
-        <SearchBar />
-
-        <TopbarActions />
-
-        <ProfileMenu />
-
-      </div>
+      {/* ================= RIGHT ================= */}
+      <button
+        type="button"
+        className="mobile-menu-btn"
+        onClick={onMenuClick}
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
     </header>
   );

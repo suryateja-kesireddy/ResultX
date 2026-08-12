@@ -164,15 +164,26 @@ function LoginForm({
                 </div>
 
 
-                <Button
-                    type="submit"
-                    className="auth-btn"
-                    disabled={isSubmitting}
-                >
-                    {isSubmitting
-                        ? "Logging in..."
-                        : "Login"}
-                </Button>
+                <div className="auth-actions">
+
+                    <Link
+                        to="/login"
+                        className="back-home"
+                    >
+                                Back
+                    </Link>
+
+                    <Button
+                        type="submit"
+                        className="auth-btn"
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting
+                            ? "Logging in..."
+                            : "Login"}
+                    </Button>
+
+                </div>
 
             </form>
 

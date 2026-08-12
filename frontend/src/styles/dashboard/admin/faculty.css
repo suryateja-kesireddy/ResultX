@@ -1024,3 +1024,1289 @@
 
     color: #2563eb;
 }
+/* ==========================================================
+   FACULTY CREATE / EDIT MODAL
+   MOBILE RESPONSIVE OVERRIDE
+   ========================================================== */
+
+.faculty-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+
+    overflow-y: auto;
+}
+
+
+/* Modal */
+
+.faculty-modal {
+    width: min(650px, 100%);
+    max-height: calc(100vh - 40px);
+
+    padding: 28px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 25px 70px rgba(15, 23, 42, 0.20);
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+
+/* Modal header */
+
+.faculty-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 16px;
+
+    margin-bottom: 24px;
+}
+
+
+.faculty-modal-header h2 {
+    margin: 0;
+
+    color: #0f172a;
+
+    font-size: 26px;
+    font-weight: 750;
+
+    line-height: 1.25;
+}
+
+
+.faculty-modal-header p {
+    margin: 6px 0 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* Close button */
+
+.faculty-modal-close {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+
+    background: #f8fafc;
+    color: #334155;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.faculty-modal-close:hover {
+    background: #fee2e2;
+    color: #dc2626;
+
+    transform: scale(1.04);
+}
+
+
+/* Form */
+
+.faculty-modal form {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+/* Inputs */
+
+.faculty-modal input,
+.faculty-modal select {
+    width: 100%;
+    height: 54px;
+
+    box-sizing: border-box;
+
+    padding: 0 16px;
+
+    border: 1px solid #dbe3ec;
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    color: #0f172a;
+
+    font-size: 15px;
+    font-family: inherit;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.faculty-modal input::placeholder {
+    color: #94a3b8;
+}
+
+
+.faculty-modal input:focus,
+.faculty-modal select:focus {
+    border-color: #0f766e;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px rgba(15, 118, 110, 0.10);
+}
+
+
+/* Submit button */
+
+.faculty-modal form button,
+.faculty-submit-btn {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    min-height: 54px;
+
+    border: none;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f766e,
+            #14b8a6
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.faculty-modal form button:hover,
+.faculty-submit-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(20, 184, 166, 0.25);
+}
+
+
+.faculty-modal form button:disabled,
+.faculty-submit-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .faculty-modal-overlay {
+        padding: 16px;
+    }
+
+    .faculty-modal {
+        width: 100%;
+
+        max-height: calc(100vh - 32px);
+
+        padding: 24px;
+
+        border-radius: 20px;
+    }
+
+    .faculty-modal-header {
+        margin-bottom: 20px;
+    }
+
+    .faculty-modal-header h2 {
+        font-size: 23px;
+    }
+
+    .faculty-modal form {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    .faculty-modal input,
+    .faculty-modal select {
+        height: 52px;
+    }
+
+    .faculty-modal form button,
+    .faculty-submit-btn {
+        grid-column: 1;
+
+        min-height: 52px;
+    }
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 576px) {
+
+    .faculty-modal-overlay {
+        align-items: flex-start;
+
+        padding: 12px;
+
+        overflow-y: auto;
+    }
+
+    .faculty-modal {
+        width: 100%;
+
+        max-height: calc(100vh - 24px);
+
+        padding: 20px;
+
+        border-radius: 18px;
+    }
+
+    .faculty-modal-header {
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 18px;
+    }
+
+    .faculty-modal-header h2 {
+        font-size: 20px;
+    }
+
+    .faculty-modal-header p {
+        font-size: 12px;
+    }
+
+    .faculty-modal-close {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+    }
+
+    .faculty-modal form {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .faculty-modal input,
+    .faculty-modal select {
+        height: 52px;
+
+        padding: 0 15px;
+
+        border-radius: 13px;
+
+        font-size: 14px;
+    }
+
+    .faculty-modal form button,
+    .faculty-submit-btn {
+        width: 100%;
+
+        min-height: 52px;
+
+        border-radius: 13px;
+
+        font-size: 14px;
+    }
+}
+
+
+/* ==========================================================
+   VERY SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 400px) {
+
+    .faculty-modal-overlay {
+        padding: 8px;
+    }
+
+    .faculty-modal {
+        max-height: calc(100vh - 16px);
+
+        padding: 17px;
+
+        border-radius: 16px;
+    }
+
+    .faculty-modal-header h2 {
+        font-size: 19px;
+    }
+
+    .faculty-modal-header p {
+        font-size: 11px;
+    }
+
+    .faculty-modal-close {
+        width: 38px;
+        height: 38px;
+
+        flex-basis: 38px;
+    }
+
+    .faculty-modal input,
+    .faculty-modal select {
+        height: 50px;
+    }
+}
+
+
+/* ==========================================================
+   MODAL SCROLLBAR
+   ========================================================== */
+
+.faculty-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.faculty-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.faculty-modal::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 999px;
+}
+
+.faculty-modal::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+/* =========================================================
+   EDIT FACULTY MODAL
+   ========================================================= */
+
+.faculty-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+
+  overflow-y: auto;
+}
+
+
+/* =========================================================
+   MODAL BOX
+   ========================================================= */
+
+.faculty-modal {
+  width: min(900px, 100%);
+
+  max-height: calc(100vh - 48px);
+
+  padding: 32px 38px;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 26px;
+
+  box-shadow:
+    0 25px 60px rgba(15, 23, 42, 0.20),
+    0 8px 24px rgba(15, 23, 42, 0.08);
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
+}
+
+
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
+.faculty-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+}
+
+.faculty-modal-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.faculty-modal-close {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 18px;
+
+  background: #0f172a;
+  color: #ffffff;
+
+  font-size: 28px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.faculty-modal-close:hover {
+  background: #2563eb;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.faculty-modal-close:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.faculty-edit-form {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 24px;
+  row-gap: 26px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.faculty-form-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+.faculty-form-group label {
+  color: #334155;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   INPUT + SELECT
+   ========================================================= */
+
+.faculty-form-group input,
+.faculty-form-group select {
+  width: 100%;
+  height: 76px;
+
+  box-sizing: border-box;
+
+  padding: 0 22px;
+
+  border: 1px solid #d8e1ec;
+  border-radius: 18px;
+
+  background: #f8fafc;
+
+  color: #0f172a;
+
+  font-size: 18px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.faculty-form-group input:focus,
+.faculty-form-group select:focus {
+  background: #ffffff;
+
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================================
+   ACTION BUTTON AREA
+   ========================================================= */
+
+.faculty-modal-actions {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  align-self: end;
+
+  margin-top: 0;
+}
+
+
+/* =========================================================
+   UPDATE BUTTON
+   ========================================================= */
+
+.faculty-submit-btn {
+  width: 100%;
+  height: 76px;
+
+  border: none;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    135deg,
+    #0f8f83,
+    #14b8a6
+  );
+
+  color: #ffffff;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.faculty-submit-btn:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.03);
+
+  box-shadow:
+    0 10px 24px rgba(20, 184, 166, 0.25);
+}
+
+.faculty-submit-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   CANCEL BUTTON
+   ========================================================= */
+
+.faculty-cancel-btn {
+  width: 100%;
+  height: 64px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.faculty-cancel-btn:hover {
+  background: #f1f5f9;
+
+  color: #0f172a;
+
+  border-color: #94a3b8;
+
+  transform: translateY(-1px);
+}
+
+.faculty-cancel-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .faculty-modal-overlay {
+    align-items: flex-start;
+
+    padding: 16px;
+
+    overflow-y: auto;
+  }
+
+  .faculty-modal {
+    width: 100%;
+
+    max-height: calc(100vh - 32px);
+
+    padding: 24px;
+
+    border-radius: 22px;
+  }
+
+  .faculty-modal-header {
+    margin-bottom: 24px;
+  }
+
+  .faculty-modal-header h2 {
+    font-size: 28px;
+  }
+
+  .faculty-modal-close {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 15px;
+
+    font-size: 24px;
+  }
+
+  .faculty-edit-form {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .faculty-form-group label {
+    font-size: 16px;
+  }
+
+  .faculty-form-group input,
+  .faculty-form-group select {
+    height: 64px;
+
+    font-size: 17px;
+
+    border-radius: 16px;
+  }
+
+  .faculty-modal-actions {
+    width: 100%;
+
+    gap: 12px;
+
+    margin-top: 4px;
+  }
+
+  .faculty-submit-btn {
+    height: 64px;
+
+    border-radius: 16px;
+
+    font-size: 18px;
+  }
+
+  .faculty-cancel-btn {
+    height: 60px;
+
+    border-radius: 16px;
+
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .faculty-modal-overlay {
+    padding: 10px;
+  }
+
+  .faculty-modal {
+    max-height: calc(100vh - 20px);
+
+    padding: 20px 16px;
+
+    border-radius: 20px;
+  }
+
+  .faculty-modal-header {
+    margin-bottom: 22px;
+  }
+
+  .faculty-modal-header h2 {
+    font-size: 25px;
+  }
+
+  .faculty-modal-close {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+    font-size: 22px;
+  }
+
+  .faculty-edit-form {
+    gap: 18px;
+  }
+
+  .faculty-form-group {
+    gap: 8px;
+  }
+
+  .faculty-form-group label {
+    font-size: 15px;
+  }
+
+  .faculty-form-group input,
+  .faculty-form-group select {
+    height: 60px;
+
+    padding: 0 18px;
+
+    border-radius: 15px;
+
+    font-size: 16px;
+  }
+
+  .faculty-modal-actions {
+    gap: 10px;
+
+    margin-top: 4px;
+  }
+
+  .faculty-submit-btn {
+    height: 60px;
+
+    border-radius: 15px;
+
+    font-size: 17px;
+  }
+
+  .faculty-cancel-btn {
+    height: 56px;
+
+    border-radius: 15px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .faculty-modal {
+    padding: 18px 14px;
+  }
+
+  .faculty-modal-header h2 {
+    font-size: 23px;
+  }
+
+  .faculty-modal-close {
+    width: 42px;
+    height: 42px;
+  }
+
+  .faculty-form-group input,
+  .faculty-form-group select {
+    height: 56px;
+
+    font-size: 15px;
+  }
+
+  .faculty-submit-btn {
+    height: 56px;
+  }
+
+  .faculty-cancel-btn {
+    height: 52px;
+  }
+}
+/* =========================================================
+   CREATE FACULTY - PASSWORD FIELD FIX
+   ========================================================= */
+
+/* Password field container */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+/* Password input */
+.password-input-wrapper input {
+  width: 100%;
+  height: 72px;
+
+  box-sizing: border-box;
+
+  padding: 0 60px 0 22px;
+
+  border: 1px solid #d8e1ec;
+  border-radius: 18px;
+
+  background: #f8fafc;
+
+  color: #0f172a;
+
+  font-size: 18px;
+
+  outline: none;
+}
+
+
+/* Password input focus */
+.password-input-wrapper input:focus {
+  background: #ffffff;
+
+  border-color: #2563eb;
+
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================================
+   PASSWORD EYE BUTTON
+   ========================================================= */
+
+.password-toggle {
+  position: absolute;
+
+  top: 50%;
+  right: 18px;
+
+  width: 42px;
+  height: 42px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #64748b;
+
+  cursor: pointer;
+
+  font-size: 20px;
+
+  box-shadow: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+
+/* Hover */
+.password-toggle:hover {
+  background: #eef2ff;
+
+  color: #2563eb;
+
+  transform: translateY(-50%);
+}
+
+
+/* Active */
+.password-toggle:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   Prevent generic modal button styles from affecting
+   the password eye button.
+   ========================================================= */
+
+.faculty-modal button.password-toggle,
+.create-faculty-modal button.password-toggle {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  box-shadow: none;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .password-input-wrapper input {
+    height: 64px;
+
+    padding-left: 18px;
+    padding-right: 56px;
+
+    font-size: 17px;
+
+    border-radius: 16px;
+  }
+
+  .password-toggle {
+    right: 14px;
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .faculty-modal button.password-toggle,
+  .create-faculty-modal button.password-toggle {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .password-input-wrapper {
+    width: 100%;
+  }
+
+  .password-input-wrapper input {
+    width: 100%;
+
+    height: 60px;
+
+    padding: 0 54px 0 18px;
+
+    font-size: 16px;
+
+    border-radius: 15px;
+  }
+
+  .password-toggle {
+    right: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: 18px;
+  }
+
+  .faculty-modal button.password-toggle,
+  .create-faculty-modal button.password-toggle {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    padding: 0;
+  }
+}
+/* =========================================================
+   PASSWORD TOGGLE - FINAL OVERRIDE
+   IMPORTANT: KEEP THIS AT THE VERY END OF CSS
+   ========================================================= */
+
+.faculty-modal .hod-password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+
+/* Password input */
+.faculty-modal .hod-password-wrapper input {
+    width: 100%;
+    padding-right: 60px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   EYE BUTTON
+   ========================================================= */
+
+.faculty-modal .hod-password-wrapper .hod-password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 12px;
+
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+    min-height: 42px;
+
+    padding: 0;
+    margin: 0;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    grid-column: auto;
+
+    border: none;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #64748b;
+
+    font-size: 0;
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Remove submit-button styling */
+.faculty-modal .hod-password-wrapper .hod-password-toggle:hover {
+    background: #f1f5f9;
+
+    color: #2563eb;
+
+    transform: translateY(-50%);
+    
+    box-shadow: none;
+}
+
+
+/* Disabled */
+.faculty-modal .hod-password-wrapper .hod-password-toggle:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: translateY(-50%);
+}
+
+
+/* Lucide Eye icon */
+.faculty-modal .hod-password-wrapper .hod-password-toggle svg {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .faculty-modal .hod-password-wrapper input {
+        padding-right: 58px;
+    }
+
+    .faculty-modal .hod-password-wrapper .hod-password-toggle {
+        right: 10px;
+
+        width: 40px;
+        height: 40px;
+
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+    .faculty-modal .hod-password-wrapper {
+        width: 100%;
+    }
+
+    .faculty-modal .hod-password-wrapper input {
+        width: 100%;
+
+        padding-right: 54px;
+    }
+
+    .faculty-modal .hod-password-wrapper .hod-password-toggle {
+        right: 8px;
+
+        width: 38px;
+        height: 38px;
+
+        min-width: 38px;
+        min-height: 38px;
+
+        border-radius: 9px;
+    }
+
+    .faculty-modal .hod-password-wrapper .hod-password-toggle svg {
+        width: 19px;
+        height: 19px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .faculty-modal .hod-password-wrapper .hod-password-toggle {
+        right: 6px;
+
+        width: 36px;
+        height: 36px;
+
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+}

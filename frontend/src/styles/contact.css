@@ -495,3 +495,8 @@
 }
 
 }
+@media (max-width: 480px) {
+    .contact-page {
+        padding-top: 70px !important;
+    }
+}

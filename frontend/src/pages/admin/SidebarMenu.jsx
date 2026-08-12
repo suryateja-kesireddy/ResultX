@@ -4,25 +4,27 @@ import SidebarSection from "./SidebarSection";
 import SidebarItem from "./SidebarItem";
 
 const SidebarMenu = () => {
-  return (
-    <>
-      {sidebarConfig.map((section) => (
-        <SidebarSection
-          key={section.title}
-          title={section.title}
-        >
-          {section.items.map((item) => (
-            <SidebarItem
-              key={item.id}
-              icon={item.icon}
-              label={item.label}
-              to={item.path}
-            />
-          ))}
-        </SidebarSection>
-      ))}
-    </>
-  );
+    return (
+        <div className="rx-sidebar-navigation">
+
+            {sidebarConfig.map((section) => (
+                <SidebarSection
+                    key={section.title}
+                    title={section.title}
+                >
+                    {section.items.map((item) => (
+                        <SidebarItem
+                            key={item.id}
+                            icon={item.icon}
+                            label={item.label}
+                            to={item.path}
+                        />
+                    ))}
+                </SidebarSection>
+            ))}
+
+        </div>
+    );
 };
 
 export default SidebarMenu;

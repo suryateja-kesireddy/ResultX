@@ -1,46 +1,93 @@
 import { NavLink } from "react-router-dom";
+import { X } from "lucide-react";
 
-function Sidebar() {
-  return (
-    <aside className="sidebar">
-      <div className="sidebar-header">
+function Sidebar({ isOpen, onClose }) {
 
-  <div className="sidebar-logo">
-  ResultX
-</div>
+    const handleNavigation = () => {
+        // Close sidebar after selecting a menu item on mobile
+        onClose?.();
+    };
 
-</div>
+    return (
+        <aside
+            className={`sidebar ${
+                isOpen ? "sidebar-open" : ""
+            }`}
+        >
 
-     <nav className="sidebar-menu">
+            {/* Mobile Close Button */}
+            <button
+                type="button"
+                className="sidebar-close-btn"
+                onClick={onClose}
+                aria-label="Close sidebar"
+            >
+                <X size={28} />
+            </button>
 
-  <NavLink to="/dashboard" end>
-    <span>🏠</span>
-    Dashboard
-  </NavLink>
 
-  <NavLink to="/dashboard/results">
-    <span>📄</span>
-    Results
-  </NavLink>
+            {/* Logo */}
+            <div className="sidebar-header">
 
-  <NavLink to="/dashboard/profile">
-    <span>👤</span>
-    Profile
-  </NavLink>
+                <div className="sidebar-logo">
+                    ResultX
+                </div>
 
-  <NavLink to="/dashboard/notifications">
-    <span>🔔</span>
-    Notifications
-  </NavLink>
+            </div>
 
-  <NavLink to="/dashboard/settings">
-    <span>⚙️</span>
-    Settings
-  </NavLink>
 
-</nav>
-    </aside>
-  );
+            {/* Navigation */}
+            <nav className="sidebar-menu">
+
+                <NavLink
+                    to="/dashboard"
+                    end
+                    onClick={handleNavigation}
+                >
+                    <span>🏠</span>
+                    Dashboard
+                </NavLink>
+
+
+                <NavLink
+                    to="/dashboard/results"
+                    onClick={handleNavigation}
+                >
+                    <span>📄</span>
+                    Results
+                </NavLink>
+
+
+                <NavLink
+                    to="/dashboard/profile"
+                    onClick={handleNavigation}
+                >
+                    <span>👤</span>
+                    Profile
+                </NavLink>
+
+
+                <NavLink
+                    to="/dashboard/notifications"
+                    onClick={handleNavigation}
+                >
+                    <span>🔔</span>
+                    Notifications
+                </NavLink>
+
+
+                <NavLink
+                    to="/dashboard/settings"
+                    onClick={handleNavigation}
+                >
+                    <span>⚙️</span>
+                    Settings
+                </NavLink>
+
+            </nav>
+
+        </aside>
+    );
 }
 
 export default Sidebar;

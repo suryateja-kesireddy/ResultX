@@ -2,104 +2,133 @@ import { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
-import useAuth from "../../hooks/auth/useAuth";
-
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-  const { user } = useAuth();
-  const location = useLocation();
+    const location = useLocation();
 
-  const isHome = location.pathname === "/";
+    const isHome = location.pathname === "/";
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
 
-  return (
-    <nav
-      className={`navbar ${
-        isHome ? "navbar-home" : "navbar-light"
-      }`}
-    >
-      <div className="container navbar-container">
-
-        {/* Logo */}
-
-        <Link
-          to="/"
-          className="logo"
-          onClick={closeMenu}
+    return (
+        <nav
+            className={`navbar ${
+                isHome ? "navbar-home" : "navbar-light"
+            }`}
         >
-          ResultX
-        </Link>
+            <div className="container navbar-container">
 
-        {/* Mobile Menu */}
+                {/* ==================================================
+                    LOGO
+                ================================================== */}
 
-        {/*
-        <button
-          className="menu-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-        */}
+                <Link
+                    to="/"
+                    className="logo"
+                    onClick={closeMenu}
+                >
+                    ResultX
+                </Link>
 
-        {/* Navigation */}
 
-        <div
-          className={`nav-links ${
-            menuOpen ? "open" : ""
-          }`}
-        >
-          <NavLink
-            to="/"
-            onClick={closeMenu}
-          >
-            Home
-          </NavLink>
+                {/* ==================================================
+                    MOBILE MENU BUTTON
+                ================================================== */}
 
-          <NavLink
-            to="/about"
-            onClick={closeMenu}
-          >
-            About
-          </NavLink>
+                <button
+                    type="button"
+                    className="menu-btn"
+                    onClick={() =>
+                        setMenuOpen((prev) => !prev)
+                    }
+                    aria-label={
+                        menuOpen
+                            ? "Close navigation menu"
+                            : "Open navigation menu"
+                    }
+                    aria-expanded={menuOpen}
+                >
+                    {menuOpen ? (
+                        <X size={24} />
+                    ) : (
+                        <Menu size={24} />
+                    )}
+                </button>
 
-          <NavLink
-            to="/contact"
-            onClick={closeMenu}
-          >
-            Contact
-          </NavLink>
 
-          {/*
-          <div className="mobile-login">
-            <Link
-              to="/login"
-              className="login-btn"
-              onClick={closeMenu}
-            >
-              Login →
-            </Link>
-          </div>
-          */}
-        </div>
+                {/* ==================================================
+                    NAVIGATION
+                ================================================== */}
 
-        {/* Desktop Login */}
+                <div
+                    className={`nav-links ${
+                        menuOpen ? "open" : ""
+                    }`}
+                >
 
-        <div className="nav-actions">
-          <Link
-            to="/login"
-            className="login-btn"
-          >
-            Login →
-          </Link>
-        </div>
+                    <NavLink
+                        to="/"
+                        onClick={closeMenu}
+                    >
+                        Home
+                    </NavLink>
 
-      </div>
-    </nav>
-  );
+                    <NavLink
+                        to="/about"
+                        onClick={closeMenu}
+                    >
+                        About
+                    </NavLink>
+
+                    <NavLink
+                        to="/contact"
+                        onClick={closeMenu}
+                    >
+                        Contact
+                    </NavLink>
+
+
+                    {/* ==================================================
+                        MOBILE LOGIN
+                    ================================================== */}
+
+                    <div className="mobile-login">
+
+                        <Link
+                            to="/login"
+                            className="login-btn"
+                            onClick={closeMenu}
+                        >
+                            Login →
+                        </Link>
+
+                    </div>
+
+                </div>
+
+
+                {/* ==================================================
+                    DESKTOP LOGIN
+                ================================================== */}
+
+                <div className="nav-actions">
+
+                    <Link
+                        to="/login"
+                        className="login-btn"
+                        onClick={closeMenu}
+                    >
+                        Login →
+                    </Link>
+
+                </div>
+
+            </div>
+        </nav>
+    );
 }
 
 export default Navbar;

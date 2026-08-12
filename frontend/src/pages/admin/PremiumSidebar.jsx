@@ -1,15 +1,43 @@
+import { X } from "lucide-react";
+
 import Logo from "../../pages/admin/Logo";
 import SidebarMenu from "../../pages/admin/SidebarMenu";
 
-const PremiumSidebar = () => {
+const PremiumSidebar = ({ isOpen, onClose }) => {
   return (
-    <div className="premium-sidebar-content">
-      <Logo />
+    <aside
+      className={`premium-sidebar ${
+        isOpen ? "premium-sidebar-open" : ""
+      }`}
+    >
 
-     <div className="rx-sidebar-menu">
-    <SidebarMenu />
-</div>
-    </div>
+      {/* Sidebar Header */}
+      <div className="premium-sidebar-header">
+
+        
+
+        {/* Mobile Close Button */}
+        <button
+          type="button"
+          className="premium-sidebar-close"
+          onClick={onClose}
+          aria-label="Close menu"
+        >
+          <X size={24} />
+        </button>
+
+      </div>
+
+      {/* Sidebar Navigation */}
+      <div className="premium-sidebar-content">
+
+        <div className="rx-sidebar-menu">
+          <SidebarMenu />
+        </div>
+
+      </div>
+
+    </aside>
   );
 };
 

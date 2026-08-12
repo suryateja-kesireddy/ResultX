@@ -2412,3 +2412,59 @@
     }
 
 }
+/* ==========================================================
+   HOD TABLE HORIZONTAL SCROLL
+   ========================================================== */
+
+.hod-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+    scrollbar-color: #94a3b8 transparent;
+}
+
+
+/* Chrome / Edge / Safari */
+.hod-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.hod-table-wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.hod-table-wrapper::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 999px;
+}
+
+
+/* Keep table wide enough */
+.hod-table-wrapper .student-table {
+    width: 100%;
+    min-width: 900px;
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .hod-table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        touch-action: pan-x;
+    }
+
+    .hod-table-wrapper .student-table {
+        min-width: 850px;
+    }
+}
